@@ -28,6 +28,6 @@ export default {
   justify-content: center;
   align-items: center;
 
-  background: #444;
+  background: #050505;
 }
 </style>
