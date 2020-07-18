@@ -2,24 +2,24 @@ import * as PIXI from 'pixi.js'
 import debounce from 'lodash.debounce'
 
 import { SpriteStorage } from './SpriteStorage'
-import { SpriteKey } from './spriteMap'
+import SplashScreen from './screens/SplashScreen'
 
 export default class Engine {
   app: PIXI.Application
   sprites: SpriteStorage
   scale = 1
-  private debouncedResize: any
+
+  private debouncedResize: (width: number, height: number) => void
 
   constructor() {
     this.app = new PIXI.Application({
       antialias: true,
       transparent: false,
-      resolution: 1,
+      resolution: window.devicePixelRatio || 1,
       autoDensity: true,
     })
 
-    this.sprites = new SpriteStorage(this.app)
-
+    this.sprites = new SpriteStorage(this.app, this.mountExample)
     this.debouncedResize = debounce(this.doResize, 100, { maxWait: 300 })
   }
 
@@ -29,16 +29,10 @@ export default class Engine {
     }
 
     parent.appendChild(this.app.view)
+  }
 
-    const logo = this.sprites.getSprite(SpriteKey.LOGO)
-
-    if (logo) {
-      logo.x = 30
-      logo.y = 30
-      this.app.stage.addChild(logo)
-    } else {
-      console.warn('logo not found')
-    }
+  private mountExample = () => {
+    new SplashScreen(this)
   }
 
   /**
