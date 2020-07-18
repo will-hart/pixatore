@@ -2,11 +2,11 @@ import { Container } from 'pixi.js'
 import SpriteDrawable from './SpriteDrawable'
 import Engine from '../Engine'
 import { SpriteKey } from '../spriteMap'
-import IDrawable from './IDrawable'
+import Drawable from './Drawable'
 import TextDrawable from './TextDrawable'
 
 export default class GroupDrawable extends Container {
-  protected _drawables: { [key: string]: IDrawable } = {}
+  protected _drawables: { [key: string]: Drawable } = {}
 
   constructor(
     protected engine: Engine,
@@ -35,7 +35,7 @@ export default class GroupDrawable extends Container {
     return textDrawable
   }
 
-  addDrawable(drawable: IDrawable): IDrawable {
+  addDrawable(drawable: Drawable): Drawable {
     if (this._drawables[drawable.id]) {
       throw new Error(
         `Naming collision on drawables in GroupDrawable::addDrawable, ${drawable.id} already exists in children`,
@@ -48,7 +48,7 @@ export default class GroupDrawable extends Container {
     return drawable
   }
 
-  removeDrawable(drawable: IDrawable): boolean {
+  removeDrawable(drawable: Drawable): boolean {
     if (!this._drawables[drawable.id]) return false
 
     drawable.onRemove(this)

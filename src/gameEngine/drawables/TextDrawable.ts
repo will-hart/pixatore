@@ -1,12 +1,12 @@
 import * as PIXI from 'pixi.js'
-import IDrawable from './IDrawable'
+import Drawable from './Drawable'
 
 const DEFAULT_TEXT_STYLE: ConstructorParameters<typeof PIXI.TextStyle>[0] = {
   fontSize: 12,
   fill: '#FFFFFF',
 }
 
-export default class TextDrawable extends PIXI.Text implements IDrawable {
+export default class TextDrawable extends PIXI.Text implements Drawable {
   constructor(
     public id: string,
     text: string,
