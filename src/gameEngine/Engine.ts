@@ -3,10 +3,12 @@ import debounce from 'lodash.debounce'
 
 import { SpriteStorage } from './SpriteStorage'
 import SplashScreen from './screens/SplashScreen'
+import ScreenNavigator from './screens/ScreenNavigator'
 
 export default class Engine {
   private app: PIXI.Application
   sprites: SpriteStorage
+  navigator: ScreenNavigator
 
   private debouncedResize: (width: number, height: number) => void
 
@@ -34,8 +36,9 @@ export default class Engine {
       autoDensity: true,
     })
 
-    this.sprites = new SpriteStorage(this.app, this.mountExample)
+    this.sprites = new SpriteStorage(this.app, this.onLoaded)
     this.debouncedResize = debounce(this.doResize, 100, { maxWait: 300 })
+    this.navigator = new ScreenNavigator(this)
   }
 
   mount(parent: HTMLElement | null) {
@@ -46,8 +49,8 @@ export default class Engine {
     parent.appendChild(this.app.view)
   }
 
-  private mountExample = () => {
-    new SplashScreen(this)
+  private onLoaded = () => {
+    this.navigator.reset(new SplashScreen(this))
   }
 
   /**
