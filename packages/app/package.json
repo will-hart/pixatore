@@ -1,17 +1,8 @@
 {
-  "name": "tauri-game",
+  "name": "tauri-app",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "app:serve": "yarn --cwd packages/app serve",
-    "app:build": "yarn --cwd packages/app build",
-    "app:test:unit": "yarn --cwd packages/app test:unit",
-    "app:lint": "yarn --cwd packages/app lint",
-    "app:tauri:build": "yarn --cwd packages/app tauri:build",
-    "app:dev": "yarn --cwd packages/app dev",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
