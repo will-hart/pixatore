@@ -5,11 +5,26 @@ import { SpriteStorage } from './SpriteStorage'
 import SplashScreen from './screens/SplashScreen'
 
 export default class Engine {
-  app: PIXI.Application
+  private app: PIXI.Application
   sprites: SpriteStorage
-  scale = 1
 
   private debouncedResize: (width: number, height: number) => void
+
+  get width(): number {
+    return this.app.view.width
+  }
+
+  get height(): number {
+    return this.app.view.height
+  }
+
+  get ticker(): PIXI.Ticker {
+    return this.app.ticker
+  }
+
+  get root(): PIXI.Container {
+    return this.app.stage
+  }
 
   constructor() {
     this.app = new PIXI.Application({

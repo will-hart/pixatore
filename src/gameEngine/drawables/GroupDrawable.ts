@@ -15,7 +15,7 @@ export default class GroupDrawable extends Container {
     super()
 
     if (this.ticker) {
-      engine.app.ticker.add(() => this.invokeTicker())
+      engine.ticker.add(() => this.invokeTicker())
     }
   }
 
@@ -77,7 +77,7 @@ export default class GroupDrawable extends Container {
 
   destroy = () => {
     if (this.ticker) {
-      this.engine.app.ticker.remove(this.invokeTicker)
+      this.engine.ticker.remove(this.invokeTicker)
     }
     super.destroy()
   }
