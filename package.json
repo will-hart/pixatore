@@ -6,15 +6,16 @@
     "packages/*"
   ],
   "scripts": {
-    "app:serve": "yarn --cwd packages/app serve",
-    "app:build": "yarn --cwd packages/app build",
-    "app:test:unit": "yarn --cwd packages/app test:unit",
-    "app:lint": "yarn --cwd packages/app lint",
-    "app:tauri:build": "yarn --cwd packages/app tauri:build",
-    "app:dev": "yarn --cwd packages/app dev",
-    "server:dev": "yarn --cwd packages/server start",
-    "server:loadtest": "yarn --cwd packages/server loadtest",
-    "dev": "yarn run-p -nr server:dev app:dev"
+    "app:serve": "yarn workspace @tauri-game/app serve",
+    "app:build": "yarn workspace @tauri-game/app build",
+    "app:test:unit": "yarn workspace @tauri-game/app test:unit",
+    "app:lint": "yarn workspace @tauri-game/app lint",
+    "app:tauri:build": "yarn workspace @tauri-game/app tauri:build",
+    "app:dev": "yarn workspace @tauri-game/app dev",
+    "server:dev": "yarn  workspace @tauri-game/server start",
+    "server:loadtest": "yarn  workspace @tauri-game/server loadtest",
+    "dev": "yarn run-p -nr server:dev app:dev",
+    "predev": "yarn workspace @tauri-game/shared build"
   },
   "devDependencies": {
     "npm-run-all": "4.1.5"
