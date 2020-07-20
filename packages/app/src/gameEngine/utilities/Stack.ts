@@ -14,7 +14,7 @@ export default class Stack<T> extends Array<T> {
     return this[this.length - 1]
   }
 
-  clear() {
+  clear(): void {
     this.splice(0)
   }
 }

@@ -12,16 +12,16 @@ export default class BaseScreen extends GroupDrawable implements Drawable {
     super(engine, ticker)
   }
 
-  onAdd() {
+  onAdd(): void {
     this.engine.root.addChild(this)
   }
 
-  onRemove() {
+  onRemove(): void {
     this.engine.root.removeChild(this)
   }
 
   // eslint-disable-next-line
-  processInput(_input: InputManager) {
+  processInput(_input: InputManager): void {
     //
   }
 }

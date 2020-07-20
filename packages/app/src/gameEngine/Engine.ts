@@ -46,7 +46,7 @@ export default class Engine {
     this.input.subscribe()
   }
 
-  mount(parent: HTMLElement | null) {
+  mount(parent: HTMLElement | null): void {
     if (!parent) {
       throw new Error('Unable to find parent element to mount game. Aborting')
     }
@@ -54,13 +54,13 @@ export default class Engine {
     parent.appendChild(this.app.view)
   }
 
-  private onLoaded = () => {
+  private onLoaded = (): void => {
     this.navigator.reset(new SplashScreen(this))
 
     this.app.ticker.add(this.loop)
   }
 
-  loop = () => {
+  loop = (): void => {
     this.navigator.current.processInput(this.input)
     this.input.endFrame()
   }
@@ -71,11 +71,11 @@ export default class Engine {
    * @param width The width to scale the element to
    * @param height The height to scale the element to
    */
-  resize(width: number, height: number) {
+  resize(width: number, height: number): void {
     this.debouncedResize(width, height)
   }
 
-  private doResize(width: number, height: number) {
+  private doResize(width: number, height: number): void {
     this.app.view.width = width
     this.app.view.height = height
 

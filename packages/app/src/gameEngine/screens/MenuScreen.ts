@@ -14,7 +14,7 @@ export default class MenuScreen extends BaseScreen {
     super('main_menu', engine)
   }
 
-  onAdd = () => {
+  onAdd = (): void => {
     this.sprite = new PIXI.Sprite(PIXI.Texture.WHITE)
     this.sprite.tint = 0x0000ff
     this.sprite.width = this.sprite.height = 100

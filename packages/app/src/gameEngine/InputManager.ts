@@ -3,22 +3,22 @@ export default class InputManager {
   private held: { [key: string]: number } = {}
   private up: { [key: string]: boolean } = {}
 
-  subscribe() {
+  subscribe(): void {
     window.addEventListener('keydown', this.onKeyPress)
     window.addEventListener('keyup', this.onKeyRelease)
   }
 
-  unsubscribe() {
+  unsubscribe(): void {
     window.removeEventListener('keydown', this.onKeyPress)
     window.removeEventListener('keyup', this.onKeyRelease)
   }
 
-  endFrame() {
+  endFrame(): void {
     this.down = {}
     this.up = {}
   }
 
-  reset() {
+  reset(): void {
     this.down = {}
     this.up = {}
     this.held = {}
@@ -51,7 +51,7 @@ export default class InputManager {
     return Object.keys(this.up)
   }
 
-  private onKeyPress = (event: KeyboardEvent) => {
+  private onKeyPress = (event: KeyboardEvent): void => {
     // prevent repeat keypresses when keys are held
     if (this.isHeld(event.key)) return
 
@@ -59,7 +59,7 @@ export default class InputManager {
     this.held[event.key] = new Date().getTime()
   }
 
-  private onKeyRelease = (event: KeyboardEvent) => {
+  private onKeyRelease = (event: KeyboardEvent): void => {
     delete this.held[event.key]
     this.up[event.key] = true
   }

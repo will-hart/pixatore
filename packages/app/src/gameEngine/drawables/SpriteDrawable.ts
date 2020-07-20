@@ -8,11 +8,11 @@ export default class SpriteDrawable extends PIXI.Sprite implements Drawable {
     super(engine.sprites.getSprite(spriteKey)?.texture)
   }
 
-  onAdd(stage: PIXI.Container) {
+  onAdd(stage: PIXI.Container): void {
     stage.addChild(this)
   }
 
-  onRemove(stage: PIXI.Container) {
+  onRemove(stage: PIXI.Container): void {
     stage.removeChild(this)
   }
 }

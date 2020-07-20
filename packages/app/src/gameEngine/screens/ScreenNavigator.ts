@@ -15,7 +15,7 @@ export default class ScreenNavigator {
    * Adds a new screen "on top" of the current screen
    * @param screen
    */
-  push(screen: BaseScreen) {
+  push(screen: BaseScreen): void {
     this.unregister(this.screens.peek())
     this.register(screen)
   }
@@ -24,7 +24,7 @@ export default class ScreenNavigator {
    * Replaces the current top most screen
    * @param screen
    */
-  replace(screen: BaseScreen) {
+  replace(screen: BaseScreen): void {
     this.unregister(this.screens.pop())
     this.register(screen)
   }
@@ -33,18 +33,18 @@ export default class ScreenNavigator {
    * Clears the entire navigation stack and replaces with the given screen
    * @param screen
    */
-  reset(screen: BaseScreen) {
+  reset(screen: BaseScreen): void {
     this.unregister(this.screens.peek())
     this.screens.clear()
     this.register(screen)
   }
 
-  private register(screen: BaseScreen) {
+  private register(screen: BaseScreen): void {
     this.screens.enqueue(screen)
     screen.onAdd()
   }
 
-  private unregister(screen?: BaseScreen) {
+  private unregister(screen?: BaseScreen): void {
     if (!screen) return // no screen to unregister
     screen.onRemove()
   }

@@ -17,7 +17,7 @@ export default class SplashScreen extends BaseScreen {
     })
   }
 
-  onAdd = () => {
+  onAdd = (): void => {
     this.position.set(this.engine.width / 2, this.engine.height / 2)
 
     const logo = this.createAndAddSprite('menu.logo', SpriteKey.LOGO)
@@ -54,7 +54,7 @@ export default class SplashScreen extends BaseScreen {
     super.onAdd()
   }
 
-  processInput(input: InputManager) {
+  processInput(input: InputManager): void {
     const heldFor = input.heldFor('Enter')
     if (!heldFor) return
 

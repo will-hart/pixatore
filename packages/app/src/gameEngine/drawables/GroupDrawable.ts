@@ -71,11 +71,11 @@ export default class GroupDrawable extends Container {
     return this._drawables[id] as PIXI.DisplayObject
   }
 
-  private invokeTicker = () => {
+  private invokeTicker = (): void => {
     this.ticker?.(this)
   }
 
-  destroy = () => {
+  destroy = (): void => {
     if (this.ticker) {
       this.engine.ticker.remove(this.invokeTicker)
     }

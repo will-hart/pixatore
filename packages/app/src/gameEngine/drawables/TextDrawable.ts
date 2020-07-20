@@ -15,11 +15,11 @@ export default class TextDrawable extends PIXI.Text implements Drawable {
     super(text, new PIXI.TextStyle({ ...DEFAULT_TEXT_STYLE, ...style }))
   }
 
-  onAdd(stage: PIXI.Container) {
+  onAdd(stage: PIXI.Container): void {
     stage.addChild(this)
   }
 
-  onRemove(stage: PIXI.Container) {
+  onRemove(stage: PIXI.Container): void {
     stage.removeChild(this)
   }
 }
