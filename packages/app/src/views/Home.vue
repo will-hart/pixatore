@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <FPS />
     <Game />
   </div>
 </template>
@@ -7,11 +8,13 @@
 <script>
 // @ is an alias to /src
 import Game from '@/components/Game.vue'
+import FPS from '@/components/FPS.vue'
 
 export default {
   name: 'Home',
   components: {
     Game,
+    FPS,
   },
 }
 </script>
