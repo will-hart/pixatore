@@ -1,10 +1,10 @@
 {
-  "name": "my-app",
-  "version": "1.0.0",
+  "name": "@tauri-game/server",
+  "version": "0.1.0",
   "description": "npm init template for bootstraping an empty Colyseus project",
   "main": "lib/index.js",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node src/index.ts",
     "loadtest": "colyseus-loadtest loadtest/example.ts --room my_room --numClients 2"
   },
   "author": "",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@colyseus/monitor": "^0.12.2",
     "@colyseus/social": "^0.11.6",
+    "@tauri-game/shared": "0.1.0",
     "colyseus": "^0.13.7",
     "cors": "^2.8.5",
     "express": "^4.17.1",
