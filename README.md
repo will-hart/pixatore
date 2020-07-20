@@ -1,5 +1,14 @@
 # tauri-game
 
+A multiplayer HTML5 game start pack which uses:
+
+- tauri-app to bundle
+- vue for gui
+- pixi.js for graphis
+- colyseus for multiplayer capability
+
+Uses yarn workspaces to manage packages.
+
 ## Project setup
 
 ```
@@ -9,7 +18,7 @@ yarn install
 ### Compiles and hot-reloads for development
 
 ```
-yarn serve
+yarn dev
 ```
 
 ### Compiles and minifies for production
@@ -17,19 +26,3 @@ yarn serve
 ```
 yarn build
 ```
-
-### Run your unit tests
-
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).

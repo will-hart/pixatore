@@ -8,5 +8,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json --resolveJsonModule",
     "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
+  },
+  "dependencies": {
+    "@colyseus/schema": "^0.5.40"
   }
 }

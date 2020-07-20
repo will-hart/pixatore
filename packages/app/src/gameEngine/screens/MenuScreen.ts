@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js'
 import * as Colyseus from 'colyseus.js'
 
+import { State } from '@tauri-game/shared'
+
 import Engine from '../Engine'
 import BaseScreen from './BaseScreen'
 
@@ -23,12 +25,12 @@ export default class MenuScreen extends BaseScreen {
     this.client = new Colyseus.Client('ws://localhost:2567')
 
     this.client
-      .joinOrCreate('my_room')
-      .then(room => {
+      .joinOrCreate<State.GameState>('game_room')
+      .then((room) => {
         console.log(room.sessionId, 'joined', room.name)
         if (this.sprite) this.sprite.tint = 0x00ff00
       })
-      .catch(e => {
+      .catch((e) => {
         console.error('JOIN ERROR', e)
         if (this.sprite) this.sprite.tint = 0xff0000
       })
