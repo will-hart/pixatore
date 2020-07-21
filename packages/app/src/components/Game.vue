@@ -10,13 +10,16 @@ import { ResizeObserver } from 'vue-resize'
 import { mapActions } from 'vuex'
 
 import Engine from '../gameEngine/Engine'
+import { StoreNamespaces, getActionName } from '../store/types'
 
 @Component({
   components: {
     'resize-observer': ResizeObserver,
   },
   methods: {
-    ...mapActions({ setFps: 'setFps' }),
+    ...mapActions({
+      setFps: getActionName(StoreNamespaces.gameStatus, 'setFps'),
+    }),
   },
 })
 export default class Game extends Vue {

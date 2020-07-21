@@ -5,8 +5,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import { AppState } from '../store/types'
+
 export default Vue.extend({
-  computed: mapState(['fps']),
+  computed: {
+    ...mapState({
+      fps: (state: unknown) => (state as AppState).gameStatus.current,
+    }),
+  },
 })
 </script>
 

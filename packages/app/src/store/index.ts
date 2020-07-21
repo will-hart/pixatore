@@ -1,21 +1,19 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { createLogger } from 'vuex'
+
+import { gameStatus } from './modules/gameStatus'
+import { StoreNamespaces } from './types'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-    fps: 0,
+const debug = process?.env?.NODE_ENV && process.env.NODE_ENV !== 'production'
+
+const store = new Vuex.Store({
+  modules: {
+    [StoreNamespaces.gameStatus]: gameStatus,
   },
-  mutations: {
-    setFps(state, fps) {
-      state.fps = fps
-    },
-  },
-  actions: {
-    setFps({ commit }, fps) {
-      commit('setFps', fps)
-    },
-  },
-  modules: {},
+  strict: debug,
+  plugins: debug ? [createLogger()] : [],
 })
+
+export default store
