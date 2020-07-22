@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import { mapState } from 'vuex'
 import { AppState } from '../store/types'
+import { defineComponent } from 'vue'
 
-export default Vue.extend({
+export default defineComponent({
   computed: {
     ...mapState({
       fps: (state: unknown) => (state as AppState).gameStatus.current,

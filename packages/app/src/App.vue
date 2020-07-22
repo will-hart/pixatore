@@ -1,14 +1,19 @@
 <template>
-  <div id="app"><home /></div>
+  <div class="home">
+    <fps />
+    <game />
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Home from './views/Home.vue'
+import { defineComponent } from 'vue'
+import FPS from './components/FPS.vue'
+import Game from './components/Game.vue'
 
-export default Vue.extend({
+export default defineComponent({
   components: {
-    home: Home,
+    game: Game,
+    fps: FPS,
   },
 })
 </script>
@@ -17,6 +22,10 @@ export default Vue.extend({
 * {
   padding: 0;
   margin: 0;
+}
+
+body {
+  background: #222222;
 }
 
 #app {
