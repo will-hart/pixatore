@@ -1,12 +1,20 @@
 <template>
-  <div id="game">
+  <div id="game" v-on:mount-game="mountGame">
     <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-export default defineComponent({})
+import { GameEngineSymbol } from '../plugins/gameEngine'
+
+export default defineComponent({
+  inject: { [GameEngineSymbol]: { from: 'gameEngine' } },
+
+  mounted() {
+    this.$engine().mount(document.getElementById('game'))
+  },
+})
 </script>
 
 <style lang="scss" scoped>
