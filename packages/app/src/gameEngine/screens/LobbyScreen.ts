@@ -6,7 +6,7 @@ import { State } from '@tauri-game/shared'
 import Engine from '../Engine'
 import BaseScreen from './BaseScreen'
 
-export default class MenuScreen extends BaseScreen {
+export default class LobbyScreen extends BaseScreen {
   sprite?: PIXI.Sprite
   client?: Colyseus.Client
 
@@ -17,8 +17,8 @@ export default class MenuScreen extends BaseScreen {
   onAdd = (): void => {
     this.sprite = new PIXI.Sprite(PIXI.Texture.WHITE)
     this.sprite.tint = 0x0000ff
-    this.sprite.width = this.sprite.height = 100
-    this.sprite.position.set(100, 100)
+    this.sprite.width = this.sprite.height = 10
+    this.sprite.position.set(10, 10)
     this.addChild(this.sprite)
     super.onAdd()
 

@@ -3,7 +3,7 @@ import Engine from '../Engine'
 import { SpriteKey } from '../spriteMap'
 import BaseScreen from './BaseScreen'
 import InputManager from '../InputManager'
-import MenuScreen from './MenuScreen'
+import LobbyScreen from './LobbyScreen'
 
 export default class SplashScreen extends BaseScreen {
   loadingText?: PIXI.Text
@@ -65,7 +65,7 @@ export default class SplashScreen extends BaseScreen {
       )
 
     if (heldFor > 1) {
-      this.engine.navigator.replace(new MenuScreen(this.engine))
+      this.emit('exit')
     }
   }
 }

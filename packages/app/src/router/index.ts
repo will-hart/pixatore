@@ -3,9 +3,15 @@ import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Splash',
     component: () =>
       import(/* webpackChunkName: "splash" */ '../screens/SplashScreen.vue'),
+  },
+  {
+    path: '/lobby',
+    name: 'Lobby',
+    component: () =>
+      import(/* webpackChunkName: "lobby" */ '../screens/LobbyScreen.vue'),
   },
 ]
 

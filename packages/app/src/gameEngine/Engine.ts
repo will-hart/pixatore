@@ -55,13 +55,11 @@ export default class Engine {
   }
 
   private onLoaded = (): void => {
-    this.navigator.reset(new SplashScreen(this))
-
     this.app.ticker.add(this.loop)
   }
 
   loop = (): void => {
-    this.navigator.current.processInput(this.input)
+    this.navigator.current?.processInput(this.input)
     this.input.endFrame()
   }
 
