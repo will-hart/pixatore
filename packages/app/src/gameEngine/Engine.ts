@@ -71,11 +71,11 @@ export default class Engine {
    * @param width The width to scale the element to
    * @param height The height to scale the element to
    */
-  resize(width: number, height: number): void {
+  resize = (width: number, height: number): void => {
     this.debouncedResize(width, height)
   }
 
-  private doResize(width: number, height: number): void {
+  private doResize = (width: number, height: number): void => {
     this.app.view.width = width
     this.app.view.height = height
 

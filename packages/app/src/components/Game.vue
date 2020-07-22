@@ -6,12 +6,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch, watchEffect } from 'vue'
 import { GameEngineSymbol } from '../plugins/gameEngine'
 import FPS from './FPS.vue'
 import Engine from '../gameEngine/Engine'
 
 export default defineComponent({
+  props: {
+    width: Number,
+    height: Number,
+  },
+
   components: {
     fps: FPS,
   },
@@ -24,10 +29,27 @@ export default defineComponent({
 
   inject: { [GameEngineSymbol]: { from: 'gameEngine' } },
 
-  setup() {
+  setup(props) {
     const gameMounted = ref(false)
     const fps = ref(0)
-    return { gameMounted, fps }
+    const resizeRef = ref<((w: number, h: number) => void) | null>(null)
+
+    // watch([props.width, props.height], ([w, h], [lastW, lastH]) => {
+    //   console.log('Changed!')
+    //   if (w === lastW && h === lastH) return
+
+    //   if (!resizeRef.value) {
+    //     console.log('Unable to resize game, ref not set')
+    //     return
+    //   }
+
+    //   console.log('resizing to ', w, h)
+    //   resizeRef.value(w, h)
+    // })
+
+    watchEffect(() => resizeRef.value?.(props.width, props.height))
+
+    return { gameMounted, fps, resizeRef }
   },
 
   mounted() {
@@ -36,6 +58,7 @@ export default defineComponent({
     engine.mount(document.getElementById('game'))
     engine.ticker.add(this.updateFps)
 
+    this.resizeRef = engine.resize
     this.gameMounted = true
   },
 

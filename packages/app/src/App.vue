@@ -1,16 +1,37 @@
 <template>
   <div class="home">
-    <game />
+    <game :width="width" :height="height" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, onBeforeUnmount, ref } from 'vue'
 import Game from './components/Game.vue'
 
 export default defineComponent({
   components: {
     game: Game,
+  },
+  setup() {
+    const width = ref(window?.innerWidth || 800)
+    const height = ref(window?.innerHeight || 600)
+
+    const listener = () => {
+      width.value = window?.innerWidth || 800
+      height.value = window?.innerHeight || 600
+    }
+
+    onMounted(() => {
+      console.log('[APP] Adding resize event listeners')
+      window?.addEventListener('resize', listener)
+    })
+
+    onBeforeUnmount(() => {
+      console.log('[APP] Removing resize event listeners')
+      window?.removeEventListener('resize', listener)
+    })
+
+    return { width, height }
   },
 })
 </script>
@@ -22,7 +43,7 @@ export default defineComponent({
 }
 
 body {
-  background: #222222;
+  background: #111111;
 }
 
 #app {

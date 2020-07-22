@@ -1,5 +1,5 @@
 <template>
-  <div id="splash-screen">Splash</div>
+  <div id="splash-screen"></div>
 </template>
 
 <script lang="ts">
