@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex, { createLogger } from 'vuex'
+import Vuex from 'vuex'
 
 import { gameStatus } from './modules/gameStatus'
 import { StoreNamespaces } from './types'
@@ -13,7 +13,6 @@ const store = new Vuex.Store({
     [StoreNamespaces.gameStatus]: gameStatus,
   },
   strict: debug,
-  plugins: debug ? [createLogger()] : [],
 })
 
 export default store

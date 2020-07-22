@@ -10,5 +10,5 @@ export enum StoreNamespaces {
   gameStatus = 'gameStatus',
 }
 
-export const getActionName = (ns: StoreNamespaces, action: string) =>
+export const getActionName = (ns: StoreNamespaces, action: string): string =>
   `${ns}/${action}`

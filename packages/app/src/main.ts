@@ -3,10 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import 'vue-class-component/hooks'
 import 'vue-resize/dist/vue-resize.css'
+import Engine from './gameEngine/Engine'
 
 Vue.config.productionTip = false
+Vue.prototype.$engine = new Engine()
 
 new Vue({
   router,

@@ -13193,11 +13193,6 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-class-component@^7.2.4:
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.4.tgz#5c15cef356d7ce793aefef3b23cb5ac0df7ff62d"
-  integrity sha512-3LMd3yITe6wcHJ5Lyz85MSsNJrUUWeIBKnGO/YUV1ZwH2i4YmrE7t8T8eRLG45aqMlgi/BRFRyfNh3Us7k/v5Q==
-
 vue-cli-plugin-tauri@~0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-tauri/-/vue-cli-plugin-tauri-0.10.0.tgz#84eff4755d5ded6a9010ca1639b43c4be5fbe75c"
@@ -13251,11 +13246,6 @@ vue-loader@^15.9.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
-
-vue-property-decorator@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.0.0.tgz#0a5f6d47d33ca62a8876108ccfa65c2c4fb7325a"
-  integrity sha512-oegTNPItuHOkW0AP1MnbdNwkmyhfsUIIXvIRHpgC18tVoEo21/i6kItyeekjMs8JgZJeuHzsaTc/DZaJFH4IWQ==
 
 vue-resize@^0.5.0:
   version "0.5.0"
