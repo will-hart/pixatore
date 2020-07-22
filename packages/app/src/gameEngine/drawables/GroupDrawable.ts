@@ -43,7 +43,7 @@ export default class GroupDrawable extends Container {
     }
 
     this._drawables[drawable.id] = drawable
-    drawable.onAdd(this)
+    drawable.inject(this)
 
     return drawable
   }
@@ -51,7 +51,7 @@ export default class GroupDrawable extends Container {
   removeDrawable(drawable: Drawable): boolean {
     if (!this._drawables[drawable.id]) return false
 
-    drawable.onRemove(this)
+    drawable.remove(this)
     delete this._drawables[drawable.id]
 
     return true

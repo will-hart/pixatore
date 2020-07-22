@@ -17,7 +17,7 @@ export default class SplashScreen extends BaseScreen {
     })
   }
 
-  onAdd = (): void => {
+  inject = (): void => {
     this.position.set(this.engine.width / 2, this.engine.height / 2)
 
     const logo = this.createAndAddSprite('menu.logo', SpriteKey.LOGO)
@@ -51,7 +51,7 @@ export default class SplashScreen extends BaseScreen {
     }
 
     this.engine.ticker.add(refreshLoadingText)
-    super.onAdd()
+    super.inject()
   }
 
   processInput(input: InputManager): void {

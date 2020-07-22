@@ -12,11 +12,11 @@ export default class BaseScreen extends GroupDrawable implements Drawable {
     super(engine, ticker)
   }
 
-  onAdd(): void {
+  inject(): void {
     this.engine.root.addChild(this)
   }
 
-  onRemove(): void {
+  remove(): void {
     this.engine.root.removeChild(this)
   }
 

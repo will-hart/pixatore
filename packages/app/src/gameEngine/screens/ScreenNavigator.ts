@@ -41,11 +41,11 @@ export default class ScreenNavigator {
 
   private register = (screen: BaseScreen): void => {
     this.screens.enqueue(screen)
-    screen.onAdd()
+    screen.inject()
   }
 
   private unregister = (screen?: BaseScreen): void => {
     if (!screen) return // no screen to unregister
-    screen.onRemove()
+    screen.remove()
   }
 }
