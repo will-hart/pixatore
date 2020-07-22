@@ -1,19 +1,16 @@
 <template>
   <div class="home">
-    <fps />
     <game />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import FPS from './components/FPS.vue'
 import Game from './components/Game.vue'
 
 export default defineComponent({
   components: {
     game: Game,
-    fps: FPS,
   },
 })
 </script>

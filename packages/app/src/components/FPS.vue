@@ -1,17 +1,13 @@
 <template>
-  <div class="fps-tracker">{{ fps }} fps</div>
+  <div class="fps-tracker">{{ fps }}</div>
 </template>
 
 <script lang="ts">
-import { mapState } from 'vuex'
-import { AppState } from '../store/types'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  computed: {
-    ...mapState({
-      fps: (state: unknown) => (state as AppState).gameStatus.current,
-    }),
+  props: {
+    fps: Number,
   },
 })
 </script>
