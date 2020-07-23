@@ -16,7 +16,7 @@ export class SpriteStorage {
   }
 
   private onLoadingComplete = () => {
-    console.log('Loading complete')
+    console.log('[LOADER] Loading complete')
     this.loadingComplete = true
     this._onLoadingCompleteCallback?.()
   }

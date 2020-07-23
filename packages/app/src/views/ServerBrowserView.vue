@@ -32,6 +32,8 @@ import { useEngineWithScene } from '../composables/useGameEngine'
 import { useClient } from '../composables/useClient'
 import { useClientRoomQueries } from '../composables/useClientRoomQueries'
 import Engine from '../gameEngine/Engine'
+import { useRouter } from 'vue-router'
+import { useRoom } from '../composables/useRoom'
 
 export default defineComponent({
   name: 'ServerBrowserScreen',
@@ -40,6 +42,7 @@ export default defineComponent({
     // TODO be a bit smarter with this URL
     const { client, setClient } = useClient()
     onMounted(() => {
+      console.log('[MOUNT_VIEW] Server Browser')
       unref(setClient)('ws://localhost:2567')
     })
 
@@ -61,21 +64,23 @@ export default defineComponent({
       joinGame,
       createGame,
     } = useClientRoomQueries()
+    const { room } = useRoom()
 
     const refreshInterval = setInterval(() => getRoomList(unref(client)), 5000)
-
-    onMounted(() => {
-      console.log('[MOUNT_VIEW] Server Browser')
-    })
 
     onUnmounted(() => {
       console.log('[UNMOUNT_VIEW] Server Browser')
       clearInterval(refreshInterval)
     })
 
+    const router = useRouter()
     watchEffect(() => {
-      console.log('[SERVER BROWSER] Updating status tint')
+      console.log(`[SERVER BROWSER] Client lobby status: ${lobbyStatus.value}`)
       scene.setStatus(lobbyStatus.value)
+
+      if (lobbyStatus.value === 'connected' && unref(room)) {
+        router.push(`/lobby/${unref(room).id}`)
+      }
     })
 
     return { client, roomList, joinGame, createGame, lobbyStatus, screen }

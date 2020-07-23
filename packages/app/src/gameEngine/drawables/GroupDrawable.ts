@@ -36,7 +36,6 @@ export default class GroupDrawable extends Container {
   }
 
   addDrawable(drawable: Drawable): Drawable {
-    console.warn('adding', drawable.id)
     if (this._drawables[drawable.id]) {
       throw new Error(
         `Naming collision on drawables in GroupDrawable::addDrawable, ${drawable.id} already exists in children`,

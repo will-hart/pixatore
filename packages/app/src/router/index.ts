@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
       import(/* webpackChunkName: "lobby" */ '../views/ServerBrowserView.vue'),
   },
   {
-    path: '/lobby',
+    path: '/lobby/:id',
     name: 'Lobby',
     component: () =>
       import(/* webpackChunkName: "lobby" */ '../views/LobbyView.vue'),

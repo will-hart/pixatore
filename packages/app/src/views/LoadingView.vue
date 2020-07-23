@@ -23,11 +23,11 @@ export default defineComponent({
     scene.once('exit', navigateToMenu)
 
     onMounted(() => {
-      console.log('[MOUNT] LoadingView')
+      console.log('[MOUNT_VIEW] LoadingView')
     })
 
     onUnmounted(() => {
-      console.log('[UNMOUNT] LoadingView')
+      console.log('[UNMOUNT_VIEW] LoadingView')
     })
 
     return { scene }

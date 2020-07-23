@@ -2,6 +2,7 @@ import { ref, Ref, shallowRef } from 'vue'
 import { RoomAvailable, Client } from 'colyseus.js'
 import { Types, Constants } from '@tauri-game/shared'
 import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
+import { useRoom } from './useRoom'
 
 interface IUseClientRoomQueriesReturnValue {
   roomList: Ref<RoomAvailable<Types.GameState>[]>
@@ -14,6 +15,7 @@ interface IUseClientRoomQueriesReturnValue {
 export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const roomList = shallowRef<RoomAvailable<Types.GameState>[]>([])
   const lobbyStatus = ref<LobbyConnectionStatus>('idle')
+  const { setRoom } = useRoom()
 
   const getRoomList = async (client: Client) => {
     const rooms =
@@ -31,6 +33,10 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
         { roomId },
       )
       console.log(`[LOBBY] joined ${room.sessionId} on ${room.name}`)
+
+      localStorage.setItem(Constants.LOCALSTORAGE_LAST_ROOM_KEY, room.id)
+      setRoom(room)
+
       lobbyStatus.value = 'connected'
     } catch (e) {
       console.error('[LOBBY] JOIN ERROR', e)
@@ -46,6 +52,10 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
       )
 
       console.log(`[LOBBY] created ${room.sessionId} on ${room.name}`)
+
+      localStorage.setItem(Constants.LOCALSTORAGE_LAST_ROOM_KEY, room.id)
+      setRoom(room)
+
       lobbyStatus.value = 'connected'
     } catch (e) {
       console.error('[LOBBY] CREATE ERROR', e)

@@ -16,7 +16,7 @@ export function useClient(): {
   const client = inject<Ref<Client | null>>(key)
 
   if (!client) {
-    throw new Error('Engine not provided')
+    throw new Error('Client not provided')
   }
 
   return {

@@ -9,6 +9,7 @@ import { defineComponent } from 'vue'
 import { provideEngine } from './composables/useGameEngine'
 import { provideFpsMonitor } from './composables/useFpsMonitor'
 import { provideClient } from './composables/useClient'
+import { provideRoom } from './composables/useRoom'
 import useWindowSize from './composables/useWindowSize'
 
 import Game from './components/Game.vue'
@@ -23,6 +24,7 @@ export default defineComponent({
     provideFpsMonitor()
     provideEngine()
     provideClient()
+    provideRoom()
 
     return { width, height }
   },
