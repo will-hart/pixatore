@@ -6,9 +6,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, watchEffect } from 'vue'
-import { GameEngineSymbol } from '../plugins/gameEngine'
+import {
+  defineComponent,
+  ref,
+  watchEffect,
+  onUnmounted,
+  onMounted,
+  unref,
+} from 'vue'
 import FPS from './FPS.vue'
+import { useFpsMonitor } from '../composables/useFpsMonitor'
+import { useEngine } from '../composables/useGameEngine'
 import Engine from '../gameEngine/Engine'
 
 export default defineComponent({
@@ -21,49 +29,31 @@ export default defineComponent({
     fps: FPS,
   },
 
-  methods: {
-    updateFps: function () {
-      this.fps = Math.round((this.$engine() as Engine).ticker?.FPS || 0)
-    },
-  },
-
-  inject: { [GameEngineSymbol]: { from: 'gameEngine' } },
-
   setup(props) {
     const gameMounted = ref(false)
-    const fps = ref(0)
-    const resizeRef = ref<((w: number, h: number) => void) | null>(null)
 
-    // watch([props.width, props.height], ([w, h], [lastW, lastH]) => {
-    //   console.log('Changed!')
-    //   if (w === lastW && h === lastH) return
+    const engine: Engine = useEngine()
 
-    //   if (!resizeRef.value) {
-    //     console.log('Unable to resize game, ref not set')
-    //     return
-    //   }
+    const { fps, setFps } = useFpsMonitor()
+    const updateFps = () => setFps(Math.round(engine.ticker.FPS || 0))
 
-    //   console.log('resizing to ', w, h)
-    //   resizeRef.value(w, h)
-    // })
+    watchEffect(() => {
+      engine.resize(unref(props.width), unref(props.height))
+    })
 
-    watchEffect(() => resizeRef.value?.(props.width, props.height))
+    onMounted(() => {
+      console.log('[MOUNTED] Game')
+      engine.mount(document.getElementById('game'))
+      gameMounted.value = true
+      engine.ticker.add(updateFps)
+    })
 
-    return { gameMounted, fps, resizeRef }
-  },
+    onUnmounted(() => {
+      console.log('[UNMOUNTED] Game')
+      engine.ticker.remove(updateFps)
+    })
 
-  mounted() {
-    const engine: Engine = this.$engine()
-
-    engine.mount(document.getElementById('game'))
-    engine.ticker.add(this.updateFps)
-
-    this.resizeRef = engine.resize
-    this.gameMounted = true
-  },
-
-  beforeUnmount() {
-    ;(this.$engine() as Engine).ticker.remove(this.updateFps)
+    return { gameMounted, fps }
   },
 })
 </script>

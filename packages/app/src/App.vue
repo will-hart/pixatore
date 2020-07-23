@@ -5,7 +5,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onBeforeUnmount, ref } from 'vue'
+import { defineComponent } from 'vue'
+import { provideEngine } from './composables/useGameEngine'
+import { provideFpsMonitor } from './composables/useFpsMonitor'
+import { provideClient } from './composables/useClient'
+import useWindowSize from './composables/useWindowSize'
+
 import Game from './components/Game.vue'
 
 export default defineComponent({
@@ -13,23 +18,11 @@ export default defineComponent({
     game: Game,
   },
   setup() {
-    const width = ref(window?.innerWidth || 800)
-    const height = ref(window?.innerHeight || 600)
+    const { width, height } = useWindowSize(console.log)
 
-    const listener = () => {
-      width.value = window?.innerWidth || 800
-      height.value = window?.innerHeight || 600
-    }
-
-    onMounted(() => {
-      console.log('[APP] Adding resize event listeners')
-      window?.addEventListener('resize', listener)
-    })
-
-    onBeforeUnmount(() => {
-      console.log('[APP] Removing resize event listeners')
-      window?.removeEventListener('resize', listener)
-    })
+    provideFpsMonitor()
+    provideEngine()
+    provideClient()
 
     return { width, height }
   },
