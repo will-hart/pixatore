@@ -1,8 +1,8 @@
-import BaseScreen from './BaseScreen'
+import BaseScreen from './BaseScene'
 import Stack from '../utilities/Stack'
 import Engine from '../Engine'
 
-export default class ScreenNavigator {
+export default class SceneNavigator {
   private screens: Stack<BaseScreen> = new Stack<BaseScreen>()
 
   constructor(private engine: Engine) {}

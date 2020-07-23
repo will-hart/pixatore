@@ -3,15 +3,21 @@ import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Splash',
+    name: 'Loading View',
     component: () =>
-      import(/* webpackChunkName: "splash" */ '../screens/SplashScreen.vue'),
+      import(/* webpackChunkName: "splash" */ '../views/LoadingView.vue'),
+  },
+  {
+    path: '/browser',
+    name: 'Server Browser',
+    component: () =>
+      import(/* webpackChunkName: "lobby" */ '../views/ServerBrowserView.vue'),
   },
   {
     path: '/lobby',
     name: 'Lobby',
     component: () =>
-      import(/* webpackChunkName: "lobby" */ '../screens/LobbyScreen.vue'),
+      import(/* webpackChunkName: "lobby" */ '../views/LobbyView.vue'),
   },
 ]
 

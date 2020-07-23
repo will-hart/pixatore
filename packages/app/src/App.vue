@@ -18,7 +18,7 @@ export default defineComponent({
     game: Game,
   },
   setup() {
-    const { width, height } = useWindowSize(console.log)
+    const { width, height } = useWindowSize()
 
     provideFpsMonitor()
     provideEngine()

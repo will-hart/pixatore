@@ -1,5 +1,5 @@
 <template>
-  <div id="lobby-screen" class="container middle">
+  <div id="server-browser-vuew" class="container middle">
     <button v-if="lobbyStatus === 'idle'" @click="createGame(client)">
       Create
     </button>
@@ -27,13 +27,14 @@ import {
   unref,
 } from 'vue'
 
-import LobbyScreen from '../gameEngine/screens/LobbyScreen'
-import { useEngine } from '../composables/useGameEngine'
+import ServerBrowserScene from '../gameEngine/scenes/ServerBrowserScene'
+import { useEngineWithScene } from '../composables/useGameEngine'
 import { useClient } from '../composables/useClient'
 import { useClientRoomQueries } from '../composables/useClientRoomQueries'
+import Engine from '../gameEngine/Engine'
 
 export default defineComponent({
-  name: 'LobbyScreen',
+  name: 'ServerBrowserScreen',
 
   setup() {
     // TODO be a bit smarter with this URL
@@ -42,8 +43,17 @@ export default defineComponent({
       unref(setClient)('ws://localhost:2567')
     })
 
-    const engine = useEngine()
-    const screen = new LobbyScreen(engine)
+    const {
+      scene,
+      engine,
+    }: { scene: ServerBrowserScene; engine: Engine } = useEngineWithScene(
+      ServerBrowserScene,
+    )
+    engine.navigator.push(scene)
+    scene.once('exit', () =>
+      console.log('Exited Lobby Screen (not implemented)'),
+    )
+
     const {
       roomList,
       getRoomList,
@@ -55,22 +65,17 @@ export default defineComponent({
     const refreshInterval = setInterval(() => getRoomList(unref(client)), 5000)
 
     onMounted(() => {
-      console.log('[MOUNTED] SplashScreen')
-      engine.navigator.replace(screen)
-
-      screen.once('exit', () =>
-        console.log('Exited Lobby Screen (not implemented)'),
-      )
+      console.log('[MOUNT_VIEW] Server Browser')
     })
 
     onUnmounted(() => {
-      console.log('[DESTROY] LobbyScreen')
+      console.log('[UNMOUNT_VIEW] Server Browser')
       clearInterval(refreshInterval)
     })
 
     watchEffect(() => {
-      console.log('[LOBBY] Updating status tint')
-      screen.setStatus(lobbyStatus.value)
+      console.log('[SERVER BROWSER] Updating status tint')
+      scene.setStatus(lobbyStatus.value)
     })
 
     return { client, roomList, joinGame, createGame, lobbyStatus, screen }

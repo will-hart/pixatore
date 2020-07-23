@@ -1,7 +1,7 @@
-import { ref, onUnmounted, Ref, shallowRef } from 'vue'
+import { ref, Ref, shallowRef } from 'vue'
 import { RoomAvailable, Client } from 'colyseus.js'
 import { Types, Constants } from '@tauri-game/shared'
-import { LobbyConnectionStatus } from '@/gameEngine/screens/LobbyScreen'
+import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
 
 interface IUseClientRoomQueriesReturnValue {
   roomList: Ref<RoomAvailable<Types.GameState>[]>

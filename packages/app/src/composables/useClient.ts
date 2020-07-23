@@ -3,7 +3,8 @@ import { Client } from 'colyseus.js'
 
 const key: InjectionKey<Ref<Client | null>> = Symbol('useClient::Client')
 
-export function provideClient() {
+export function provideClient(): void {
+  console.log('[PROVIDE] client provided')
   const client = shallowRef<Client | null>(null)
   provide(key, client)
 }

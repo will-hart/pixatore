@@ -1,11 +1,10 @@
 import GroupDrawable from '../drawables/GroupDrawable'
 import Engine from '../Engine'
 import { SpriteKey } from '../spriteMap'
-import BaseScreen from './BaseScreen'
+import BaseScene from './BaseScene'
 import InputManager from '../InputManager'
-import LobbyScreen from './LobbyScreen'
 
-export default class SplashScreen extends BaseScreen {
+export default class LoadingScene extends BaseScene {
   loadingText?: PIXI.Text
 
   constructor(engine: Engine) {

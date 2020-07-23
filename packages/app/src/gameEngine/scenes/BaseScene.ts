@@ -3,7 +3,7 @@ import Drawable from '../drawables/Drawable'
 import Engine from '../Engine'
 import InputManager from '../InputManager'
 
-export default class BaseScreen extends GroupDrawable implements Drawable {
+export default class BaseScene extends GroupDrawable implements Drawable {
   constructor(
     public id: string,
     engine: Engine,

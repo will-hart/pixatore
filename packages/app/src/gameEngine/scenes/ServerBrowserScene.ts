@@ -1,14 +1,12 @@
 import * as PIXI from 'pixi.js'
 import * as Colyseus from 'colyseus.js'
 
-import { State } from '@tauri-game/shared'
-
 import Engine from '../Engine'
-import BaseScreen from './BaseScreen'
+import BaseScene from './BaseScene'
 
 export type LobbyConnectionStatus = 'idle' | 'connected' | 'error'
 
-export default class LobbyScreen extends BaseScreen {
+export default class ServerBrowserScene extends BaseScene {
   sprite?: PIXI.Sprite
   client?: Colyseus.Client
 

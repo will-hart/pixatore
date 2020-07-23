@@ -2,14 +2,13 @@ import * as PIXI from 'pixi.js'
 import debounce from 'lodash.debounce'
 
 import { SpriteStorage } from './SpriteStorage'
-import SplashScreen from './screens/SplashScreen'
-import ScreenNavigator from './screens/ScreenNavigator'
+import SceneNavigator from './scenes/SceneNavigator'
 import InputManager from './InputManager'
 
 export default class Engine {
   private app: PIXI.Application
   sprites: SpriteStorage
-  navigator: ScreenNavigator
+  navigator: SceneNavigator
   input: InputManager
 
   private debouncedResize: (width: number, height: number) => void
@@ -40,7 +39,7 @@ export default class Engine {
 
     this.sprites = new SpriteStorage(this.app, this.onLoaded)
     this.debouncedResize = debounce(this.doResize, 100, { maxWait: 300 })
-    this.navigator = new ScreenNavigator(this)
+    this.navigator = new SceneNavigator(this)
 
     this.input = new InputManager()
     this.input.subscribe()
