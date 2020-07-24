@@ -1,20 +1,39 @@
 <template>
-  <div id="server-browser-vuew" class="container middle">
-    <button v-if="lobbyStatus === 'idle'" @click="createGame(client)">
-      Create
-    </button>
+  <div id="server-browser-view" class="container middle">
+    <div class="wrapper">
+      <h1>Server browser</h1>
+      <button
+        class="success"
+        v-if="lobbyStatus === 'idle'"
+        @click="createGame(client)"
+      >
+        Create
+      </button>
 
-    <ul v-for="room in roomList" :key="room.roomId">
-      <li>
-        {{ room.roomId }} ({{ room.clients }} / {{ room.maxClients }})
-        <button
-          v-show="lobbyStatus === 'idle'"
-          @click="joinGame(client, room.roomId)"
-        >
-          Join
-        </button>
-      </li>
-    </ul>
+      <table>
+        <thead>
+          <tr class="header">
+            <th>Server Name</th>
+            <th>Player Count</th>
+            <th>Join</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="room in roomList" :key="room.roomId">
+            <td>{{ room.roomId }}</td>
+            <td>({{ room.clients }} / {{ room.maxClients }})</td>
+            <td>
+              <button
+                v-show="lobbyStatus === 'idle'"
+                @click="joinGame(client, room.roomId)"
+              >
+                Join
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -89,16 +108,61 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.middle {
+.wrapper {
+  width: 90vw;
+  height: 90vh;
+  margin: auto;
+  padding: 2em;
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
 
-  align-items: center;
-  justify-content: center;
+  & h1 {
+    margin: 0 0 1em 0;
+    padding-bottom: 0.3em;
+    width: 100%;
+    text-align: left;
+    border-bottom: 2px solid white;
+  }
 
-  height: 100vh;
-  width: 100vw;
+  & button {
+    cursor: pointer;
+    outline: none;
+    border: 1px solid rgba(150, 150, 150, 0.5);
+    background: rgba(50, 50, 50, 0.5);
+    padding: 1em;
+    color: white;
+  }
 
-  color: white;
+  & button:hover {
+    background: rgba(50, 50, 50, 0.75);
+  }
+
+  & button.success {
+    margin-left: auto;
+    background: rgba(50, 250, 50, 0.2);
+  }
+
+  & button.success:hover {
+    background: rgba(50, 250, 50, 0.3);
+  }
+
+  & table {
+    width: 100%;
+    margin-top: 2em;
+  }
+}
+
+.header {
+  background: rgba(50, 50, 50, 0.5);
+
+  & th {
+    padding: 1em;
+  }
+}
+
+td {
+  padding: 1em;
 }
 </style>
