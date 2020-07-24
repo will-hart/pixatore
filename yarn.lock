@@ -10275,7 +10275,7 @@ pirates@^4.0.1:
   dependencies:
     node-modules-regexp "^1.0.0"
 
-pixi.js@^5.3.0:
+pixi.js@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/pixi.js/-/pixi.js-5.3.0.tgz#5af9ae5d9195e26dae68d0c3118fb392b8796edf"
   integrity sha512-6hrQn5F5EPBPR3QTwQYJvOR0OqHVKrITE+rxo061yIUvOjFboTDB6piBSCJ4elZwfkIRLPm1/mwgoSrPovnpBg==

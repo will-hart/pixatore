@@ -4,7 +4,7 @@
     "outDir": "build",
     "module": "commonjs",
     "lib": ["dom", "es6"],
-    "target": "es2016",
+    "target": "esnext",
     "declaration": true,
     "sourceMap": false,
     "strict": true,
