@@ -1,14 +1,15 @@
 {
-  "name": "@tauri-game/server",
+  "name": "@pixatore/server",
   "version": "0.1.0",
+  "license": "MIT",
   "description": "npm init template for bootstraping an empty Colyseus project",
   "main": "lib/index.js",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node src/index.ts --build --watch",
     "loadtest": "colyseus-loadtest loadtest/example.ts --room my_room --numClients 2"
   },
-  "author": "",
-  "license": "UNLICENSED",
+  "author": "William Hart",
   "bugs": {
     "url": "https://github.com/colyseus/create-colyseus/issues"
   },
@@ -23,7 +24,7 @@
   "dependencies": {
     "@colyseus/monitor": "^0.12.2",
     "@colyseus/social": "^0.11.6",
-    "@tauri-game/shared": "0.1.0",
+    "@pixatore/shared": "0.1.0",
     "colyseus": "^0.13.7",
     "cors": "^2.8.5",
     "express": "^4.17.1",

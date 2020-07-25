@@ -1,6 +1,6 @@
 import { ref, Ref, shallowRef } from 'vue'
 import { RoomAvailable, Client } from 'colyseus.js'
-import { Constants, State } from '@tauri-game/shared'
+import { Constants, State } from '@pixatore/shared'
 
 import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
 import { useRoom } from './useRoom'

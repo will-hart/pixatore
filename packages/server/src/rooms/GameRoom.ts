@@ -1,6 +1,5 @@
 import { Room, Client } from 'colyseus'
-import { Types, Constants, State } from '@tauri-game/shared'
-import { Player } from '@tauri-game/shared/build/state/entities'
+import { Entities, Constants, State, Types } from '@pixatore/shared'
 
 export class GameRoom extends Room<State.GameState> {
   static id = Constants.GAME_ROOM_NAME
@@ -22,7 +21,7 @@ export class GameRoom extends Room<State.GameState> {
 
   onJoin(client: Client, options: any) {
     if (this.state.players[client.sessionId]) return
-    this.state.players[client.sessionId] = new Player(client.sessionId)
+    this.state.players[client.sessionId] = new Entities.Player(client.sessionId)
   }
 
   async onLeave(client: Client, consented: boolean) {

@@ -1,4 +1,4 @@
-import { Entities, State } from '@tauri-game/shared'
+import { Entities, State } from '@pixatore/shared'
 import { Room } from 'colyseus.js'
 
 export const useClientListeners = (room: Room<State.GameState>): void => {

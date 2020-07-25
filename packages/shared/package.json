@@ -1,12 +1,14 @@
 {
-  "name": "@tauri-game/shared",
+  "name": "@pixatore/shared",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": "William Hart",
   "description": "npm init template for bootstraping an empty Colyseus project",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
-  "license": "UNLICENSED",
   "scripts": {
     "build": "tsc -p tsconfig.json --resolveJsonModule",
+    "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule",
     "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
   },
   "dependencies": {

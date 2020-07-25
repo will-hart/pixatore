@@ -1,21 +1,27 @@
 {
-  "name": "tauri-game",
+  "name": "pixatore",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": "William Hart",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "app:serve": "yarn workspace @tauri-game/app serve",
-    "app:build": "yarn workspace @tauri-game/app build",
-    "app:test:unit": "yarn workspace @tauri-game/app test:unit",
-    "app:lint": "yarn workspace @tauri-game/app lint",
-    "app:tauri:build": "yarn workspace @tauri-game/app tauri:build",
-    "app:dev": "yarn workspace @tauri-game/app dev",
-    "server:dev": "yarn  workspace @tauri-game/server start",
-    "server:loadtest": "yarn  workspace @tauri-game/server loadtest",
-    "dev": "yarn run-p -nr server:dev app:dev",
-    "predev": "yarn workspace @tauri-game/shared build"
+    "app:serve": "yarn workspace @pixatore/app serve",
+    "app:build": "yarn workspace @pixatore/app build",
+    "app:test:unit": "yarn workspace @pixatore/app test:unit",
+    "app:lint": "yarn workspace @pixatore/app lint",
+    "app:tauri:build": "yarn workspace @pixatore/app tauri:build",
+    "app:dev": "yarn workspace @pixatore/app dev",
+    "server:build": "yarn workspace @pixatore/server build",
+    "server:dev": "yarn  workspace @pixatore/server start",
+    "server:loadtest": "yarn  workspace @pixatore/server loadtest",
+    "shared:build": "yarn workspace @pixatore/shared build",
+    "shared:build:watch": "yarn workspace @pixatore/shared build:watch",
+    "build": "run-p -n app:build server:build",
+    "prebuild": "yarn shared:build",
+    "dev": "yarn run-p -nr shared:build:watch server:dev app:dev"
   },
   "devDependencies": {
     "npm-run-all": "4.1.5"
