@@ -4,16 +4,37 @@
       <h1>Lobby</h1>
 
       <lobby-slot
-        v-for="player in playerList"
-        :key="player.id"
-        :slotId="player.slot"
-        :name="player.id"
+        v-for="player in [1, 2, 3, 4].map((slotId) => ({
+          slotId,
+          name: (
+            playerList.find((p) => p.slot === slotId) || { id: 'Empty Slot' }
+          ).id,
+        }))"
+        :key="player.slotId"
+        :slotId="player.slotId"
+        :name="player.name || 'Empty Slot'"
       />
-
-      <lobby-slot :slotId="1" v-if="playerList.length <= 0" name="Empty Slot" />
-      <lobby-slot :slotId="2" v-if="playerList.length <= 1" name="Empty Slot" />
-      <lobby-slot :slotId="3" v-if="playerList.length <= 2" name="Empty Slot" />
-      <lobby-slot :slotId="4" v-if="playerList.length <= 3" name="Empty Slot" />
+      <!--
+      <lobby-slot
+        :slotId="1"
+        v-if="!playerList.find((p) => p.slot === 1)"
+        name="Empty Slot"
+      />
+      <lobby-slot
+        :slotId="2"
+        v-if="!playerList.find((p) => p.slot === 2)"
+        name="Empty Slot"
+      />
+      <lobby-slot
+        :slotId="3"
+        v-if="!playerList.find((p) => p.slot === 3)"
+        name="Empty Slot"
+      />
+      <lobby-slot
+        :slotId="4"
+        v-if="!playerList.find((p) => p.slot === 4)"
+        name="Empty Slot"
+      /> -->
     </div>
   </div>
 </template>

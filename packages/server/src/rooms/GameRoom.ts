@@ -24,10 +24,21 @@ export class GameRoom extends Room<State.GameState> {
 
     const player = new Entities.Player(client.sessionId)
 
+    const availableSlots = [1, 2, 3, 4]
     // TODO migrate for colyseus 0.14
-    const slotNumber = Object.keys(this.state.players).length + 1
-    player.slot = slotNumber
+    const usedSlots = Object.values(this.state.players).map(
+      (player: Entities.Player) => player.slot,
+    )
 
+    const slotNumber = availableSlots.find(
+      (slotId) => !usedSlots.includes(slotId),
+    )
+
+    if (!slotNumber) {
+      throw new Error(`No slots available for player ${player.id}`)
+    }
+
+    player.slot = slotNumber
     this.state.players[client.sessionId] = player
   }
 
