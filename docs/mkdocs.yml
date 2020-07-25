@@ -13,4 +13,5 @@ markdown_extensions:
       custom_checkbox: true
 nav:
   - 'index.md'
+  - Getting Started: 'getting_started.md'
   - 'roadmap.md'
