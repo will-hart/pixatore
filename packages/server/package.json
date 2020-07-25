@@ -1,0 +1,32 @@
+{
+  "name": "@tauri-game/server",
+  "version": "0.1.0",
+  "description": "npm init template for bootstraping an empty Colyseus project",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts --build --watch",
+    "loadtest": "colyseus-loadtest loadtest/example.ts --room my_room --numClients 2"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/colyseus/create-colyseus/issues"
+  },
+  "homepage": "https://github.com/colyseus/create-colyseus#readme",
+  "devDependencies": {
+    "@colyseus/loadtest": "^0.13.1",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.7",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@colyseus/monitor": "^0.12.2",
+    "@colyseus/social": "^0.11.6",
+    "@tauri-game/shared": "0.1.0",
+    "colyseus": "^0.13.7",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@tauri-game/shared",
+  "version": "0.1.0",
+  "description": "npm init template for bootstraping an empty Colyseus project",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --resolveJsonModule",
+    "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
+  },
+  "dependencies": {
+    "@colyseus/schema": "^0.5.40"
+  }
+}
