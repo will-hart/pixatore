@@ -1,0 +1,16 @@
+site_name: Pixatore
+repo_url: https://github.com/will-hart/tauri-game
+theme:
+  name: material
+  palette:
+    primary: blue grey
+    accent: blue
+  features:
+    - instant
+    - tabs
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+nav:
+  - 'index.md'
+  - 'roadmap.md'
