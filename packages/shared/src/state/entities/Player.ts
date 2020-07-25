@@ -12,7 +12,7 @@ export class Player extends Schema {
   public position: Position
 
   @type('number')
-  public kills: number = 0
+  public slot: number = -1
 
   constructor(id: string) {
     super()

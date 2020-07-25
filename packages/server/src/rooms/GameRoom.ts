@@ -21,28 +21,39 @@ export class GameRoom extends Room<State.GameState> {
 
   onJoin(client: Client, options: any) {
     if (this.state.players[client.sessionId]) return
-    this.state.players[client.sessionId] = new Entities.Player(client.sessionId)
+
+    const player = new Entities.Player(client.sessionId)
+
+    // TODO migrate for colyseus 0.14
+    const slotNumber = Object.keys(this.state.players).length + 1
+    player.slot = slotNumber
+
+    this.state.players[client.sessionId] = player
   }
 
   async onLeave(client: Client, consented: boolean) {
-    this.state.players[client.sessionId].connected = false
+    const player = this.state.players[client.sessionId]
+    player.connected = false
 
     if (consented) {
       delete this.state.players[client.sessionId]
+
+      console.log(
+        `[PLAYER ${client.sessionId}|${player.slot}] disconnected manually, removing from state`,
+      )
       return
     }
 
-    const reconnection = this.allowReconnection(client)
+    console.log(
+      `[PLAYER ${client.sessionId}|${player.slot}] disconnected, waiting for reconnection`,
+    )
 
     try {
-      await Promise.any([
-        // reject in 30s
-        new Promise(() => setTimeout(() => reconnection.reject(), 30000)),
-
-        // or reconnect
-        reconnection,
-      ])
+      await this.allowReconnection(client, 30)
     } catch (err) {
+      console.log(
+        `[PLAYER ${client.sessionId}|${player.slot}] failed to reconnect, removing from state`,
+      )
       delete this.state.players[client.sessionId]
     }
   }
