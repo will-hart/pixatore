@@ -7,6 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { provideEngine } from './composables/useGameEngine'
+import { provideEventBus } from './composables/useEventBus'
 import { provideFpsMonitor } from './composables/useFpsMonitor'
 import { provideClient } from './composables/useClient'
 import { provideRoom } from './composables/useRoom'
@@ -21,8 +22,9 @@ export default defineComponent({
   setup() {
     const { width, height } = useWindowSize()
 
-    provideFpsMonitor()
     provideEngine()
+    provideFpsMonitor()
+    provideEventBus()
     provideClient()
     provideRoom()
 

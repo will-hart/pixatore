@@ -27,13 +27,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="room in roomList" :key="room.roomId">
-            <td>{{ room.roomId }}</td>
+          <tr v-for="room in roomList" :key="room.id">
+            <td>{{ room.id }}</td>
             <td>({{ room.clients }} / {{ room.maxClients }})</td>
             <td>
               <button
                 v-show="lobbyStatus === 'idle'"
-                @click="joinGame(client, room.roomId)"
+                @click="joinGame(client, room.id)"
               >
                 Join
               </button>
