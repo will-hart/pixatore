@@ -4,7 +4,7 @@
   "description": "npm init template for bootstraping an empty Colyseus project",
   "main": "lib/index.js",
   "scripts": {
-    "start": "ts-node src/index.ts --build",
+    "start": "ts-node src/index.ts --build --watch",
     "loadtest": "colyseus-loadtest loadtest/example.ts --room my_room --numClients 2"
   },
   "author": "",

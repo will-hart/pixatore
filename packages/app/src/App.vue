@@ -72,4 +72,60 @@ body {
 
   color: white;
 }
+.panel {
+  margin: 1em;
+  padding: 2em;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  & h1 {
+    margin: 0 0 1em 0;
+    padding-bottom: 0.3em;
+    width: 100%;
+    text-align: left;
+    border-bottom: 2px solid white;
+  }
+
+  & button {
+    cursor: pointer;
+    outline: none;
+    border: 1px solid rgba(150, 150, 150, 0.5);
+    background: rgba(50, 50, 50, 0.5);
+    padding: 1em;
+    color: white;
+  }
+
+  & button:hover {
+    background: rgba(50, 50, 50, 0.75);
+  }
+
+  & button.success {
+    margin-left: auto;
+    background: rgba(50, 250, 50, 0.2);
+  }
+
+  & button.success:hover {
+    background: rgba(50, 250, 50, 0.3);
+  }
+
+  & table {
+    width: 100%;
+    margin-top: 2em;
+    border-collapse: collapse;
+  }
+  .header {
+    background: rgba(50, 50, 50, 0.5);
+  }
+
+  & th,
+  & td {
+    padding: 0.5em;
+  }
+}
 </style>

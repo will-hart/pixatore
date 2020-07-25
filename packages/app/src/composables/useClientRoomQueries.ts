@@ -1,38 +1,51 @@
 import { ref, Ref, shallowRef } from 'vue'
 import { RoomAvailable, Client } from 'colyseus.js'
-import { Types, Constants } from '@tauri-game/shared'
+import { Constants, State } from '@tauri-game/shared'
+
 import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
 import { useRoom } from './useRoom'
+import { useClientListeners } from './useClientListeners'
 
 interface IUseClientRoomQueriesReturnValue {
-  roomList: Ref<RoomAvailable<Types.GameState>[]>
+  roomList: Ref<RoomAvailable<State.GameState>[]>
   getRoomList: (client: Client) => Promise<void>
+  roomListLoading: Ref<boolean>
   lobbyStatus: Ref<LobbyConnectionStatus>
   joinGame: (client: Client, roomId: string) => Promise<void>
   createGame: (client: Client) => Promise<void>
 }
 
 export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
-  const roomList = shallowRef<RoomAvailable<Types.GameState>[]>([])
+  const roomList = shallowRef<RoomAvailable<State.GameState>[]>([])
   const lobbyStatus = ref<LobbyConnectionStatus>('idle')
   const { setRoom } = useRoom()
 
+  const roomListLoading = ref(false)
   const getRoomList = async (client: Client) => {
-    const rooms =
-      (await client.getAvailableRooms<Types.GameState>(
-        Constants.GAME_ROOM_NAME,
-      )) || []
+    roomListLoading.value = true
 
-    roomList.value = [...rooms]
+    try {
+      const rooms =
+        (await client.getAvailableRooms<State.GameState>(
+          Constants.GAME_ROOM_NAME,
+        )) || []
+      roomList.value = [...rooms]
+    } catch (err) {
+      console.error(err)
+    } finally {
+      roomListLoading.value = false
+    }
   }
 
   const joinGame = async (client: Client, roomId: string) => {
     try {
-      const room = await client.join<Types.GameState>(
+      const room = await client.join<State.GameState>(
         Constants.GAME_ROOM_NAME,
         { roomId },
       )
+
       console.log(`[LOBBY] joined ${room.sessionId} on ${room.name}`)
+      useClientListeners(room)
 
       localStorage.setItem(Constants.LOCALSTORAGE_LAST_ROOM_KEY, room.id)
       setRoom(room)
@@ -46,12 +59,13 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
 
   const createGame = async (client: Client) => {
     try {
-      const room = await client.create<Types.GameState>(
+      const room = await client.create<State.GameState>(
         Constants.GAME_ROOM_NAME,
         {},
       )
 
       console.log(`[LOBBY] created ${room.sessionId} on ${room.name}`)
+      useClientListeners(room)
 
       localStorage.setItem(Constants.LOCALSTORAGE_LAST_ROOM_KEY, room.id)
       setRoom(room)
@@ -63,5 +77,12 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
     }
   }
 
-  return { roomList, getRoomList, lobbyStatus, joinGame, createGame }
+  return {
+    roomList,
+    getRoomList,
+    roomListLoading,
+    lobbyStatus,
+    joinGame,
+    createGame,
+  }
 }

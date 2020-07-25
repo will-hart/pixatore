@@ -1,22 +1,22 @@
 import { InjectionKey, provide, inject, shallowRef, Ref } from 'vue'
 import { Room } from 'colyseus.js'
-import { Types } from '@tauri-game/shared'
+import { State } from '@tauri-game/shared'
 
-const key: InjectionKey<Ref<Room<Types.GameState> | null>> = Symbol(
+const key: InjectionKey<Ref<Room<State.GameState> | null>> = Symbol(
   'useRoom::Room',
 )
 
 export function provideRoom(): void {
   console.log('[PROVIDE] room provided')
-  const room = shallowRef<Room<Types.GameState> | null>(null)
+  const room = shallowRef<Room<State.GameState> | null>(null)
   provide(key, room)
 }
 
 export function useRoom(): {
-  room: Ref<Room<Types.GameState> | null>
-  setRoom: (_room: Room<Types.GameState>) => void
+  room: Ref<Room<State.GameState> | null>
+  setRoom: (_room: Room<State.GameState>) => void
 } {
-  const room = inject<Ref<Room<Types.GameState> | null>>(key)
+  const room = inject<Ref<Room<State.GameState> | null>>(key)
 
   if (!room) {
     throw new Error('Room not provided')
@@ -24,7 +24,7 @@ export function useRoom(): {
 
   return {
     room,
-    setRoom: (_room: Room<Types.GameState>) => {
+    setRoom: (_room: Room<State.GameState>) => {
       room.value = _room
     },
   }
