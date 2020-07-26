@@ -4,6 +4,7 @@ import { Player } from '../state/entities'
 export enum EventTypes {
   ON_PLAYER_ADD = 'Player.+',
   ON_PLAYER_REMOVE = 'Player.-',
+  ON_PLAYER_UPDATE = 'Player.~',
 }
 
 export interface PlayerEventArgs {
@@ -17,4 +18,7 @@ export const onPlayerAddEvent = createEventDefinition<PlayerEventArgs>()(
 
 export const onPlayerRemoveEvent = createEventDefinition<PlayerEventArgs>()(
   EventTypes.ON_PLAYER_REMOVE,
+)
+export const onPlayerUpdateEvent = createEventDefinition<PlayerEventArgs>()(
+  EventTypes.ON_PLAYER_UPDATE,
 )

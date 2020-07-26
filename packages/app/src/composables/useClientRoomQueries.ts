@@ -73,10 +73,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const joinGame = async (client: Client, roomId: string) => {
     try {
       console.log('[USE_CLIENT_ROOM_QUERIES] joining room...', roomId)
-      const room = await client.join<State.GameState>(
-        Constants.GAME_ROOM_NAME,
-        { roomId },
-      )
+      const room = await client.joinById<State.GameState>(roomId)
       onConnect(room)
     } catch (e) {
       console.error('[USE_CLIENT_ROOM_QUERIES] Join error', e)

@@ -8,6 +8,8 @@
         :key="player.slotId"
         :slotId="player.slotId"
         :name="player.name || 'Empty Slot'"
+        :connected="!!player.connected"
+        :ready="!!player.ready"
       />
     </div>
   </div>
@@ -49,17 +51,33 @@ export default defineComponent({
       playerList.value = [...playerList.value.filter((p) => p.id !== player.id)]
     })
 
+    const unsubcribePlayerUpdate = eventBus.onPlayerUpdate((player) => {
+      const idx = playerList.value.findIndex((p) => p.id === player.id)
+      if (idx < 0) return
+
+      playerList.value = [
+        ...playerList.value.slice(0, idx),
+        player,
+        ...playerList.value.slice(idx + 1),
+      ]
+    })
+
     const slotList = computed(() => {
-      return [1, 2, 3, 4].map((slotId) => ({
-        slotId,
-        name:
-          playerList.value.find((p) => p.slot === slotId)?.id || 'Empty Slot',
-      }))
+      return [1, 2, 3, 4].map((slotId) => {
+        const player = playerList.value.find((p) => p.slot === slotId)
+        return {
+          slotId,
+          name: player?.id || 'Empty Slot',
+          connected: !!player?.connected,
+          ready: !!player?.ready,
+        }
+      })
     })
 
     onUnmounted(() => {
       unsubscribeAddPlayer()
       unsubscribeRemovePlayer()
+      unsubcribePlayerUpdate()
     })
 
     return { slotList }

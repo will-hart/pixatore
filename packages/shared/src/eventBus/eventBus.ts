@@ -24,6 +24,17 @@ class EventBus extends TsEventBus {
 
     return unsubscribeRemovePlayer
   }
+
+  onPlayerUpdate = (handler: (Player: Entities.Player) => void) => {
+    const unsubscribeUpdatePlayer = this.subscribe(
+      EventTypes.ON_PLAYER_UPDATE.toString(),
+      (event: BusEvent<PlayerEventArgs>) => {
+        handler(event.payload.player)
+      },
+    )
+
+    return unsubscribeUpdatePlayer
+  }
 }
 
 export default EventBus

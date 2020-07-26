@@ -44,7 +44,9 @@ export class GameRoom extends Room<State.GameState> {
 
   async onLeave(client: Client, consented: boolean) {
     const player = this.state.players[client.sessionId]
+    const wasReady = player.ready
     player.connected = false
+    player.ready = false
 
     if (consented) {
       delete this.state.players[client.sessionId]
@@ -61,6 +63,9 @@ export class GameRoom extends Room<State.GameState> {
 
     try {
       await this.allowReconnection(client, 30)
+
+      player.connected = true
+      player.ready = wasReady
     } catch (err) {
       console.log(
         `[PLAYER ${client.sessionId}|${player.slot}] failed to reconnect, removing from state`,

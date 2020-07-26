@@ -8,6 +8,9 @@ export class Player extends Schema {
   @type('boolean')
   public connected: boolean = false
 
+  @type('boolean')
+  public ready: boolean = false
+
   @type(Position)
   public position: Position
 

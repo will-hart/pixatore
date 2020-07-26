@@ -1,8 +1,18 @@
 <template>
   <div class="lobby-slot">
     <div class="slot-id">{{ slotId }}</div>
-    <div :class="[name === 'Empty Slot' ? 'empty-slot' : '', 'slot-name']">
+    <div
+      :class="[
+        name === 'Empty Slot' ? 'empty-slot' : '',
+        name === 'Empty Slot' || connected ? '' : 'unconnected-slot',
+        ready ? 'ready-slot' : '',
+        'slot-name',
+      ]"
+    >
       {{ name }}
+      <span v-if="name !== 'Empty Slot'">{{
+        ready ? 'READY' : 'NOT READY'
+      }}</span>
     </div>
   </div>
 </template>
@@ -14,6 +24,8 @@ export default defineComponent({
   props: {
     slotId: Number,
     name: String,
+    connected: Boolean,
+    ready: Boolean,
   },
 })
 </script>
@@ -34,6 +46,13 @@ export default defineComponent({
 
 .empty-slot {
   color: #777777;
-  font-style: italic;
+}
+
+.unconnected-slot {
+  color: red;
+}
+
+.ready-slot {
+  color: green;
 }
 </style>

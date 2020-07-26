@@ -24,4 +24,8 @@ export const mountEventBusToRoom = (
   room.state.players.onRemove = (player: Entities.Player, key: string) => {
     eventBus.publish(Events.onPlayerRemoveEvent({ player, key }))
   }
+
+  room.state.players.onChange = (player: Entities.Player, key: string) => {
+    eventBus.publish(Events.onPlayerUpdateEvent({ player, key }))
+  }
 }
