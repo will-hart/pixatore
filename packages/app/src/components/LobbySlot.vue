@@ -1,6 +1,6 @@
 <template>
   <div class="lobby-slot">
-    <div class="slot-id">{{ slotId }}</div>
+    <div class="slot-id">{{ slotId }} <span v-if="me">*</span></div>
     <div
       :class="[
         name === 'Empty Slot' ? 'empty-slot' : '',
@@ -26,6 +26,7 @@ export default defineComponent({
     name: String,
     connected: Boolean,
     ready: Boolean,
+    me: Boolean,
   },
 })
 </script>

@@ -86,3 +86,26 @@ export class OnLeaveCommand extends Command<
     }
   }
 }
+
+export class OnPlayerReady extends Command<
+  State.GameState,
+  { sessionId: string; isReady: boolean }
+> {
+  async execute({ sessionId, isReady }: this['payload']): Promise<void> {
+    if (this.state.status !== Types.GameStatus.lobby) {
+      console.log(
+        `[::OnPlayerReady] skipping ready message for player ${sessionId} as the game is not in the lobby`,
+      )
+      return
+    }
+
+    console.log(
+      `[::OnPlayerReady] setting ${sessionId} ready state to '${isReady}'`,
+    )
+
+    // TODO: update for colyseus 0.14
+    const player = this.state.players[sessionId]
+    if (!player) return
+    player.ready = isReady
+  }
+}

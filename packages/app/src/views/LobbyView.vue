@@ -10,7 +10,10 @@
         :name="player.name || 'Empty Slot'"
         :connected="!!player.connected"
         :ready="!!player.ready"
+        :me="me && player.name === me.id"
       />
+
+      <button @click="setReady(!me.ready)">Ready</button>
     </div>
   </div>
 </template>
@@ -20,7 +23,7 @@ import { defineComponent, unref, shallowRef, onUnmounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRoom } from '../composables/useRoom'
 import { useEventBus } from '../composables/useEventBus'
-import { Entities } from '@pixatore/shared'
+import { Entities, Types } from '@pixatore/shared'
 
 import LobbySlot from '../components/LobbySlot.vue'
 
@@ -62,6 +65,13 @@ export default defineComponent({
       ]
     })
 
+    const me = computed((): Entities.Player | undefined => {
+      const sessId = unref(room)?.sessionId
+      if (!sessId) return undefined
+
+      return playerList.value.find((p) => p.id === sessId)
+    })
+
     const slotList = computed(() => {
       return [1, 2, 3, 4].map((slotId) => {
         const player = playerList.value.find((p) => p.slot === slotId)
@@ -74,13 +84,17 @@ export default defineComponent({
       })
     })
 
+    const setReady = (isReady: boolean) => {
+      unref(room).send(Types.MessageTypes.PLAYER_READY, { isReady })
+    }
+
     onUnmounted(() => {
       unsubscribeAddPlayer()
       unsubscribeRemovePlayer()
       unsubcribePlayerUpdate()
     })
 
-    return { slotList }
+    return { me, setReady, slotList }
   },
 })
 </script>

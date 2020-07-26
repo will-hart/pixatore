@@ -6,3 +6,8 @@ export enum GameStatus {
   playing = 'playing',
   scoreScreen = 'ending',
 }
+
+export const MessageTypes = {
+  PLAYER_READY: 'player::ready',
+  ANY: '*',
+}

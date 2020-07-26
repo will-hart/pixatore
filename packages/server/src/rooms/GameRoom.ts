@@ -5,6 +5,7 @@ import {
   OnJoinCommand,
   OnCreateCommand,
   OnLeaveCommand,
+  OnPlayerReady,
 } from '../commands/LobbyCommands'
 
 export class GameRoom extends Room<State.GameState> {
@@ -17,8 +18,15 @@ export class GameRoom extends Room<State.GameState> {
   }
 
   onCreate(options: Types.RoomOptions) {
-    this.onMessage('*', (_client, type, contents) =>
-      console.log(`[MESSAGE::${type}] ${contents}`),
+    this.onMessage(Types.MessageTypes.PLAYER_READY, (client, message) => {
+      this._dispatcher.dispatch(new OnPlayerReady(), {
+        sessionId: client.sessionId,
+        isReady: message.isReady,
+      })
+    })
+
+    this.onMessage('*', (_client, type, message) =>
+      console.log(`[MESSAGE::${type}] ${message}`),
     )
 
     this._dispatcher.dispatch(new OnCreateCommand(), {
