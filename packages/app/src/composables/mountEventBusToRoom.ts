@@ -18,12 +18,14 @@ export const mountEventBusToRoom = (
     console.log(`[ROOM_MESSAGE] ${message}`),
   )
 
-  room.state.status.onChange = (changes: DataChange<any>[]): any => {
+  room.state.status.onChange = (
+    changes: DataChange<Types.GameStatus>[],
+  ): void => {
     changes.forEach((change) => {
       if (change.field === 'current') {
         eventBus.publish(
           Events.onGameStatusChanged({
-            current: change.value as Types.GameStatus,
+            current: change.value,
           }),
         )
       } else {
@@ -36,6 +38,11 @@ export const mountEventBusToRoom = (
 
   room.state.players.onAdd = (player: Entities.Player, key: string) => {
     eventBus.publish(Events.onPlayerAddEvent({ player, key }))
+
+    player.onChange = (): void => {
+      // TODO: confirm that its ok to pass player here and "changes" can be ignored
+      eventBus.publish(Events.onPlayerUpdateEvent({ player, key }))
+    }
   }
 
   room.state.players.onRemove = (player: Entities.Player, key: string) => {

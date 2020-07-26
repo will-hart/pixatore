@@ -27,9 +27,10 @@ export class OnGameStartCommand extends Command<State.GameState, {}> {
       return
     }
 
-    // TODO: update for colyseus 0.14
     if (
-      Object.values(this.state.players).some((p) => !p.ready || !p.connected)
+      Array.from(this.state.players.values()).some(
+        (p: Entities.Player) => !p.ready || !p.connected,
+      )
     ) {
       console.log(
         `[::OnGameStart] ignoring as not all players are connected/ready`,
@@ -46,13 +47,12 @@ export class OnJoinCommand extends Command<
   { sessionId: string }
 > {
   async execute({ sessionId }: this['payload']): Promise<void> {
-    if (this.state.players[sessionId]) return
+    if (this.state.players.get(sessionId)) return
 
     const player = new Entities.Player(sessionId)
 
     const availableSlots = [1, 2, 3, 4]
-    // TODO migrate for colyseus 0.14
-    const usedSlots = Object.values(this.state.players).map(
+    const usedSlots = Array.from(this.state.players.values()).map(
       (player: Entities.Player) => player.slot,
     )
 
@@ -65,7 +65,7 @@ export class OnJoinCommand extends Command<
     }
 
     player.slot = slotNumber
-    this.state.players[sessionId] = player
+    this.state.players.set(sessionId, player)
   }
 }
 
@@ -77,13 +77,13 @@ export class OnLeaveCommand extends Command<
   }
 > {
   async execute({ client, consented }: this['payload']): Promise<void> {
-    const player = this.state.players[client.sessionId]
+    const player = this.state.players.get(client.sessionId)
     const wasReady = player.ready
     player.connected = false
     player.ready = false
 
     if (consented) {
-      delete this.state.players[client.sessionId]
+      this.state.players.delete(client.sessionId)
 
       console.log(
         `[PLAYER ${client.sessionId}|${player.slot}] disconnected manually, removing from state`,
@@ -105,7 +105,7 @@ export class OnLeaveCommand extends Command<
         `[PLAYER ${client.sessionId}|${player.slot}] failed to reconnect, removing from state`,
       )
       console.error(err)
-      delete this.state.players[client.sessionId]
+      this.state.players.delete(client.sessionId)
     }
   }
 }
@@ -126,8 +126,7 @@ export class OnPlayerReadyCommand extends Command<
       `[::OnPlayerReady] setting ${sessionId} ready state to '${isReady}'`,
     )
 
-    // TODO: update for colyseus 0.14
-    const player = this.state.players[sessionId]
+    const player = this.state.players.get(sessionId)
     if (!player) return
     player.ready = isReady
   }

@@ -22,14 +22,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  unref,
-  shallowRef,
-  onUnmounted,
-  computed,
-  ref,
-} from 'vue'
+import { defineComponent, unref, shallowRef, onUnmounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRoom } from '../composables/useRoom'
 import { useEventBus } from '../composables/useEventBus'
