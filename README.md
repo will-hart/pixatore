@@ -1,4 +1,4 @@
-# tauri-game
+# Pixatore
 
 A multiplayer HTML5 game start pack which uses:
 
@@ -11,18 +11,18 @@ Uses yarn workspaces to manage packages.
 
 ## Project setup
 
-```
+```bash
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
 
-```
+```bash
 yarn dev
 ```
 
 ### Compiles and minifies for production
 
-```
-yarn build
+```bash
+yarn server:build && yarn app:build
 ```

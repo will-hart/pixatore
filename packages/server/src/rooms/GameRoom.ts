@@ -1,51 +1,51 @@
 import { Room, Client } from 'colyseus'
-import { Types, Constants, State } from '@tauri-game/shared'
-import { Player } from '@tauri-game/shared/build/state/entities'
+import { Dispatcher } from '../commands/Command' // @colyseus/command
+import { Constants, State, Types } from '@pixatore/shared'
+import {
+  OnJoinCommand,
+  OnCreateCommand,
+  OnLeaveCommand,
+  OnPlayerReadyCommand,
+  OnGameStartCommand,
+} from '../commands/LobbyCommands'
 
 export class GameRoom extends Room<State.GameState> {
   static id = Constants.GAME_ROOM_NAME
+  private _dispatcher: Dispatcher = new Dispatcher(this)
 
   onCreate(options: Types.RoomOptions) {
-    this.maxClients = Constants.MAX_PLAYERS
-
-    this.setMetadata({
-      playerName: options.playerName,
-      roomName: options.roomName,
+    this.onMessage(Types.MessageTypes.START_GAME, (client) => {
+      this._dispatcher.dispatch(new OnGameStartCommand(), {})
     })
 
-    this.onMessage('*', (_client, type, contents) =>
-      console.log(`[MESSAGE::${type}] ${contents}`),
+    this.onMessage(Types.MessageTypes.PLAYER_READY, (client, message) => {
+      this._dispatcher.dispatch(new OnPlayerReadyCommand(), {
+        sessionId: client.sessionId,
+        isReady: message.isReady,
+      })
+    })
+
+    this.onMessage('*', (_client, type, message) =>
+      console.log(`[MESSAGE::${type}] ${message}`),
     )
 
-    this.setState(new State.GameState())
+    this._dispatcher.dispatch(new OnCreateCommand(), {
+      options,
+    })
   }
 
-  onJoin(client: Client, options: any) {
-    if (this.state.players[client.sessionId]) return
-    this.state.players[client.sessionId] = new Player(client.sessionId)
+  onJoin(client: Client, options: Types.RoomOptions) {
+    this._dispatcher.dispatch(new OnJoinCommand(), {
+      sessionId: client.sessionId,
+    })
   }
 
+  // Use of "allowReconnection" makes command pattern tricky
   async onLeave(client: Client, consented: boolean) {
-    this.state.players[client.sessionId].connected = false
-
-    if (consented) {
-      delete this.state.players[client.sessionId]
-      return
-    }
-
-    const reconnection = this.allowReconnection(client)
-
-    try {
-      await Promise.any([
-        // reject in 30s
-        new Promise(() => setTimeout(() => reconnection.reject(), 30000)),
-
-        // or reconnect
-        reconnection,
-      ])
-    } catch (err) {
-      delete this.state.players[client.sessionId]
-    }
+    await this._dispatcher.dispatch(new OnLeaveCommand(), {
+      client,
+      consented,
+    })
   }
 
   onDispose() {}

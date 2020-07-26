@@ -1,4 +1,4 @@
-import Vuex, { createStore } from 'vuex'
+import { createStore } from 'vuex'
 
 import { gameStatus } from './modules/gameStatus'
 import { StoreNamespaces } from './types'

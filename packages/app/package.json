@@ -1,7 +1,8 @@
 {
-  "name": "@tauri-game/app",
+  "name": "@pixatore/app",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
+  "author": "William Hart",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -11,12 +12,13 @@
     "tauri:build": "vue-cli-service tauri:build"
   },
   "dependencies": {
-    "@tauri-game/shared": "0.1.0",
+    "@pixatore/shared": "0.1.0",
     "colyseus.js": "0.13.1",
     "core-js": "3.6.5",
     "epic-spinners": "1.1.0",
     "lodash.debounce": "4.0.8",
     "pixi.js": "5.3.0",
+    "ts-bus": "^2.3.1",
     "vue": "3.0.0-rc.4",
     "vue-router": "4.0.0-beta.4",
     "vuex": "4.0.0-beta.4"
