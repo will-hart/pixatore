@@ -14,8 +14,15 @@
         v-if="roomList.length === 0"
         style="margin-top: 2em; color: #aaa; font-style: italic;"
       >
-        There are no servers available, but you can create one using the big
-        green "create" button above.
+        There are no servers with free slots available, but you can create one
+        using the big green "create" button above.
+      </div>
+
+      <div v-if="lastRoom && lastSession">
+        It looks like you were previously in a game. Would you like to
+        <button @click="reconnect(client, lastRoom, lastSession)">
+          Reconnect?
+        </button>
       </div>
 
       <table v-show="roomList.length > 0">
@@ -93,8 +100,11 @@ export default defineComponent({
       roomList,
       getRoomList,
       roomListLoading,
+      lastRoom,
+      lastSession,
       lobbyStatus,
       joinGame,
+      reconnect,
       createGame,
     } = useClientRoomQueries()
     const { room } = useRoom()
@@ -122,8 +132,11 @@ export default defineComponent({
       roomListLoading,
       joinGame,
       createGame,
+      reconnect,
       lobbyStatus,
       screen,
+      lastRoom,
+      lastSession,
     }
   },
 })
