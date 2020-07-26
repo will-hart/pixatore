@@ -12,6 +12,7 @@
     "tauri:build": "vue-cli-service tauri:build"
   },
   "dependencies": {
+    "@gamestdio/mathf": "^1.0.1",
     "@pixatore/shared": "0.1.0",
     "colyseus.js": "^0.14.0-alpha.4",
     "core-js": "3.6.5",

@@ -6,6 +6,7 @@ import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
 import { useRoom } from './useRoom'
 import { mountEventBusToRoom } from './mountEventBusToRoom'
 import { useEventBus } from './useEventBus'
+import { useEngine } from './useGameEngine'
 
 interface IUseClientRoomQueriesReturnValue {
   roomList: Ref<RoomAvailable<State.GameState>[]>
@@ -27,6 +28,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const roomList = shallowRef<RoomAvailable<State.GameState>[]>([])
   const lobbyStatus = ref<LobbyConnectionStatus>('idle')
   const eventBus = useEventBus()
+  const engine = useEngine()
   const { setRoom } = useRoom()
 
   const roomListLoading = ref(false)
@@ -65,6 +67,8 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
       Constants.LOCALSTORAGE_LAST_SESSION_KEY,
       room.sessionId,
     )
+
+    engine.subscribe(eventBus)
     setRoom(room)
 
     lobbyStatus.value = 'connected'

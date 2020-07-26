@@ -910,6 +910,11 @@
   resolved "https://registry.yarnpkg.com/@gamestdio/clock/-/clock-1.1.9.tgz#77ec0c011391fbbfdcb4f32112429536fd8680cb"
   integrity sha1-d+wMAROR+7/ctPMhEkKVNv2GgMs=
 
+"@gamestdio/mathf@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@gamestdio/mathf/-/mathf-1.0.1.tgz#17e157bfede1bf916e4236b224e73747db1216d0"
+  integrity sha512-+aKPxjFh5aCVlI/ZI/c7hLlMiGR3pmhDaGpi6ikv9bPXQcVHHeP+pqaraWy1oB3yj98M/+k05pqiUzAekzSxSw==
+
 "@gamestdio/signals@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@gamestdio/signals/-/signals-1.0.0.tgz#3f7501a322b9b7c5d7f105f81d0f638d4e0357a4"

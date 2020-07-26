@@ -2,6 +2,15 @@ import { Entities, Events, State, EventBus, Types } from '@pixatore/shared'
 import { Room } from 'colyseus.js'
 import { DataChange } from '@colyseus/schema'
 
+/**
+ * Adds all the required subscribers to the colyseus state, using
+ * them to trigger events on the EventBus. The VUe and PIXI components
+ * that require synchronised game state can use this event bus to
+ * update their internal states
+ *
+ * @param eventBus The EventBus used to sync colyseus, pixi and Vue game states
+ * @param room The room the event bus is being mounted to
+ */
 export const mountEventBusToRoom = (
   eventBus: EventBus,
   room: Room<State.GameState>,
@@ -36,20 +45,32 @@ export const mountEventBusToRoom = (
     })
   }
 
+  // subscribe to new players
   room.state.players.onAdd = (player: Entities.Player, key: string) => {
     eventBus.publish(Events.onPlayerAddEvent({ player, key }))
 
-    player.onChange = (): void => {
+    // subscribe to player position upates
+    player.position.onChange = (changes: DataChange<any>[]) => {
+      eventBus.publish(
+        Events.onActorMove({
+          type: 'player',
+          id: player.id,
+          x: changes.find((c) => c.field === 'x')?.value,
+          y: changes.find((c) => c.field === 'y')?.value,
+        }),
+      )
+    }
+
+    // subscribe to player object changes (doesn't change child schema)
+    // eslint-disable-next-line
+    player.onChange = (changes: DataChange<any>[]): void => {
       // TODO: confirm that its ok to pass player here and "changes" can be ignored
       eventBus.publish(Events.onPlayerUpdateEvent({ player, key }))
     }
   }
 
+  // subscribe to disconnecting players
   room.state.players.onRemove = (player: Entities.Player, key: string) => {
     eventBus.publish(Events.onPlayerRemoveEvent({ player, key }))
-  }
-
-  room.state.players.onChange = (player: Entities.Player, key: string) => {
-    eventBus.publish(Events.onPlayerUpdateEvent({ player, key }))
   }
 }
