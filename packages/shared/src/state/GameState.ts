@@ -4,7 +4,7 @@ import { Types } from '..'
 
 export class GameState extends Schema {
   @type('string')
-  public status: Types.GameStatus = Types.GameStatus.slotting
+  public status: Types.GameStatus = Types.GameStatus.lobby
 
   @type({ map: Player })
   public players: MapSchema<Player> = new MapSchema<Player>()

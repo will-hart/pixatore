@@ -5,21 +5,21 @@ import {
   OnJoinCommand,
   OnCreateCommand,
   OnLeaveCommand,
-  OnPlayerReady,
+  OnPlayerReadyCommand,
+  OnGameStartCommand,
 } from '../commands/LobbyCommands'
 
 export class GameRoom extends Room<State.GameState> {
   static id = Constants.GAME_ROOM_NAME
-  private _dispatcher: Dispatcher
-
-  constructor() {
-    super()
-    this._dispatcher = new Dispatcher(this)
-  }
+  private _dispatcher: Dispatcher = new Dispatcher(this)
 
   onCreate(options: Types.RoomOptions) {
+    this.onMessage(Types.MessageTypes.START_GAME, (client) => {
+      this._dispatcher.dispatch(new OnGameStartCommand(), {})
+    })
+
     this.onMessage(Types.MessageTypes.PLAYER_READY, (client, message) => {
-      this._dispatcher.dispatch(new OnPlayerReady(), {
+      this._dispatcher.dispatch(new OnPlayerReadyCommand(), {
         sessionId: client.sessionId,
         isReady: message.isReady,
       })

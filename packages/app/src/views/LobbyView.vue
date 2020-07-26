@@ -14,6 +14,9 @@
       />
 
       <button @click="setReady(!me.ready)">Ready</button>
+      <button v-if="allReady && me && me.slot === 1" @click="startGame">
+        Start Game
+      </button>
     </div>
   </div>
 </template>
@@ -88,13 +91,24 @@ export default defineComponent({
       unref(room).send(Types.MessageTypes.PLAYER_READY, { isReady })
     }
 
+    const startGame = () => {
+      unref(room).send(Types.MessageTypes.START_GAME)
+    }
+
+    // to start must have > 1 player and all are ready and connected
+    const allReady = computed(
+      () =>
+        !playerList.value.some((p) => !p.ready || !p.connected) &&
+        playerList.value.length > 1,
+    )
+
     onUnmounted(() => {
       unsubscribeAddPlayer()
       unsubscribeRemovePlayer()
       unsubcribePlayerUpdate()
     })
 
-    return { me, setReady, slotList }
+    return { allReady, me, setReady, slotList, startGame }
   },
 })
 </script>

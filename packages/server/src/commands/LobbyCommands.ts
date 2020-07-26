@@ -1,6 +1,6 @@
 import { Command } from './Command'
 import { State, Entities, Constants, Types } from '@pixatore/shared'
-import { Room, Client, Deferred } from 'colyseus'
+import { Client } from 'colyseus'
 
 export class OnCreateCommand extends Command<
   State.GameState,
@@ -15,6 +15,29 @@ export class OnCreateCommand extends Command<
     })
 
     this.room.setState(new State.GameState())
+  }
+}
+
+export class OnGameStartCommand extends Command<State.GameState, {}> {
+  async execute(_payload: this['payload']): Promise<void> {
+    if (this.state.status !== Types.GameStatus.lobby) {
+      console.log(
+        `[::OnGameStart] ignoring as game status is ${this.state.status}`,
+      )
+      return
+    }
+
+    // TODO: update for colyseus 0.14
+    if (
+      Object.values(this.state.players).some((p) => !p.ready || !p.connected)
+    ) {
+      console.log(
+        `[::OnGameStart] ignoring as not all players are connected/ready`,
+      )
+      return
+    }
+
+    this.state.status = Types.GameStatus.playing
   }
 }
 
@@ -87,7 +110,7 @@ export class OnLeaveCommand extends Command<
   }
 }
 
-export class OnPlayerReady extends Command<
+export class OnPlayerReadyCommand extends Command<
   State.GameState,
   { sessionId: string; isReady: boolean }
 > {
