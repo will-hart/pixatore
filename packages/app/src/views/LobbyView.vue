@@ -22,7 +22,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, unref, shallowRef, onUnmounted, computed } from 'vue'
+import {
+  defineComponent,
+  unref,
+  shallowRef,
+  onUnmounted,
+  computed,
+  ref,
+} from 'vue'
 import { useRouter } from 'vue-router'
 import { useRoom } from '../composables/useRoom'
 import { useEventBus } from '../composables/useEventBus'
@@ -48,6 +55,13 @@ export default defineComponent({
     }
 
     const playerList = shallowRef<Entities.Player[]>([])
+
+    const unsubscribeGameStatus = eventBus.onGameStatusChange((current) => {
+      console.log(`[LOBBY_VIEW] game status updated to ${current}`)
+      if (current === Types.GameStatus.playing) {
+        router.push('/game')
+      }
+    })
 
     const unsubscribeAddPlayer = eventBus.onPlayerAdd((player) => {
       playerList.value = [...playerList.value, player]
@@ -106,6 +120,7 @@ export default defineComponent({
       unsubscribeAddPlayer()
       unsubscribeRemovePlayer()
       unsubcribePlayerUpdate()
+      unsubscribeGameStatus()
     })
 
     return { allReady, me, setReady, slotList, startGame }

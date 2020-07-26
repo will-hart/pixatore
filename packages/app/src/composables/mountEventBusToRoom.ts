@@ -1,5 +1,6 @@
-import { Entities, Events, State, EventBus } from '@pixatore/shared'
+import { Entities, Events, State, EventBus, Types } from '@pixatore/shared'
 import { Room } from 'colyseus.js'
+import { DataChange } from '@colyseus/schema'
 
 export const mountEventBusToRoom = (
   eventBus: EventBus,
@@ -16,6 +17,22 @@ export const mountEventBusToRoom = (
   room.onMessage('*', (message: unknown) =>
     console.log(`[ROOM_MESSAGE] ${message}`),
   )
+
+  room.state.status.onChange = (changes: DataChange<any>[]): any => {
+    changes.forEach((change) => {
+      if (change.field === 'current') {
+        eventBus.publish(
+          Events.onGameStatusChanged({
+            current: change.value as Types.GameStatus,
+          }),
+        )
+      } else {
+        console.log(
+          `[MOUNT_TO_EVENT_BUS] unknown game status change for field ${change.field} to ${change.value}`,
+        )
+      }
+    })
+  }
 
   room.state.players.onAdd = (player: Entities.Player, key: string) => {
     eventBus.publish(Events.onPlayerAddEvent({ player, key }))

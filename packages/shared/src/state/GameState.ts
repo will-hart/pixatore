@@ -1,10 +1,10 @@
 import { MapSchema, Schema, type } from '@colyseus/schema'
 import { Player } from './entities/Player'
-import { Types } from '..'
+import { Status } from './entities/Status'
 
 export class GameState extends Schema {
-  @type('string')
-  public status: Types.GameStatus = Types.GameStatus.lobby
+  @type(Status)
+  public status: Status = new Status()
 
   @type({ map: Player })
   public players: MapSchema<Player> = new MapSchema<Player>()

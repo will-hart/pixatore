@@ -20,7 +20,7 @@ export class OnCreateCommand extends Command<
 
 export class OnGameStartCommand extends Command<State.GameState, {}> {
   async execute(_payload: this['payload']): Promise<void> {
-    if (this.state.status !== Types.GameStatus.lobby) {
+    if (this.state.status.current !== Types.GameStatus.lobby) {
       console.log(
         `[::OnGameStart] ignoring as game status is ${this.state.status}`,
       )
@@ -37,7 +37,7 @@ export class OnGameStartCommand extends Command<State.GameState, {}> {
       return
     }
 
-    this.state.status = Types.GameStatus.playing
+    this.state.status.current = Types.GameStatus.playing
   }
 }
 
@@ -115,7 +115,7 @@ export class OnPlayerReadyCommand extends Command<
   { sessionId: string; isReady: boolean }
 > {
   async execute({ sessionId, isReady }: this['payload']): Promise<void> {
-    if (this.state.status !== Types.GameStatus.lobby) {
+    if (this.state.status.current !== Types.GameStatus.lobby) {
       console.log(
         `[::OnPlayerReady] skipping ready message for player ${sessionId} as the game is not in the lobby`,
       )
