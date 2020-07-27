@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
+    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/server --name server --excludePrivate --skipSidebar",
     "start": "ts-node src/index.ts --build --watch",
     "loadtest": "colyseus-loadtest loadtest/example.ts --room my_room --numClients 2"
   },
@@ -19,7 +20,9 @@
     "@types/cors": "2.8.6",
     "@types/express": "4.17.7",
     "ts-node": "8.10.2",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "typedoc": "^0.17.8",
+    "typedoc-plugin-markdown": "^2.3.1"
   },
   "dependencies": {
     "@colyseus/monitor": "^0.12.2",
