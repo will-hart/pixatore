@@ -18,7 +18,13 @@ module.exports = {
         {
           to: 'docs/',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Guides',
+          position: 'left',
+        },
+        {
+          to: 'docs/api',
+          activeBasePath: 'docs/api',
+          label: 'API',
           position: 'left',
         },
         { to: 'blog', label: 'Blog', position: 'left' },
@@ -36,36 +42,23 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Docs',
+              label: 'Guides',
               to: 'docs/',
             },
             {
               label: 'Client API',
-              to: 'docs/api/client/',
+              to: 'docs/api/client/globals',
+            },
+            {
+              label: 'Shared API',
+              to: 'docs/api/shared/globals',
             },
             {
               label: 'Server API',
-              to: 'docs/api/server/',
+              to: 'docs/api/server/globals',
             },
           ],
         },
-        // {
-        //   title: 'Community',
-        //   items: [
-        //     {
-        //       label: 'Stack Overflow',
-        //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //     },
-        //     {
-        //       label: 'Discord',
-        //       href: 'https://discordapp.com/invite/docusaurus',
-        //     },
-        //     {
-        //       label: 'Twitter',
-        //       href: 'https://twitter.com/docusaurus',
-        //     },
-        //   ],
-        // },
         {
           title: 'More',
           items: [
@@ -80,7 +73,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} William Hart. Built with Docusaurus and Typedoc.`,
     },
   },
   presets: [
