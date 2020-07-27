@@ -17,6 +17,8 @@
     "app:lint": "yarn workspace @pixatore/app lint",
     "app:tauri:build": "yarn workspace @pixatore/app tauri:build",
     "app:dev": "yarn workspace @pixatore/app dev",
+    "docs": "yarn workspace @pixatore/docs start",
+    "docs:build": "yarn workspace @pixatore/docs build",
     "server:build": "yarn workspace @pixatore/server build",
     "server:dev": "yarn  workspace @pixatore/server start",
     "server:loadtest": "yarn  workspace @pixatore/server loadtest",

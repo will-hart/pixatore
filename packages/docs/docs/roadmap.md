@@ -1,4 +1,8 @@
-# Roadmap
+---
+id: roadmap
+title: Roadmap
+sidebar_label: Roadmap
+---
 
 ## Version 0.1.0 - initial release
 
@@ -9,8 +13,8 @@
 - [x] setup "scenes" and "views"
 - [x] basic input handling
 - [x] concept of "drawables" for drawing sprites to screen
-- [ ] composable state update handlers
+- [x] composable state update handlers
 - [ ] initial four player moving square example code
 - [x] server reconnection logic
-- [ ] client reconnection logic
+- [x] client reconnection logic
 - [ ] CI setup for cross platform build generation

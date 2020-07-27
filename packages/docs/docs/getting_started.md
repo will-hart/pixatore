@@ -1,4 +1,8 @@
-# Getting Started
+---
+id: getting_started
+title: Getting Started
+sidebar_label: Getting Started
+---
 
 The easiest way to get started with Pixatore is to use the github template and
 click the "Use this template" button to create your own repository based on the
@@ -21,6 +25,7 @@ Pixatore uses a monorepo approach (using yarn workspaces) with the following
 `packages`:
 
 - `app` containing application code
+- `docs` the code for this documentation site
 - `server` containing server code, and
 - `shared` containing common code used in both the client and server.
 

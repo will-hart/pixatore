@@ -1,4 +1,8 @@
-# Introduction
+---
+id: index
+title: Introduction
+sidebar_label: Introduction
+---
 
 Tauri Game is a template for simple multiplayer games using
 
