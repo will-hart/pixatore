@@ -11,19 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@@v2-beta
         with:
           node-version: '12.x'
+      - name: Install dependencies
+        run: yarn install
       - name: Test Build
-        run: |
-          yarn
-          yarn docs:build
+        run: yarn docs:build
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2-beta
         with:
           node-version: '12.x'
       - name: Add key to allow access to repository
