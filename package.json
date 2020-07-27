@@ -25,6 +25,7 @@
     "docs:api:shared": "yarn workspace @pixatore/shared docs:api",
     "docs:build": "run-s docs:api docs:site",
     "docs:fix": "node scripts/fixApiDocs.js",
+    "docs:serve": "yarn workspace @pixatore/docs start",
     "docs:site": "yarn workspace @pixatore/docs build",
     "server:build": "yarn workspace @pixatore/server build",
     "server:dev": "yarn  workspace @pixatore/server start",
