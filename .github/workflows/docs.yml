@@ -1,10 +1,9 @@
 name: documentation
 
 on:
-  pull_request:
-    branches: [documentation]
-  push:
-    branches: [documentation]
+  pull_request: # checks on any PR
+  push: # only deploy on stable
+    branches: [stable]
 
 jobs:
   checks:
