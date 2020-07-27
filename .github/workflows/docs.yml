@@ -16,6 +16,8 @@ jobs:
           node-version: '12.x'
       - name: Install dependencies
         run: yarn install
+      - name: Build shared
+        run: yarn shared:build
       - name: Test Build
         run: yarn docs:build
   gh-release:
