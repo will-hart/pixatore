@@ -25,7 +25,7 @@ sidebar_label: "src/composables/useRoom"
   'useRoom::Room',
 )
 
-*Defined in [packages/app/src/composables/useRoom.ts:5](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useRoom.ts#L5)*
+*Defined in [packages/app/src/composables/useRoom.ts:5](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useRoom.ts#L5)*
 
 ## Functions
 
@@ -33,7 +33,7 @@ sidebar_label: "src/composables/useRoom"
 
 ▸ **provideRoom**(): *void*
 
-*Defined in [packages/app/src/composables/useRoom.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useRoom.ts#L9)*
+*Defined in [packages/app/src/composables/useRoom.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useRoom.ts#L9)*
 
 **Returns:** *void*
 
@@ -43,7 +43,7 @@ ___
 
 ▸ **useRoom**(): *object*
 
-*Defined in [packages/app/src/composables/useRoom.ts:15](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useRoom.ts#L15)*
+*Defined in [packages/app/src/composables/useRoom.ts:15](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useRoom.ts#L15)*
 
 **Returns:** *object*
 

@@ -32,7 +32,7 @@ sidebar_label: "SpriteStorage"
 
 \+ **new SpriteStorage**(`app`: Application, `_onLoadingCompleteCallback?`: undefined | function): *[SpriteStorage](_src_gameengine_spritestorage_.spritestorage.md)*
 
-*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/SpriteStorage.ts#L8)*
+*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/SpriteStorage.ts#L8)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ Name | Type |
 
 • **lastLoaded**: *string* = ""
 
-*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/SpriteStorage.ts#L6)*
+*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/SpriteStorage.ts#L6)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **loadingComplete**: *boolean* = false
 
-*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/SpriteStorage.ts#L8)*
+*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/SpriteStorage.ts#L8)*
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 • **progress**: *number* = 0
 
-*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/SpriteStorage.ts#L7)*
+*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/SpriteStorage.ts#L7)*
 
 ## Methods
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **getSprite**(`key`: [SpriteKey](../enums/_src_gameengine_spritemap_.spritekey.md)): *Sprite | null*
 
-*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:32](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/SpriteStorage.ts#L32)*
+*Defined in [packages/app/src/gameEngine/SpriteStorage.ts:32](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/SpriteStorage.ts#L32)*
 
 **Parameters:**
 

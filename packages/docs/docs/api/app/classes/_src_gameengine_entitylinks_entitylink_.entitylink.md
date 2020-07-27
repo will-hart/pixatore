@@ -46,7 +46,7 @@ A collection of drawable objects that is synchronised with Colyseus game state
 
 \+ **new EntityLink**(`engine`: [Engine](_src_gameengine_engine_.engine.md), `parent`: [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md)): *[EntityLink](_src_gameengine_entitylinks_entitylink_.entitylink.md)*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:14](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L14)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:14](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L14)*
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ Name | Type |
 
 • **collection**: *Map‹string, TDrawable›* = new Map&lt;string, TDrawable&gt;()
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:14](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L14)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:14](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L14)*
 
 Contains the mapping between entity ID and drawable
 
@@ -73,7 +73,7 @@ ___
 
 • **engine**: *[Engine](_src_gameengine_engine_.engine.md)*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L16)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:16](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L16)*
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 • **parent**: *[GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md)*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L16)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:16](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L16)*
 
 ## Methods
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **addDrawable**(`entity`: TEntity, `drawable`: TDrawable): *void*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:28](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L28)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:28](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L28)*
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **createEntity**(`entity`: TEntity): *void*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:24](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L24)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:24](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L24)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **removeEntity**(`entity`: TEntity): *void*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:33](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L33)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:33](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L33)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **subscribe**(`bus`: EventBus): *void*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L22)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:22](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L22)*
 
 Subscribes to events required to keep this EntityLink up to date
 
@@ -156,7 +156,7 @@ ___
 
 ▸ **updateEntity**(`entity`: TEntity): *void*
 
-*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:26](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L26)*
+*Defined in [packages/app/src/gameEngine/entityLinks/EntityLink.ts:26](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/entityLinks/EntityLink.ts#L26)*
 
 **Parameters:**
 

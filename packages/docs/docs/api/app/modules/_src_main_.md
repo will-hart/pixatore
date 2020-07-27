@@ -18,4 +18,4 @@ sidebar_label: "src/main"
 
 • **app**: *App‹Element›* = createApp(App)
 
-*Defined in [packages/app/src/main.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/main.ts#L7)*
+*Defined in [packages/app/src/main.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/main.ts#L7)*

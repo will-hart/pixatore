@@ -43,7 +43,7 @@ Defined in node_modules/ts-bus/EventBus.d.ts:18
 
 ▸ **onGameStatusChange**(`handler`: function): *function*
 
-*Defined in [packages/shared/src/eventBus/eventBus.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/eventBus.ts#L7)*
+*Defined in [packages/shared/src/eventBus/eventBus.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/eventBus.ts#L7)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **onPlayerAdd**(`handler`: function): *function*
 
-*Defined in [packages/shared/src/eventBus/eventBus.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/eventBus.ts#L17)*
+*Defined in [packages/shared/src/eventBus/eventBus.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/eventBus.ts#L17)*
 
 **Parameters:**
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **onPlayerRemove**(`handler`: function): *function*
 
-*Defined in [packages/shared/src/eventBus/eventBus.ts:27](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/eventBus.ts#L27)*
+*Defined in [packages/shared/src/eventBus/eventBus.ts:27](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/eventBus.ts#L27)*
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **onPlayerUpdate**(`handler`: function): *function*
 
-*Defined in [packages/shared/src/eventBus/eventBus.ts:38](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/eventBus.ts#L38)*
+*Defined in [packages/shared/src/eventBus/eventBus.ts:38](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/eventBus.ts#L38)*
 
 **Parameters:**
 

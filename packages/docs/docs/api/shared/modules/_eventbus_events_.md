@@ -33,7 +33,7 @@ sidebar_label: "eventBus/events"
   EventTypes.ON_ACTOR_MOVE,
 )
 
-*Defined in [packages/shared/src/eventBus/events.ts:24](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L24)*
+*Defined in [packages/shared/src/eventBus/events.ts:24](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L24)*
 
 #### Type declaration:
 
@@ -61,7 +61,7 @@ ___
   current: Types.GameStatus
 }&gt;()(EventTypes.ON_GAME_STATUS_CHANGED)
 
-*Defined in [packages/shared/src/eventBus/events.ts:40](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L40)*
+*Defined in [packages/shared/src/eventBus/events.ts:40](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L40)*
 
 #### Type declaration:
 
@@ -89,7 +89,7 @@ ___
   EventTypes.ON_PLAYER_ADD,
 )
 
-*Defined in [packages/shared/src/eventBus/events.ts:28](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L28)*
+*Defined in [packages/shared/src/eventBus/events.ts:28](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L28)*
 
 #### Type declaration:
 
@@ -117,7 +117,7 @@ ___
   EventTypes.ON_PLAYER_REMOVE,
 )
 
-*Defined in [packages/shared/src/eventBus/events.ts:32](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L32)*
+*Defined in [packages/shared/src/eventBus/events.ts:32](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L32)*
 
 #### Type declaration:
 
@@ -145,7 +145,7 @@ ___
   EventTypes.ON_PLAYER_UPDATE,
 )
 
-*Defined in [packages/shared/src/eventBus/events.ts:36](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L36)*
+*Defined in [packages/shared/src/eventBus/events.ts:36](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L36)*
 
 #### Type declaration:
 

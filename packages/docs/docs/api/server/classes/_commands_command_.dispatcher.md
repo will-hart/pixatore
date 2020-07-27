@@ -32,7 +32,7 @@ sidebar_label: "Dispatcher"
 
 \+ **new Dispatcher**(`room`: any): *[Dispatcher](_commands_command_.dispatcher.md)*
 
-*Defined in [packages/server/src/commands/Command.ts:38](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L38)*
+*Defined in [packages/server/src/commands/Command.ts:38](https://github.com/will-hart/pixatore/blob/5d54977/packages/server/src/commands/Command.ts#L38)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Name | Type |
 
 • **room**: *Room*
 
-*Defined in [packages/server/src/commands/Command.ts:37](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L37)*
+*Defined in [packages/server/src/commands/Command.ts:37](https://github.com/will-hart/pixatore/blob/5d54977/packages/server/src/commands/Command.ts#L37)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **stopped**: *boolean* = false
 
-*Defined in [packages/server/src/commands/Command.ts:38](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L38)*
+*Defined in [packages/server/src/commands/Command.ts:38](https://github.com/will-hart/pixatore/blob/5d54977/packages/server/src/commands/Command.ts#L38)*
 
 ## Methods
 
@@ -64,7 +64,7 @@ ___
 
 ▸ **dispatch**‹**T**›(`command`: T, `payload?`: T["payload"]): *Promise‹void›*
 
-*Defined in [packages/server/src/commands/Command.ts:48](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L48)*
+*Defined in [packages/server/src/commands/Command.ts:48](https://github.com/will-hart/pixatore/blob/5d54977/packages/server/src/commands/Command.ts#L48)*
 
 **Type parameters:**
 
@@ -85,6 +85,6 @@ ___
 
 ▸ **stop**(): *void*
 
-*Defined in [packages/server/src/commands/Command.ts:44](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L44)*
+*Defined in [packages/server/src/commands/Command.ts:44](https://github.com/will-hart/pixatore/blob/5d54977/packages/server/src/commands/Command.ts#L44)*
 
 **Returns:** *void*

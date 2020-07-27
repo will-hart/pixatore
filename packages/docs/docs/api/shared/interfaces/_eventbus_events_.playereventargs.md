@@ -23,7 +23,7 @@ sidebar_label: "PlayerEventArgs"
 
 • **key**: *string*
 
-*Defined in [packages/shared/src/eventBus/events.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L22)*
+*Defined in [packages/shared/src/eventBus/events.ts:22](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L22)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **player**: *[Player](../classes/_state_entities_player_.player.md)*
 
-*Defined in [packages/shared/src/eventBus/events.ts:21](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L21)*
+*Defined in [packages/shared/src/eventBus/events.ts:21](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L21)*

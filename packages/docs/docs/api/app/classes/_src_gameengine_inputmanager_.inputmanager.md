@@ -38,7 +38,7 @@ sidebar_label: "InputManager"
 
 • **get anyKeyDown**(): *boolean*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:29](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L29)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:29](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L29)*
 
 **Returns:** *boolean*
 
@@ -48,7 +48,7 @@ ___
 
 • **get anyKeyHeld**(): *boolean*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:39](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L39)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:39](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L39)*
 
 **Returns:** *boolean*
 
@@ -58,7 +58,7 @@ ___
 
 • **get anyKeyUp**(): *boolean*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:47](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L47)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:47](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L47)*
 
 **Returns:** *boolean*
 
@@ -68,7 +68,7 @@ ___
 
 • **get keysDown**(): *string[]*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:32](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L32)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:32](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L32)*
 
 **Returns:** *string[]*
 
@@ -78,7 +78,7 @@ ___
 
 • **get keysHeld**(): *string[]*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:42](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L42)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:42](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L42)*
 
 **Returns:** *string[]*
 
@@ -88,7 +88,7 @@ ___
 
 • **get keysUp**(): *string[]*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:50](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L50)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:50](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L50)*
 
 **Returns:** *string[]*
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **endFrame**(): *void*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L16)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:16](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L16)*
 
 **Returns:** *void*
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **heldFor**(`key`: string): *number*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:37](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L37)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:37](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L37)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **isDown**(`key`: string): *boolean*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:27](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L27)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:27](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L27)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **isHeld**(`key`: string): *boolean*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:36](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L36)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:36](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L36)*
 
 **Parameters:**
 
@@ -156,7 +156,7 @@ ___
 
 ▸ **isUp**(`key`: string): *boolean*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:46](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L46)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:46](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L46)*
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:21](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L21)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:21](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L21)*
 
 **Returns:** *void*
 
@@ -182,7 +182,7 @@ ___
 
 ▸ **subscribe**(): *void*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L6)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L6)*
 
 **Returns:** *void*
 
@@ -192,6 +192,6 @@ ___
 
 ▸ **unsubscribe**(): *void*
 
-*Defined in [packages/app/src/gameEngine/InputManager.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/InputManager.ts#L11)*
+*Defined in [packages/app/src/gameEngine/InputManager.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/InputManager.ts#L11)*
 
 **Returns:** *void*

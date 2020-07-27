@@ -23,7 +23,7 @@ sidebar_label: "src/gameEngine/spriteMap"
 
 • **ASSET_PATH**: *"/assets/sprites"* = "/assets/sprites"
 
-*Defined in [packages/app/src/gameEngine/spriteMap.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/spriteMap.ts#L6)*
+*Defined in [packages/app/src/gameEngine/spriteMap.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/spriteMap.ts#L6)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **spriteMap**: *Map‹[SpriteKey](../enums/_src_gameengine_spritemap_.spritekey.md), string›* = new Map&lt;SpriteKey, string&gt;()
 
-*Defined in [packages/app/src/gameEngine/spriteMap.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/spriteMap.ts#L8)*
+*Defined in [packages/app/src/gameEngine/spriteMap.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/spriteMap.ts#L8)*

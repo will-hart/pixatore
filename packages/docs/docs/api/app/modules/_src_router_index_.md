@@ -22,7 +22,7 @@ sidebar_label: "src/router/index"
   routes,
 })
 
-*Defined in [packages/app/src/router/index.ts:30](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/router/index.ts#L30)*
+*Defined in [packages/app/src/router/index.ts:30](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/router/index.ts#L30)*
 
 ___
 
@@ -55,4 +55,4 @@ ___
   },
 ]
 
-*Defined in [packages/app/src/router/index.ts:3](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/router/index.ts#L3)*
+*Defined in [packages/app/src/router/index.ts:3](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/router/index.ts#L3)*

@@ -566,7 +566,7 @@ ___
 
 • **id**: *string*
 
-*Defined in [packages/app/src/gameEngine/drawables/Drawable.ts:4](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/Drawable.ts#L4)*
+*Defined in [packages/app/src/gameEngine/drawables/Drawable.ts:4](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/Drawable.ts#L4)*
 
 ___
 
@@ -574,7 +574,7 @@ ___
 
 • **inject**: *function*
 
-*Defined in [packages/app/src/gameEngine/drawables/Drawable.ts:5](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/Drawable.ts#L5)*
+*Defined in [packages/app/src/gameEngine/drawables/Drawable.ts:5](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/Drawable.ts#L5)*
 
 #### Type declaration:
 
@@ -750,7 +750,7 @@ ___
 
 • **remove**: *function*
 
-*Defined in [packages/app/src/gameEngine/drawables/Drawable.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/Drawable.ts#L6)*
+*Defined in [packages/app/src/gameEngine/drawables/Drawable.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/Drawable.ts#L6)*
 
 #### Type declaration:
 

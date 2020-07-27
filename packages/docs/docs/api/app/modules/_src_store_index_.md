@@ -19,7 +19,7 @@ sidebar_label: "src/store/index"
 
 • **debug**: *boolean* = process?.env?.NODE_ENV && process.env.NODE_ENV !== 'production'
 
-*Defined in [packages/app/src/store/index.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/store/index.ts#L6)*
+*Defined in [packages/app/src/store/index.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/store/index.ts#L6)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
   strict: debug,
 })
 
-*Defined in [packages/app/src/store/index.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/store/index.ts#L8)*
+*Defined in [packages/app/src/store/index.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/store/index.ts#L8)*

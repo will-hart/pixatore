@@ -146,7 +146,7 @@ sidebar_label: "TextDrawable"
 
 *Overrides void*
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L9)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L9)*
 
 **Parameters:**
 
@@ -898,7 +898,7 @@ ___
 
 *Implementation of [Drawable](../interfaces/_src_gameengine_drawables_drawable_.drawable.md).[id](../interfaces/_src_gameengine_drawables_drawable_.drawable.md#id)*
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L11)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L11)*
 
 ___
 
@@ -2018,7 +2018,7 @@ ___
 
 ▸ **inject**(`stage`: Container): *void*
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L18)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L18)*
 
 **Parameters:**
 
@@ -2050,7 +2050,7 @@ ___
 
 ▸ **remove**(`stage`: Container): *void*
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L22)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:22](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L22)*
 
 **Parameters:**
 

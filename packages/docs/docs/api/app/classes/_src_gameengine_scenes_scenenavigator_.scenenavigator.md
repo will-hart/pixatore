@@ -32,7 +32,7 @@ sidebar_label: "SceneNavigator"
 
 \+ **new SceneNavigator**(`engine`: [Engine](_src_gameengine_engine_.engine.md)): *[SceneNavigator](_src_gameengine_scenes_scenenavigator_.scenenavigator.md)*
 
-*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L6)*
+*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L6)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Name | Type |
 
 • **get current**(): *BaseScreen*
 
-*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L10)*
+*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:10](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L10)*
 
 **Returns:** *BaseScreen*
 
@@ -58,7 +58,7 @@ Name | Type |
 
 ▸ **push**(`screen`: BaseScreen): *void*
 
-*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L18)*
+*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L18)*
 
 Adds a new screen "on top" of the current screen
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **replace**(`screen`: BaseScreen): *void*
 
-*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:27](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L27)*
+*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:27](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L27)*
 
 Replaces the current top most screen
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **reset**(`screen`: BaseScreen): *void*
 
-*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:36](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L36)*
+*Defined in [packages/app/src/gameEngine/scenes/SceneNavigator.ts:36](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/SceneNavigator.ts#L36)*
 
 Clears the entire navigation stack and replaces with the given screen
 

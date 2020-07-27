@@ -21,7 +21,7 @@ sidebar_label: "constants"
 
 • **GAME_ROOM_NAME**: *"game_room"* = "game_room"
 
-*Defined in [packages/shared/src/constants.ts:5](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/constants.ts#L5)*
+*Defined in [packages/shared/src/constants.ts:5](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/constants.ts#L5)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **LOCALSTORAGE_LAST_ROOM_KEY**: *"pixa__last_room_id"* = "pixa__last_room_id"
 
-*Defined in [packages/shared/src/constants.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/constants.ts#L8)*
+*Defined in [packages/shared/src/constants.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/constants.ts#L8)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **LOCALSTORAGE_LAST_SESSION_KEY**: *"pixa__last_session_id"* = "pixa__last_session_id"
 
-*Defined in [packages/shared/src/constants.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/constants.ts#L9)*
+*Defined in [packages/shared/src/constants.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/constants.ts#L9)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **MAX_PLAYERS**: *4* = 4
 
-*Defined in [packages/shared/src/constants.ts:2](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/constants.ts#L2)*
+*Defined in [packages/shared/src/constants.ts:2](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/constants.ts#L2)*

@@ -32,22 +32,22 @@ sidebar_label: "types/index"
 
 ### ▪ **MessageTypes**: *object*
 
-*Defined in [packages/shared/src/types/index.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L9)*
+*Defined in [packages/shared/src/types/index.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/types/index.ts#L9)*
 
 ###  ANY
 
 • **ANY**: *string* = "*"
 
-*Defined in [packages/shared/src/types/index.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L12)*
+*Defined in [packages/shared/src/types/index.ts:12](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/types/index.ts#L12)*
 
 ###  PLAYER_READY
 
 • **PLAYER_READY**: *string* = "player::ready"
 
-*Defined in [packages/shared/src/types/index.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L10)*
+*Defined in [packages/shared/src/types/index.ts:10](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/types/index.ts#L10)*
 
 ###  START_GAME
 
 • **START_GAME**: *string* = "game::start"
 
-*Defined in [packages/shared/src/types/index.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L11)*
+*Defined in [packages/shared/src/types/index.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/types/index.ts#L11)*

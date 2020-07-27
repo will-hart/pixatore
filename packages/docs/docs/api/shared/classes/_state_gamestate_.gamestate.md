@@ -99,7 +99,7 @@ ___
 
 • **players**: *MapSchema‹[Player](_state_entities_player_.player.md)›* = new MapSchema&lt;Player&gt;()
 
-*Defined in [packages/shared/src/state/GameState.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/GameState.ts#L10)*
+*Defined in [packages/shared/src/state/GameState.ts:10](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/GameState.ts#L10)*
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 • **status**: *[Status](_state_entities_status_.status.md)* = new Status()
 
-*Defined in [packages/shared/src/state/GameState.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/GameState.ts#L7)*
+*Defined in [packages/shared/src/state/GameState.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/GameState.ts#L7)*
 
 ___
 

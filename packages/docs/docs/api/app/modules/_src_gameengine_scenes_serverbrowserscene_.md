@@ -22,4 +22,4 @@ sidebar_label: "src/gameEngine/scenes/ServerBrowserScene"
 
 Ƭ **LobbyConnectionStatus**: *"idle" | "connected" | "error"*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L7)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L7)*

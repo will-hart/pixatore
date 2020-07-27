@@ -30,7 +30,7 @@ sidebar_label: "IUseClientRoomQueriesReturnValue"
 
 • **createGame**: *function*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:19](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L19)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:19](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L19)*
 
 #### Type declaration:
 
@@ -48,7 +48,7 @@ ___
 
 • **getRoomList**: *function*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L13)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:13](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L13)*
 
 #### Type declaration:
 
@@ -66,7 +66,7 @@ ___
 
 • **joinGame**: *function*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L18)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L18)*
 
 #### Type declaration:
 
@@ -85,7 +85,7 @@ ___
 
 • **lastRoom**: *Ref‹string | null›*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:15](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L15)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:15](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L15)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 • **lastSession**: *Ref‹string | null›*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L16)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:16](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L16)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 • **lobbyStatus**: *Ref‹[LobbyConnectionStatus](../modules/_src_gameengine_scenes_serverbrowserscene_.md#lobbyconnectionstatus)›*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L17)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L17)*
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 • **reconnect**: *function*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:20](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L20)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:20](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L20)*
 
 #### Type declaration:
 
@@ -129,7 +129,7 @@ ___
 
 • **roomList**: *Ref‹RoomAvailable‹GameState›[]›*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L12)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:12](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L12)*
 
 ___
 
@@ -137,4 +137,4 @@ ___
 
 • **roomListLoading**: *Ref‹boolean›*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:14](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L14)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:14](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L14)*

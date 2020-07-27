@@ -18,7 +18,7 @@ sidebar_label: "src/composables/useWindowSize"
 
 ▸ **useWindowSize**(`listener?`: undefined | function): *object*
 
-*Defined in [packages/app/src/composables/useWindowSize.ts:3](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useWindowSize.ts#L3)*
+*Defined in [packages/app/src/composables/useWindowSize.ts:3](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useWindowSize.ts#L3)*
 
 **Parameters:**
 

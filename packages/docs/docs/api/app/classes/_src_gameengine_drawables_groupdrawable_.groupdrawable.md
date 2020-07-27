@@ -132,7 +132,7 @@ sidebar_label: "GroupDrawable"
 
 *Overrides void*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L9)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L9)*
 
 **Parameters:**
 
@@ -249,7 +249,7 @@ ___
 
 • **_drawables**: *object*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L9)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L9)*
 
 #### Type declaration:
 
@@ -615,7 +615,7 @@ ___
 
 • **engine**: *[Engine](_src_gameengine_engine_.engine.md)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L12)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:12](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L12)*
 
 ___
 
@@ -1000,7 +1000,7 @@ ___
 
 • **ticker**? : *undefined | function*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L13)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:13](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L13)*
 
 ___
 
@@ -1268,7 +1268,7 @@ ___
 
 ▸ **addDrawable**(`drawable`: [Drawable](../interfaces/_src_gameengine_drawables_drawable_.drawable.md)): *[Drawable](../interfaces/_src_gameengine_drawables_drawable_.drawable.md)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:38](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L38)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:38](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L38)*
 
 **Parameters:**
 
@@ -1317,7 +1317,7 @@ ___
 
 ▸ **createAndAddSprite**(`id`: string, `spriteKey`: [SpriteKey](../enums/_src_gameengine_spritemap_.spritekey.md)): *[SpriteDrawable](_src_gameengine_drawables_spritedrawable_.spritedrawable.md)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L22)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:22](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L22)*
 
 **Parameters:**
 
@@ -1334,7 +1334,7 @@ ___
 
 ▸ **createAndAddText**(`id`: string, `text`: string, `style?`: ConstructorParameters&lt;typeof TextStyle&gt;[0]): *[TextDrawable](_src_gameengine_drawables_textdrawable_.textdrawable.md)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:28](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L28)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:28](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L28)*
 
 **Parameters:**
 
@@ -1354,7 +1354,7 @@ ___
 
 *Overrides void*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:78](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L78)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:78](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L78)*
 
 **Returns:** *void*
 
@@ -1529,7 +1529,7 @@ ___
 
 ▸ **getDisplayObjectById**(`id`: string): *DisplayObject | null*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:69](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L69)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:69](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L69)*
 
 **Parameters:**
 
@@ -1788,7 +1788,7 @@ ___
 
 ▸ **removeDrawable**(`drawable`: [Drawable](../interfaces/_src_gameengine_drawables_drawable_.drawable.md)): *boolean*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:51](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L51)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:51](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L51)*
 
 **Parameters:**
 
@@ -1804,7 +1804,7 @@ ___
 
 ▸ **removeDrawableById**(`id`: string): *boolean*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:60](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L60)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:60](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L60)*
 
 **Parameters:**
 

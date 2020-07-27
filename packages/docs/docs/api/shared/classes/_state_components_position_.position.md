@@ -61,7 +61,7 @@ A default component that
 
 *Overrides [Status](_state_entities_status_.status.md).[constructor](_state_entities_status_.status.md#constructor)*
 
-*Defined in [packages/shared/src/state/components/Position.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/components/Position.ts#L11)*
+*Defined in [packages/shared/src/state/components/Position.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/components/Position.ts#L11)*
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ ___
 
 • **x**: *number*
 
-*Defined in [packages/shared/src/state/components/Position.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/components/Position.ts#L8)*
+*Defined in [packages/shared/src/state/components/Position.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/components/Position.ts#L8)*
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 • **y**: *number*
 
-*Defined in [packages/shared/src/state/components/Position.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/components/Position.ts#L11)*
+*Defined in [packages/shared/src/state/components/Position.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/components/Position.ts#L11)*
 
 ___
 

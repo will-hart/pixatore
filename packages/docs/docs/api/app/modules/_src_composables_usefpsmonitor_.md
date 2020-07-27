@@ -24,7 +24,7 @@ sidebar_label: "src/composables/useFpsMonitor"
 
 • **fpsKey**: *InjectionKey‹Ref‹number››* = Symbol('useFPS::FPS')
 
-*Defined in [packages/app/src/composables/useFpsMonitor.ts:3](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useFpsMonitor.ts#L3)*
+*Defined in [packages/app/src/composables/useFpsMonitor.ts:3](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useFpsMonitor.ts#L3)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **setFpsKey**: *InjectionKey‹function›* = Symbol('useFPS::setFPS')
 
-*Defined in [packages/app/src/composables/useFpsMonitor.ts:4](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useFpsMonitor.ts#L4)*
+*Defined in [packages/app/src/composables/useFpsMonitor.ts:4](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useFpsMonitor.ts#L4)*
 
 ## Functions
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **provideFpsMonitor**(): *void*
 
-*Defined in [packages/app/src/composables/useFpsMonitor.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useFpsMonitor.ts#L6)*
+*Defined in [packages/app/src/composables/useFpsMonitor.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useFpsMonitor.ts#L6)*
 
 **Returns:** *void*
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **useFpsMonitor**(): *object*
 
-*Defined in [packages/app/src/composables/useFpsMonitor.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useFpsMonitor.ts#L17)*
+*Defined in [packages/app/src/composables/useFpsMonitor.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useFpsMonitor.ts#L17)*
 
 **Returns:** *object*
 

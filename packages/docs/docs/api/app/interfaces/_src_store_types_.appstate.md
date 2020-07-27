@@ -22,4 +22,4 @@ sidebar_label: "AppState"
 
 • **gameStatus**: *[GameStatusModuleState](_src_store_types_.gamestatusmodulestate.md)*
 
-*Defined in [packages/app/src/store/types.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/store/types.ts#L6)*
+*Defined in [packages/app/src/store/types.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/store/types.ts#L6)*

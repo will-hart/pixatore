@@ -22,4 +22,4 @@ sidebar_label: "GameStatusModuleState"
 
 • **current**: *number*
 
-*Defined in [packages/app/src/store/types.ts:2](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/store/types.ts#L2)*
+*Defined in [packages/app/src/store/types.ts:2](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/store/types.ts#L2)*

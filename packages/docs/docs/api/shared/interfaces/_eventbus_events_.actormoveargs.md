@@ -25,7 +25,7 @@ sidebar_label: "ActorMoveArgs"
 
 • **id**: *string*
 
-*Defined in [packages/shared/src/eventBus/events.ts:15](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L15)*
+*Defined in [packages/shared/src/eventBus/events.ts:15](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L15)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **type**: *"player" | "enemy"*
 
-*Defined in [packages/shared/src/eventBus/events.ts:14](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L14)*
+*Defined in [packages/shared/src/eventBus/events.ts:14](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L14)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **x**? : *undefined | number*
 
-*Defined in [packages/shared/src/eventBus/events.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L16)*
+*Defined in [packages/shared/src/eventBus/events.ts:16](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L16)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **y**? : *undefined | number*
 
-*Defined in [packages/shared/src/eventBus/events.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L17)*
+*Defined in [packages/shared/src/eventBus/events.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/eventBus/events.ts#L17)*

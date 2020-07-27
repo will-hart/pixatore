@@ -141,7 +141,7 @@ sidebar_label: "SpriteDrawable"
 
 *Overrides void*
 
-*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L8)*
+*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L8)*
 
 **Parameters:**
 
@@ -838,7 +838,7 @@ ___
 
 *Implementation of [Drawable](../interfaces/_src_gameengine_drawables_drawable_.drawable.md).[id](../interfaces/_src_gameengine_drawables_drawable_.drawable.md#id)*
 
-*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L10)*
+*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:10](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L10)*
 
 ___
 
@@ -1216,7 +1216,7 @@ ___
 
 • **targetX**: *number* = 0
 
-*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L7)*
+*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L7)*
 
 ___
 
@@ -1224,7 +1224,7 @@ ___
 
 • **targetY**: *number* = 0
 
-*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L8)*
+*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L8)*
 
 ___
 
@@ -1910,7 +1910,7 @@ ___
 
 ▸ **inject**(`stage`: Container): *void*
 
-*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L18)*
+*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L18)*
 
 **Parameters:**
 
@@ -1942,7 +1942,7 @@ ___
 
 ▸ **remove**(`stage`: Container): *void*
 
-*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L22)*
+*Defined in [packages/app/src/gameEngine/drawables/SpriteDrawable.ts:22](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/SpriteDrawable.ts#L22)*
 
 **Parameters:**
 

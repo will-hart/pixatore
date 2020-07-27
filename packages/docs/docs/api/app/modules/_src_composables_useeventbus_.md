@@ -23,7 +23,7 @@ sidebar_label: "src/composables/useEventBus"
 
 • **key**: *InjectionKey‹EventBus›* = Symbol('useEventBus::EventBus')
 
-*Defined in [packages/app/src/composables/useEventBus.ts:4](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useEventBus.ts#L4)*
+*Defined in [packages/app/src/composables/useEventBus.ts:4](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useEventBus.ts#L4)*
 
 ## Functions
 
@@ -31,7 +31,7 @@ sidebar_label: "src/composables/useEventBus"
 
 ▸ **provideEventBus**(): *void*
 
-*Defined in [packages/app/src/composables/useEventBus.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useEventBus.ts#L6)*
+*Defined in [packages/app/src/composables/useEventBus.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useEventBus.ts#L6)*
 
 **Returns:** *void*
 
@@ -41,6 +41,6 @@ ___
 
 ▸ **useEventBus**(): *EventBus*
 
-*Defined in [packages/app/src/composables/useEventBus.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useEventBus.ts#L12)*
+*Defined in [packages/app/src/composables/useEventBus.ts:12](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useEventBus.ts#L12)*
 
 **Returns:** *EventBus*

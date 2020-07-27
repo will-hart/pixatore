@@ -27,7 +27,7 @@ sidebar_label: "src/store/types"
 
 ▸ **getActionName**(`ns`: [StoreNamespaces](../enums/_src_store_types_.storenamespaces.md), `action`: string): *string*
 
-*Defined in [packages/app/src/store/types.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/store/types.ts#L13)*
+*Defined in [packages/app/src/store/types.ts:13](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/store/types.ts#L13)*
 
 **Parameters:**
 

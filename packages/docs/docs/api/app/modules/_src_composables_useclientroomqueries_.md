@@ -22,6 +22,6 @@ sidebar_label: "src/composables/useClientRoomQueries"
 
 ▸ **useClientRoomQueries**(): *[IUseClientRoomQueriesReturnValue](../interfaces/_src_composables_useclientroomqueries_.iuseclientroomqueriesreturnvalue.md)*
 
-*Defined in [packages/app/src/composables/useClientRoomQueries.ts:27](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useClientRoomQueries.ts#L27)*
+*Defined in [packages/app/src/composables/useClientRoomQueries.ts:27](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useClientRoomQueries.ts#L27)*
 
 **Returns:** *[IUseClientRoomQueriesReturnValue](../interfaces/_src_composables_useclientroomqueries_.iuseclientroomqueriesreturnvalue.md)*

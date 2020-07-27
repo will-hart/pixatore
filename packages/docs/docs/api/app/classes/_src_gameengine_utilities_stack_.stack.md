@@ -136,7 +136,7 @@ ___
 
 ▸ **clear**(): *void*
 
-*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/utilities/Stack.ts#L17)*
+*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/utilities/Stack.ts#L17)*
 
 **Returns:** *void*
 
@@ -205,7 +205,7 @@ ___
 
 ▸ **dequeue**(): *T*
 
-*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/utilities/Stack.ts#L7)*
+*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/utilities/Stack.ts#L7)*
 
 **Returns:** *T*
 
@@ -215,7 +215,7 @@ ___
 
 ▸ **enqueue**(`item`: T): *T*
 
-*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:2](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/utilities/Stack.ts#L2)*
+*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:2](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/utilities/Stack.ts#L2)*
 
 **Parameters:**
 
@@ -719,7 +719,7 @@ ___
 
 ▸ **peek**(): *T*
 
-*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/utilities/Stack.ts#L13)*
+*Defined in [packages/app/src/gameEngine/utilities/Stack.ts:13](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/utilities/Stack.ts#L13)*
 
 **Returns:** *T*
 

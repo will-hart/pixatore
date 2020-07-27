@@ -18,4 +18,4 @@ sidebar_label: "StoreNamespaces"
 
 • **gameStatus**: = "gameStatus"
 
-*Defined in [packages/app/src/store/types.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/store/types.ts#L10)*
+*Defined in [packages/app/src/store/types.ts:10](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/store/types.ts#L10)*

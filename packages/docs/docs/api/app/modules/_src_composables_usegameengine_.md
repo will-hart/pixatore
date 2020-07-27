@@ -24,7 +24,7 @@ sidebar_label: "src/composables/useGameEngine"
 
 • **key**: *InjectionKey‹[Engine](../classes/_src_gameengine_engine_.engine.md)›* = Symbol('useGameEngine::Engine')
 
-*Defined in [packages/app/src/composables/useGameEngine.ts:5](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useGameEngine.ts#L5)*
+*Defined in [packages/app/src/composables/useGameEngine.ts:5](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useGameEngine.ts#L5)*
 
 ## Functions
 
@@ -32,7 +32,7 @@ sidebar_label: "src/composables/useGameEngine"
 
 ▸ **provideEngine**(): *void*
 
-*Defined in [packages/app/src/composables/useGameEngine.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useGameEngine.ts#L7)*
+*Defined in [packages/app/src/composables/useGameEngine.ts:7](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useGameEngine.ts#L7)*
 
 **Returns:** *void*
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **useEngine**(): *[Engine](../classes/_src_gameengine_engine_.engine.md)*
 
-*Defined in [packages/app/src/composables/useGameEngine.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useGameEngine.ts#L13)*
+*Defined in [packages/app/src/composables/useGameEngine.ts:13](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useGameEngine.ts#L13)*
 
 **Returns:** *[Engine](../classes/_src_gameengine_engine_.engine.md)*
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **useEngineWithScene**‹**T**›(`type`: object): *object*
 
-*Defined in [packages/app/src/composables/useGameEngine.ts:23](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/composables/useGameEngine.ts#L23)*
+*Defined in [packages/app/src/composables/useGameEngine.ts:23](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/composables/useGameEngine.ts#L23)*
 
 **Type parameters:**
 

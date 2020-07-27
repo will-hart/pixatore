@@ -42,7 +42,7 @@ sidebar_label: "Engine"
 
 \+ **new Engine**(): *[Engine](_src_gameengine_engine_.engine.md)*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:39](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L39)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:39](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L39)*
 
 **Returns:** *[Engine](_src_gameengine_engine_.engine.md)*
 
@@ -52,7 +52,7 @@ sidebar_label: "Engine"
 
 • **input**: *[InputManager](_src_gameengine_inputmanager_.inputmanager.md)*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L18)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L18)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 • **navigator**: *[SceneNavigator](_src_gameengine_scenes_scenenavigator_.scenenavigator.md)*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L17)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L17)*
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 • **sprites**: *[SpriteStorage](_src_gameengine_spritestorage_.spritestorage.md)*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L16)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:16](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L16)*
 
 ## Accessors
 
@@ -76,7 +76,7 @@ ___
 
 • **get height**(): *number*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:29](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L29)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:29](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L29)*
 
 **Returns:** *number*
 
@@ -86,7 +86,7 @@ ___
 
 • **get root**(): *Container*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:37](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L37)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:37](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L37)*
 
 **Returns:** *Container*
 
@@ -96,7 +96,7 @@ ___
 
 • **get ticker**(): *Ticker*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:33](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L33)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:33](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L33)*
 
 **Returns:** *Ticker*
 
@@ -106,7 +106,7 @@ ___
 
 • **get width**(): *number*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:25](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L25)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:25](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L25)*
 
 **Returns:** *number*
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **loop**(): *void*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:74](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L74)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:74](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L74)*
 
 **Returns:** *void*
 
@@ -126,7 +126,7 @@ ___
 
 ▸ **mount**(`parent`: HTMLElement | null): *void*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:62](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L62)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:62](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L62)*
 
 **Parameters:**
 
@@ -142,7 +142,7 @@ ___
 
 ▸ **resize**(`width`: number, `height`: number): *void*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:85](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L85)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:85](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L85)*
 
 Resizes and scales the canvas
 
@@ -161,7 +161,7 @@ ___
 
 ▸ **subscribe**(`bus`: EventBus): *void*
 
-*Defined in [packages/app/src/gameEngine/Engine.ts:100](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/Engine.ts#L100)*
+*Defined in [packages/app/src/gameEngine/Engine.ts:100](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/Engine.ts#L100)*
 
 Subscribes the game engine to the event bus, used to keep the Colyseus, vue and PIXI game states in sync
 

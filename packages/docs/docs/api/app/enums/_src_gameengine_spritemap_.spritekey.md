@@ -19,7 +19,7 @@ sidebar_label: "SpriteKey"
 
 • **LOGO**:
 
-*Defined in [packages/app/src/gameEngine/spriteMap.ts:2](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/spriteMap.ts#L2)*
+*Defined in [packages/app/src/gameEngine/spriteMap.ts:2](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/spriteMap.ts#L2)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **WHITE**:
 
-*Defined in [packages/app/src/gameEngine/spriteMap.ts:3](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/spriteMap.ts#L3)*
+*Defined in [packages/app/src/gameEngine/spriteMap.ts:3](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/spriteMap.ts#L3)*

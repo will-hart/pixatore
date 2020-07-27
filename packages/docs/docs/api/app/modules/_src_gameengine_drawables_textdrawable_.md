@@ -22,16 +22,16 @@ sidebar_label: "src/gameEngine/drawables/TextDrawable"
 
 ### ▪ **DEFAULT_TEXT_STYLE**: *object*
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:4](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L4)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:4](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L4)*
 
 ###  fill
 
 • **fill**: *string* = "#FFFFFF"
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L6)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L6)*
 
 ###  fontSize
 
 • **fontSize**: *number* = 12
 
-*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:5](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/TextDrawable.ts#L5)*
+*Defined in [packages/app/src/gameEngine/drawables/TextDrawable.ts:5](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/TextDrawable.ts#L5)*

@@ -62,7 +62,7 @@ sidebar_label: "Player"
 
 *Overrides [Status](_state_entities_status_.status.md).[constructor](_state_entities_status_.status.md#constructor)*
 
-*Defined in [packages/shared/src/state/entities/Player.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Player.ts#L18)*
+*Defined in [packages/shared/src/state/entities/Player.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/entities/Player.ts#L18)*
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ ___
 
 • **connected**: *boolean* = false
 
-*Defined in [packages/shared/src/state/entities/Player.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Player.ts#L9)*
+*Defined in [packages/shared/src/state/entities/Player.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/entities/Player.ts#L9)*
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 • **id**: *string*
 
-*Defined in [packages/shared/src/state/entities/Player.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Player.ts#L6)*
+*Defined in [packages/shared/src/state/entities/Player.ts:6](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/entities/Player.ts#L6)*
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 • **position**: *[Position](_state_components_position_.position.md)*
 
-*Defined in [packages/shared/src/state/entities/Player.ts:15](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Player.ts#L15)*
+*Defined in [packages/shared/src/state/entities/Player.ts:15](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/entities/Player.ts#L15)*
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 • **ready**: *boolean* = false
 
-*Defined in [packages/shared/src/state/entities/Player.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Player.ts#L12)*
+*Defined in [packages/shared/src/state/entities/Player.ts:12](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/entities/Player.ts#L12)*
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 • **slot**: *number* = -1
 
-*Defined in [packages/shared/src/state/entities/Player.ts:18](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Player.ts#L18)*
+*Defined in [packages/shared/src/state/entities/Player.ts:18](https://github.com/will-hart/pixatore/blob/5d54977/packages/shared/src/state/entities/Player.ts#L18)*
 
 ___
 

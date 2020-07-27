@@ -139,7 +139,7 @@ sidebar_label: "ServerBrowserScene"
 
 *Overrides [BaseScene](_src_gameengine_scenes_basescene_.basescene.md).[constructor](_src_gameengine_scenes_basescene_.basescene.md#constructor)*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L11)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L11)*
 
 **Parameters:**
 
@@ -269,7 +269,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[_drawables](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#protected-_drawables)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L9)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:9](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L9)*
 
 #### Type declaration:
 
@@ -643,7 +643,7 @@ ___
 
 • **client**? : *Colyseus.Client*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L11)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:11](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L11)*
 
 ___
 
@@ -681,7 +681,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[engine](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#protected-engine)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L12)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:12](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L12)*
 
 ___
 
@@ -774,7 +774,7 @@ ___
 
 *Inherited from [BaseScene](_src_gameengine_scenes_basescene_.basescene.md).[id](_src_gameengine_scenes_basescene_.basescene.md#id)*
 
-*Defined in [packages/app/src/gameEngine/scenes/BaseScene.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/BaseScene.ts#L8)*
+*Defined in [packages/app/src/gameEngine/scenes/BaseScene.ts:8](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/BaseScene.ts#L8)*
 
 ___
 
@@ -1110,7 +1110,7 @@ ___
 
 • **sprite**? : *PIXI.Sprite*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L10)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:10](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L10)*
 
 ___
 
@@ -1120,7 +1120,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[ticker](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#protected-optional-ticker)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L13)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:13](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L13)*
 
 ___
 
@@ -1408,7 +1408,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[addDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#adddrawable)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:38](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L38)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:38](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L38)*
 
 **Parameters:**
 
@@ -1459,7 +1459,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[createAndAddSprite](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#createandaddsprite)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L22)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:22](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L22)*
 
 **Parameters:**
 
@@ -1478,7 +1478,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[createAndAddText](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#createandaddtext)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:28](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L28)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:28](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L28)*
 
 **Parameters:**
 
@@ -1502,7 +1502,7 @@ ___
 
 *Overrides void*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:78](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L78)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:78](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L78)*
 
 **Returns:** *void*
 
@@ -1585,7 +1585,7 @@ ___
 
 ▸ **fitScreen**(): *void*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L17)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:17](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L17)*
 
 **Returns:** *void*
 
@@ -1697,7 +1697,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[getDisplayObjectById](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#getdisplayobjectbyid)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:69](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L69)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:69](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L69)*
 
 **Parameters:**
 
@@ -1771,7 +1771,7 @@ ___
 
 *Overrides [BaseScene](_src_gameengine_scenes_basescene_.basescene.md).[inject](_src_gameengine_scenes_basescene_.basescene.md#inject)*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:39](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L39)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:39](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L39)*
 
 **Returns:** *void*
 
@@ -1797,7 +1797,7 @@ ___
 
 *Inherited from [BaseScene](_src_gameengine_scenes_basescene_.basescene.md).[processInput](_src_gameengine_scenes_basescene_.basescene.md#processinput)*
 
-*Defined in [packages/app/src/gameEngine/scenes/BaseScene.ts:24](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/BaseScene.ts#L24)*
+*Defined in [packages/app/src/gameEngine/scenes/BaseScene.ts:24](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/BaseScene.ts#L24)*
 
 **Parameters:**
 
@@ -1815,7 +1815,7 @@ ___
 
 *Overrides [BaseScene](_src_gameengine_scenes_basescene_.basescene.md).[remove](_src_gameengine_scenes_basescene_.basescene.md#remove)*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:50](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L50)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:50](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L50)*
 
 **Returns:** *void*
 
@@ -1894,7 +1894,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[removeDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#removedrawable)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:51](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L51)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:51](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L51)*
 
 **Parameters:**
 
@@ -1912,7 +1912,7 @@ ___
 
 *Inherited from [GroupDrawable](_src_gameengine_drawables_groupdrawable_.groupdrawable.md).[removeDrawableById](_src_gameengine_drawables_groupdrawable_.groupdrawable.md#removedrawablebyid)*
 
-*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:60](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L60)*
+*Defined in [packages/app/src/gameEngine/drawables/GroupDrawable.ts:60](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/drawables/GroupDrawable.ts#L60)*
 
 **Parameters:**
 
@@ -2015,7 +2015,7 @@ ___
 
 ▸ **setStatus**(`status`: [LobbyConnectionStatus](../modules/_src_gameengine_scenes_serverbrowserscene_.md#lobbyconnectionstatus)): *void*
 
-*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:21](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L21)*
+*Defined in [packages/app/src/gameEngine/scenes/ServerBrowserScene.ts:21](https://github.com/will-hart/pixatore/blob/5d54977/packages/app/src/gameEngine/scenes/ServerBrowserScene.ts#L21)*
 
 **Parameters:**
 
