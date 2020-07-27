@@ -4,7 +4,7 @@ title: "EventTypes"
 sidebar_label: "EventTypes"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["eventBus/events"](../modules/_eventbus_events_.md) › [EventTypes](_eventbus_events_.eventtypes.md)
+[shared](../index.md) › [Globals](../globals.md) › ["eventBus/events"](../modules/_eventbus_events_.md) › [EventTypes](_eventbus_events_.eventtypes.md)
 
 ## Index
 
@@ -22,7 +22,7 @@ sidebar_label: "EventTypes"
 
 • **ON_ACTOR_MOVE**: = "Actor.MOVE"
 
-*Defined in [packages/shared/src/eventBus/events.ts:6](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/eventBus/events.ts#L6)*
+*Defined in [packages/shared/src/eventBus/events.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L6)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **ON_GAME_STATUS_CHANGED**: = "GameStatus.~"
 
-*Defined in [packages/shared/src/eventBus/events.ts:7](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/eventBus/events.ts#L7)*
+*Defined in [packages/shared/src/eventBus/events.ts:7](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L7)*
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • **ON_PLAYER_ADD**: = "Player.+"
 
-*Defined in [packages/shared/src/eventBus/events.ts:8](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/eventBus/events.ts#L8)*
+*Defined in [packages/shared/src/eventBus/events.ts:8](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L8)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **ON_PLAYER_REMOVE**: = "Player.-"
 
-*Defined in [packages/shared/src/eventBus/events.ts:9](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/eventBus/events.ts#L9)*
+*Defined in [packages/shared/src/eventBus/events.ts:9](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L9)*
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 • **ON_PLAYER_UPDATE**: = "Player.~"
 
-*Defined in [packages/shared/src/eventBus/events.ts:10](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/eventBus/events.ts#L10)*
+*Defined in [packages/shared/src/eventBus/events.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/eventBus/events.ts#L10)*

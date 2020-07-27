@@ -4,7 +4,7 @@ title: "commands/LobbyCommands"
 sidebar_label: "commands/LobbyCommands"
 ---
 
-[@pixatore/server](../index.md) › [Globals](../globals.md) › ["commands/LobbyCommands"](_commands_lobbycommands_.md)
+[server](../index.md) › [Globals](../globals.md) › ["commands/LobbyCommands"](_commands_lobbycommands_.md)
 
 ## Index
 

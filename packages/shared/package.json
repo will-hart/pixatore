@@ -10,7 +10,7 @@
     "test": "yarn jest",
     "build": "tsc -p tsconfig.json --resolveJsonModule",
     "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule",
-    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/shared --skipSidebar",
+    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/shared --name shared --excludePrivate --skipSidebar",
     "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
   },
   "dependencies": {

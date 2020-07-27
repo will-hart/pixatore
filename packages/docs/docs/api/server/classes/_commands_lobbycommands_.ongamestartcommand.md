@@ -4,7 +4,7 @@ title: "OnGameStartCommand"
 sidebar_label: "OnGameStartCommand"
 ---
 
-[@pixatore/server](../index.md) › [Globals](../globals.md) › ["commands/LobbyCommands"](../modules/_commands_lobbycommands_.md) › [OnGameStartCommand](_commands_lobbycommands_.ongamestartcommand.md)
+[server](../index.md) › [Globals](../globals.md) › ["commands/LobbyCommands"](../modules/_commands_lobbycommands_.md) › [OnGameStartCommand](_commands_lobbycommands_.ongamestartcommand.md)
 
 ## Hierarchy
 
@@ -36,7 +36,7 @@ sidebar_label: "OnGameStartCommand"
 
 *Inherited from [Command](_commands_command_.command.md).[clock](_commands_command_.command.md#clock)*
 
-*Defined in [packages/server/src/commands/Command.ts:14](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L14)*
+*Defined in [packages/server/src/commands/Command.ts:14](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L14)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 *Inherited from [Command](_commands_command_.command.md).[payload](_commands_command_.command.md#payload)*
 
-*Defined in [packages/server/src/commands/Command.ts:10](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L10)*
+*Defined in [packages/server/src/commands/Command.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L10)*
 
 #### Type declaration:
 
@@ -58,7 +58,7 @@ ___
 
 *Inherited from [Command](_commands_command_.command.md).[room](_commands_command_.command.md#room)*
 
-*Defined in [packages/server/src/commands/Command.ts:12](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L12)*
+*Defined in [packages/server/src/commands/Command.ts:12](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L12)*
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 *Inherited from [Command](_commands_command_.command.md).[state](_commands_command_.command.md#state)*
 
-*Defined in [packages/server/src/commands/Command.ts:13](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L13)*
+*Defined in [packages/server/src/commands/Command.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L13)*
 
 ## Methods
 
@@ -78,7 +78,7 @@ ___
 
 *Inherited from [Command](_commands_command_.command.md).[delay](_commands_command_.command.md#protected-delay)*
 
-*Defined in [packages/server/src/commands/Command.ts:31](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L31)*
+*Defined in [packages/server/src/commands/Command.ts:31](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L31)*
 
 Delay the execution by `milliseconds`
 
@@ -98,7 +98,7 @@ ___
 
 *Overrides [Command](_commands_command_.command.md).[execute](_commands_command_.command.md#abstract-execute)*
 
-*Defined in [packages/server/src/commands/LobbyCommands.ts:22](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/LobbyCommands.ts#L22)*
+*Defined in [packages/server/src/commands/LobbyCommands.ts:22](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/LobbyCommands.ts#L22)*
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ ___
 
 *Inherited from [Command](_commands_command_.command.md).[setPayload](_commands_command_.command.md#setpayload)*
 
-*Defined in [packages/server/src/commands/Command.ts:16](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L16)*
+*Defined in [packages/server/src/commands/Command.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L16)*
 
 **Parameters:**
 
@@ -134,7 +134,7 @@ ___
 
 *Inherited from [Command](_commands_command_.command.md).[validate](_commands_command_.command.md#optional-validate)*
 
-*Defined in [packages/server/src/commands/Command.ts:21](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/commands/Command.ts#L21)*
+*Defined in [packages/server/src/commands/Command.ts:21](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/commands/Command.ts#L21)*
 
 **Parameters:**
 

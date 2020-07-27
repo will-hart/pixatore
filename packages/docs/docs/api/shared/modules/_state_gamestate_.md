@@ -4,7 +4,7 @@ title: "state/GameState"
 sidebar_label: "state/GameState"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["state/GameState"](_state_gamestate_.md)
+[shared](../index.md) › [Globals](../globals.md) › ["state/GameState"](_state_gamestate_.md)
 
 ## Index
 

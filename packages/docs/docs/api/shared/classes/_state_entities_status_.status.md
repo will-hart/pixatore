@@ -4,7 +4,7 @@ title: "Status"
 sidebar_label: "Status"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["state/entities/Status"](../modules/_state_entities_status_.md) › [Status](_state_entities_status_.status.md)
+[shared](../index.md) › [Globals](../globals.md) › ["state/entities/Status"](../modules/_state_entities_status_.md) › [Status](_state_entities_status_.status.md)
 
 ## Hierarchy
 
@@ -98,7 +98,7 @@ ___
 
 • **current**: *[GameStatus](../enums/_types_index_.gamestatus.md)* = GameStatus.lobby
 
-*Defined in [packages/shared/src/state/entities/Status.ts:6](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/state/entities/Status.ts#L6)*
+*Defined in [packages/shared/src/state/entities/Status.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/state/entities/Status.ts#L6)*
 
 ___
 

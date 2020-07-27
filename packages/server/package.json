@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/server --skipSidebar",
+    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/server --name server --excludePrivate --skipSidebar",
     "start": "ts-node src/index.ts --build --watch",
     "loadtest": "colyseus-loadtest loadtest/example.ts --room my_room --numClients 2"
   },

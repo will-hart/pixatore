@@ -4,7 +4,7 @@ title: "RoomOptions"
 sidebar_label: "RoomOptions"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["types/roomOptions"](../modules/_types_roomoptions_.md) › [RoomOptions](_types_roomoptions_.roomoptions.md)
+[shared](../index.md) › [Globals](../globals.md) › ["types/roomOptions"](../modules/_types_roomoptions_.md) › [RoomOptions](_types_roomoptions_.roomoptions.md)
 
 ## Hierarchy
 
@@ -23,7 +23,7 @@ sidebar_label: "RoomOptions"
 
 • **playerName**: *string*
 
-*Defined in [packages/shared/src/types/roomOptions.ts:2](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/types/roomOptions.ts#L2)*
+*Defined in [packages/shared/src/types/roomOptions.ts:2](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/roomOptions.ts#L2)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **roomName**: *string*
 
-*Defined in [packages/shared/src/types/roomOptions.ts:3](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/types/roomOptions.ts#L3)*
+*Defined in [packages/shared/src/types/roomOptions.ts:3](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/roomOptions.ts#L3)*

@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "William Hart",
   "scripts": {
-    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/client --skipSidebar",
+    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/app --name app --excludePrivate --skipSidebar",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",

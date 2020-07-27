@@ -1,10 +1,10 @@
 ---
 id: "index"
-title: "@pixatore/server"
+title: "server"
 sidebar_label: "README"
 ---
 
-[@pixatore/server](index.md) › [Globals](globals.md)
+[server](index.md) › [Globals](globals.md)
 
 # `create-colyseus-app`
 

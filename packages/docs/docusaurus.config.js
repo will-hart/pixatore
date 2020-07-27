@@ -22,10 +22,22 @@ module.exports = {
           position: 'left',
         },
         {
-          to: 'docs/api',
-          activeBasePath: 'docs/api',
-          label: 'API',
-          position: 'left',
+          to: 'docs/api/app/index',
+          activeBasePath: 'docs/api/app',
+          label: 'Client API',
+          position: 'right',
+        },
+        {
+          to: 'docs/api/server/index',
+          activeBasePath: 'docs/api/server',
+          label: 'Server API',
+          position: 'right',
+        },
+        {
+          to: 'docs/api/shared/index',
+          activeBasePath: 'docs/api/shared',
+          label: 'Shared API',
+          position: 'right',
         },
         { to: 'blog', label: 'Blog', position: 'left' },
         {
@@ -47,15 +59,15 @@ module.exports = {
             },
             {
               label: 'Client API',
-              to: 'docs/api/client/globals',
+              to: 'docs/api/app/index',
             },
             {
               label: 'Shared API',
-              to: 'docs/api/shared/globals',
+              to: 'docs/api/shared/index',
             },
             {
               label: 'Server API',
-              to: 'docs/api/server/globals',
+              to: 'docs/api/server/index',
             },
           ],
         },

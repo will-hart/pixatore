@@ -4,7 +4,7 @@ title: "state/index"
 sidebar_label: "state/index"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["state/index"](_state_index_.md)
+[shared](../index.md) › [Globals](../globals.md) › ["state/index"](_state_index_.md)
 
 ## Index
 

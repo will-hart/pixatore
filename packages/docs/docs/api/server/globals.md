@@ -1,10 +1,10 @@
 ---
 id: "globals"
-title: "@pixatore/server"
+title: "server"
 sidebar_label: "Globals"
 ---
 
-[@pixatore/server](index.md) › [Globals](globals.md)
+[server](index.md) › [Globals](globals.md)
 
 ## Index
 

@@ -4,7 +4,7 @@ title: "GameStatus"
 sidebar_label: "GameStatus"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["types/index"](../modules/_types_index_.md) › [GameStatus](_types_index_.gamestatus.md)
+[shared](../index.md) › [Globals](../globals.md) › ["types/index"](../modules/_types_index_.md) › [GameStatus](_types_index_.gamestatus.md)
 
 ## Index
 
@@ -20,7 +20,7 @@ sidebar_label: "GameStatus"
 
 • **lobby**: = "lobby"
 
-*Defined in [packages/shared/src/types/index.ts:4](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/types/index.ts#L4)*
+*Defined in [packages/shared/src/types/index.ts:4](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L4)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **playing**: = "playing"
 
-*Defined in [packages/shared/src/types/index.ts:5](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/types/index.ts#L5)*
+*Defined in [packages/shared/src/types/index.ts:5](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L5)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **scoreScreen**: = "ending"
 
-*Defined in [packages/shared/src/types/index.ts:6](https://github.com/will-hart/pixatore/blob/9f2e114/packages/shared/src/types/index.ts#L6)*
+*Defined in [packages/shared/src/types/index.ts:6](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/shared/src/types/index.ts#L6)*

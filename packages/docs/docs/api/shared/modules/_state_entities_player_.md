@@ -4,7 +4,7 @@ title: "state/entities/Player"
 sidebar_label: "state/entities/Player"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["state/entities/Player"](_state_entities_player_.md)
+[shared](../index.md) › [Globals](../globals.md) › ["state/entities/Player"](_state_entities_player_.md)
 
 ## Index
 

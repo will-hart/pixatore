@@ -4,7 +4,7 @@ title: "eventBus/eventBus"
 sidebar_label: "eventBus/eventBus"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["eventBus/eventBus"](_eventbus_eventbus_.md)
+[shared](../index.md) › [Globals](../globals.md) › ["eventBus/eventBus"](_eventbus_eventbus_.md)
 
 ## Index
 

@@ -4,7 +4,7 @@ title: "index"
 sidebar_label: "index"
 ---
 
-[@pixatore/server](../index.md) › [Globals](../globals.md) › ["index"](_index_.md)
+[server](../index.md) › [Globals](../globals.md) › ["index"](_index_.md)
 
 ## Index
 
@@ -21,7 +21,7 @@ sidebar_label: "index"
 
 • **app**: *Express‹›* = express()
 
-*Defined in [packages/server/src/index.ts:11](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/index.ts#L11)*
+*Defined in [packages/server/src/index.ts:11](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/index.ts#L11)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
   server,
 })
 
-*Defined in [packages/server/src/index.ts:17](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/index.ts#L17)*
+*Defined in [packages/server/src/index.ts:17](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/index.ts#L17)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **port**: *number* = Number(process.env.PORT || 2567)
 
-*Defined in [packages/server/src/index.ts:10](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/index.ts#L10)*
+*Defined in [packages/server/src/index.ts:10](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/index.ts#L10)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **server**: *Server‹›* = http.createServer(app)
 
-*Defined in [packages/server/src/index.ts:16](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/index.ts#L16)*
+*Defined in [packages/server/src/index.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/index.ts#L16)*

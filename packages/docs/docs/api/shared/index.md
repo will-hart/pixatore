@@ -1,10 +1,10 @@
 ---
 id: "index"
-title: "@pixatore/shared"
+title: "shared"
 sidebar_label: "README"
 ---
 
-[@pixatore/shared](index.md) › [Globals](globals.md)
+[shared](index.md) › [Globals](globals.md)
 
 # Pixatore
 

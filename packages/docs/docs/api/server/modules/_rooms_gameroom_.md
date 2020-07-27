@@ -4,7 +4,7 @@ title: "rooms/GameRoom"
 sidebar_label: "rooms/GameRoom"
 ---
 
-[@pixatore/server](../index.md) › [Globals](../globals.md) › ["rooms/GameRoom"](_rooms_gameroom_.md)
+[server](../index.md) › [Globals](../globals.md) › ["rooms/GameRoom"](_rooms_gameroom_.md)
 
 ## Index
 

@@ -4,7 +4,7 @@ title: "state/entities/index"
 sidebar_label: "state/entities/index"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["state/entities/index"](_state_entities_index_.md)
+[shared](../index.md) › [Globals](../globals.md) › ["state/entities/index"](_state_entities_index_.md)
 
 ## Index
 

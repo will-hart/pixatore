@@ -4,7 +4,7 @@ title: "GameRoom"
 sidebar_label: "GameRoom"
 ---
 
-[@pixatore/server](../index.md) › [Globals](../globals.md) › ["rooms/GameRoom"](../modules/_rooms_gameroom_.md) › [GameRoom](_rooms_gameroom_.gameroom.md)
+[server](../index.md) › [Globals](../globals.md) › ["rooms/GameRoom"](../modules/_rooms_gameroom_.md) › [GameRoom](_rooms_gameroom_.gameroom.md)
 
 ## Type parameters
 
@@ -24,7 +24,6 @@ sidebar_label: "GameRoom"
 
 ### Properties
 
-* [_dispatcher](_rooms_gameroom_.gameroom.md#private-_dispatcher)
 * [_events](_rooms_gameroom_.gameroom.md#_events)
 * [autoDispose](_rooms_gameroom_.gameroom.md#autodispose)
 * [clients](_rooms_gameroom_.gameroom.md#clients)
@@ -92,14 +91,6 @@ Name | Type |
 **Returns:** *[GameRoom](_rooms_gameroom_.gameroom.md)*
 
 ## Properties
-
-### `Private` _dispatcher
-
-• **_dispatcher**: *[Dispatcher](_commands_command_.dispatcher.md)* = new Dispatcher(this)
-
-*Defined in [packages/server/src/rooms/GameRoom.ts:14](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/rooms/GameRoom.ts#L14)*
-
-___
 
 ###  _events
 
@@ -279,7 +270,7 @@ ___
 
 ▪ **id**: *string* = Constants.GAME_ROOM_NAME
 
-*Defined in [packages/server/src/rooms/GameRoom.ts:13](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/rooms/GameRoom.ts#L13)*
+*Defined in [packages/server/src/rooms/GameRoom.ts:13](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/rooms/GameRoom.ts#L13)*
 
 ## Accessors
 
@@ -464,7 +455,7 @@ ___
 
 *Overrides void*
 
-*Defined in [packages/server/src/rooms/GameRoom.ts:16](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/rooms/GameRoom.ts#L16)*
+*Defined in [packages/server/src/rooms/GameRoom.ts:16](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/rooms/GameRoom.ts#L16)*
 
 **Parameters:**
 
@@ -482,7 +473,7 @@ ___
 
 *Overrides void*
 
-*Defined in [packages/server/src/rooms/GameRoom.ts:51](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/rooms/GameRoom.ts#L51)*
+*Defined in [packages/server/src/rooms/GameRoom.ts:51](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/rooms/GameRoom.ts#L51)*
 
 **Returns:** *void*
 
@@ -494,7 +485,7 @@ ___
 
 *Overrides void*
 
-*Defined in [packages/server/src/rooms/GameRoom.ts:37](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/rooms/GameRoom.ts#L37)*
+*Defined in [packages/server/src/rooms/GameRoom.ts:37](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/rooms/GameRoom.ts#L37)*
 
 **Parameters:**
 
@@ -513,7 +504,7 @@ ___
 
 *Overrides void*
 
-*Defined in [packages/server/src/rooms/GameRoom.ts:44](https://github.com/will-hart/pixatore/blob/9f2e114/packages/server/src/rooms/GameRoom.ts#L44)*
+*Defined in [packages/server/src/rooms/GameRoom.ts:44](https://github.com/will-hart/pixatore/blob/dc2c2e8/packages/server/src/rooms/GameRoom.ts#L44)*
 
 **Parameters:**
 

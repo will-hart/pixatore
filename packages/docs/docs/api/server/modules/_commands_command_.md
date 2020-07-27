@@ -4,7 +4,7 @@ title: "commands/Command"
 sidebar_label: "commands/Command"
 ---
 
-[@pixatore/server](../index.md) › [Globals](../globals.md) › ["commands/Command"](_commands_command_.md)
+[server](../index.md) › [Globals](../globals.md) › ["commands/Command"](_commands_command_.md)
 
 ## Index
 

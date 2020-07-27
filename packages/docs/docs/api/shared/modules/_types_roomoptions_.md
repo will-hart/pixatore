@@ -4,7 +4,7 @@ title: "types/roomOptions"
 sidebar_label: "types/roomOptions"
 ---
 
-[@pixatore/shared](../index.md) › [Globals](../globals.md) › ["types/roomOptions"](_types_roomoptions_.md)
+[shared](../index.md) › [Globals](../globals.md) › ["types/roomOptions"](_types_roomoptions_.md)
 
 ## Index
 
