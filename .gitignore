@@ -26,3 +26,4 @@ pnpm-debug.log*
 packages/shared/tsconfig.tsbuildinfo
 packages/app/dist/
 packages/app/dist_tauri/
+packages/docs/.docusaurus
