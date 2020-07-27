@@ -1,5 +1,6 @@
 export enum SpriteKey {
   LOGO,
+  WHITE,
 }
 
 const ASSET_PATH = '/assets/sprites'
