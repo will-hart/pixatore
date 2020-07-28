@@ -1,4 +1,4 @@
-# Pixatore App
+# App
 
 ## Updating
 

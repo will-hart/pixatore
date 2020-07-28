@@ -4,7 +4,6 @@
   "license": "MIT",
   "author": "William Hart",
   "scripts": {
-    "docs:api": "yarn typedoc --theme docusaurus2 --out ../docs/docs/api/app --name app --excludePrivate --skipSidebar",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
@@ -48,8 +47,6 @@
     "prettier": "2.0.5",
     "sass-loader": "9.0.2",
     "typescript": "3.9.7",
-    "typedoc": "^0.17.8",
-    "typedoc-plugin-markdown": "^2.3.1",
     "vue-cli-plugin-tauri": "0.11.0",
     "vue-cli-plugin-vue-next": "0.1.3"
   }
