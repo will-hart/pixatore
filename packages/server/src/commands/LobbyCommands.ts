@@ -49,8 +49,6 @@ export class OnJoinCommand extends Command<
   async execute({ sessionId }: this['payload']): Promise<void> {
     if (this.state.players.get(sessionId)) return
 
-    const player = new Entities.Player(sessionId)
-
     const availableSlots = [1, 2, 3, 4]
     const usedSlots = Array.from(this.state.players.values()).map(
       (player: Entities.Player) => player.slot,
@@ -61,10 +59,10 @@ export class OnJoinCommand extends Command<
     )
 
     if (!slotNumber) {
-      throw new Error(`No slots available for player ${player.id}`)
+      throw new Error(`No slots available for player ${sessionId}`)
     }
 
-    player.slot = slotNumber
+    const player = new Entities.Player(sessionId, slotNumber)
     this.state.players.set(sessionId, player)
   }
 }

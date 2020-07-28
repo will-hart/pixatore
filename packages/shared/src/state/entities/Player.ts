@@ -17,10 +17,11 @@ export class Player extends Schema {
   @type('number')
   public slot: number = -1
 
-  constructor(id: string) {
+  constructor(id: string, slotNumber: number) {
     super()
     this.id = id
-    this.position = new Position(0, 0)
     this.connected = true
+    this.slot = slotNumber
+    this.position = new Position(10 + 10 * (slotNumber % 2), 10 + Math.floor(slotNumber / 2))
   }
 }
