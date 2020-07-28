@@ -33,7 +33,8 @@
     "shared:build:watch": "yarn workspace @pixatore/shared build:watch",
     "build": "run-p -n app:build server:build",
     "prebuild": "yarn shared:build",
-    "dev": "yarn run-p -nr shared:build:watch server:dev app:dev"
+    "dev": "yarn run-p -nr shared:build:watch server:dev app:dev",
+    "predev": "yarn shared:build"
   },
   "devDependencies": {
     "glob": "^7.1.6",
