@@ -27,8 +27,8 @@
   "devDependencies": {
     "@types/jest": "26.0.8",
     "@types/lodash.debounce": "4.0.6",
-    "@typescript-eslint/eslint-plugin": "3.7.0",
-    "@typescript-eslint/parser": "3.7.0",
+    "@typescript-eslint/eslint-plugin": "3.8.0",
+    "@typescript-eslint/parser": "3.8.0",
     "@vue/cli-plugin-babel": "4.4.6",
     "@vue/cli-plugin-eslint": "4.4.6",
     "@vue/cli-plugin-router": "4.4.6",
