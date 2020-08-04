@@ -17,7 +17,7 @@
     "ts-bus": "2.3.1"
   },
   "devDependencies": {
-    "@types/jest": "26.0.7",
+    "@types/jest": "26.0.8",
     "jest": "26.1.0",
     "ts-jest": "26.1.3"
   }
