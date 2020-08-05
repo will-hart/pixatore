@@ -5,7 +5,6 @@ import { SpriteStorage } from './SpriteStorage'
 import SceneNavigator from './scenes/SceneNavigator'
 import InputManager from './InputManager'
 import { EventBus } from '@pixatore/shared'
-import PlayerEntityLink from './entityLinks/PlayerEntityLink'
 import GroupDrawable from './drawables/GroupDrawable'
 
 export default class Engine {
@@ -16,9 +15,6 @@ export default class Engine {
   public sprites: SpriteStorage
   public navigator: SceneNavigator
   public input: InputManager
-
-  // entity links - updated via the event bus
-  private playerLink: PlayerEntityLink
 
   private debouncedResize: (width: number, height: number) => void
 
@@ -55,8 +51,6 @@ export default class Engine {
 
     this.viewport = new GroupDrawable(this)
     this.root.addChild(this.viewport)
-
-    this.playerLink = new PlayerEntityLink(this, this.viewport)
   }
 
   mount(parent: HTMLElement | null): void {
@@ -92,13 +86,5 @@ export default class Engine {
 
     this.app.view.style.width = `${width}px`
     this.app.view.style.height = `${height}px`
-  }
-
-  /**
-   * Subscribes the game engine to the event bus, used to keep the Colyseus, vue and PIXI game states in sync
-   */
-  subscribe(bus: EventBus): void {
-    console.log('[ENGINE] subscribing to EventBus events')
-    this.playerLink.subscribe(bus)
   }
 }

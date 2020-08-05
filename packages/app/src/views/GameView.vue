@@ -8,8 +8,13 @@
 
 <script lang="ts">
 import { defineComponent, unref, onUnmounted } from 'vue'
+
 import { useRouter } from 'vue-router'
+import { useEngineWithScene } from '../composables/useGameEngine'
+import { useEventBus } from '../composables/useEventBus'
 import { useRoom } from '../composables/useRoom'
+
+import GameScene from '../gameEngine/scenes/GameScene'
 
 export default defineComponent({
   name: 'GameView',
@@ -21,6 +26,10 @@ export default defineComponent({
     if (!unref(room)) {
       router.push('/browser')
     }
+
+    useEngineWithScene(GameScene)
+    // const eventBus = useEventBus()
+    // scene.init(unref(room).state, eventBus)
 
     onUnmounted(() => {
       // unsubscribeAddPlayer()

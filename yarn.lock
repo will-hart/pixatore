@@ -2506,10 +2506,10 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.0-rc.5.tgz#cea2378e3e37363ddc1f5dd158edc9c9b5b3fff0"
   integrity sha512-ZhcgGzBpp+pUzisZgQpM4ctIGgLpYjBj7/rZfbhEPxFHF/BuTV2jmhXvAl8aF9xDAejIcw85xCy92gDSwKtPag==
 
-"@vue/test-utils@2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-2.0.0-beta.1.tgz#2ca7b03c7e9618099a0025c7d9e3eb04d9a6c7f7"
-  integrity sha512-Y+jPkztS943JHFCS5v36VpOQODqZMu58/HxCOjvZ5AgX0QhCoq4gpX/uzdA4zyPaQm4JogHwEVFrEgiB3ipJMg==
+"@vue/test-utils@2.0.0-beta.2":
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-2.0.0-beta.2.tgz#1b57245c0dab325cc1d9133d74738f063a24589c"
+  integrity sha512-RgbV/79clAYtRqmHHz3aISpveiUz2RwZJHWzo972AEYO336SrPqp0u4VeTHNl8yc+wn5GwSGoEusjf9d4jjLDw==
 
 "@vue/web-component-wrapper@^1.2.0":
   version "1.2.0"
@@ -14408,10 +14408,10 @@ vue-loader@^16.0.0-alpha.3:
     merge-source-map "^1.1.0"
     source-map "^0.6.1"
 
-vue-router@4.0.0-beta.5:
-  version "4.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.5.tgz#766d0f6c6fa4145e75ed018e0abf4488c0b74724"
-  integrity sha512-6gnRN0Z2fKaR8XjQUOwpZR6wJdyGDtATmMuRf2egshKD9cQEBuu8LapOw1cV7gfwVirgvbBNE3pGw2v7keGzHg==
+vue-router@4.0.0-beta.6:
+  version "4.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.6.tgz#7ddf4c00d1bee778fb8945f5e8ccb931b5885543"
+  integrity sha512-zF+reWzcM0ivbIAbjfCpDVYlvc4iQAi7rx5abLNUcNiJxuTMR0lEBoxamQcaewV4sJ+zskX6PYW3QM5/fRkPqA==
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"
