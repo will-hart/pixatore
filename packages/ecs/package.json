@@ -13,8 +13,7 @@
     "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
   },
   "dependencies": {
-    "@colyseus/schema": "^1.0.0-alpha.28",
-    "nanoid": "^3.1.12",
+    "@colyseus/schema": "1.0.0-alpha.30",
     "ts-bus": "2.3.1"
   },
   "devDependencies": {

@@ -1,5 +1,3 @@
-import { nanoid } from 'nanoid'
-
 /**
  * Describes component within the ECS system
  */
