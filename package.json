@@ -9,8 +9,9 @@
   ],
   "scripts": {
     "test:app": "yarn workspace @pixatore/app test --passWithNoTests",
+    "test:ecs": "yarn workspace @pixatore/ecs test",
     "test:shared": "yarn workspace @pixatore/shared test",
-    "test": "run-s test:shared test:app",
+    "test": "run-s test:ecs test:shared test:app",
     "app:serve": "yarn workspace @pixatore/app serve",
     "app:build": "yarn workspace @pixatore/app build",
     "app:test:unit": "yarn workspace @pixatore/app test:unit",
