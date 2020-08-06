@@ -46,6 +46,20 @@ export default class ECS {
     return entity
   }
 
+  addMany(components: IComponent[], entityId?: number): Entity {
+    if (components.length === 0) {
+      throw new Error('Attempted to create entity with no components')
+    }
+
+    const ent: Entity = this.add(components[0], entityId)
+
+    for (let i = 1; i < components.length; ++i) {
+      this.add(components[i], ent.id)
+    }
+
+    return ent
+  }
+
   /**
    * Removes a component, returning the component
    */
@@ -80,5 +94,12 @@ export default class ECS {
    */
   get entityCount() {
     return this.entities.size
+  }
+
+  /**
+   * Gets a readonly array of entities currently present in the system
+   */
+  get allEntities(): Entity[] {
+    return [...this.entities.values()]
   }
 }

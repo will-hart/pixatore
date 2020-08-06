@@ -74,8 +74,43 @@ export default class Entity {
     }
   }
 
+  /**
+   * Returns true if the entity has the given component type
+   *
+   * @param componentType The component type to check
+   */
   has(componentType: string): boolean {
     return this._componentTypes.has(componentType)
+  }
+
+  /**
+   * Returns true if the entity has all the given component types
+   *
+   * @param componentTypes The list of component types to check
+   */
+  hasAll(componentTypes: string[]): boolean {
+    if (componentTypes.length === 0) return true
+
+    for (let i = 0; i < componentTypes.length; ++i) {
+      if (!this.has(componentTypes[i])) return false
+    }
+
+    return true
+  }
+
+  /**
+   * Returns true if the entity has NONE of the given component types
+   *
+   * @param componentTypes The list of component types to check
+   */
+  hasNone(componentTypes: string[]): boolean {
+    if (componentTypes.length === 0) return true
+
+    for (let i = 0; i < componentTypes.length; ++i) {
+      if (this.has(componentTypes[i])) return false
+    }
+
+    return true
   }
 
   /**

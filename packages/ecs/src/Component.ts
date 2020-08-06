@@ -3,5 +3,5 @@
  */
 export interface IComponent {
   id?: number
-  componentType: string
+  readonly componentType: string
 }

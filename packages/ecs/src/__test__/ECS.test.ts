@@ -88,4 +88,25 @@ describe('ECS - Entity Component System', () => {
     ecs.remove(component)
     expect(entity.componentIds).toEqual([])
   })
+
+  it('ECS.10 - should add many components to existing entity', () => {
+    const ecs = new ECS()
+    const componentA: IComponent = { id: 19, componentType: 'a' }
+    const componentB: IComponent = { id: 20, componentType: 'b' }
+    const componentC: IComponent = { id: 21, componentType: 'c' }
+    const entity = ecs.add(componentA)
+    const entity2 = ecs.addMany([componentB, componentC], entity.id)
+
+    expect(entity).toBe(entity2)
+    expect(entity.componentTypes).toEqual(['a', 'b', 'c'])
+  })
+
+  it('ECS.11 - should add many components to new entity', () => {
+    const ecs = new ECS()
+    const componentB: IComponent = { id: 20, componentType: 'b' }
+    const componentC: IComponent = { id: 21, componentType: 'c' }
+    const entity = ecs.addMany([componentB, componentC])
+
+    expect(entity.componentTypes).toEqual(['b', 'c'])
+  })
 })

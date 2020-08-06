@@ -174,4 +174,72 @@ describe('ENT - entity', () => {
       /Attempted to remove component without ID from entity '[0-9]*'/,
     )
   })
+
+  it('ENT.15 - should return correct hasAll value if component types exist', () => {
+    const ent1 = new Entity()
+    const component1: IComponent = {
+      id: 1,
+      componentType: 'a',
+    }
+    const component2: IComponent = {
+      id: 1,
+      componentType: 'b',
+    }
+    ent1.addComponent(component1)
+    ent1.addComponent(component2)
+
+    expect(ent1.hasAll(['a', 'b'])).toBeTruthy()
+    expect(ent1.hasAll(['b'])).toBeTruthy()
+    expect(ent1.hasAll(['c'])).toBeFalsy()
+  })
+
+  it('ENT.16 - should return true if empty component array given', () => {
+    const ent1 = new Entity()
+    const component1: IComponent = {
+      id: 1,
+      componentType: 'a',
+    }
+    const component2: IComponent = {
+      id: 1,
+      componentType: 'b',
+    }
+    ent1.addComponent(component1)
+    ent1.addComponent(component2)
+
+    expect(ent1.hasAll([])).toBeTruthy()
+  })
+
+  it('ENT.17 - should return correct hasNone value if component types exist', () => {
+    const ent1 = new Entity()
+    const component1: IComponent = {
+      id: 1,
+      componentType: 'a',
+    }
+    const component2: IComponent = {
+      id: 1,
+      componentType: 'b',
+    }
+    ent1.addComponent(component1)
+    ent1.addComponent(component2)
+
+    expect(ent1.hasNone(['a', 'b'])).toBeFalsy()
+    expect(ent1.hasNone(['b'])).toBeFalsy()
+    expect(ent1.hasNone(['c'])).toBeTruthy()
+  })
+
+  it('ENT.18 - should return true if empty component array given', () => {
+    const ent1 = new Entity()
+    const component1: IComponent = {
+      id: 1,
+      componentType: 'a',
+    }
+    const component2: IComponent = {
+      id: 1,
+      componentType: 'b',
+    }
+    ent1.addComponent(component1)
+    ent1.addComponent(component2)
+
+    expect(ent1.hasNone([])).toBeTruthy()
+  })
 })
