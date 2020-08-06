@@ -1,5 +1,6 @@
 import { IComponent } from './Component'
 import Entity from './Entity'
+import System from './System'
 
 /** This is the main ECS class. It provides the following key features (in order of priority):
  *
@@ -11,8 +12,21 @@ export default class ECS {
   private entities = new Map<number, Entity>()
   private components = new Map<number, IComponent>()
   private componentToEntity = new Map<number, number>()
+  private systems: System[] = []
 
   private nextComponentId = 1
+
+  /**
+   * Updates all the attached systems
+   *
+   * @param delta The elapsed time in ms
+   */
+  tick(delta: number): void {
+    for (let i = 0; i < this.systems.length; ++i) {
+      const system = this.systems[i]
+      system.tick(system.matcher.getMatchingEntities(this), delta)
+    }
+  }
 
   /**
    * Adds a new component to an entity, creating a new entity if required.
@@ -46,6 +60,12 @@ export default class ECS {
     return entity
   }
 
+  /**
+   * Add a number of components to an entity
+   *
+   * @param components The components to add to the entity
+   * @param entityId The entity ID to add the components to, or null to add a new entity
+   */
   addMany(components: IComponent[], entityId?: number): Entity {
     if (components.length === 0) {
       throw new Error('Attempted to create entity with no components')
@@ -58,6 +78,16 @@ export default class ECS {
     }
 
     return ent
+  }
+
+  /**
+   * Adds a system to the engine in order of priority
+   *
+   * @param system the system to add
+   */
+  addSystem(system: System): void {
+    this.systems.push(system)
+    this.systems = this.systems.sort((a, b) => b.priority - a.priority)
   }
 
   /**
