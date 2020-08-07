@@ -1,9 +1,9 @@
 {
-  "name": "@pixatore/shared",
+  "name": "@pixatore/game",
   "version": "0.1.0",
   "license": "MIT",
   "author": "William Hart",
-  "description": "npm init template for bootstraping an empty Colyseus project",
+  "description": "The core game data structures and logic",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "scripts": {

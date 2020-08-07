@@ -10,8 +10,8 @@
   "scripts": {
     "test:app": "yarn workspace @pixatore/app test --passWithNoTests",
     "test:ecs": "yarn workspace @pixatore/ecs test",
-    "test:shared": "yarn workspace @pixatore/shared test",
-    "test": "run-s test:ecs test:shared test:app",
+    "test:game": "yarn workspace @pixatore/game test",
+    "test": "run-s test:ecs test:game test:app",
     "app:serve": "yarn workspace @pixatore/app serve",
     "app:build": "yarn workspace @pixatore/app build",
     "app:test:unit": "yarn workspace @pixatore/app test:unit",
@@ -21,12 +21,12 @@
     "server:build": "yarn workspace @pixatore/server build",
     "server:dev": "yarn  workspace @pixatore/server start",
     "server:loadtest": "yarn  workspace @pixatore/server loadtest",
-    "shared:build": "yarn workspace @pixatore/shared build",
-    "shared:build:watch": "yarn workspace @pixatore/shared build:watch",
+    "game:build": "yarn workspace @pixatore/game build",
+    "game:build:watch": "yarn workspace @pixatore/game build:watch",
     "build": "run-p -n app:build server:build",
-    "prebuild": "yarn shared:build",
-    "dev": "yarn run-p -nr shared:build:watch server:dev app:dev",
-    "predev": "yarn shared:build"
+    "prebuild": "yarn game:build",
+    "dev": "yarn run-p -nr game:build:watch server:dev app:dev",
+    "predev": "yarn game:build"
   },
   "devDependencies": {
     "npm-run-all": "4.1.5"

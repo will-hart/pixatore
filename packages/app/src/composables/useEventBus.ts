@@ -1,5 +1,5 @@
 import { InjectionKey, provide, inject } from 'vue'
-import { EventBus } from '@pixatore/shared'
+import { EventBus } from '@pixatore/game'
 
 const key: InjectionKey<EventBus> = Symbol('useEventBus::EventBus')
 

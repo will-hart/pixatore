@@ -1,6 +1,6 @@
 import { Room, Client } from 'colyseus'
 import { Dispatcher } from '../commands/Command' // @colyseus/command
-import { Constants, State, Types } from '@pixatore/shared'
+import { Constants, State, Types } from '@pixatore/game'
 import {
   OnJoinCommand,
   OnCreateCommand,

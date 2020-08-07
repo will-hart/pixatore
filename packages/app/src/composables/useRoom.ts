@@ -1,6 +1,6 @@
 import { InjectionKey, provide, inject, shallowRef, Ref } from 'vue'
 import { Room } from 'colyseus.js'
-import { State } from '@pixatore/shared'
+import { State } from '@pixatore/game'
 
 const key: InjectionKey<Ref<Room<State.GameState> | null>> = Symbol(
   'useRoom::Room',

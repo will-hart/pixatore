@@ -2,42 +2,42 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GameRoom = void 0;
 const colyseus_1 = require("colyseus");
-const shared_1 = require("@pixatore/shared");
+const Command_1 = require("../commands/Command"); // @colyseus/command
+const game_1 = require("@pixatore/game");
+const LobbyCommands_1 = require("../commands/LobbyCommands");
 class GameRoom extends colyseus_1.Room {
+    constructor() {
+        super(...arguments);
+        this._dispatcher = new Command_1.Dispatcher(this);
+    }
     onCreate(options) {
-        this.maxClients = shared_1.Constants.MAX_PLAYERS;
-        this.setMetadata({
-            playerName: options.playerName,
-            roomName: options.roomName,
+        this.onMessage(game_1.Types.MessageTypes.START_GAME, (client) => {
+            this._dispatcher.dispatch(new LobbyCommands_1.OnGameStartCommand(), {});
         });
-        this.onMessage('*', (_client, type, contents) => console.log(`[MESSAGE::${type}] ${contents}`));
-        this.setState(new shared_1.State.GameState());
+        this.onMessage(game_1.Types.MessageTypes.PLAYER_READY, (client, message) => {
+            this._dispatcher.dispatch(new LobbyCommands_1.OnPlayerReadyCommand(), {
+                sessionId: client.sessionId,
+                isReady: message.isReady,
+            });
+        });
+        this.onMessage('*', (_client, type, message) => console.log(`[MESSAGE::${type}] ${message}`));
+        this._dispatcher.dispatch(new LobbyCommands_1.OnCreateCommand(), {
+            options,
+        });
     }
     onJoin(client, options) {
-        if (this.state.players[client.sessionId])
-            return;
-        this.state.players[client.sessionId] = new shared_1.Entities.Player(client.sessionId);
+        this._dispatcher.dispatch(new LobbyCommands_1.OnJoinCommand(), {
+            sessionId: client.sessionId,
+        });
     }
+    // Use of "allowReconnection" makes command pattern tricky
     async onLeave(client, consented) {
-        this.state.players[client.sessionId].connected = false;
-        if (consented) {
-            delete this.state.players[client.sessionId];
-            return;
-        }
-        const reconnection = this.allowReconnection(client);
-        try {
-            await Promise.any([
-                // reject in 30s
-                new Promise(() => setTimeout(() => reconnection.reject(), 30000)),
-                // or reconnect
-                reconnection,
-            ]);
-        }
-        catch (err) {
-            delete this.state.players[client.sessionId];
-        }
+        await this._dispatcher.dispatch(new LobbyCommands_1.OnLeaveCommand(), {
+            client,
+            consented,
+        });
     }
     onDispose() { }
 }
 exports.GameRoom = GameRoom;
-GameRoom.id = shared_1.Constants.GAME_ROOM_NAME;
+GameRoom.id = game_1.Constants.GAME_ROOM_NAME;

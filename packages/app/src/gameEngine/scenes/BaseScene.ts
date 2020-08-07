@@ -2,7 +2,7 @@ import GroupDrawable from '../drawables/GroupDrawable'
 import Drawable from '../drawables/Drawable'
 import Engine from '../Engine'
 import InputManager from '../InputManager'
-import { EventBus, State } from '@pixatore/shared'
+import { EventBus, State } from '@pixatore/game'
 
 export default abstract class BaseScene extends GroupDrawable
   implements Drawable {

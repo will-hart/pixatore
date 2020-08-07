@@ -26,7 +26,7 @@ import { defineComponent, unref, shallowRef, onUnmounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRoom } from '../composables/useRoom'
 import { useEventBus } from '../composables/useEventBus'
-import { Entities, Types } from '@pixatore/shared'
+import { Entities, Types } from '@pixatore/game'
 
 import LobbySlot from '../components/LobbySlot.vue'
 

@@ -1,4 +1,4 @@
-import { Entities, Events, State, EventBus, Types } from '@pixatore/shared'
+import { Entities, Events, State, EventBus, Types } from '@pixatore/game'
 import { Room } from 'colyseus.js'
 import { DataChange } from '@colyseus/schema'
 

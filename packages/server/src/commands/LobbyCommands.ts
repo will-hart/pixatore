@@ -1,5 +1,5 @@
 import { Command } from './Command'
-import { State, Entities, Constants, Types } from '@pixatore/shared'
+import { State, Entities, Constants, Types } from '@pixatore/game'
 import { Client } from 'colyseus'
 
 export class OnCreateCommand extends Command<

@@ -3,7 +3,7 @@ import * as Colyseus from 'colyseus.js'
 
 import Engine from '../Engine'
 import BaseScene from './BaseScene'
-import { EventBus, State } from '@pixatore/shared'
+import { EventBus, State } from '@pixatore/game'
 
 export type LobbyConnectionStatus = 'idle' | 'connected' | 'error'
 

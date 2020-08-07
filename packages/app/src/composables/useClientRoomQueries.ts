@@ -1,6 +1,6 @@
 import { ref, Ref, shallowRef } from 'vue'
 import { RoomAvailable, Client, Room } from 'colyseus.js'
-import { Constants, State } from '@pixatore/shared'
+import { Constants, State } from '@pixatore/game'
 
 import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
 import { useRoom } from './useRoom'
@@ -28,7 +28,6 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const roomList = shallowRef<RoomAvailable<State.GameState>[]>([])
   const lobbyStatus = ref<LobbyConnectionStatus>('idle')
   const eventBus = useEventBus()
-  const engine = useEngine()
   const { setRoom } = useRoom()
 
   const roomListLoading = ref(false)
@@ -68,7 +67,6 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
       room.sessionId,
     )
 
-    engine.subscribe(eventBus)
     setRoom(room)
 
     lobbyStatus.value = 'connected'

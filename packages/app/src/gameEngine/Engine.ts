@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce'
 import { SpriteStorage } from './SpriteStorage'
 import SceneNavigator from './scenes/SceneNavigator'
 import InputManager from './InputManager'
-import { EventBus } from '@pixatore/shared'
+import { EventBus } from '@pixatore/game'
 import GroupDrawable from './drawables/GroupDrawable'
 
 export default class Engine {
