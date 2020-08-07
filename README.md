@@ -1,7 +1,5 @@
 # Pixatore
 
-[![CodeFactor](https://www.codefactor.io/repository/github/will-hart/pixatore/badge/develop?s=ac457d1f4c3c0d45f13dd7568ee5d2c02e6b5f5b)](https://www.codefactor.io/repository/github/will-hart/pixatore/overview/develop)
-
 An opinionated multiplayer HTML5 game start pack which uses:
 
 - tauri-app to bundle
