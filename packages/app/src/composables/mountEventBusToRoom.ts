@@ -50,7 +50,7 @@ export const mountEventBusToRoom = (
     eventBus.publish(Events.onPlayerAddEvent({ player, key }))
 
     // subscribe to player position upates
-    player.position.onChange = (changes: DataChange<any>[]) => {
+    player.position.onChange = (changes: DataChange<unknown>[]) => {
       eventBus.publish(
         Events.onActorMove({
           type: 'player',

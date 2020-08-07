@@ -11,7 +11,6 @@ import { defineComponent, unref, onUnmounted } from 'vue'
 
 import { useRouter } from 'vue-router'
 import { useEngineWithScene } from '../composables/useGameEngine'
-import { useEventBus } from '../composables/useEventBus'
 import { useRoom } from '../composables/useRoom'
 
 import GameScene from '../gameEngine/scenes/GameScene'

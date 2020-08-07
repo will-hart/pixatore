@@ -3,7 +3,6 @@ import Engine from '../Engine'
 import { SpriteKey } from '../spriteMap'
 import BaseScene from './BaseScene'
 import InputManager from '../InputManager'
-import { State, EventBus } from '@pixatore/game'
 
 export default class LoadingScene extends BaseScene {
   loadingText?: PIXI.Text

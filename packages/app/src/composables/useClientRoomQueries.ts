@@ -6,7 +6,6 @@ import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
 import { useRoom } from './useRoom'
 import { mountEventBusToRoom } from './mountEventBusToRoom'
 import { useEventBus } from './useEventBus'
-import { useEngine } from './useGameEngine'
 
 interface IUseClientRoomQueriesReturnValue {
   roomList: Ref<RoomAvailable<State.GameState>[]>
