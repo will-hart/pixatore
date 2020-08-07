@@ -1,5 +1,5 @@
 import { Schema, type } from '@colyseus/schema'
-import { GameStatus } from '../../types'
+import { GameStatus } from '../types'
 
 export class Status extends Schema {
   @type('string')

@@ -1,6 +1,6 @@
 import { MapSchema, Schema, type } from '@colyseus/schema'
 import { Player } from './entities/Player'
-import { Status } from './entities/Status'
+import { Status } from '../components/Status'
 
 export class GameState extends Schema {
   @type(Status)

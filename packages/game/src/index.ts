@@ -1,5 +1,5 @@
 import * as Constants from './constants'
-import * as Components from './state/components'
+import * as Components from './components'
 import * as Entities from './state/entities'
 import * as Events from './eventBus'
 import EventBus from './eventBus/eventBus'
