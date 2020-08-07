@@ -1,7 +1,7 @@
-import ECS from '../ECS'
-import ComponentFilter from '../ComponentFilter'
+import { ECS } from '../ECS'
+import { ComponentFilter } from '../ComponentFilter'
 import { IComponent } from '../Component'
-import Entity from '../Entity'
+import { Entity } from '../Entity'
 
 let engine: ECS
 let entA: Entity

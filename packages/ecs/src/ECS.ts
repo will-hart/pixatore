@@ -1,6 +1,6 @@
 import { IComponent } from './Component'
-import Entity from './Entity'
-import System from './System'
+import { Entity } from './Entity'
+import { System } from './System'
 
 /** This is the main ECS class. It provides the following key features (in order of priority):
  *
@@ -8,7 +8,7 @@ import System from './System'
  * 2. matching component queries (e.g. entities matching component type 1, 2, but not having 3)
  * 3. mapping entities to components (get all the components on entity X)
  */
-export default class ECS {
+export class ECS {
   private entities = new Map<number, Entity>()
   private components = new Map<number, IComponent>()
   private componentToEntity = new Map<number, number>()

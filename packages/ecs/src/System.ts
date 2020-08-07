@@ -1,9 +1,9 @@
-import ComponentMatcher from './ComponentFilter'
-import Entity from './Entity'
+import { ComponentFilter } from './ComponentFilter'
+import { Entity } from './Entity'
 
-export default abstract class System {
+export abstract class System {
   constructor(
-    public readonly matcher: ComponentMatcher,
+    public readonly matcher: ComponentFilter,
     public readonly priority: number,
   ) {}
 

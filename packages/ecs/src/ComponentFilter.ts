@@ -1,7 +1,7 @@
-import ECS from './ECS'
-import Entity from './Entity'
+import { ECS } from './ECS'
+import { Entity } from './Entity'
 
-export default class ComponentFilter {
+export class ComponentFilter {
   constructor(private include: string[], private exclude: string[]) {
     //
   }

@@ -1,8 +1,8 @@
-import ECS from '../ECS'
+import { ECS } from '../ECS'
 import { IComponent } from '../Component'
-import ComponentFilter from '../ComponentFilter'
-import System from '../System'
-import Entity from '../Entity'
+import { ComponentFilter } from '../ComponentFilter'
+import { System } from '../System'
+import { Entity } from '../Entity'
 
 const mockTick = jest.fn()
 
@@ -11,7 +11,7 @@ class DummySystem extends System {
     super(new ComponentFilter([], []), priority)
   }
 
-  tick(entities: Entity[], delta: number): void {
+  tick(_entities: Entity[], _delta: number): void {
     mockTick(this.priority)
   }
 }

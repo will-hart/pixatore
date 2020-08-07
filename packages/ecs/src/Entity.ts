@@ -1,6 +1,6 @@
 import { IComponent } from './Component'
 
-export default class Entity {
+export class Entity {
   private static nextId: number = 0
 
   readonly id: number
