@@ -55,8 +55,8 @@ export const mountEventBusToRoom = (
         Events.onActorMove({
           type: 'player',
           id: player.id,
-          x: changes.find((c) => c.field === 'x')?.value,
-          y: changes.find((c) => c.field === 'y')?.value,
+          x: changes.find((c) => c.field === 'x')?.value as number,
+          y: changes.find((c) => c.field === 'y')?.value as number,
         }),
       )
     }

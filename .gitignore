@@ -27,3 +27,5 @@ packages/shared/tsconfig.tsbuildinfo
 packages/app/dist/
 packages/app/dist_tauri/
 packages/docs/.docusaurus
+packages/ecs/build/
+tsconfig.tsbuildinfo

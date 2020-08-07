@@ -25,8 +25,8 @@
     "build:core": "yarn run-s ecs:build game:build",
     "build:artifacts": "run-p -n app:build server:build",
     "prebuild": "yarn lint",
-    "dev": "yarn run-p -nr game:build:watch server:dev app:dev",
-    "predev": "yarn game:build"
+    "dev": "yarn run-p -nr ecs:build:watch game:build:watch server:dev app:dev",
+    "predev": "yarn run-p game:build ecs:build"
   },
   "devDependencies": {
     "npm-run-all": "4.1.5"
