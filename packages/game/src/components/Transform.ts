@@ -1,5 +1,6 @@
 import { Schema, type } from '@colyseus/schema'
 import { IComponent } from '@pixatore/ecs'
+import { ComponentTypes } from './ComponentTypes'
 
 /**
  * A default component that
@@ -9,7 +10,7 @@ export class Transform extends Schema implements IComponent {
   id: number | undefined
 
   @type('string')
-  public readonly componentType: string = 'pos'
+  public readonly componentType: string = ComponentTypes.Transform
 
   @type('number')
   public x: number

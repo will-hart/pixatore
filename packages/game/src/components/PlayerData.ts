@@ -1,5 +1,6 @@
 import { Schema, type } from '@colyseus/schema'
 import { IComponent } from '@pixatore/ecs'
+import { ComponentTypes } from './ComponentTypes'
 
 /**
  * A default component that
@@ -9,7 +10,7 @@ export class PlayerData extends Schema implements IComponent {
   id: number | undefined
 
   @type('string')
-  public readonly componentType: string = 'pld'
+  public readonly componentType: string = ComponentTypes.PlayerData
 
   @type('boolean')
   public connected: boolean = false

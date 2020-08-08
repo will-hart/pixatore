@@ -1,5 +1,5 @@
 import { createEventDefinition } from 'ts-bus'
-import { Player } from '../state/entities'
+import { Player } from '../entities'
 import { Types } from '..'
 
 export enum EventTypes {
