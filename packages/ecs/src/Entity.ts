@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid'
 import { IComponent } from './Component'
+import { ECS } from './ECS'
 
 export class Entity {
   readonly id: string
@@ -17,6 +18,8 @@ export class Entity {
 
   /**
    * Adds a new component to the entity
+   * NOTE: this should not be called directly, use ECS.add / ECS.addMany
+   * TODO: work out a way to avoid exposing these methods
    *
    * @param component The component to add
    */
@@ -38,6 +41,8 @@ export class Entity {
 
   /**
    * Adds several components to the entity
+   * NOTE: this should not be called directly, use ECS.add / ECS.addMany
+   * TODO: work out a way to avoid exposing these methods
    *
    * @param components The components to add
    */
@@ -49,6 +54,8 @@ export class Entity {
 
   /**
    * Removes a component from an entity
+   * NOTE: this should not be called directly, use ECS.add / ECS.addMany
+   * TODO: work out a way to avoid exposing these methods
    *
    * @param component The component to remove
    */
@@ -65,6 +72,8 @@ export class Entity {
 
   /**
    * Removes several components from an entity
+   * NOTE: this should not be called directly, use ECS.add / ECS.addMany
+   * TODO: work out a way to avoid exposing these methods
    *
    * @param components The components to remove
    */
@@ -111,6 +120,17 @@ export class Entity {
     }
 
     return true
+  }
+
+  /**
+   * Gets all the components associated with this entity
+   *
+   * @param ecs The ECS engine to retrieve components from
+   */
+  getAllComponents(ecs: ECS): IComponent[] {
+    return [...this.componentIds]
+      .map((id) => ecs.getComponent<IComponent>(id))
+      .filter((comp) => !!comp) as IComponent[]
   }
 
   /**

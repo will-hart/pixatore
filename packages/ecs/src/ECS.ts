@@ -137,6 +137,18 @@ export class ECS {
   }
 
   /**
+   * Gets a single component
+   *
+   * @param componentId The component ID to retrieve
+   */
+  getComponent<T extends IComponent>(
+    componentId?: number,
+  ): IComponent | undefined {
+    if (!componentId) return undefined
+    return this.components.get(componentId) as T
+  }
+
+  /**
    * Gets a reference to the internal event bus, used for subscribing to events
    */
   get events() {

@@ -154,6 +154,32 @@ describe('ECS - Entity Component System', () => {
     })
   })
 
+  describe('ECG - getting components', () => {
+    it('ECG.01 - should retrieve a component by Id', () => {
+      const engine = new ECS()
+      const comp: IComponent = { id: 1, componentType: 'a' }
+      engine.add(comp)
+
+      expect(comp).toBe(engine.getComponent(comp.id))
+    })
+
+    it('ECG.02 - should return undefined if no ID passed', () => {
+      const engine = new ECS()
+      const comp: IComponent = { id: 1, componentType: 'a' }
+      engine.add(comp)
+
+      expect(engine.getComponent()).toBeUndefined()
+    })
+
+    it('ECG.03 - should return undefined for missing ID', () => {
+      const engine = new ECS()
+      const comp: IComponent = { id: 1, componentType: 'a' }
+      engine.add(comp)
+
+      expect(engine.getComponent(99)).toBeUndefined()
+    })
+  })
+
   describe('ECS - registering and calling systems', () => {
     it('ECS.01 - tick calls added systems', () => {
       const engine = new ECS()

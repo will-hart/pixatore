@@ -1,5 +1,6 @@
 import { Entity } from '../Entity'
 import { IComponent } from '../Component'
+import { ECS } from '../ECS'
 
 describe('ENT - entity', () => {
   it('ENT.01 - should create a new entity without throwing', () => {
@@ -246,5 +247,31 @@ describe('ENT - entity', () => {
   it('ENT.19 - should create an entity with the passed ID if provided', () => {
     const entity = new Entity('1231')
     expect(entity.id).toEqual('1231')
+  })
+
+  it('ENT.20 - should return all components', () => {
+    const engine = new ECS()
+    const comp1: IComponent = { id: 1, componentType: 'a' }
+    const comp2: IComponent = { id: 2, componentType: 'b' }
+    const ent = engine.addMany([comp1, comp2])
+
+    expect(ent.getAllComponents(engine)).toStrictEqual([comp1, comp2])
+  })
+
+  it('ENT.21 - should return all components, filtering out undefineds', () => {
+    // shouldn't be able to get in this state, but just in case
+    const engine = new ECS()
+    const comp1: IComponent = {
+      id: 1,
+      componentType: 'a',
+    }
+    const comp2: IComponent = {
+      id: 2,
+      componentType: 'b',
+    }
+    const ent = engine.addMany([comp1, comp2])
+    ;((ent as any)._componentIds as Set<number>).add(88)
+
+    expect(ent.getAllComponents(engine)).toStrictEqual([comp1, comp2])
   })
 })
