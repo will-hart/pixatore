@@ -29,7 +29,7 @@ export class OnGameStartCommand extends Command<State.GameState, {}> {
 
     if (
       Array.from(this.state.players.values()).some(
-        (p: Entities.Player) => !p.ready || !p.connected,
+        (p: Entities.Player) => !p.data.ready || !p.data.connected,
       )
     ) {
       console.log(
@@ -51,7 +51,7 @@ export class OnJoinCommand extends Command<
 
     const availableSlots = [1, 2, 3, 4]
     const usedSlots = Array.from(this.state.players.values()).map(
-      (player: Entities.Player) => player.slot,
+      (player: Entities.Player) => player.data.slot,
     )
 
     const slotNumber = availableSlots.find(
@@ -76,31 +76,33 @@ export class OnLeaveCommand extends Command<
 > {
   async execute({ client, consented }: this['payload']): Promise<void> {
     const player = this.state.players.get(client.sessionId)
-    const wasReady = player.ready
-    player.connected = false
-    player.ready = false
+    const wasReady = player.data.ready
+    player.data.connected = false
+    player.data.ready = false
 
     if (consented) {
       this.state.players.delete(client.sessionId)
 
       console.log(
-        `[PLAYER ${client.sessionId}|${player.slot}] disconnected manually, removing from state`,
+        `[PLAYER ${client.sessionId}|${player.data.slot}] disconnected manually, removing from state`,
       )
       return
     }
 
     console.log(
-      `[PLAYER ${client.sessionId}|${player.slot}] disconnected, waiting for reconnection`,
+      `[PLAYER ${client.sessionId}|${player.data.slot}] disconnected, waiting for reconnection`,
     )
 
     try {
       await this.room.allowReconnection(client, 30)
-      player.connected = true
-      player.ready = wasReady
-      console.log(`[PLAYER ${client.sessionId}|${player.slot}] reconnected`)
+      player.data.connected = true
+      player.data.ready = wasReady
+      console.log(
+        `[PLAYER ${client.sessionId}|${player.data.slot}] reconnected`,
+      )
     } catch (err) {
       console.log(
-        `[PLAYER ${client.sessionId}|${player.slot}] failed to reconnect, removing from state`,
+        `[PLAYER ${client.sessionId}|${player.data.slot}] failed to reconnect, removing from state`,
       )
       console.error(err)
       this.state.players.delete(client.sessionId)
@@ -126,6 +128,6 @@ export class OnPlayerReadyCommand extends Command<
 
     const player = this.state.players.get(sessionId)
     if (!player) return
-    player.ready = isReady
+    player.data.ready = isReady
   }
 }
