@@ -1,6 +1,6 @@
 # Pixatore
 
-[![CodeFactor](https://www.codefactor.io/repository/github/will-hart/pixatore/badge/develop?s=ac457d1f4c3c0d45f13dd7568ee5d2c02e6b5f5b)](https://www.codefactor.io/repository/github/will-hart/pixatore/overview/develop)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/will-hart/pixatore.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/will-hart/pixatore/alerts/) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/will-hart/pixatore.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/will-hart/pixatore/context:javascript) ![Status: alpha](https://img.shields.io/badge/status-alpha-red)
 
 An opinionated multiplayer HTML5 game start pack which uses:
 
