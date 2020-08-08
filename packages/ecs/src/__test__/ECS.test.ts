@@ -152,6 +152,31 @@ describe('ECS - Entity Component System', () => {
       expect(engine.entityCount).toEqual(1)
       expect(entity.id).toEqual('1234')
     })
+
+    it('ECC.13 - should remove an entity and all components when called', () => {
+      const engine = new ECS()
+      const entity = engine.addMany([
+        { id: 1, componentType: 'a' },
+        { id: 2, componentType: 'b' },
+      ])
+
+      expect(engine.entityCount).toEqual(1)
+
+      engine.removeEntity(entity.id)
+      expect(engine.entityCount).toEqual(0)
+      expect(engine.getComponent(1)).toBeUndefined()
+      expect(engine.getComponent(2)).toBeUndefined()
+    })
+
+    it('ECC.14 - should do nothing if the entity does not exist on removeEntity', () => {
+      const engine = new ECS()
+
+      expect(engine.entityCount).toEqual(0)
+      expect(() => {
+        engine.removeEntity('123')
+      }).not.toThrow()
+      expect(engine.entityCount).toEqual(0)
+    })
   })
 
   describe('ECG - getting components', () => {

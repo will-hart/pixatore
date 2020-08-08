@@ -137,6 +137,24 @@ export class ECS {
   }
 
   /**
+   * Removes the given entity and all the associated components
+   *
+   * @param entityId The ID of the entity to remove
+   */
+  removeEntity(entityId: string): void {
+    const entity = this.entities.get(entityId)
+    if (!entity) return
+
+    entity.componentIds.forEach((id: number) => {
+      const component = this.components.get(id)
+      if (!component) return
+      this.remove(component)
+    })
+
+    this.entities.delete(entityId)
+  }
+
+  /**
    * Gets a single component
    *
    * @param componentId The component ID to retrieve
