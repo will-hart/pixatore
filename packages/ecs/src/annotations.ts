@@ -1,3 +1,5 @@
+import { IComponent } from './Component'
+
 export interface IDecoratedComponentList {
   constructor: any
   _ecsComponents?: { [componentType: string]: string }
@@ -26,6 +28,17 @@ export function ecsComponent(componentType: string) {
       configurable: true,
     })
   }
+}
+
+export const extractComponents = (obj: any): IComponent[] => {
+  const decorated = obj as IDecoratedComponentList
+  if (!obj?._isEntity || !decorated?._ecsComponents) return []
+  return Object.values(decorated._ecsComponents).reduce(
+    (acc: IComponent[], field: string) => {
+      return [...acc, obj[field]]
+    },
+    [],
+  )
 }
 
 /**

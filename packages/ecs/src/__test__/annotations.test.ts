@@ -3,6 +3,7 @@ import {
   IDecoratedComponentList,
   ecsEntity,
   isEntity,
+  extractComponents,
 } from '../annotations'
 
 describe('annotations', () => {
@@ -83,6 +84,30 @@ describe('annotations', () => {
     it('ECE.04 - should identify non-entity using isEntity helper', () => {
       const e = new NotAnEntity()
       expect(isEntity(e)).toBeFalsy()
+    })
+  })
+
+  describe('extract components helper', () => {
+    class NotAnEntity {
+      prop: string = 'asdf'
+    }
+
+    @ecsEntity
+    class AnEntity {
+      @ecsComponent('test') testProp: string = 'asdf'
+    }
+
+    it('EXC.01 - should return empty array for null/undefined', () => {
+      expect(extractComponents(null)).toEqual([])
+      expect(extractComponents(undefined)).toEqual([])
+    })
+
+    it('EXC.02 - should return empty array for non-entity objects', () => {
+      expect(extractComponents(new NotAnEntity())).toEqual([])
+    })
+
+    it('EXC.03 - should return component list for entity objects', () => {
+      expect(extractComponents(new AnEntity())).toEqual(['asdf'])
     })
   })
 })
