@@ -1,6 +1,8 @@
+import { EventBus } from 'ts-bus'
 import { IComponent } from './Component'
 import { Entity } from './Entity'
 import { System } from './System'
+import * as Events from './events'
 
 /** This is the main ECS class. It provides the following key features (in order of priority):
  *
@@ -9,6 +11,7 @@ import { System } from './System'
  * 3. mapping entities to components (get all the components on entity X)
  */
 export class ECS {
+  private eventBus: EventBus = new EventBus()
   private entities = new Map<number, Entity>()
   private components = new Map<number, IComponent>()
   private componentToEntity = new Map<number, number>()
@@ -56,6 +59,8 @@ export class ECS {
     entity.addComponent(component)
     this.components.set(component.id, component)
     this.componentToEntity.set(component.id, entity.id)
+
+    this.eventBus.publish(Events.componentAdded(component))
 
     return entity
   }
@@ -116,7 +121,16 @@ export class ECS {
     this.components.delete(component.id)
     this.componentToEntity.delete(component.id)
 
+    this.eventBus.publish(Events.componentRemoved(component))
+
     return component
+  }
+
+  /**
+   * Gets a reference to the internal event bus, used for subscribing to events
+   */
+  get events() {
+    return this.eventBus
   }
 
   /**
