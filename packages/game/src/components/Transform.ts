@@ -1,11 +1,10 @@
 import { Schema, type } from '@colyseus/schema'
-import { IComponent } from '@pixatore/ecs'
 import { ComponentTypes } from './ComponentTypes'
 
 /**
  * A default component that
  */
-export class Transform extends Schema implements IComponent {
+export class Transform extends Schema {
   @type('number')
   id: number | undefined
 
