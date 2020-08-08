@@ -1,3 +1,4 @@
+export * as annotations from './annotations'
 export * from './Component'
 export * from './ComponentFilter'
 export * from './ECS'
