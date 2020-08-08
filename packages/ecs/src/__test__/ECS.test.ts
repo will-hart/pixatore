@@ -43,7 +43,7 @@ describe('ECS - Entity Component System', () => {
     it('ECC.02 - should throw if entity not found', () => {
       const engine = new ECS()
       expect(engine.entityCount).toEqual(0)
-      expect(() => engine.add({ id: 1, componentType: 'a' }, 1)).toThrowError(
+      expect(() => engine.add({ id: 1, componentType: 'a' }, '1')).toThrowError(
         /Error adding component - entity '1' not found/,
       )
     })
@@ -57,21 +57,29 @@ describe('ECS - Entity Component System', () => {
       expect(entity.componentTypes).toEqual(['a', 'b'])
     })
 
-    it('ECC.03 - should assign a component ID if undefined', () => {
+    it('ECC.03 - should create an entity if non-existent ID passed and flag set', () => {
+      const engine = new ECS()
+      const entity = engine.add({ id: 1, componentType: 'b' }, '1234', true)
+
+      expect(engine.entityCount).toEqual(1)
+      expect(entity.id).toEqual('1234')
+    })
+
+    it('ECC.04 - should assign a component ID if undefined', () => {
       const engine = new ECS()
       const component: IComponent = { componentType: 'a' }
       engine.add(component)
       expect(component.id).toBeDefined()
     })
 
-    it('ECC.04 - should keep existing component ID if defined', () => {
+    it('ECC.05 - should keep existing component ID if defined', () => {
       const engine = new ECS()
       const component: IComponent = { id: 17, componentType: 'a' }
       engine.add(component)
       expect(component.id).toEqual(17)
     })
 
-    it('ECC.05 - should throw if component has no id when removing', () => {
+    it('ECC.06 - should throw if component has no id when removing', () => {
       const engine = new ECS()
       const component: IComponent = { componentType: 'a' }
       expect(() => engine.remove(component)).toThrowError(
@@ -79,7 +87,7 @@ describe('ECS - Entity Component System', () => {
       )
     })
 
-    it('ECC.06 - should throw if component has no linked entity', () => {
+    it('ECC.07 - should throw if component has no linked entity', () => {
       const engine = new ECS()
       const component: IComponent = { id: 19, componentType: 'a' }
       expect(() => engine.remove(component)).toThrowError(
@@ -131,7 +139,23 @@ describe('ECS - Entity Component System', () => {
       expect(entity.componentTypes).toEqual(['b', 'c'])
     })
 
-    it('ECC.12 - tick calls added systems', () => {
+    it('ECC.12 - should create an entity if non-existent ID passed for addMany', () => {
+      const engine = new ECS()
+      const entity = engine.addMany(
+        [
+          { id: 1, componentType: 'a' },
+          { id: 2, componentType: 'b' },
+        ],
+        '1234',
+      )
+
+      expect(engine.entityCount).toEqual(1)
+      expect(entity.id).toEqual('1234')
+    })
+  })
+
+  describe('ECS - registering and calling systems', () => {
+    it('ECS.01 - tick calls added systems', () => {
       const engine = new ECS()
       const sys1 = new DummySystem(2)
       engine.addSystem(sys1)
@@ -141,7 +165,7 @@ describe('ECS - Entity Component System', () => {
       expect(mockTick).toHaveBeenCalledWith(2)
     })
 
-    it('ECC.13 - addSystem sorts system by descending priority', () => {
+    it('ECS.02 - addSystem sorts system by descending priority', () => {
       const engine = new ECS()
       const sys1 = new DummySystem(1)
       const sys2 = new DummySystem(10)

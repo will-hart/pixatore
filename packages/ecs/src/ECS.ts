@@ -12,9 +12,9 @@ import * as Events from './events'
  */
 export class ECS {
   private eventBus: EventBus = new EventBus()
-  private entities = new Map<number, Entity>()
+  private entities = new Map<string, Entity>()
   private components = new Map<number, IComponent>()
-  private componentToEntity = new Map<number, number>()
+  private componentToEntity = new Map<number, string>()
   private systems: System[] = []
 
   private nextComponentId = 1
@@ -36,16 +36,22 @@ export class ECS {
    * Returns the entity (created or retrieved from an existing entity)
    *
    * @param component the component to add
+   * @param entityId the id of the entity to add to (or undefined for a new entity)
+   * @param createEntityIfNotExists if true, creates an entity if an ID is passed but no matching entity exists. If false, throws if entityId is passed and doesn't exist
    */
-  add(component: IComponent, entityId?: number): Entity {
-    let entity
-    if (!entityId) {
-      entity = new Entity()
-      this.entities.set(entity.id, entity)
-    }
+  add(
+    component: IComponent,
+    entityId?: string,
+    createEntityIfNotExists = false,
+  ): Entity {
+    let entity = entityId ? this.entities.get(entityId) : undefined
 
-    if (entityId && !entity) {
-      entity = this.entities.get(entityId)
+    // create a new entity if undefined is passed, or
+    // if we don't have an entity but want to create (using an existing ID)
+    // this handles the use case of injecting a networked entity that was just received at a client
+    if (!entityId || (!entity && entityId && createEntityIfNotExists)) {
+      entity = new Entity(entityId)
+      this.entities.set(entity.id, entity)
     }
 
     if (!entity) {
@@ -66,17 +72,21 @@ export class ECS {
   }
 
   /**
-   * Add a number of components to an entity
+   * Add a number of components to an entity.
+   *
+   * If `undefined` is passed as entityId, a new entity ID will be created. If an entity
+   * Id is passed, then it will reuse an existing entity if one exists, or create a new
+   * entity with the given ID if one does not exist.
    *
    * @param components The components to add to the entity
    * @param entityId The entity ID to add the components to, or null to add a new entity
    */
-  addMany(components: IComponent[], entityId?: number): Entity {
+  addMany(components: IComponent[], entityId?: string): Entity {
     if (components.length === 0) {
       throw new Error('Attempted to create entity with no components')
     }
 
-    const ent: Entity = this.add(components[0], entityId)
+    const ent: Entity = this.add(components[0], entityId, true)
 
     for (let i = 1; i < components.length; ++i) {
       this.add(components[i], ent.id)

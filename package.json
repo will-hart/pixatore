@@ -9,7 +9,9 @@
   ],
   "scripts": {
     "test": "yarn workspaces run test",
-    "test:watch": "yarn workspaces run test --watchAll",
+    "test:app": "yarn workspace @pixatore/app test --watchAll",
+    "test:ecs": "yarn workspace @pixatore/ecs test --watchAll",
+    "test:game": "yarn workspace @pixatore/game test --watchAll",
     "lint": "yarn workspaces run lint",
     "app:serve": "yarn workspace @pixatore/app serve",
     "app:build": "yarn workspace @pixatore/app build",

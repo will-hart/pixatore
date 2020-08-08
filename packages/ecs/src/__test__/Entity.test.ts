@@ -17,7 +17,7 @@ describe('ENT - entity', () => {
   it('ENT.03 - should increment ID in constructor', () => {
     const ent1 = new Entity()
     const ent2 = new Entity()
-    expect(ent2.id).toEqual(ent1.id + 1)
+    expect(ent2.id).not.toEqual(ent1.id)
   })
 
   it('ENT.04 - should add component without throwing', () => {
@@ -161,7 +161,7 @@ describe('ENT - entity', () => {
       componentType: 'a',
     }
     expect(() => ent1.addComponent(component)).toThrowError(
-      /Attempted to add component without ID to entity '[0-9]*'/,
+      /Attempted to add component without ID to entity '[a-zA-Z0-9\w-]{21}'/,
     )
   })
 
@@ -171,7 +171,7 @@ describe('ENT - entity', () => {
       componentType: 'a',
     }
     expect(() => ent1.removeComponent(component)).toThrowError(
-      /Attempted to remove component without ID from entity '[0-9]*'/,
+      /Attempted to remove component without ID from entity '[a-zA-Z0-9\w-]{21}'/,
     )
   })
 
@@ -241,5 +241,10 @@ describe('ENT - entity', () => {
     ent1.addComponent(component2)
 
     expect(ent1.hasNone([])).toBeTruthy()
+  })
+
+  it('ENT.19 - should create an entity with the passed ID if provided', () => {
+    const entity = new Entity('1231')
+    expect(entity.id).toEqual('1231')
   })
 })

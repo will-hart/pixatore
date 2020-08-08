@@ -1,16 +1,16 @@
+import { nanoid } from 'nanoid'
 import { IComponent } from './Component'
 
 export class Entity {
-  private static nextId: number = 0
+  readonly id: string
 
-  readonly id: number
-
+  private static getNextId = (): string => nanoid()
   private _componentTypes: Set<string>
   private _componentIds: Set<number>
   private destroyed = false
 
-  constructor() {
-    this.id = Entity.nextId++
+  constructor(entityId?: string) {
+    this.id = entityId || Entity.getNextId()
     this._componentTypes = new Set<string>()
     this._componentIds = new Set<number>()
   }
