@@ -5,6 +5,8 @@
     <div class="header">
       <h1>Pixatore Game Template</h1>
     </div>
+
+    <spinner />
   </div>
 </template>
 
@@ -12,12 +14,18 @@
 import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 
+import LoadingSpinner from '../components/LoadingSpinner.vue'
+
 import debug from 'debug'
 const log = debug('App:Views:SplashScreen')
 log.log = console.log.bind(console)
 
 export default defineComponent({
   name: 'SplashScreen',
+
+  components: {
+    spinner: LoadingSpinner,
+  },
 
   setup() {
     const router = useRouter()

@@ -11,6 +11,7 @@ import { provideClient } from './composables/useClient'
 import useWindowSize from './composables/useWindowSize'
 
 import Game from './components/Game.vue'
+import { provideGameEngine } from './composables/useGameEngine'
 
 export default defineComponent({
   components: {
@@ -19,8 +20,9 @@ export default defineComponent({
   setup() {
     const { width, height } = useWindowSize()
 
-    provideFpsMonitor()
     provideClient()
+    provideFpsMonitor()
+    provideGameEngine()
 
     return { width, height }
   },

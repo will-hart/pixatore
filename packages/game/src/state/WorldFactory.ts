@@ -30,6 +30,7 @@ const registerSystems = (world: World, worldType: WorldTypes): void => {
 }
 
 const registerSingletonEntity = (world: World, worldType: WorldTypes): void => {
+  if (worldType !== WorldTypes.Server) return
   world.createEntity(CORE_ENTITY_NAME).addComponent(Components.Status)
 }
 

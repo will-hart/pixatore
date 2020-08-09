@@ -44,8 +44,10 @@ export class PlayerJoinSystem extends System {
       }
 
       // issues between Ecsy and colyseus/ecs entities
-      // @ts-ignore
-      const playerEnt = Archetypes.Player(this.world.createEntity())
+      const playerEnt = Archetypes.Player(
+        // @ts-ignore
+        this.world.createEntity(`Player_${message.sessionId}_${slotId}`),
+      )
       const playerData = playerEnt.getMutableComponent?.(Components.PlayerData)
 
       if (!playerData) {

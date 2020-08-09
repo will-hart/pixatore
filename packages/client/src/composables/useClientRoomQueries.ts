@@ -3,6 +3,8 @@ import { RoomAvailable, Client, Room } from 'colyseus.js'
 import { Constants, State } from '@pixatore/game'
 
 import debug from 'debug'
+import { useGameEngine } from './useGameEngine'
+import { GameEngine } from '@/engine/GameEngine'
 const log = debug('App:Composables:useClientRoomQueries')
 log.log = console.log.bind(console)
 
@@ -49,8 +51,13 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
     localStorage.getItem(Constants.LOCALSTORAGE_LAST_SESSION_KEY),
   )
 
+  const { setGameEngine } = useGameEngine()
+
   const onConnect = (room: Room<State.GameState>) => {
     log(`joined ${room.id} on ${room.name}`)
+
+    const gameEngine = new GameEngine(room)
+    setGameEngine(gameEngine)
 
     lastRoom.value = room.id
     localStorage.setItem(Constants.LOCALSTORAGE_LAST_ROOM_KEY, room.id)
