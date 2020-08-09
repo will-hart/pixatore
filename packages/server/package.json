@@ -27,11 +27,12 @@
     "typescript": "3.9.7"
   },
   "dependencies": {
+    "@colyseus/ecs": "^0.4.0-alpha.1",
     "@colyseus/monitor": "0.12.2",
     "@colyseus/social": "0.11.6",
     "@gamestdio/mathf": "1.0.1",
     "@pixatore/game": "0.1.0",
-    "colyseus": "0.14.0-alpha.10",
+    "colyseus": "^0.14.0-alpha.10",
     "cors": "2.8.5",
     "express": "4.17.1",
     "express-jwt": "6.0.0"
