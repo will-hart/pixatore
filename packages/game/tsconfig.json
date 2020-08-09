@@ -4,7 +4,7 @@
     "outDir": "build",
     "module": "commonjs",
     "lib": ["dom", "es6"],
-    "target": "es2019",
+    "target": "ES2019",
     "declaration": true,
     "sourceMap": false,
     "strict": true,
