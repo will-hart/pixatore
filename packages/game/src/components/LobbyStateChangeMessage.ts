@@ -1,4 +1,4 @@
-import { TagComponent } from '@colyseus/ecs'
+import { Component } from '@colyseus/ecs'
 
 /**
  * A server-only component that stores information about recent changes
@@ -7,7 +7,7 @@ import { TagComponent } from '@colyseus/ecs'
  * Components are created by the room message handlers and processed by
  * the LobbySystem. No fields are synchronised with the clients
  */
-export class LobbyStateChangeMessage extends TagComponent {
+export class LobbyStateChangeMessage extends Component {
   public messageReceivedMs: number = 0
   public sessionId: string = ''
   public readyState = false

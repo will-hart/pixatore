@@ -50,12 +50,15 @@ const handleGameStartMessages = (
 export class LobbySystem extends System {
   static queries = {
     status: { components: [Components.Status] },
-    messages: { components: [Components.LobbyStateChangeMessage] },
+    messages: {
+      components: [Components.LobbyStateChangeMessage],
+      listen: { added: true },
+    },
     players: { components: [Components.PlayerData] },
   }
 
   execute(_delta: number) {
-    const messages = this.queries.messages.results
+    const messages = (this.queries.messages.added || [])
       // TODO type errors if I use Entity typing here, as private fields are missing
       .map((ent) => {
         return ent.getComponent?.(Components.LobbyStateChangeMessage)
@@ -78,7 +81,7 @@ export class LobbySystem extends System {
 
     // tidy up all the message components
     this.queries.messages.results.forEach((ent) =>
-      ent.removeComponent(Components.LobbyStateChangeMessage, true),
+      ent.removeComponent(Components.LobbyStateChangeMessage),
     )
   }
 }

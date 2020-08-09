@@ -33,12 +33,15 @@ const handleUpdateConnection = (
 
 export class PlayerConnectionStatusSystem extends System {
   static queries = {
-    messages: { components: [Components.PlayerConnectionStatusMessage] },
+    messages: {
+      components: [Components.PlayerConnectionStatusMessage],
+      listen: { added: true },
+    },
     players: { components: [Components.PlayerData] },
   }
 
   execute(_delta: number) {
-    const messages = this.queries.messages.results
+    const messages = (this.queries.messages.added || [])
       // TODO type errors if I use Entity typing here, as private fields are missing
       .map((ent) => {
         return ent.getComponent?.(Components.PlayerConnectionStatusMessage)

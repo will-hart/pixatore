@@ -4,12 +4,15 @@ import { Components } from '..'
 
 export class PlayerJoinSystem extends System {
   static queries = {
-    messages: { components: [Components.PlayerJoinMessage] },
+    messages: {
+      components: [Components.PlayerJoinMessage],
+      listen: { added: true },
+    },
     players: { components: [Components.PlayerData] },
   }
 
   execute(_delta: number) {
-    const messages = this.queries.messages.results
+    const messages = (this.queries.messages.added || [])
       // TODO type errors if I use Entity typing here, as private fields are missing
       .map((ent) => {
         return ent.getComponent?.(Components.PlayerJoinMessage)
