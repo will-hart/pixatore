@@ -1,4 +1,4 @@
-import { World, Component } from '@colyseus/ecs'
+import { World } from '@colyseus/ecs'
 
 import * as Components from '../components'
 import * as Systems from '../systems'
