@@ -29,3 +29,4 @@ packages/app/dist_tauri/
 packages/docs/.docusaurus
 packages/ecs/build/
 tsconfig.tsbuildinfo
+packages/app copy/

@@ -24,6 +24,7 @@ class EventBus extends TsEventBus {
 
     return unsubscribeAddPlayer
   }
+
   onPlayerRemove = (handler: (Player: any) => void) => {
     const unsubscribeRemovePlayer = this.subscribe(
       EventTypes.ON_PLAYER_REMOVE.toString(),
