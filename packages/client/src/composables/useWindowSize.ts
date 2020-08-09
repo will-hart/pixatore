@@ -1,5 +1,9 @@
 import { ref, onMounted, onUnmounted, watchEffect, Ref } from 'vue'
 
+import debug from 'debug'
+const log = debug('App:Composables:useWindowSize')
+log.log = console.log.bind(console)
+
 const useWindowSize = (
   listener?: (width: number, height: number) => void,
 ): { width: Ref<number>; height: Ref<number> } => {
@@ -16,12 +20,12 @@ const useWindowSize = (
     : undefined
 
   onMounted(() => {
-    console.log('[USE_WINDOW_SIZE] Adding resize event listeners')
+    log('[USE_WINDOW_SIZE] Adding resize event listeners')
     window?.addEventListener('resize', innerListener)
   })
 
   onUnmounted(() => {
-    console.log('[USE_WINDOW_SIZE] Removing resize event listeners')
+    log('[USE_WINDOW_SIZE] Removing resize event listeners')
     window?.removeEventListener('resize', innerListener)
     stop?.()
   })

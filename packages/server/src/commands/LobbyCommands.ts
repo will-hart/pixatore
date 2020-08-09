@@ -4,6 +4,9 @@ import { Client, Room } from 'colyseus'
 import { GameRoom } from '../rooms/GameRoom'
 import { Entity } from '@colyseus/ecs'
 
+import debug from 'debug'
+const log = debug('Server:LobbyCommands')
+
 const getNewEntity = (room: Room<any, any>): Entity => {
   const gameRoom = room as GameRoom
 
@@ -17,6 +20,7 @@ export class OnCreateCommand extends Command<
   { options: Types.RoomOptions }
 > {
   async execute({ options }: this['payload']): Promise<void> {
+    log('[OnCreateCommand] Room created')
     this.room.maxClients = Constants.MAX_PLAYERS
 
     this.room.setMetadata({
@@ -31,6 +35,7 @@ export class OnGameStartCommand extends Command<
   { sessionId: string }
 > {
   async execute({ sessionId }: this['payload']): Promise<void> {
+    log('[OnGameStartCommand] Requesting game start')
     const newEnt = getNewEntity(this.room).addComponent(
       Components.LobbyStateChangeMessage,
     )
@@ -50,6 +55,7 @@ export class OnJoinCommand extends Command<
   { sessionId: string }
 > {
   async execute({ sessionId }: this['payload']): Promise<void> {
+    log('[OnJoinCommand] Player attempting join')
     const newEnt = getNewEntity(this.room).addComponent(
       Components.PlayerJoinMessage,
     )
@@ -69,6 +75,7 @@ export class OnLeaveCommand extends Command<
   }
 > {
   async execute({ client, consented }: this['payload']): Promise<void> {
+    log(`[OnLeaveCommand] Player ${client.sessionId} leaving room`)
     // note this is a bit different to usual messages as awaiting reconnection
     // must be done in here with the connection
 
@@ -94,6 +101,7 @@ export class OnLeaveCommand extends Command<
     if (consented) return
 
     try {
+      log(`[OnLeaveCommand] Player ${client.sessionId} attempting reconnect`)
       await this.room.allowReconnection(client, 30)
 
       // reconnected, send join message
@@ -110,10 +118,10 @@ export class OnLeaveCommand extends Command<
       rejoinMsg.isConnected = true
       rejoinMsg.isRemoved = false
 
-      console.log(`[PLAYER ${client.sessionId}] reconnected`)
+      log(`[OnLeaveCommand] Player ${client.sessionId} reconnected`)
     } catch (err) {
-      console.log(
-        `[PLAYER ${client.sessionId}] failed to reconnect, removing from state`,
+      log(
+        `[OnLeaveCommand] Player ${client.sessionId}] failed to reconnect, removing from state`,
       )
 
       // add a "connection status" message for the player
@@ -144,6 +152,8 @@ export class OnPlayerReadyCommand extends Command<
     const lobbyState = newEnt.getMutableComponent(
       Components.LobbyStateChangeMessage,
     )
+
+    log(`[OnPlayerReadyCommand] ${sessionId} set ready to ${isReady}`)
 
     lobbyState.messageReceivedMs = new Date().getTime()
     lobbyState.readyState = isReady

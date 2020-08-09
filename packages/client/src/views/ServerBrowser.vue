@@ -63,15 +63,15 @@ import {
   unref,
 } from 'vue'
 
-import ServerBrowserScene from '../gameEngine/scenes/ServerBrowserScene'
-import Engine from '../gameEngine/Engine'
 import LoadingSpinner from '../components/LoadingSpinner.vue'
 
-import { useEngineWithScene } from '../composables/useGameEngine'
 import { useClient } from '../composables/useClient'
-import { useClientRoomQueries } from '../composables/useClientRoomQueries'
 import { useRouter } from 'vue-router'
-import { useRoom } from '../composables/useRoom'
+import { useClientRoomQueries } from '../composables/useClientRoomQueries'
+
+import debug from 'debug'
+const log = debug('App:Views:ServerBrowser')
+log.log = console.log.bind(console)
 
 export default defineComponent({
   name: 'ServerBrowserScreen',
@@ -83,18 +83,10 @@ export default defineComponent({
   setup() {
     const { client, setClient } = useClient()
     onMounted(() => {
-      console.log('[MOUNT_VIEW] Server Browser')
+      log('[MOUNT_VIEW] Server Browser')
       // TODO be a bit smarter with this URL
       unref(setClient)('ws://localhost:2567')
     })
-
-    const {
-      scene,
-      engine,
-    }: { scene: ServerBrowserScene; engine: Engine } = useEngineWithScene(
-      ServerBrowserScene,
-    )
-    engine.navigator.push(scene)
 
     const {
       roomList,
@@ -107,22 +99,20 @@ export default defineComponent({
       reconnect,
       createGame,
     } = useClientRoomQueries()
-    const { room } = useRoom()
 
     const refreshInterval = setInterval(() => getRoomList(unref(client)), 5000)
 
     onUnmounted(() => {
-      console.log('[UNMOUNT_VIEW] Server Browser')
+      log('[UNMOUNT_VIEW] Server Browser')
       clearInterval(refreshInterval)
     })
 
     const router = useRouter()
     watchEffect(() => {
-      console.log(`[SERVER BROWSER] Client lobby status: ${lobbyStatus.value}`)
-      scene.setStatus(lobbyStatus.value)
+      log(`[SERVER BROWSER] Client lobby status: ${lobbyStatus.value}`)
 
-      if (lobbyStatus.value === 'connected' && unref(room)) {
-        router.push(`/lobby/${unref(room).id}`)
+      if (lobbyStatus.value === 'connected') {
+        router.push(`/lobby/TODO_ROOM_ID`)
       }
     })
 

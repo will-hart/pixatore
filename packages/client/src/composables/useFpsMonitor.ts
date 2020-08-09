@@ -1,10 +1,14 @@
 import { InjectionKey, provide, inject, ref, Ref } from 'vue'
 
+import debug from 'debug'
+const log = debug('App:Composables:useFpsMonitor')
+log.log = console.log.bind(console)
+
 const fpsKey: InjectionKey<Ref<number>> = Symbol('useFPS::FPS')
 const setFpsKey: InjectionKey<(fps: number) => void> = Symbol('useFPS::setFPS')
 
 export function provideFpsMonitor(): void {
-  console.log('[PROVIDE] fpsMonitor provided')
+  log('[PROVIDE] fpsMonitor provided')
   const fps = ref(0)
   const setFps = (_fps: number) => {
     fps.value = Math.round(_fps)

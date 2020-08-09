@@ -1,10 +1,14 @@
 import { InjectionKey, provide, inject, shallowRef, Ref } from 'vue'
 import { Client } from 'colyseus.js'
 
+import debug from 'debug'
+const log = debug('App:Composables:useClient')
+log.log = console.log.bind(console)
+
 const key: InjectionKey<Ref<Client | null>> = Symbol('useClient::Client')
 
 export function provideClient(): void {
-  console.log('[PROVIDE] client provided')
+  log('[PROVIDE] client provided')
   const client = shallowRef<Client | null>(null)
   provide(key, client)
 }

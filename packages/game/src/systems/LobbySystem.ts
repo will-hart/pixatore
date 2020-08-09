@@ -2,6 +2,10 @@ import { System } from '@colyseus/ecs'
 import { Components } from '..'
 import { GameStatus } from '../types'
 
+import debug from 'debug'
+const log = debug('Game:Systems:LobbySystem')
+log.log = console.log.bind(console)
+
 const handleReadyMessages = (
   messages: Readonly<Components.LobbyStateChangeMessage>[],
   playerData: Components.PlayerData[],
@@ -12,7 +16,7 @@ const handleReadyMessages = (
 
     const player = playerData.find((p) => p.playerId === message.sessionId)
     if (!player) {
-      console.log(
+      log(
         `Unable to apply ready message for player ${message.sessionId} at ${message.messageReceivedMs} - unknown player Id`,
       )
       continue
@@ -30,17 +34,13 @@ const handleGameStartMessages = (
   if (!messages) return // nothing to do, any message implies game start
 
   if (!status) {
-    console.log(
-      '[LobbySystem::handleGameStartMessages] ignoring message, status not available',
-    )
+    log('ignoring message, status not available')
     return
   }
 
   const anyNotReady = playerData.some((pd) => !pd.ready)
   if (anyNotReady) {
-    console.log(
-      '[LobbySystem::handleGameStartMessages] ignoring message, not all players are ready',
-    )
+    log('ignoring message, not all players are ready')
     return
   }
 

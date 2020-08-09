@@ -10,6 +10,9 @@ import {
   OnGameStartCommand,
 } from '../commands/LobbyCommands'
 
+import debug from 'debug'
+const log = debug('Server:Rooms:GameRoom')
+
 export class GameRoom extends Room<State.GameState> {
   static id = Constants.GAME_ROOM_NAME
   private _dispatcher: Dispatcher = new Dispatcher(this)
@@ -40,12 +43,17 @@ export class GameRoom extends Room<State.GameState> {
 
     // log all other messages
     this.onMessage('*', (_client, type, message) =>
-      console.log(`[MESSAGE::${type}] ${message}`),
+      log(`[MESSAGE::${type}] ${message}`),
     )
 
     // finish creating the room
     this._dispatcher.dispatch(new OnCreateCommand(), {
       options,
+    })
+
+    log('Starting ECS Tick')
+    this.setSimulationInterval((delta) => {
+      this.world.execute(delta)
     })
   }
 

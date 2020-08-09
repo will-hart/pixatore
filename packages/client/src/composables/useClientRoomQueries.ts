@@ -2,10 +2,9 @@ import { ref, Ref, shallowRef } from 'vue'
 import { RoomAvailable, Client, Room } from 'colyseus.js'
 import { Constants, State } from '@pixatore/game'
 
-import { LobbyConnectionStatus } from '../gameEngine/scenes/ServerBrowserScene'
-import { useRoom } from './useRoom'
-import { mountEventBusToRoom } from './mountEventBusToRoom'
-import { useEventBus } from './useEventBus'
+import debug from 'debug'
+const log = debug('App:Composables:useClientRoomQueries')
+log.log = console.log.bind(console)
 
 interface IUseClientRoomQueriesReturnValue {
   roomList: Ref<RoomAvailable<State.GameState>[]>
@@ -13,7 +12,7 @@ interface IUseClientRoomQueriesReturnValue {
   roomListLoading: Ref<boolean>
   lastRoom: Ref<string | null>
   lastSession: Ref<string | null>
-  lobbyStatus: Ref<LobbyConnectionStatus>
+  lobbyStatus: Ref<'idle' | 'connected' | 'error'>
   joinGame: (client: Client, roomId: string) => Promise<void>
   createGame: (client: Client) => Promise<void>
   reconnect: (
@@ -25,10 +24,7 @@ interface IUseClientRoomQueriesReturnValue {
 
 export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const roomList = shallowRef<RoomAvailable<State.GameState>[]>([])
-  const lobbyStatus = ref<LobbyConnectionStatus>('idle')
-  const eventBus = useEventBus()
-  const { setRoom } = useRoom()
-
+  const lobbyStatus = ref<'idle' | 'connected' | 'error'>('idle')
   const roomListLoading = ref(false)
   const getRoomList = async (client: Client) => {
     roomListLoading.value = true
@@ -54,8 +50,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   )
 
   const onConnect = (room: Room<State.GameState>) => {
-    console.log(`[USE_CLIENT_ROOM_QUERIES] joined ${room.id} on ${room.name}`)
-    mountEventBusToRoom(eventBus, room)
+    log(`joined ${room.id} on ${room.name}`)
 
     lastRoom.value = room.id
     localStorage.setItem(Constants.LOCALSTORAGE_LAST_ROOM_KEY, room.id)
@@ -66,14 +61,12 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
       room.sessionId,
     )
 
-    setRoom(room)
-
     lobbyStatus.value = 'connected'
   }
 
   const joinGame = async (client: Client, roomId: string) => {
     try {
-      console.log('[USE_CLIENT_ROOM_QUERIES] joining room...', roomId)
+      log(`joining room ${roomId}`)
       const room = await client.joinById<State.GameState>(roomId)
       onConnect(room)
     } catch (e) {
@@ -84,14 +77,14 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
 
   const createGame = async (client: Client) => {
     try {
-      console.log('[USE_CLIENT_ROOM_QUERIES] creating new game...')
+      log('creating new game...')
       const room = await client.create<State.GameState>(
         Constants.GAME_ROOM_NAME,
         {},
       )
       onConnect(room)
     } catch (e) {
-      console.error('[USE_CLIENT_ROOM_QUERIES] Create room error', e)
+      log('Create room error %o', e)
       lobbyStatus.value = 'error'
     }
   }
@@ -102,15 +95,11 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
     sessionId: string,
   ) => {
     try {
-      console.log(
-        '[USE_CLIENT_ROOM_QUERIES] reconnecting...',
-        roomId,
-        sessionId,
-      )
+      log('reconnecting to room %s with session %s', roomId, sessionId)
       const room = await client.reconnect<State.GameState>(roomId, sessionId)
       onConnect(room)
     } catch (e) {
-      console.error('[USE_CLIENT_ROOM_QUERIES] Error reconnecting', e)
+      log('Error reconnecting %o', e)
       lobbyStatus.value = 'error'
 
       // session invalid, clear the storage

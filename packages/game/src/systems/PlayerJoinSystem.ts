@@ -2,6 +2,10 @@ import { System } from '@colyseus/ecs'
 import { Archetypes } from '..'
 import { Components } from '..'
 
+import debug from 'debug'
+const log = debug('Game:Systems:PlayerJoinSystem')
+log.log = console.log.bind(console)
+
 export class PlayerJoinSystem extends System {
   static queries = {
     messages: {
@@ -48,6 +52,7 @@ export class PlayerJoinSystem extends System {
         throw new Error(`Error creating player entity - ${message.sessionId}`)
       }
 
+      log('Player joined slot %d, session %s', slotId, message.sessionId)
       playerData.slot = slotId
       playerData.ready = false
       playerData.playerId = message.sessionId

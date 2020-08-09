@@ -7,6 +7,9 @@ import { monitor } from '@colyseus/monitor'
 
 import { GameRoom } from './rooms/GameRoom'
 
+import debug from 'debug'
+const log = debug('Server::index')
+
 const port = Number(process.env.PORT || 2567)
 const app = express()
 
@@ -33,4 +36,4 @@ gameServer.define(GameRoom.id, GameRoom)
 app.use('/colyseus', monitor())
 
 gameServer.listen(port)
-console.log(`Listening on ws://localhost:${port}`)
+log(`Listening on ws://localhost:${port}`)
