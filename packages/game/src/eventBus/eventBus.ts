@@ -1,7 +1,7 @@
 import { EventBus as TsEventBus } from 'ts-bus'
 import { EventTypes, PlayerEventArgs } from './events'
 import { BusEvent } from 'ts-bus/types'
-import { Entities, Types } from '..'
+import { Types } from '..'
 
 class EventBus extends TsEventBus {
   onGameStatusChange = (handler: (current: Types.GameStatus) => void) => {
@@ -14,7 +14,7 @@ class EventBus extends TsEventBus {
     return unsubscribeGameStatusChange
   }
 
-  onPlayerAdd = (handler: (Player: Entities.Player) => void) => {
+  onPlayerAdd = (handler: (Player: any) => void) => {
     const unsubscribeAddPlayer = this.subscribe(
       EventTypes.ON_PLAYER_ADD.toString(),
       (event: BusEvent<PlayerEventArgs>) => {
@@ -24,7 +24,7 @@ class EventBus extends TsEventBus {
 
     return unsubscribeAddPlayer
   }
-  onPlayerRemove = (handler: (Player: Entities.Player) => void) => {
+  onPlayerRemove = (handler: (Player: any) => void) => {
     const unsubscribeRemovePlayer = this.subscribe(
       EventTypes.ON_PLAYER_REMOVE.toString(),
       (event: BusEvent<PlayerEventArgs>) => {
@@ -35,7 +35,7 @@ class EventBus extends TsEventBus {
     return unsubscribeRemovePlayer
   }
 
-  onPlayerUpdate = (handler: (Player: Entities.Player) => void) => {
+  onPlayerUpdate = (handler: (Player: any) => void) => {
     const unsubscribeUpdatePlayer = this.subscribe(
       EventTypes.ON_PLAYER_UPDATE.toString(),
       (event: BusEvent<PlayerEventArgs>) => {

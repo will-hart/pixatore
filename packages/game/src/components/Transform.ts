@@ -1,28 +1,16 @@
-import { Schema, type } from '@colyseus/schema'
-import { ComponentTypes } from './ComponentTypes'
+import { Component } from '@colyseus/ecs'
+import { type } from '@colyseus/schema'
 
 /**
- * A default component that
+ * Contains position and rotation for an entity
  */
-export class Transform extends Schema {
+export class Transform extends Component {
   @type('number')
-  id: number | undefined
-
-  @type('string')
-  public readonly componentType: string = ComponentTypes.Transform
+  public x: number = 0
 
   @type('number')
-  public x: number
-
-  @type('number')
-  public y: number
+  public y: number = 0
 
   @type('number')
   public rotation: number = 0
-
-  constructor(x: number, y: number) {
-    super()
-    this.x = x
-    this.y = y
-  }
 }

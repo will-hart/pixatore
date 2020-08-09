@@ -1,16 +1,10 @@
-import { Schema, type } from '@colyseus/schema'
-import { ComponentTypes } from './ComponentTypes'
+import { Component } from '@colyseus/ecs'
+import { type } from '@colyseus/schema'
 
 /**
  * A default component that
  */
-export class PlayerData extends Schema {
-  @type('number')
-  id: number | undefined
-
-  @type('string')
-  public readonly componentType: string = ComponentTypes.PlayerData
-
+export class PlayerData extends Component {
   @type('boolean')
   public connected: boolean = false
 

@@ -14,7 +14,7 @@
   "dependencies": {
     "@gamestdio/mathf": "1.0.1",
     "@pixatore/game": "0.1.0",
-    "colyseus.js": "0.14.0-alpha.4",
+    "colyseus.js": "^0.14.0-alpha.4",
     "core-js": "3.6.5",
     "epic-spinners": "1.1.0",
     "lodash.debounce": "4.0.8",

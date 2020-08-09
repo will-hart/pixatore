@@ -1,5 +1,4 @@
 import { createEventDefinition } from 'ts-bus'
-import { Player } from '../entities'
 import { Types } from '..'
 
 export enum EventTypes {
@@ -18,7 +17,7 @@ export interface ActorMoveArgs {
 }
 
 export interface PlayerEventArgs {
-  player: Player
+  player: any
   key: string
 }
 export const onActorMove = createEventDefinition<ActorMoveArgs>()(
