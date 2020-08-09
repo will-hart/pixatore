@@ -71,5 +71,7 @@ export class GameRoom extends Room<State.GameState> {
     })
   }
 
-  onDispose() {}
+  onDispose() {
+    this.world?.stop()
+  }
 }
