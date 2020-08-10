@@ -17,7 +17,7 @@ import { useRouter } from 'vue-router'
 import LoadingSpinner from '../components/LoadingSpinner.vue'
 
 import debug from 'debug'
-const log = debug('App:Views:SplashScreen')
+const log = debug('PX:APP:Views     :SplashScrn')
 log.log = console.log.bind(console)
 
 export default defineComponent({

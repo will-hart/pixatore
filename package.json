@@ -24,7 +24,7 @@
     "build:core": "yarn run-s game:build",
     "build:artifacts": "run-p -n client:build server:build",
     "prebuild": "yarn lint",
-    "dev": "cross-env DEBUG=App:*,Game:*,Server:* yarn run-p -nr game:build:watch server:dev client:dev",
+    "dev": "cross-env DEBUG=PX:* yarn run-p -nr game:build:watch server:dev client:dev",
     "predev": "yarn run-p game:build",
     "postinstall": "yarn build:core"
   },

@@ -3,7 +3,7 @@ import { InjectionKey, provide, inject, shallowRef, Ref } from 'vue'
 import debug from 'debug'
 import { GameEngine } from '@/engine/GameEngine'
 
-const log = debug('App:Composables:useGameEngine')
+const log = debug('PX:APP:Composable:GameEngine')
 log.log = console.log.bind(console)
 
 const key: InjectionKey<Ref<GameEngine | null>> = Symbol(

@@ -7,7 +7,7 @@
 import { Room } from 'colyseus'
 
 import debug from 'debug'
-const log = debug('Server:Dispatcher')
+const log = debug('PX:SRV:Core      :Dispatcher')
 
 export abstract class Command<State = any, Payload = unknown> {
   payload: Payload

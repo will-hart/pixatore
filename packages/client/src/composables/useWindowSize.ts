@@ -1,7 +1,7 @@
 import { ref, onMounted, onUnmounted, watchEffect, Ref } from 'vue'
 
 import debug from 'debug'
-const log = debug('App:Composables:useWindowSize')
+const log = debug('PX:APP:Composable:WindowSize')
 log.log = console.log.bind(console)
 
 const useWindowSize = (

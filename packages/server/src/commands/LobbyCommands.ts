@@ -5,7 +5,7 @@ import { GameRoom } from '../rooms/GameRoom'
 import { Entity } from '@colyseus/ecs'
 
 import debug from 'debug'
-const log = debug('Server:LobbyCommands')
+const log = debug('PX:SRV:Commands  :LobbyCmand')
 
 const getNewEntity = (room: Room<any, any>): Entity => {
   const gameRoom = room as GameRoom

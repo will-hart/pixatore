@@ -6,7 +6,7 @@ import App from './App.vue'
 if (process?.env?.NODE_ENV === 'Production') {
   localStorage.setItem('debug', '')
 } else {
-  localStorage.setItem('debug', 'App:*')
+  localStorage.setItem('debug', 'PX:*')
 }
 
 // create app

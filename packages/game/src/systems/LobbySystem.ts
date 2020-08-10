@@ -3,7 +3,7 @@ import { Components } from '..'
 import { GameStatus } from '../types'
 
 import debug from 'debug'
-const log = debug('Game:Systems:LobbySystem')
+const log = debug('PX:GAM:Systems   :LobbySystm')
 log.log = console.log.bind(console)
 
 const handleReadyMessages = (

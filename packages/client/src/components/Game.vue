@@ -8,7 +8,7 @@
 import { defineComponent, ref, onUnmounted, onMounted } from 'vue'
 
 import debug from 'debug'
-const log = debug('App:Views:Game')
+const log = debug('PX:APP:Views     :Game      ')
 log.log = console.log.bind(console)
 
 export default defineComponent({

@@ -3,7 +3,7 @@ import { Archetypes } from '..'
 import { Components } from '..'
 
 import debug from 'debug'
-const log = debug('Game:Systems:PlayerJoinSystem')
+const log = debug('PX:GAM:Systems   :JoinSystem')
 log.log = console.log.bind(console)
 
 export class PlayerJoinSystem extends System {

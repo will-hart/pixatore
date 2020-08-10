@@ -2,7 +2,7 @@ import { InjectionKey, provide, inject, shallowRef, Ref } from 'vue'
 import { Client } from 'colyseus.js'
 
 import debug from 'debug'
-const log = debug('App:Composables:useClient')
+const log = debug('PX:APP:Composable:useClient ')
 log.log = console.log.bind(console)
 
 const key: InjectionKey<Ref<Client | null>> = Symbol('useClient::Client')

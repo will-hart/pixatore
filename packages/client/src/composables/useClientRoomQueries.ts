@@ -5,7 +5,7 @@ import { Constants, State } from '@pixatore/game'
 import debug from 'debug'
 import { useGameEngine } from './useGameEngine'
 import { GameEngine } from '@/engine/GameEngine'
-const log = debug('App:Composables:useClientRoomQueries')
+const log = debug('PX:APP:Composable:clientRmQu')
 log.log = console.log.bind(console)
 
 interface IUseClientRoomQueriesReturnValue {

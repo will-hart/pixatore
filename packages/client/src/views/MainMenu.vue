@@ -10,7 +10,7 @@ import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 import debug from 'debug'
-const log = debug('App:Views:MainMenu')
+const log = debug('PX:APP:Views     :MainMenu  ')
 log.log = console.log.bind(console)
 
 export default defineComponent({

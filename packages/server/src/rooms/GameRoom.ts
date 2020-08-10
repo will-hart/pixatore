@@ -11,7 +11,7 @@ import {
 } from '../commands/LobbyCommands'
 
 import debug from 'debug'
-const log = debug('Server:Rooms:GameRoom')
+const log = debug('PX:SRV:Rooms     :GameRoom  ')
 
 export class GameRoom extends Room<State.GameState> {
   static id = Constants.GAME_ROOM_NAME

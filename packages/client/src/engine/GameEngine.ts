@@ -3,7 +3,7 @@ import { World } from '@colyseus/ecs'
 import { Room } from 'colyseus.js'
 
 import debug from 'debug'
-const log = debug('App:GameEngine')
+const log = debug('PX:APP:Core      :GameEngine')
 log.log = console.log.bind(console)
 
 export class GameEngine {

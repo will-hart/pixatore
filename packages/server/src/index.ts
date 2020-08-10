@@ -8,7 +8,7 @@ import { monitor } from '@colyseus/monitor'
 import { GameRoom } from './rooms/GameRoom'
 
 import debug from 'debug'
-const log = debug('Server::index')
+const log = debug('PX:SRV:Core      :index     ')
 
 const port = Number(process.env.PORT || 2567)
 const app = express()

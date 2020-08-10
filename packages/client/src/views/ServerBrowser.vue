@@ -70,7 +70,7 @@ import { useRouter } from 'vue-router'
 import { useClientRoomQueries } from '../composables/useClientRoomQueries'
 
 import debug from 'debug'
-const log = debug('App:Views:ServerBrowser')
+const log = debug('PX:APP:Views     :SrvBrowser')
 log.log = console.log.bind(console)
 
 export default defineComponent({
