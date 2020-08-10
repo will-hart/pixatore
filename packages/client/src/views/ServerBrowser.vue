@@ -100,7 +100,12 @@ export default defineComponent({
       createGame,
     } = useClientRoomQueries()
 
-    const refreshInterval = setInterval(() => getRoomList(unref(client)), 5000)
+    const refreshInterval = setInterval(() => {
+      const unreffedClient = unref(client)
+      if (!unreffedClient) return
+
+      getRoomList(unreffedClient)
+    }, 5000)
 
     onUnmounted(() => {
       log('[UNMOUNT_VIEW] Server Browser')
