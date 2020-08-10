@@ -6,7 +6,8 @@
     "strict": true,
     "strictNullChecks": false,
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "noUnusedLocals": true
   },
   "include": ["src/**/*.ts"],
   "references": [

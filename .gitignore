@@ -24,8 +24,8 @@ pnpm-debug.log*
 #Tauri build output
 /dist_tauri
 packages/shared/tsconfig.tsbuildinfo
-packages/app/dist/
-packages/app/dist_tauri/
+packages/client/dist/
+packages/client/dist_tauri/
 packages/docs/.docusaurus
 packages/ecs/build/
 tsconfig.tsbuildinfo
