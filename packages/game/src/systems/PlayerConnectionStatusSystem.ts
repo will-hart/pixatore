@@ -1,6 +1,10 @@
 import { System, Entity } from '@colyseus/ecs'
 import { Components } from '..'
 
+import debug from 'debug'
+const log = debug('PX:GAM:Systems   :PlyCnxStat')
+log.log = console.log.bind(console)
+
 const handleRemovePlayer = (
   message: Readonly<Components.PlayerConnectionStatusMessage>,
   entities: Entity[],
@@ -8,9 +12,10 @@ const handleRemovePlayer = (
 ): void => {
   const idx = playerData.findIndex((pd) => pd.playerId === message.sessionId)
   if (idx === -1) {
-    throw new Error(
+    log(
       `[PlayerConnectionStatusSystem::handleRemovePlayer] Unable to remove player ${message.sessionId}, they do not exist`,
     )
+    return
   }
 
   entities[idx].remove()
@@ -22,9 +27,10 @@ const handleUpdateConnection = (
 ): void => {
   const player = playerData.find((pd) => pd.playerId === message.sessionId)
   if (!player) {
-    throw new Error(
+    log(
       `[PlayerConnectionStatusSystem::handleUpdateConnection] unable to update player ${message.sessionId} as they don't exist`,
     )
+    return
   }
 
   player.ready = false
@@ -49,7 +55,9 @@ export class PlayerConnectionStatusSystem extends System {
       .filter((c): c is Components.PlayerConnectionStatusMessage => !!c)
       .sort((a, b) => a.messageReceivedMs - b.messageReceivedMs)
 
-    if (!messages) return
+    if (!messages.length) return
+
+    log('Messages %o', messages)
 
     const playerData = this.queries.players.results
       .map((ent) => ent.getMutableComponent?.(Components.PlayerData))

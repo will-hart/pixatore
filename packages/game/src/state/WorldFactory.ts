@@ -10,14 +10,14 @@ export enum WorldTypes {
 
 export const CORE_ENTITY_NAME = '__core'
 
-const registerComponents = (world: World, _type: WorldTypes): void => {
+const registerComponents = (world: World, _worldType: WorldTypes): void => {
   world
-    .registerComponent(Components.LobbyStateChangeMessage)
-    .registerComponent(Components.PlayerConnectionStatusMessage)
-    .registerComponent(Components.PlayerData)
-    .registerComponent(Components.PlayerJoinMessage)
     .registerComponent(Components.Status)
     .registerComponent(Components.Transform)
+    .registerComponent(Components.PlayerData)
+    .registerComponent(Components.LobbyStateChangeMessage)
+    .registerComponent(Components.PlayerConnectionStatusMessage)
+    .registerComponent(Components.PlayerJoinMessage)
 }
 
 const registerSystems = (world: World, worldType: WorldTypes): void => {
@@ -30,7 +30,7 @@ const registerSystems = (world: World, worldType: WorldTypes): void => {
 }
 
 const registerSingletonEntity = (world: World, worldType: WorldTypes): void => {
-  if (worldType !== WorldTypes.Server) return
+  if (worldType !== WorldTypes.Server) return // only create on server, will then sync to client
   world.createEntity(CORE_ENTITY_NAME).addComponent(Components.Status)
 }
 

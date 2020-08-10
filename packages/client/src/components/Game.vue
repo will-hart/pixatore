@@ -17,7 +17,7 @@ export default defineComponent({
     height: Number,
   },
 
-  setup(props) {
+  setup() {
     const gameMounted = ref(false)
 
     onMounted(() => {

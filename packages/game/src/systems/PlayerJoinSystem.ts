@@ -24,7 +24,9 @@ export class PlayerJoinSystem extends System {
       .filter((c): c is Components.PlayerJoinMessage => !!c)
       .sort((a, b) => a!.messageReceivedMs - b!.messageReceivedMs)
 
-    if (!messages) return
+    if (!messages.length) return
+
+    log('Messages %o', messages)
 
     const playerData = this.queries.players.results
       .map((ent) => ent.getMutableComponent?.(Components.PlayerData))
