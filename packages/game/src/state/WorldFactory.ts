@@ -2,6 +2,7 @@ import { World } from '@colyseus/ecs'
 
 import * as Components from '../components'
 import * as Systems from '../systems'
+import { GameState } from './GameState'
 
 export enum WorldTypes {
   Client,
@@ -34,8 +35,9 @@ const registerSingletonEntity = (world: World, worldType: WorldTypes): void => {
   world.createEntity(CORE_ENTITY_NAME).addComponent(Components.Status)
 }
 
-export const buildWorld = (worldType: WorldTypes): World => {
+export const buildWorld = (state: GameState, worldType: WorldTypes): World => {
   const world = new World()
+  world.useEntities(state.entities)
 
   registerComponents(world, worldType)
   registerSystems(world, worldType)

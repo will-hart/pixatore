@@ -1,20 +1,11 @@
-import { State } from '@pixatore/game'
 import { World } from '@colyseus/ecs'
-import { Room } from 'colyseus.js'
 
 import debug from 'debug'
 const log = debug('PX:APP:Core      :GameEngine')
 log.log = console.log.bind(console)
 
 export class GameEngine {
-  public world: World
-
-  constructor(private room: Room<State.GameState>) {
+  constructor(public world: World) {
     log('Creating game engine')
-
-    // mount the ECS world
-    this.world = State.buildWorld(State.WorldTypes.Client)
-    this.world.useEntities(this.room.state.entities)
-    log('Mounted ECS World to State')
   }
 }

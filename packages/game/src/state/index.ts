@@ -1,2 +1,2 @@
-export { GameState } from './GameState'
+export * from './GameState'
 export * from './WorldFactory'

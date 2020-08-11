@@ -20,9 +20,8 @@ export class GameRoom extends Room<State.GameState> {
 
   constructor() {
     super()
-    this.world = State.buildWorld(State.WorldTypes.Server)
     this.setState(new State.GameState())
-    this.world.useEntities(this.state.entities)
+    this.world = State.buildWorld(this.state, State.WorldTypes.Server)
   }
 
   onCreate(options: Types.RoomOptions) {

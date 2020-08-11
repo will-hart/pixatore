@@ -1,18 +1,17 @@
 import { Command } from './Command'
-import { State, Constants, Types, Components } from '@pixatore/game'
+import { Components, Constants, State, Types } from '@pixatore/game'
 import { Client, Room } from 'colyseus'
 import { GameRoom } from '../rooms/GameRoom'
-import { Entity } from '@colyseus/ecs'
 
 import debug from 'debug'
 const log = debug('PX:SRV:Commands  :LobbyCmand')
 
-const getNewEntity = (room: Room<any, any>): Entity => {
+const getNewEntity = (room: Room<any, any>) => {
   const gameRoom = room as GameRoom
 
   // TODO: typing as Entity creates an error here, missing private methods/fields
   // create a new message entity
-  return gameRoom.world.createEntity() as any
+  return gameRoom.world.createEntity()
 }
 
 export class OnCreateCommand extends Command<
@@ -145,6 +144,7 @@ export class OnPlayerReadyCommand extends Command<
   { sessionId: string; isReady: boolean }
 > {
   async execute({ sessionId, isReady }: this['payload']): Promise<void> {
+    log(`[OnPlayerReadyCommand] ${sessionId} requesting ready change`)
     const newEnt = getNewEntity(this.room).addComponent(
       Components.LobbyStateChangeMessage,
     )
