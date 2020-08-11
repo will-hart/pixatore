@@ -19,12 +19,12 @@ const routes: RouteRecordRaw[] = [
     component: () =>
       import(/* webpackChunkName: "main_menu" */ '../views/ServerBrowser.vue'),
   },
-  // {
-  //   path: '/lobby/:id',
-  //   name: 'Lobby',
-  //   component: () =>
-  //     import(/* webpackChunkName: "lobby" */ '../views/LobbyView.vue'),
-  // },
+  {
+    path: '/lobby/:id',
+    name: 'Lobby',
+    component: () =>
+      import(/* webpackChunkName: "lobby" */ '../views/Lobby.vue'),
+  },
   // {
   //   path: '/game',
   //   name: 'Game',

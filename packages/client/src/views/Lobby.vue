@@ -1,0 +1,124 @@
+<template>
+  <div id="lobby-view" class="container middle">
+    <div class="panel">
+      <h1>Lobby</h1>
+
+      <lobby-slot
+        v-for="player in slotList"
+        :key="player.slotId"
+        :slotId="player.slotId"
+        :name="player.name || 'Empty Slot'"
+        :connected="!!player.connected"
+        :ready="!!player.ready"
+        :me="me && player.name === me.id"
+      />
+
+      <button @click="setReady(!me.ready)">Ready</button>
+      <button v-if="allReady && me && me.slot === 1" @click="startGame">
+        Start Game
+      </button>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, unref, shallowRef, onUnmounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+import LobbySlot from '../components/LobbySlot.vue'
+import { useGameEngine } from '../composables/useGameEngine'
+import { Components, Types } from '@pixatore/game'
+import { GameEngine } from '../engine/GameEngine'
+import { onPlayerUpdateEvent, onPlayerRemoveEvent } from '../engine/events'
+
+import debug from 'debug'
+const log = debug('PX:APP:Views     :Lobby     ')
+log.log = console.log.bind(console)
+
+export default defineComponent({
+  name: 'LobbyScreen',
+
+  components: {
+    'lobby-slot': LobbySlot,
+  },
+
+  setup() {
+    const router = useRouter()
+    const { gameEngine: gameEngineRef } = useGameEngine()
+    const gameEngine: GameEngine | null = unref(gameEngineRef)
+
+    if (!gameEngine) {
+      // TODO: handle reconnection attempt
+      router.push('/browser')
+    }
+
+    const playerList = shallowRef<Components.PlayerData[]>([])
+
+    const unsubscribeUpdatePlayer = gameEngine?.eventBus?.subscribe(
+      onPlayerUpdateEvent,
+      (event) => {
+        const component = event.payload.component as Components.PlayerData
+        log(`[LOBBY_VIEW] player ${component.playerId} updated`)
+
+        playerList.value = [
+          ...playerList.value.filter((p) => p.playerId !== component.playerId),
+          component,
+        ].sort((a, b) => a.slot - b.slot)
+      },
+    )
+
+    const unsubscribeRemovePlayer = gameEngine?.eventBus?.subscribe(
+      onPlayerRemoveEvent,
+      (event) => {
+        const component = event.payload.component as Components.PlayerData
+        log(`[LOBBY_VIEW] player ${component.playerId} removed`)
+
+        playerList.value = [
+          ...playerList.value.filter((p) => p.playerId !== component.playerId),
+        ]
+      },
+    )
+
+    const me = computed((): Components.PlayerData | undefined => {
+      if (!gameEngine?.room?.sessionId) return undefined
+      return playerList.value.find(
+        (p) => p.playerId === gameEngine.room.sessionId,
+      )
+    })
+
+    const slotList = computed(() => {
+      return [1, 2, 3, 4].map((slotId) => {
+        const player = playerList.value.find((p) => p.slot === slotId)
+        return {
+          slotId,
+          name: player?.playerId || 'Empty Slot',
+          connected: !!player?.connected,
+          ready: !!player?.ready,
+        }
+      })
+    })
+
+    const setReady = (isReady: boolean) => {
+      gameEngine?.room?.send(Types.MessageTypes.PLAYER_READY, { isReady })
+    }
+
+    const startGame = () => {
+      gameEngine?.room?.send(Types.MessageTypes.START_GAME)
+    }
+
+    // to start must have > 1 player and all are ready and connected
+    const allReady = computed(
+      () =>
+        !playerList.value.some((p) => !p.ready || !p.connected) &&
+        playerList.value.length > 1,
+    )
+
+    onUnmounted(() => {
+      unsubscribeRemovePlayer?.()
+      unsubscribeUpdatePlayer?.()
+    })
+
+    return { allReady, me, setReady, slotList, startGame }
+  },
+})
+</script>

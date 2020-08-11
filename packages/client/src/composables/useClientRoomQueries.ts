@@ -61,7 +61,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
     const world = new World()
     world.useEntities(room.state.entities)
 
-    const gameEngine = new GameEngine(world)
+    const gameEngine = new GameEngine(world, room)
     setGameEngine(gameEngine)
 
     lastRoom.value = room.id

@@ -117,7 +117,7 @@ export default defineComponent({
       log(`[SERVER BROWSER] Client lobby status: ${lobbyStatus.value}`)
 
       if (lobbyStatus.value === 'connected') {
-        router.push(`/lobby/TODO_ROOM_ID`)
+        router.push(`/lobby/game`)
       }
     })
 
