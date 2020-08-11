@@ -74,7 +74,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const joinGame = async (client: Client, roomId: string) => {
     try {
       log(`joining room ${roomId}`)
-      const room = await client.joinById<State.GameState>(roomId)
+      const room = await client.joinById(roomId, {}, State.GameState);
       onConnect(room)
     } catch (e) {
       console.error('[USE_CLIENT_ROOM_QUERIES] Join error', e)
@@ -85,9 +85,10 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const createGame = async (client: Client) => {
     try {
       log('creating new game...')
-      const room = await client.create<State.GameState>(
+      const room = await client.create(
         Constants.GAME_ROOM_NAME,
         {},
+        State.GameState
       )
       onConnect(room)
     } catch (e) {
@@ -103,7 +104,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   ) => {
     try {
       log('reconnecting to room %s with session %s', roomId, sessionId)
-      const room = await client.reconnect<State.GameState>(roomId, sessionId)
+      const room = await client.reconnect(roomId, sessionId, State.GameState);
       onConnect(room)
     } catch (e) {
       log('Error reconnecting %o', e)
