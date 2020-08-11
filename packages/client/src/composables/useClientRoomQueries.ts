@@ -5,6 +5,8 @@ import { Constants, State } from '@pixatore/game'
 import debug from 'debug'
 import { useGameEngine } from './useGameEngine'
 import { GameEngine } from '@/engine/GameEngine'
+import { World } from '@colyseus/ecs'
+
 const log = debug('PX:APP:Composable:clientRmQu')
 log.log = console.log.bind(console)
 
@@ -53,10 +55,13 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
 
   const { setGameEngine } = useGameEngine()
 
-  const onConnect = (room: Room<State.GameState>) => {
+  const afterConnect = (room: Room<State.GameState>) => {
     log(`joined ${room.id} on ${room.name}`)
 
-    const gameEngine = new GameEngine(room)
+    const world = new World()
+    world.useEntities(room.state.entities)
+
+    const gameEngine = new GameEngine(world)
     setGameEngine(gameEngine)
 
     lastRoom.value = room.id
@@ -74,8 +79,8 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const joinGame = async (client: Client, roomId: string) => {
     try {
       log(`joining room ${roomId}`)
-      const room = await client.joinById(roomId, {}, State.GameState);
-      onConnect(room)
+      const room = await client.joinById(roomId, {}, State.GameState)
+      afterConnect(room)
     } catch (e) {
       console.error('[USE_CLIENT_ROOM_QUERIES] Join error', e)
       lobbyStatus.value = 'error'
@@ -88,9 +93,9 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
       const room = await client.create(
         Constants.GAME_ROOM_NAME,
         {},
-        State.GameState
+        State.GameState,
       )
-      onConnect(room)
+      afterConnect(room)
     } catch (e) {
       log('Create room error %o', e)
       lobbyStatus.value = 'error'
@@ -104,8 +109,8 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   ) => {
     try {
       log('reconnecting to room %s with session %s', roomId, sessionId)
-      const room = await client.reconnect(roomId, sessionId, State.GameState);
-      onConnect(room)
+      const room = await client.reconnect(roomId, sessionId, State.GameState)
+      afterConnect(room)
     } catch (e) {
       log('Error reconnecting %o', e)
       lobbyStatus.value = 'error'
