@@ -7,7 +7,7 @@
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "scripts": {
-    "test": "yarn jest",
+    "test": "yarn jest --passWithNoTests",
     "build": "tsc -p tsconfig.json --resolveJsonModule",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
