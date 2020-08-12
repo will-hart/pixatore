@@ -2,7 +2,7 @@ import { World } from '@colyseus/ecs'
 import { State } from '@pixatore/game'
 import { EventBus } from 'ts-bus'
 import { Room } from 'colyseus.js'
-import { LobbyHudSystem } from '../systems/LobbyHudSystem'
+import { Systems } from '@pixatore/game'
 
 import debug from 'debug'
 const log = debug('PX:APP:Core      :GameEngine')
@@ -14,7 +14,9 @@ export class GameEngine {
   constructor(public world: World, public room: Room<State.GameState>) {
     log('Creating game engine...')
 
-    this.world.registerSystem(LobbyHudSystem, { eventBus: this.eventBus })
+    this.world.registerSystem(Systems.LobbyHudSystem, {
+      eventBus: this.eventBus,
+    })
     // const lobby = this.world.getSystem(LobbyHudSystem)
     log('Added lobby HUD system')
   }
@@ -24,7 +26,7 @@ export class GameEngine {
     this.world.execute(delta)
   }
 
-  disconnect(consented = false) {
+  disconnect(consented = false): void {
     log('Disconnecting from game engine, consented = %o', consented)
     this.room.leave(consented)
   }

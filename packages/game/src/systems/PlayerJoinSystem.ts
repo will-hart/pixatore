@@ -1,5 +1,5 @@
 import { System } from '@colyseus/ecs'
-import { Archetypes } from '..'
+import * as Archetypes from '../archetypes'
 import * as Components from '../components'
 
 import debug from 'debug'
@@ -58,9 +58,9 @@ export class PlayerJoinSystem extends System {
 
       log('Player joined slot %d, session %s', slotId, message.sessionId)
       playerData.slot = slotId
-      playerData.ready = false
       playerData.playerId = message.sessionId
-      playerData.connected = true
+      playerData.isReady = false
+      playerData.isConnected = true
     }
 
     // tidy up messages

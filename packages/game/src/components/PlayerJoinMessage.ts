@@ -8,6 +8,6 @@ import { type } from '@colyseus/schema'
 export class PlayerJoinMessage extends Component {
   public messageReceivedMs: number = 0
 
-  // TODO: queries in the ECS are not correctly triggered if @@type isn't applied
+  // TODO: queries in the ECS are not correctly triggered if @type isn't applied
   @type('string') public sessionId: string = ''
 }

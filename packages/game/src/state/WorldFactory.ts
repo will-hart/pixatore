@@ -21,18 +21,13 @@ const registerComponents = (world: World, _worldType: WorldTypes): void => {
     .registerComponent(Components.Status)
     .registerComponent(Components.Transform)
     .registerComponent(Components.PlayerData)
-    .registerComponent(Components.LobbyStateChangeMessage)
-    .registerComponent(Components.PlayerConnectionStatusMessage)
     .registerComponent(Components.PlayerJoinMessage)
 }
 
 const registerSystems = (world: World, worldType: WorldTypes): void => {
   if (worldType === WorldTypes.Server) {
     log('Registering server systems')
-    world
-      .registerSystem(Systems.LobbySystem)
-      .registerSystem(Systems.PlayerJoinSystem)
-      .registerSystem(Systems.PlayerConnectionStatusSystem)
+    world.registerSystem(Systems.PlayerJoinSystem)
   }
 }
 

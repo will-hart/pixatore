@@ -5,6 +5,7 @@
     "module": "commonjs",
     "lib": ["dom", "es6"],
     "target": "ES2019",
+    "allowJs": false,
     "declaration": true,
     "sourceMap": false,
     "strict": true,

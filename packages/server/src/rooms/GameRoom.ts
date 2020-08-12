@@ -1,7 +1,9 @@
 import { World } from '@colyseus/ecs'
+import { Constants, State, Systems, Types } from '@pixatore/game'
 import { Room, Client } from 'colyseus'
+import { EventBus } from 'ts-bus'
+
 import { Dispatcher } from '../commands/Command' // @colyseus/command
-import { Constants, State, Types } from '@pixatore/game'
 import {
   OnJoinCommand,
   OnCreateCommand,
@@ -16,12 +18,18 @@ const log = debug('PX:SRV:Rooms     :GameRoom  ')
 export class GameRoom extends Room<State.GameState> {
   static id = Constants.GAME_ROOM_NAME
   private _dispatcher: Dispatcher = new Dispatcher(this)
-  readonly world?: World
+  public readonly world: World
+  public readonly eventBus: EventBus
 
   constructor() {
     super()
     this.setState(new State.GameState())
     this.world = State.buildWorld(this.state, State.WorldTypes.Server)
+
+    this.eventBus = new EventBus()
+    this.world.registerSystem(Systems.ConnectionStatusSystem, {
+      eventBus: this.eventBus,
+    })
   }
 
   onCreate(options: Types.RoomOptions) {

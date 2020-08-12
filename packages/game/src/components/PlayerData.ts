@@ -5,15 +5,8 @@ import { type } from '@colyseus/schema'
  * A default component that
  */
 export class PlayerData extends Component {
-  @type('string')
-  public playerId: string = ''
-
-  @type('boolean')
-  public connected: boolean = false
-
-  @type('boolean')
-  public ready: boolean = false
-
-  @type('number')
-  public slot: number = -1
+  @type('string') public playerId: string = ''
+  @type('number') public slot: number = -1
+  @type('boolean') public isReady: boolean = false
+  @type('boolean') public isConnected: boolean = false
 }

@@ -1,5 +1,3 @@
-export { LobbyStateChangeMessage } from './LobbyStateChangeMessage'
-export { PlayerConnectionStatusMessage } from './PlayerConnectionStatusMessage'
 export { PlayerData } from './PlayerData'
 export { PlayerJoinMessage } from './PlayerJoinMessage'
 export { Status } from './Status'

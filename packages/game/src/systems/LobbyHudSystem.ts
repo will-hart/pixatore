@@ -1,11 +1,13 @@
 import { System } from '@colyseus/ecs'
-import { Components } from '@pixatore/game'
 import { EventBus } from 'ts-bus'
-import { onPlayerUpdateEvent, onPlayerRemoveEvent } from '../engine/events'
+
+import * as Components from '../components'
+
+import { onPlayerUpdateEvent, onPlayerRemoveEvent } from '../clientEvents'
 
 import debug from 'debug'
-const log = debug('PX:APP:ClientSytm:LobbyHud  ')
-log.log = console.log.bind(console)
+const log = debug('PX:GAM:ClientSytm:LobbyHud  ')
+if (console) log.log = console.log.bind(console)
 
 export class LobbyHudSystem extends System {
   public eventBus?: EventBus
@@ -17,7 +19,7 @@ export class LobbyHudSystem extends System {
     },
   }
 
-  init(attrs?: any): void {
+  init(attrs: { eventBus: EventBus }): void {
     this.eventBus = attrs?.eventBus
   }
 

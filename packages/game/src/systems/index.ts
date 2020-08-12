@@ -1,3 +1,3 @@
-export { LobbySystem } from './LobbySystem'
-export { PlayerConnectionStatusSystem } from './PlayerConnectionStatusSystem'
+export { ConnectionStatusSystem } from './ConnectionStatusSystem'
+export { LobbyHudSystem } from './LobbyHudSystem'
 export { PlayerJoinSystem } from './PlayerJoinSystem'

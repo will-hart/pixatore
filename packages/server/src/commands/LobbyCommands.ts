@@ -1,6 +1,13 @@
-import { Command } from './Command'
-import { Components, Constants, State, Types } from '@pixatore/game'
+import {
+  Components,
+  Constants,
+  ServerEvents,
+  State,
+  Types,
+} from '@pixatore/game'
 import { Client, Room } from 'colyseus'
+
+import { Command } from './Command'
 import { GameRoom } from '../rooms/GameRoom'
 
 import debug from 'debug'
@@ -12,6 +19,11 @@ const getNewEntity = (room: Room<any, any>) => {
   // TODO: typing as Entity creates an error here, missing private methods/fields
   // create a new message entity
   return gameRoom.world.createEntity()
+}
+
+const getEventBus = (room: Room<any, any>) => {
+  const gameRoom = room as GameRoom
+  return gameRoom.eventBus
 }
 
 export class OnCreateCommand extends Command<
@@ -35,17 +47,12 @@ export class OnGameStartCommand extends Command<
 > {
   async execute({ sessionId }: this['payload']): Promise<void> {
     log('[OnGameStartCommand] Requesting game start')
-    const newEnt = getNewEntity(this.room).addComponent(
-      Components.LobbyStateChangeMessage,
+    getEventBus(this.room).publish(
+      ServerEvents.onRequestGameStart({
+        sessionId,
+        status: true,
+      }),
     )
-
-    const lobbyState = newEnt.getMutableComponent(
-      Components.LobbyStateChangeMessage,
-    )
-
-    lobbyState.messageReceivedMs = new Date().getTime()
-    lobbyState.startingGame = true
-    lobbyState.sessionId = sessionId
   }
 }
 
@@ -77,45 +84,45 @@ export class OnLeaveCommand extends Command<
     log(`[OnLeaveCommand] Player ${client.sessionId} leaving room`)
     // note this is a bit different to usual messages as awaiting reconnection
     // must be done in here with the connection
+    const bus = getEventBus(this.room)
 
-    const ent = getNewEntity(this.room)
-      .addComponent(Components.PlayerConnectionStatusMessage)
-      .addComponent(Components.LobbyStateChangeMessage)
+    if (consented) {
+      // just remove the player straight away
+      bus.publish(
+        ServerEvents.onPlayerRemove({
+          sessionId: client.sessionId,
+          status: true,
+        }),
+      )
+      return
+    }
 
-    // add a "connection status" message for the player
-    const conMessage = ent.getMutableComponent(
-      Components.PlayerConnectionStatusMessage,
+    // otherwise set the player to disconnected and not ready
+    bus.publish(
+      ServerEvents.onChangeConnectionState({
+        sessionId: client.sessionId,
+        status: false,
+      }),
     )
-    conMessage.messageReceivedMs = new Date().getTime()
-    conMessage.sessionId = client.sessionId
-    conMessage.isConnected = false
-    conMessage.isRemoved = consented
 
-    // add a ready message for the player
-    const lobbyMsg = ent.getMutableComponent(Components.LobbyStateChangeMessage)
-    lobbyMsg.messageReceivedMs = new Date().getTime()
-    lobbyMsg.sessionId = client.sessionId
-    lobbyMsg.readyState = false
+    bus.publish(
+      ServerEvents.onChangeReadyState({
+        sessionId: client.sessionId,
+        status: false,
+      }),
+    )
 
-    if (consented) return
-
+    // wait for reconnection
     try {
       log(`[OnLeaveCommand] Player ${client.sessionId} attempting reconnect`)
       await this.room.allowReconnection(client, 30)
 
-      // reconnected, send join message
-      const entRejoin = getNewEntity(this.room).addComponent(
-        Components.PlayerConnectionStatusMessage,
+      bus.publish(
+        ServerEvents.onChangeConnectionState({
+          sessionId: client.sessionId,
+          status: true,
+        }),
       )
-
-      // add a "connection status" message for the player
-      const rejoinMsg = entRejoin.getMutableComponent(
-        Components.PlayerConnectionStatusMessage,
-      )
-      rejoinMsg.messageReceivedMs = new Date().getTime()
-      rejoinMsg.sessionId = client.sessionId
-      rejoinMsg.isConnected = true
-      rejoinMsg.isRemoved = false
 
       log(`[OnLeaveCommand] Player ${client.sessionId} reconnected`)
     } catch (err) {
@@ -123,18 +130,12 @@ export class OnLeaveCommand extends Command<
         `[OnLeaveCommand] Player ${client.sessionId}] failed to reconnect, removing from state`,
       )
 
-      // add a "connection status" message for the player
-      const entRemove = getNewEntity(this.room).addComponent(
-        Components.PlayerConnectionStatusMessage,
+      bus.publish(
+        ServerEvents.onPlayerRemove({
+          sessionId: client.sessionId,
+          status: true,
+        }),
       )
-
-      const removeMsg = entRemove.getMutableComponent(
-        Components.PlayerConnectionStatusMessage,
-      )
-      removeMsg.messageReceivedMs = new Date().getTime()
-      removeMsg.sessionId = client.sessionId
-      removeMsg.isConnected = false
-      removeMsg.isRemoved = true
     }
   }
 }
@@ -145,18 +146,12 @@ export class OnPlayerReadyCommand extends Command<
 > {
   async execute({ sessionId, isReady }: this['payload']): Promise<void> {
     log(`[OnPlayerReadyCommand] ${sessionId} requesting ready change`)
-    const newEnt = getNewEntity(this.room).addComponent(
-      Components.LobbyStateChangeMessage,
+
+    getEventBus(this.room).publish(
+      ServerEvents.onChangeReadyState({
+        sessionId,
+        status: isReady,
+      }),
     )
-
-    const lobbyState = newEnt.getMutableComponent(
-      Components.LobbyStateChangeMessage,
-    )
-
-    log(`[OnPlayerReadyCommand] ${sessionId} set ready to ${isReady}`)
-
-    lobbyState.messageReceivedMs = new Date().getTime()
-    lobbyState.readyState = isReady
-    lobbyState.sessionId = sessionId
   }
 }

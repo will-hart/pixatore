@@ -3,6 +3,7 @@
     "outDir": "lib",
     "target": "ES2019",
     "module": "commonjs",
+    "allowJs": false,
     "strict": true,
     "strictNullChecks": false,
     "esModuleInterop": true,
@@ -10,9 +11,5 @@
     "noUnusedLocals": true
   },
   "include": ["src/**/*.ts"],
-  "references": [
-    {
-      "path": "../game"
-    }
-  ]
+  "exclude": ["node_modules", "lib"]
 }

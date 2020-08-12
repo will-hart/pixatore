@@ -34,9 +34,8 @@ import { useRouter } from 'vue-router'
 
 import LobbySlot from '../components/LobbySlot.vue'
 import { useGameEngine } from '../composables/useGameEngine'
-import { Components, Types } from '@pixatore/game'
+import { ClientEvents, Components, Types } from '@pixatore/game'
 import { GameEngine } from '../engine/GameEngine'
-import { onPlayerUpdateEvent, onPlayerRemoveEvent } from '../engine/events'
 
 import debug from 'debug'
 const log = debug('PX:APP:Views     :Lobby     ')
@@ -75,7 +74,7 @@ export default defineComponent({
     const playerList = shallowRef<Components.PlayerData[]>([])
 
     const unsubscribeUpdatePlayer = gameEngine?.eventBus.subscribe(
-      onPlayerUpdateEvent,
+      ClientEvents.onPlayerUpdateEvent,
       (event) => {
         const component = event.payload.component as Components.PlayerData
         log(`[LOBBY_VIEW] player ${component.playerId} updated`)
@@ -88,7 +87,7 @@ export default defineComponent({
     )
 
     const unsubscribeRemovePlayer = gameEngine?.eventBus.subscribe(
-      onPlayerRemoveEvent,
+      ClientEvents.onPlayerRemoveEvent,
       (event) => {
         const component = event.payload.component as Components.PlayerData
         log(`[LOBBY_VIEW] player ${component.playerId} removed`)
@@ -112,8 +111,8 @@ export default defineComponent({
         return {
           slotId,
           name: player?.playerId || 'Empty Slot',
-          connected: !!player?.connected,
-          ready: !!player?.ready,
+          connected: !!player?.isConnected,
+          ready: !!player?.isReady,
         }
       })
     })
@@ -129,7 +128,7 @@ export default defineComponent({
     // to start must have > 1 player and all are ready and connected
     const allReady = computed(
       () =>
-        !playerList.value.some((p) => !p.ready || !p.connected) &&
+        !playerList.value.some((p) => !p.isReady || !p.isConnected) &&
         playerList.value.length > 1,
     )
 
