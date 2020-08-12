@@ -22,7 +22,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, unref, shallowRef, onUnmounted, computed } from 'vue'
+import {
+  defineComponent,
+  unref,
+  shallowRef,
+  onUnmounted,
+  computed,
+  ref,
+} from 'vue'
 import { useRouter } from 'vue-router'
 
 import LobbySlot from '../components/LobbySlot.vue'
@@ -51,6 +58,19 @@ export default defineComponent({
       // TODO: handle reconnection attempt
       router.push('/browser')
     }
+
+    // TODO: move into pixi app tick
+    // currently there isn't a PIXI APP to hook into, so just requestAnimationFrame the world updates
+    let rafId = ref(0)
+    let timeNow = ref(Date.now())
+    const onFrame = () => {
+      const newTimeNow = Date.now()
+      gameEngine?.tick(newTimeNow - timeNow.value)
+      timeNow.value = newTimeNow
+      rafId.value = requestAnimationFrame(onFrame)
+    }
+    requestAnimationFrame(onFrame)
+    const cancelRaf = () => cancelAnimationFrame(rafId.value)
 
     const playerList = shallowRef<Components.PlayerData[]>([])
 
@@ -114,6 +134,7 @@ export default defineComponent({
     )
 
     onUnmounted(() => {
+      cancelRaf()
       unsubscribeRemovePlayer?.()
       unsubscribeUpdatePlayer?.()
     })

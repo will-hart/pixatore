@@ -1,6 +1,6 @@
 import { System } from '@colyseus/ecs'
 import { Archetypes } from '..'
-import { Components } from '..'
+import * as Components from '../components'
 
 import debug from 'debug'
 const log = debug('PX:GAM:Systems   :JoinSystem')
@@ -65,7 +65,7 @@ export class PlayerJoinSystem extends System {
 
     // tidy up messages
     this.queries.messages.results.forEach((ent) =>
-      ent.removeComponent(Components.PlayerJoinMessage, true),
+      ent.removeComponent(Components.PlayerJoinMessage),
     )
   }
 }

@@ -5,7 +5,7 @@ import { Constants, State } from '@pixatore/game'
 import debug from 'debug'
 import { useGameEngine } from './useGameEngine'
 import { GameEngine } from '@/engine/GameEngine'
-import { World } from '@colyseus/ecs'
+import { WorldTypes } from '@pixatore/game/build/state'
 
 const log = debug('PX:APP:Composable:clientRmQu')
 log.log = console.log.bind(console)
@@ -58,9 +58,7 @@ export function useClientRoomQueries(): IUseClientRoomQueriesReturnValue {
   const afterConnect = (room: Room<State.GameState>) => {
     log(`joined ${room.id} on ${room.name}`)
 
-    const world = new World()
-    world.useEntities(room.state.entities)
-
+    const world = State.buildWorld(room.state, WorldTypes.Client)
     const gameEngine = new GameEngine(world, room)
     setGameEngine(gameEngine)
 

@@ -18,4 +18,9 @@ export class GameEngine {
     // const lobby = this.world.getSystem(LobbyHudSystem)
     log('Added lobby HUD system')
   }
+
+  // TODO, link this into the PIXI app ticker
+  public tick(delta: number): void {
+    this.world.execute(delta)
+  }
 }
