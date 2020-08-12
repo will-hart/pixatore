@@ -18,6 +18,7 @@ export function provideGameEngine(): void {
 
 export function useGameEngine(): {
   gameEngine: Ref<GameEngine | null>
+  clearGameEngine: () => void
   setGameEngine: (gameEngine: GameEngine) => void
 } {
   const gameEngine = inject<Ref<GameEngine | null>>(key)
@@ -28,6 +29,9 @@ export function useGameEngine(): {
 
   return {
     gameEngine,
+    clearGameEngine: () => {
+      gameEngine.value = null
+    },
     setGameEngine: (engine: GameEngine) => {
       gameEngine.value = engine
     },

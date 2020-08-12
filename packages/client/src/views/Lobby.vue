@@ -56,7 +56,7 @@ export default defineComponent({
 
     if (!gameEngine) {
       // TODO: handle reconnection attempt
-      router.push('/browser')
+      router.push('/serverbrowser')
     }
 
     // TODO: move into pixi app tick
@@ -74,7 +74,7 @@ export default defineComponent({
 
     const playerList = shallowRef<Components.PlayerData[]>([])
 
-    const unsubscribeUpdatePlayer = gameEngine?.eventBus?.subscribe(
+    const unsubscribeUpdatePlayer = gameEngine?.eventBus.subscribe(
       onPlayerUpdateEvent,
       (event) => {
         const component = event.payload.component as Components.PlayerData
@@ -87,7 +87,7 @@ export default defineComponent({
       },
     )
 
-    const unsubscribeRemovePlayer = gameEngine?.eventBus?.subscribe(
+    const unsubscribeRemovePlayer = gameEngine?.eventBus.subscribe(
       onPlayerRemoveEvent,
       (event) => {
         const component = event.payload.component as Components.PlayerData

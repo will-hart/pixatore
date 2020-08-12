@@ -67,6 +67,7 @@ import LoadingSpinner from '../components/LoadingSpinner.vue'
 
 import { useClient } from '../composables/useClient'
 import { useRouter } from 'vue-router'
+import { useGameEngine } from '../composables/useGameEngine'
 import { useClientRoomQueries } from '../composables/useClientRoomQueries'
 
 import debug from 'debug'
@@ -82,11 +83,15 @@ export default defineComponent({
 
   setup() {
     const { client, setClient } = useClient()
-    onMounted(() => {
-      log('[MOUNT_VIEW] Server Browser')
-      // TODO be a bit smarter with this URL
-      unref(setClient)('ws://localhost:2567')
-    })
+    const { gameEngine, clearGameEngine } = useGameEngine()
+
+    // if we are in a game, leave
+    // TODO - manage reconnect
+    if (gameEngine.value) {
+      log('Disconnecting from existing gameEngine')
+      gameEngine.value.disconnect()
+      clearGameEngine()
+    }
 
     const {
       roomList,
@@ -107,6 +112,12 @@ export default defineComponent({
       getRoomList(unreffedClient)
     }, 5000)
 
+    onMounted(() => {
+      log('[MOUNT_VIEW] Server Browser')
+      // TODO be a bit smarter with this URL
+      unref(setClient)('ws://localhost:2567')
+    })
+
     onUnmounted(() => {
       log('[UNMOUNT_VIEW] Server Browser')
       clearInterval(refreshInterval)
@@ -117,7 +128,7 @@ export default defineComponent({
       log(`[SERVER BROWSER] Client lobby status: ${lobbyStatus.value}`)
 
       if (lobbyStatus.value === 'connected') {
-        router.push(`/lobby/game`)
+        router.push(`/lobby/${lastRoom.value}`)
       }
     })
 

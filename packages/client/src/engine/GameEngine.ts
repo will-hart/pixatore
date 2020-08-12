@@ -14,7 +14,7 @@ export class GameEngine {
   constructor(public world: World, public room: Room<State.GameState>) {
     log('Creating game engine...')
 
-    this.world.registerSystem(LobbyHudSystem, { eventBus: EventBus })
+    this.world.registerSystem(LobbyHudSystem, { eventBus: this.eventBus })
     // const lobby = this.world.getSystem(LobbyHudSystem)
     log('Added lobby HUD system')
   }
@@ -22,5 +22,10 @@ export class GameEngine {
   // TODO, link this into the PIXI app ticker
   public tick(delta: number): void {
     this.world.execute(delta)
+  }
+
+  disconnect(consented = false) {
+    log('Disconnecting from game engine, consented = %o', consented)
+    this.room.leave(consented)
   }
 }
