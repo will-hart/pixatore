@@ -6,6 +6,7 @@ import * as Components from '../components'
 const { ServerEventTypes } = ServerEvents
 
 import debug from 'debug'
+import { GameStatus } from '../types'
 const log = debug('PX:GAM:Systems   :CnxStatusS')
 if (console) log.log = console.log.bind(console)
 
@@ -17,6 +18,9 @@ export class ConnectionStatusSystem extends System {
   static queries = {
     players: {
       components: [Components.PlayerData],
+    },
+    status: {
+      components: [Components.Status],
     },
   }
 
@@ -94,12 +98,6 @@ export class ConnectionStatusSystem extends System {
       })
     }
 
-    if (this.gameStartRequests.length > 0) {
-      // const gameStarts = [...this.gameStartRequests]
-      this.gameStartRequests = []
-      log('Requested game start - not implemented')
-    }
-
     if (this.playerRemovals.length > 0) {
       const playerRemovals = [...this.playerRemovals]
       this.playerRemovals = []
@@ -108,6 +106,35 @@ export class ConnectionStatusSystem extends System {
         log(`Player ${event.sessionId} removed`)
         playerMap[event.sessionId].entity.remove()
       })
+    }
+
+    if (this.gameStartRequests.length > 0) {
+      const gameStarts = [...this.gameStartRequests]
+      this.gameStartRequests = []
+
+      if (
+        !gameStarts.some((g) => playerMap[g.sessionId].component.slot === 1)
+      ) {
+        log('Unable to start game - only the host may start the game')
+        return
+      }
+
+      if (Object.values(playerMap).some((p) => !p.component.isReady)) {
+        log('Unable to start game - not all players are ready')
+        return
+      }
+
+      const statusEnt = this.queries.status.results?.[0]
+      const status = statusEnt?.getMutableComponent?.(Components.Status)
+      if (!status) {
+        log('Unable to start game - no status entity found')
+        return
+      }
+
+      status.value = GameStatus.playing
+
+      log('Starting game - unregistering ConnectionStatusSystem')
+      this.world.unregisterSystem(ConnectionStatusSystem)
     }
   }
 

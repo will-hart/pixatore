@@ -4,5 +4,5 @@ import { GameStatus } from '../types'
 
 export class Status extends Component {
   @type('string')
-  public current: GameStatus = GameStatus.lobby
+  public value: GameStatus = GameStatus.lobby
 }
