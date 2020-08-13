@@ -15,7 +15,7 @@ export class LobbyHudSystem extends System {
   static queries = {
     updatedPlayers: {
       components: [Components.PlayerData],
-      listen: { added: true, removed: true },
+      listen: { changed: true, added: true, removed: true },
     },
   }
 
@@ -24,8 +24,13 @@ export class LobbyHudSystem extends System {
   }
 
   execute(): void {
-    const changedEnts = this.queries.updatedPlayers.added
-    for (const ent of changedEnts || []) {
+    const changedEnts = Array.from(
+      new Set([
+        ...(this.queries.updatedPlayers.added || []),
+        ...(this.queries.updatedPlayers.changed || []),
+      ]),
+    )
+    for (const ent of changedEnts) {
       const playerData = ent.getComponent?.(Components.PlayerData)
       if (!playerData) continue
 

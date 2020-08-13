@@ -8,12 +8,12 @@
         :key="player.slotId"
         :slotId="player.slotId"
         :name="player.name || 'Empty Slot'"
-        :connected="!!player.connected"
-        :ready="!!player.ready"
+        :connected="!!player.isConnected"
+        :ready="!!player.isReady"
         :me="me && player.name === me.id"
       />
 
-      <button @click="setReady(!me.ready)">Ready</button>
+      <button @click="setReady(!me.isReady)">Ready</button>
       <button v-if="allReady && me && me.slot === 1" @click="startGame">
         Start Game
       </button>
@@ -112,7 +112,7 @@ export default defineComponent({
           slotId,
           name: player?.playerId || 'Empty Slot',
           connected: !!player?.isConnected,
-          ready: !!player?.isReady,
+          isReady: !!player?.isReady,
         }
       })
     })
