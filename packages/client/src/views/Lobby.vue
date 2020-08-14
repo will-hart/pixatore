@@ -135,7 +135,10 @@ export default defineComponent({
     const cancelStatusChange = gameEngine?.eventBus.subscribe(
       clientEvents.ClientEventTypes.GAME_STATUS_UPDATED,
       (e) => {
-        console.log(e)
+        const status = e.payload.status
+        log(`Game status updated to ${status}`)
+
+        router.push('/play')
       },
     )
 
