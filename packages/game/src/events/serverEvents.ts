@@ -1,4 +1,4 @@
-import { createEventDefinition } from 'ts-bus'
+import { buildEvent } from './eventBuilder'
 
 export enum ServerEventTypes {
   CHANGE_READY_STATE = 'RDY',
@@ -15,27 +15,27 @@ export interface IPlayerStatusEvent {
 /**
  * Called when a player changes ready state
  */
-export const onChangeReadyState = createEventDefinition<IPlayerStatusEvent>()(
+export const onChangeReadyState = buildEvent<IPlayerStatusEvent>(
   ServerEventTypes.CHANGE_READY_STATE,
 )
 
 /**
  * Called when a player disconnects/reconnect
  */
-export const onChangeConnectionState = createEventDefinition<
-  IPlayerStatusEvent
->()(ServerEventTypes.CHANGE_CONNECTION_STATE)
+export const onChangeConnectionState = buildEvent<IPlayerStatusEvent>(
+  ServerEventTypes.CHANGE_CONNECTION_STATE,
+)
 
 /**
  * Called when a game start is requested
  */
-export const onRequestGameStart = createEventDefinition<IPlayerStatusEvent>()(
+export const onRequestGameStart = buildEvent<IPlayerStatusEvent>(
   ServerEventTypes.REQUEST_GAME_START,
 )
 
 /**
  * Called when a player is removed
  */
-export const onPlayerRemove = createEventDefinition<IPlayerStatusEvent>()(
+export const onPlayerRemove = buildEvent<IPlayerStatusEvent>(
   ServerEventTypes.PLAYER_REMOVED,
 )

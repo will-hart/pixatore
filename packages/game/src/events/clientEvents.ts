@@ -1,8 +1,8 @@
 import { Component } from '@colyseus/ecs'
 import { Schema } from '@colyseus/schema'
-import { createEventDefinition } from 'ts-bus'
 
-import * as Components from './components'
+import * as Components from '../components'
+import { buildEvent } from './eventBuilder'
 
 export interface IComponentEvent<T extends Component> {
   component: Omit<T, keyof Schema>
@@ -13,10 +13,10 @@ export enum ClientEventTypes {
   PLAYER_DATA_REMOVED = 'PD-',
 }
 
-export const onPlayerUpdateEvent = createEventDefinition<
+export const onPlayerUpdateEvent = buildEvent<
   IComponentEvent<Components.PlayerData>
->()(ClientEventTypes.PLAYER_DATA_UPDATED)
+>(ClientEventTypes.PLAYER_DATA_UPDATED)
 
-export const onPlayerRemoveEvent = createEventDefinition<
+export const onPlayerRemoveEvent = buildEvent<
   IComponentEvent<Components.PlayerData>
->()(ClientEventTypes.PLAYER_DATA_REMOVED)
+>(ClientEventTypes.PLAYER_DATA_REMOVED)

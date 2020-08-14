@@ -1,7 +1,7 @@
 import { System, Entity } from '@colyseus/ecs'
 import { EventBus } from 'ts-bus'
 
-import * as ServerEvents from '../serverEvents'
+import { ServerEvents } from '../events'
 import * as Components from '../components'
 const { ServerEventTypes } = ServerEvents
 

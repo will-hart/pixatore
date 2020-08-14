@@ -3,7 +3,7 @@ import { EventBus } from 'ts-bus'
 
 import * as Components from '../components'
 
-import { onPlayerUpdateEvent, onPlayerRemoveEvent } from '../clientEvents'
+import { clientEvents } from '../events'
 
 import debug from 'debug'
 const log = debug('PX:GAM:ClientSytm:LobbyHud  ')
@@ -36,7 +36,7 @@ export class LobbyHudSystem extends System {
 
       log('Adding player %o', playerData)
       this.eventBus?.publish(
-        onPlayerUpdateEvent({
+        clientEvents.onPlayerUpdateEvent({
           component: playerData,
         }),
       )
@@ -49,7 +49,7 @@ export class LobbyHudSystem extends System {
 
       log('Removing player %o', playerData)
       this.eventBus?.publish(
-        onPlayerRemoveEvent({
+        clientEvents.onPlayerRemoveEvent({
           component: playerData,
         }),
       )

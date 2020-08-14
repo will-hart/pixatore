@@ -34,7 +34,7 @@ import { useRouter } from 'vue-router'
 
 import LobbySlot from '../components/LobbySlot.vue'
 import { useGameEngine } from '../composables/useGameEngine'
-import { ClientEvents, Components, Types } from '@pixatore/game'
+import { clientEvents, Components, Types } from '@pixatore/game'
 import { GameEngine } from '../engine/GameEngine'
 
 import debug from 'debug'
@@ -74,7 +74,7 @@ export default defineComponent({
     const playerList = shallowRef<Components.PlayerData[]>([])
 
     const unsubscribeUpdatePlayer = gameEngine?.eventBus.subscribe(
-      ClientEvents.onPlayerUpdateEvent,
+      clientEvents.onPlayerUpdateEvent,
       (event) => {
         const component = event.payload.component as Components.PlayerData
         log(`[LOBBY_VIEW] player ${component.playerId} updated`)
@@ -87,7 +87,7 @@ export default defineComponent({
     )
 
     const unsubscribeRemovePlayer = gameEngine?.eventBus.subscribe(
-      ClientEvents.onPlayerRemoveEvent,
+      clientEvents.onPlayerRemoveEvent,
       (event) => {
         const component = event.payload.component as Components.PlayerData
         log(`[LOBBY_VIEW] player ${component.playerId} removed`)
