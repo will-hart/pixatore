@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "lib",
-    "target": "esnext",
+    "target": "ES2019",
     "module": "commonjs",
+    "allowJs": false,
     "strict": true,
     "strictNullChecks": false,
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "noUnusedLocals": true
   },
   "include": ["src/**/*.ts"],
-  "references": [
-    {
-      "path": "../shared"
-    }
-  ]
+  "exclude": ["node_modules", "lib"]
 }

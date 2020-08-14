@@ -8,26 +8,33 @@
     "packages/*"
   ],
   "scripts": {
-    "test:app": "yarn workspace @pixatore/app test --passWithNoTests",
-    "test:shared": "yarn workspace @pixatore/shared test",
-    "test": "run-s test:shared test:app",
-    "app:serve": "yarn workspace @pixatore/app serve",
-    "app:build": "yarn workspace @pixatore/app build",
-    "app:test:unit": "yarn workspace @pixatore/app test:unit",
-    "app:lint": "yarn workspace @pixatore/app lint",
-    "app:tauri:build": "yarn workspace @pixatore/app tauri:build",
-    "app:dev": "yarn workspace @pixatore/app dev",
+    "test": "yarn workspaces run test",
+    "test:client": "yarn workspace @pixatore/client test --watchAll",
+    "test:game": "yarn workspace @pixatore/game test --watchAll",
+    "lint": "yarn workspaces run lint",
+    "client:serve": "yarn workspace @pixatore/client serve",
+    "client:build": "yarn workspace @pixatore/client build",
+    "client:tauri:build": "yarn workspace @pixatore/client tauri:build",
+    "client:dev": "yarn workspace @pixatore/client dev",
     "server:build": "yarn workspace @pixatore/server build",
     "server:dev": "yarn  workspace @pixatore/server start",
-    "server:loadtest": "yarn  workspace @pixatore/server loadtest",
-    "shared:build": "yarn workspace @pixatore/shared build",
-    "shared:build:watch": "yarn workspace @pixatore/shared build:watch",
-    "build": "run-p -n app:build server:build",
-    "prebuild": "yarn shared:build",
-    "dev": "yarn run-p -nr shared:build:watch server:dev app:dev",
-    "predev": "yarn shared:build"
+    "game:build": "yarn workspace @pixatore/game build",
+    "game:build:watch": "yarn workspace @pixatore/game build:watch",
+    "build": "yarn run-s build:core build:artifacts",
+    "build:core": "yarn run-s game:build",
+    "build:artifacts": "run-p -n client:build server:build",
+    "prebuild": "yarn lint",
+    "dev:noapp": "cross-env DEBUG=PX:* yarn run-p -nr game:build:watch server:dev client:serve",
+    "predev:noapp": "yarn run-p game:build",
+    "dev": "cross-env DEBUG=PX:* yarn run-p -nr game:build:watch server:dev client:dev",
+    "predev": "yarn run-p game:build",
+    "postinstall": "yarn build:core"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "npm-run-all": "4.1.5"
+  },
+  "engines": {
+    "node": "> 12.9.0"
   }
 }

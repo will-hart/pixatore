@@ -6,6 +6,9 @@
 
 import { Room } from 'colyseus'
 
+import debug from 'debug'
+const log = debug('PX:SRV:Core      :Dispatcher')
+
 export abstract class Command<State = any, Payload = unknown> {
   payload: Payload
 
@@ -50,7 +53,7 @@ export class Dispatcher {
     payload?: T['payload'],
   ): Promise<void> {
     if (this.stopped) {
-      console.log('dispatcher stopped')
+      log('dispatcher stopped')
       return
     }
 
