@@ -24,9 +24,13 @@ export class GameRoom extends Room<State.GameState> {
   constructor() {
     super()
     this.setState(new State.GameState())
-    this.world = State.buildWorld(this.state, State.WorldTypes.Server)
-
     this.eventBus = new EventBus()
+    this.world = State.buildWorld(
+      this.state,
+      State.WorldTypes.Server,
+      this.eventBus,
+    )
+
     this.world.registerSystem(Systems.ConnectionStatusSystem, {
       eventBus: this.eventBus,
     })

@@ -7,7 +7,7 @@ const { ServerEventTypes } = ServerEvents
 
 import debug from 'debug'
 import { GameStatus } from '../types'
-const log = debug('PX:GAM:Systems   :CnxStatusS')
+const log = debug('PX:GAM:Systems   :ConnStatus')
 if (console) log.log = console.log.bind(console)
 
 export type PlayerMap = {
@@ -37,11 +37,13 @@ export class ConnectionStatusSystem extends System {
   init(attrs: { eventBus: EventBus }): void {
     this.eventBus = attrs.eventBus
 
-    this.eventBus.subscribe(
-      ServerEventTypes.CHANGE_CONNECTION_STATE,
-      (event) => {
-        this.disconnections.push(event.payload)
-      },
+    this.unsubscribes.push(
+      this.eventBus.subscribe(
+        ServerEventTypes.CHANGE_CONNECTION_STATE,
+        (event) => {
+          this.disconnections.push(event.payload)
+        },
+      ),
     )
 
     this.unsubscribes.push(

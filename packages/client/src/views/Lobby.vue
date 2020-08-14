@@ -132,8 +132,16 @@ export default defineComponent({
         playerList.value.length > 1,
     )
 
+    const cancelStatusChange = gameEngine?.eventBus.subscribe(
+      clientEvents.ClientEventTypes.GAME_STATUS_UPDATED,
+      (e) => {
+        console.log(e)
+      },
+    )
+
     onUnmounted(() => {
       cancelRaf()
+      cancelStatusChange?.()
       unsubscribeRemovePlayer?.()
       unsubscribeUpdatePlayer?.()
     })

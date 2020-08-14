@@ -2,23 +2,28 @@ import { World } from '@colyseus/ecs'
 import { State } from '@pixatore/game'
 import { EventBus } from 'ts-bus'
 import { Room } from 'colyseus.js'
-import { Systems } from '@pixatore/game'
 
 import debug from 'debug'
 const log = debug('PX:APP:Core      :GameEngine')
 log.log = console.log.bind(console)
 
 export class GameEngine {
-  public readonly eventBus: EventBus = new EventBus()
+  public world: World
+  public eventBus: EventBus
 
-  constructor(public world: World, public room: Room<State.GameState>) {
+  constructor(public room: Room<State.GameState>) {
     log('Creating game engine...')
+    log(' -> initialising event bus')
+    this.eventBus = new EventBus()
 
-    this.world.registerSystem(Systems.LobbyHudSystem, {
-      eventBus: this.eventBus,
-    })
-    // const lobby = this.world.getSystem(LobbyHudSystem)
-    log('Added lobby HUD system')
+    log(' -> Initialising ECS')
+    this.world = State.buildWorld(
+      room.state,
+      State.WorldTypes.Client,
+      this.eventBus,
+    )
+
+    log(' --> Game engine initialisation complete')
   }
 
   // TODO, link this into the PIXI app ticker
