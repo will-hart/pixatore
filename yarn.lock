@@ -909,12 +909,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@colyseus/ecs@^0.4.0-alpha.3":
-  version "0.4.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@colyseus/ecs/-/ecs-0.4.0-alpha.3.tgz#ec9e309df0411b2a697fda3698df5bd82fb613b1"
-  integrity sha512-PrC1dlVbWY27E+pZ7vS3z+pmsSFD7QOlUnjjsO3UQ6Bkuf6J6eYvwQfWJ4usWBpG92ut624LjMZroR4LC4oNFA==
+"@colyseus/ecs@^0.4.0-alpha.4":
+  version "0.4.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@colyseus/ecs/-/ecs-0.4.0-alpha.4.tgz#af915229b31c61c44102a7fa9a4790c63c25d4eb"
+  integrity sha512-1d8BZO0kl4T2C0UEW384PSn4m0KkHyh7THx4dkhMKK34ZXwDDlBUheTn9rH3s0/cIO6vXJFO8HHHVmFWhibupw==
   dependencies:
-    "@colyseus/schema" "^1.0.0-alpha.37"
+    "@colyseus/schema" "^1.0.0-alpha.39"
     ecsy "^0.4.0"
 
 "@colyseus/http@^2.0.0":
@@ -930,7 +930,7 @@
     express "^4.16.3"
     node-os-utils "^1.2.0"
 
-"@colyseus/schema@^1.0.0-alpha.12", "@colyseus/schema@^1.0.0-alpha.37", "@colyseus/schema@^1.0.0-alpha.40":
+"@colyseus/schema@^1.0.0-alpha.12", "@colyseus/schema@^1.0.0-alpha.39", "@colyseus/schema@^1.0.0-alpha.40":
   version "1.0.0-alpha.40"
   resolved "https://registry.yarnpkg.com/@colyseus/schema/-/schema-1.0.0-alpha.40.tgz#f9552c0abf672f50e2ad8a8e8f3ff94ff5dbf8dc"
   integrity sha512-S3E/EwGlHK5szfy1lMYViBU8b0hjgv4p8NzVgJCKn3BspgKuw1c3C9L3K2GR9c1g/YAbUTTszWdCKR2wnDoFhQ==

@@ -138,7 +138,14 @@ export default defineComponent({
         const status = e.payload.status
         log(`Game status updated to ${status}`)
 
-        router.push('/play')
+        const id = gameEngine.room.id
+        if (!id) {
+          log('Unable to redirect as no room ID avaiable on engine')
+          return
+        }
+
+        log(`Redirecting to '/loading/${id}'`)
+        router.push(`/loading/${id}`)
       },
     )
 

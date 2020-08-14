@@ -27,7 +27,7 @@
     "ts-bus": "2.3.1"
   },
   "dependencies": {
-    "@colyseus/ecs": "^0.4.0-alpha.3",
+    "@colyseus/ecs": "^0.4.0-alpha.4",
     "@colyseus/monitor": "0.12.2",
     "@colyseus/social": "0.11.6",
     "@gamestdio/mathf": "1.0.1",
