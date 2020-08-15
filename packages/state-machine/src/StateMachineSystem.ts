@@ -1,5 +1,5 @@
 import { System } from '@colyseus/ecs'
-import { StateMachine, StateMachineTransitionMap } from './whyUCaseInsensitive'
+import { StateMachine, StateMachineTransitionMap } from './StateMachine'
 
 export interface StateMachineSystemAttributes<TStateEnum extends string> {
   priority?: number
