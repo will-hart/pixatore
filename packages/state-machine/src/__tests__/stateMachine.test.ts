@@ -8,7 +8,7 @@ describe('State Machine', () => {
   }
 
   const getStateMachine = (
-    initialState: TestStates = TestStates.State2,
+    initialState: TestStates = TestStates.State1,
   ): StateMachine<TestStates> => {
     return new StateMachine<TestStates>(
       {
@@ -56,23 +56,21 @@ describe('State Machine', () => {
       expect(sm.canTransitionTo(TestStates.State2)).toBeTruthy()
     })
 
-    it('SMC.02 - cant transition from current state', () => {
+    it('SMC.02 - cannot transition from current state', () => {
       const sm = getStateMachine(TestStates.State2)
       expect(sm.canTransitionTo(TestStates.State2)).toBeFalsy()
     })
 
-    it('SMC.02 - can transition from another state', () => {
+    it('SMC.03 - can transition from another state', () => {
       const sm = getStateMachine()
       expect(
         sm.canTransition(TestStates.State1, TestStates.State2),
       ).toBeTruthy()
     })
 
-    it('SMC.02 - cant transition from another state', () => {
+    it('SMC.04 - cannot transition from another state', () => {
       const sm = getStateMachine()
-      expect(
-        sm.canTransition(TestStates.State2, TestStates.State2),
-      ).toBeTruthy()
+      expect(sm.canTransition(TestStates.State2, TestStates.State2)).toBeFalsy()
     })
   })
 
