@@ -1,7 +1,7 @@
 {
-  "name": "@pixatore/state-machine",
+  "name": "@pixatore/ecs",
   "version": "0.1.0",
-  "description": "A simple TS state machine for pixatore",
+  "description": "A wrapper around @colyseus/ecs for use in pixatore",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "repository": "https://github.com/will-hart/pixatore",
@@ -18,8 +18,7 @@
     "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule"
   },
   "dependencies": {
-    "@colyseus/schema": "^1.0.0-alpha.40",
-    "@pixatore/ecs": "0.1.0",
+    "@colyseus/ecs": "0.4.0-alpha.4",
     "debug": "^4.1.1"
   },
   "devDependencies": {

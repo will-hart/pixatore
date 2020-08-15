@@ -1,4 +1,4 @@
-import { System } from '@colyseus/ecs'
+import { System } from '@pixatore/ecs'
 import * as Archetypes from '../archetypes'
 import * as Components from '../components'
 

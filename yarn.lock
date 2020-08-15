@@ -909,7 +909,7 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@colyseus/ecs@^0.4.0-alpha.4":
+"@colyseus/ecs@0.4.0-alpha.4":
   version "0.4.0-alpha.4"
   resolved "https://registry.yarnpkg.com/@colyseus/ecs/-/ecs-0.4.0-alpha.4.tgz#af915229b31c61c44102a7fa9a4790c63c25d4eb"
   integrity sha512-1d8BZO0kl4T2C0UEW384PSn4m0KkHyh7THx4dkhMKK34ZXwDDlBUheTn9rH3s0/cIO6vXJFO8HHHVmFWhibupw==

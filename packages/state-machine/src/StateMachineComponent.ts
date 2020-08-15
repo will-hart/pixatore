@@ -1,5 +1,5 @@
-import { Component } from '@colyseus/ecs'
 import { type } from '@colyseus/schema'
+import { Component } from '@pixatore/ecs'
 
 /**
  * An abstract component that can be extended for individual state machines.

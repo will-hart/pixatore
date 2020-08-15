@@ -1,4 +1,4 @@
-import { Entity } from '@colyseus/ecs'
+import { Entity } from '@pixatore/ecs'
 import { ArraySchema, Schema, type } from '@colyseus/schema'
 
 export class GameState extends Schema {

@@ -1,4 +1,4 @@
-import { World } from '@colyseus/ecs'
+import { World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 
 import * as Components from '../components'

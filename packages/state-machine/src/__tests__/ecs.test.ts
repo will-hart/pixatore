@@ -1,4 +1,4 @@
-import { World } from '@colyseus/ecs'
+import { World } from '@pixatore/ecs'
 
 import { StateMachineComponent } from '../StateMachineComponent'
 import { StateMachineSystem } from '../StateMachineSystem'

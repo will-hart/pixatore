@@ -1,4 +1,4 @@
-import { System } from '@colyseus/ecs'
+import { System } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 
 import * as Components from '../components'

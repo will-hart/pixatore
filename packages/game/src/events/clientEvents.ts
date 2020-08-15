@@ -1,4 +1,4 @@
-import { Component } from '@colyseus/ecs'
+import { Component } from '@pixatore/ecs'
 import { Schema } from '@colyseus/schema'
 import { buildEvent } from '@pixatore/event-bus'
 

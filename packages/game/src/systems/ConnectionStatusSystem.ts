@@ -1,4 +1,4 @@
-import { System, Entity } from '@colyseus/ecs'
+import { System, Entity } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 
 import { ServerEvents } from '../events'

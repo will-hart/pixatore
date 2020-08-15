@@ -1,4 +1,4 @@
-import { World } from '@colyseus/ecs'
+import { World } from '@pixatore/ecs'
 import { Constants, State, Systems, Types } from '@pixatore/game'
 import { Room, Client } from 'colyseus'
 import { EventBus } from '@pixatore/event-bus'

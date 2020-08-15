@@ -1,4 +1,4 @@
-import { System } from '@colyseus/ecs'
+import { System } from '@pixatore/ecs'
 import { StateMachine, StateMachineTransitionMap } from './StateMachine'
 
 export interface StateMachineSystemAttributes<TStateEnum extends string> {

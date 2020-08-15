@@ -17,8 +17,8 @@
     "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
   },
   "dependencies": {
-    "@colyseus/ecs": "^0.4.0-alpha.4",
     "@colyseus/schema": "^1.0.0-alpha.40",
+    "@pixatore/ecs": "0.1.0",
     "@pixatore/event-bus": "0.1.0",
     "debug": "^4.1.1"
   },

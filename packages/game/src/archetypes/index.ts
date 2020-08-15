@@ -1,4 +1,4 @@
-import { Entity } from '@colyseus/ecs'
+import { Entity } from '@pixatore/ecs'
 import { Components } from '..'
 
 export const Player = (entity: Entity): Entity => {

@@ -1,4 +1,4 @@
-import { Component } from '@colyseus/ecs'
+import { Component } from '@pixatore/ecs'
 import { type } from '@colyseus/schema'
 import { GameStatus } from '../types'
 
