@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "An event bus and utilities based on ts-bus",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "repository": "https://github.com/will-hart/pixatore",
   "author": "William Hart",
   "license": "MIT",

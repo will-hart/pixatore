@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A simple TS state machine for pixatore",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "repository": "https://github.com/will-hart/pixatore",
   "author": "William Hart",
   "license": "MIT",
