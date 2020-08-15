@@ -12,6 +12,7 @@
     "test": "yarn jest",
     "build": "tsc -p tsconfig.json --resolveJsonModule",
     "build:core": "yarn build",
+    "build:core:watch": "yarn build --watch",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
     "lint:eslint": "yarn eslint",
