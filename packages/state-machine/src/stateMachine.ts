@@ -2,9 +2,13 @@ import debug from 'debug'
 
 const log = debug('PX:STM:StateMachine         ')
 
+export type StateMachineTransitionMap<TStateEnum extends string> = {
+  [key in TStateEnum]: TStateEnum[]
+}
+
 export class StateMachine<TStateEnum extends string> {
   constructor(
-    private stateTransitions: { [key in TStateEnum]: TStateEnum[] },
+    private stateTransitions: StateMachineTransitionMap<TStateEnum>,
     private current: TStateEnum,
   ) {
     log('Created new state machine with transitions %o', stateTransitions)

@@ -16,6 +16,8 @@
     "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule"
   },
   "dependencies": {
+    "@colyseus/ecs": "^0.4.0-alpha.4",
+    "@colyseus/schema": "^1.0.0-alpha.40",
     "debug": "^4.1.1"
   },
   "devDependencies": {
