@@ -2,7 +2,7 @@
   "name": "@pixatore/state-machine",
   "version": "0.1.0",
   "description": "A simple TS state machine for pixatore",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "repository": "https://github.com/will-hart/pixatore",
   "author": "William Hart",
   "license": "MIT",

@@ -1,4 +1,4 @@
-import { buildEvent } from './eventBuilder'
+import { buildEvent } from '@pixatore/event-bus'
 
 export enum ServerEventTypes {
   CHANGE_READY_STATE = 'RDY',

@@ -1,8 +1,8 @@
 import { Component } from '@colyseus/ecs'
 import { Schema } from '@colyseus/schema'
+import { buildEvent } from '@pixatore/event-bus'
 
 import * as Components from '../components'
-import { buildEvent } from './eventBuilder'
 
 export interface IComponentEvent<T extends Component> {
   component: Omit<T, keyof Schema>

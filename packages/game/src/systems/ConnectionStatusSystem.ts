@@ -1,5 +1,5 @@
 import { System, Entity } from '@colyseus/ecs'
-import { EventBus } from 'ts-bus'
+import { EventBus } from '@pixatore/event-bus'
 
 import { ServerEvents } from '../events'
 import * as Components from '../components'

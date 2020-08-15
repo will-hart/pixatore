@@ -1,11 +1,11 @@
 import { World } from '@colyseus/ecs'
+import { EventBus } from '@pixatore/event-bus'
 
 import * as Components from '../components'
 import * as Systems from '../systems'
 import { GameState } from './GameState'
 
 import debug from 'debug'
-import { EventBus } from 'ts-bus'
 const log = debug('PX:GAM:WorldFacty:BuildWorld')
 if (console) log.log = console.log.bind(console)
 

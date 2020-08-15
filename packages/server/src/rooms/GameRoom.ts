@@ -1,7 +1,7 @@
 import { World } from '@colyseus/ecs'
 import { Constants, State, Systems, Types } from '@pixatore/game'
 import { Room, Client } from 'colyseus'
-import { EventBus } from 'ts-bus'
+import { EventBus } from '@pixatore/event-bus'
 
 import { Dispatcher } from '../commands/Command' // @colyseus/command
 import {

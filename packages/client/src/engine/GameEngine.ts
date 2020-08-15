@@ -1,6 +1,6 @@
 import { World } from '@colyseus/ecs'
 import { State } from '@pixatore/game'
-import { EventBus } from 'ts-bus'
+import { EventBus } from '@pixatore/event-bus'
 import { Room } from 'colyseus.js'
 
 import debug from 'debug'
