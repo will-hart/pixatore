@@ -75,7 +75,7 @@ describe('State Machine', () => {
     })
 
     it('SMC.04 - cannot transition from another state', () => {
-      performTransition(TestStates.State1, TestStates.State2, false)
+      performTransition(TestStates.State2, TestStates.State2, false)
     })
   })
 
