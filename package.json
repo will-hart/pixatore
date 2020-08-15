@@ -21,13 +21,13 @@
     "game:build": "yarn workspace @pixatore/game build",
     "game:build:watch": "yarn workspace @pixatore/game build:watch",
     "build": "yarn run-s build:core build:artifacts",
-    "build:core": "yarn run-s game:build",
+    "build:core": "yarn workspaces run build:core",
     "build:artifacts": "run-p -n client:build server:build",
     "prebuild": "yarn lint",
     "dev:noapp": "cross-env DEBUG=PX:* yarn run-p -nr game:build:watch server:dev client:serve",
-    "predev:noapp": "yarn run-p game:build",
+    "predev:noapp": "yarn build:core",
     "dev": "cross-env DEBUG=PX:* yarn run-p -nr game:build:watch server:dev client:dev",
-    "predev": "yarn run-p game:build",
+    "predev": "yarn build:core",
     "postinstall": "yarn build:core"
   },
   "devDependencies": {

@@ -31,3 +31,5 @@ packages/ecs/build/
 tsconfig.tsbuildinfo
 packages/app copy/
 packages/server/lib
+packages/state-machine/build/
+packages/event-bus/build/
