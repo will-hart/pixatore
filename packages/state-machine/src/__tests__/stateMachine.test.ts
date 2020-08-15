@@ -51,6 +51,15 @@ describe('State Machine', () => {
   })
 
   describe('SMC - can transition', () => {
+    const performTransition = (
+      from: TestStates,
+      to: TestStates,
+      expectToSucceed: boolean,
+    ) => {
+      const sm = getStateMachine()
+      expect(sm.canTransition(from, to)).toEqual(expectToSucceed)
+    }
+
     it('SMC.01 - can transition from current state', () => {
       const sm = getStateMachine()
       expect(sm.canTransitionTo(TestStates.State2)).toBeTruthy()
@@ -62,15 +71,11 @@ describe('State Machine', () => {
     })
 
     it('SMC.03 - can transition from another state', () => {
-      const sm = getStateMachine()
-      expect(
-        sm.canTransition(TestStates.State1, TestStates.State2),
-      ).toBeTruthy()
+      performTransition(TestStates.State1, TestStates.State2, true)
     })
 
     it('SMC.04 - cannot transition from another state', () => {
-      const sm = getStateMachine()
-      expect(sm.canTransition(TestStates.State2, TestStates.State2)).toBeFalsy()
+      performTransition(TestStates.State1, TestStates.State2, false)
     })
   })
 
