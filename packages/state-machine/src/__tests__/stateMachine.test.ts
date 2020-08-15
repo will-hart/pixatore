@@ -1,4 +1,4 @@
-import { StateMachine } from '../StateMachine'
+import { StateMachine } from '../whyUCaseInsensitive'
 
 describe('State Machine', () => {
   enum TestStates {
