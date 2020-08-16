@@ -115,7 +115,7 @@ export class OnLeaveCommand extends Command<
     // wait for reconnection
     try {
       log(`[OnLeaveCommand] Player ${client.sessionId} attempting reconnect`)
-      await this.room.allowReconnection(client, 30)
+      await this.room.allowReconnection(client, Constants.DISCONNECTION_TIMEOUT)
 
       bus.publish(
         ServerEvents.onChangeConnectionState({

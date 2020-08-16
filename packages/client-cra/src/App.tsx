@@ -5,31 +5,33 @@ import { Browser, Game, Lobby, MainMenu, Splash } from './components'
 
 import { GameContext, useNewGameContext } from './hooks/useGame'
 
+const getGameRoutes = () => (
+  <Switch>
+    <Route exact path="/menu">
+      <MainMenu />
+    </Route>
+    <Route exact path="/browser">
+      <Browser />
+    </Route>
+    <Route exact path="/lobby/:id">
+      <Lobby />
+    </Route>
+    <Route exact path="/game/:id">
+      <Game />
+    </Route>
+    <Route path="/">
+      <Splash />
+    </Route>
+  </Switch>
+)
+
 const App = () => {
   const initialContext = useNewGameContext()
 
   return (
     <GameContext.Provider value={initialContext}>
       <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path="/menu">
-              <MainMenu />
-            </Route>
-            <Route exact path="/browser">
-              <Browser />
-            </Route>
-            <Route exact path="/lobby/:id">
-              <Lobby />
-            </Route>
-            <Route exact path="/game/:id">
-              <Game />
-            </Route>
-            <Route path="/">
-              <Splash />
-            </Route>
-          </Switch>
-        </Router>
+        <Router>{getGameRoutes()}</Router>
       </div>
     </GameContext.Provider>
   )

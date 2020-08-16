@@ -7,12 +7,17 @@ import { FullContainer, Header1 } from '../shared'
 import { GameContext } from '../../hooks/useGame'
 import { useRoomList } from '../../hooks/useRoomList'
 
+import { RoomList } from './RoomList'
+import { ServerBrowserControls } from './ServerBrowserControls'
+import { useRoomOperations } from '../../hooks/useRoomOperations'
+
 const log = debug('PX:APP:Views     :SrvBrowser')
 log.log = console.log.bind(console)
 
 export const Browser = () => {
   const { client, setClient } = React.useContext(GameContext)
   const { loading, roomList } = useRoomList(client)
+  const { createGame } = useRoomOperations(client)
 
   // create the client if it doesn't exist
   if (!client) {
@@ -26,7 +31,8 @@ export const Browser = () => {
   return (
     <FullContainer>
       <Header1>Server browser</Header1>
-      {loading ? <span>LOADING</span> : <span>{JSON.stringify(roomList)}</span>}
+      <ServerBrowserControls onCreateGame={createGame} />
+      {loading ? <span>LOADING</span> : <RoomList roomList={roomList} />}
     </FullContainer>
   )
 }
