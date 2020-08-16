@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+// turn on debugging
+if (process?.env?.NODE_ENV === 'production') {
+  localStorage.setItem('debug', '')
+} else {
+  localStorage.setItem('debug', 'PX:*')
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
