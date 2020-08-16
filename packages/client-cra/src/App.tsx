@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { Browser, Game, Lobby, MainMenu, Splash } from './components'
 
-import { ClientContext, useNewClientContext } from './hooks/useClient'
+import { GameContext, useNewGameContext } from './hooks/useGame'
 
 const App = () => {
-  const initialContext = useNewClientContext()
+  const initialContext = useNewGameContext()
 
   return (
-    <ClientContext.Provider value={initialContext}>
+    <GameContext.Provider value={initialContext}>
       <div className="App">
         <Router>
           <Switch>
@@ -31,7 +31,7 @@ const App = () => {
           </Switch>
         </Router>
       </div>
-    </ClientContext.Provider>
+    </GameContext.Provider>
   )
 }
 

@@ -4,14 +4,14 @@ import debug from 'debug'
 
 import { CLIENT_URL } from '../../constants'
 import { FullContainer, Header1 } from '../shared'
-import { ClientContext } from '../../hooks/useClient'
+import { GameContext } from '../../hooks/useGame'
 import { useRoomList } from '../../hooks/useRoomList'
 
 const log = debug('PX:APP:Views     :SrvBrowser')
 log.log = console.log.bind(console)
 
 export const Browser = () => {
-  const { client, setClient } = React.useContext(ClientContext)
+  const { client, setClient } = React.useContext(GameContext)
   const { loading, roomList } = useRoomList(client)
 
   // create the client if it doesn't exist
