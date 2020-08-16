@@ -2,9 +2,10 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "build",
-    "module": "commonjs",
-    "lib": ["dom", "es6"],
+    "module": "ES2020",
+    "lib": ["es6"],
     "target": "ES2019",
+    "moduleResolution": "node",
     "allowJs": false,
     "declaration": true,
     "sourceMap": false,
