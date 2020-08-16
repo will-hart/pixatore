@@ -25,7 +25,8 @@ export const useNewGameContext = (): IGameContext<
   Room<State.GameState>
 > => {
   const [client, setClient] = useState<Client>()
-  return { ...defaultGameContext, client, setClient }
+  const [room, setRoom] = useState<Room<State.GameState>>()
+  return { ...defaultGameContext, client, setClient, room, setRoom }
 }
 
 export const GameContext = createContext<

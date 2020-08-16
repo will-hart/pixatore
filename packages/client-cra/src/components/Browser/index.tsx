@@ -16,7 +16,9 @@ const log = debug('PX:APP:Views     :SrvBrowser')
 log.log = console.log.bind(console)
 
 export const Browser = () => {
-  const { client, setClient } = React.useContext(GameContext)
+  const { client, setClient, setRoom, room: ctxRoom } = React.useContext(
+    GameContext,
+  )
   const { loading, roomList } = useRoomList(client)
   const {
     createGame,
@@ -35,8 +37,15 @@ export const Browser = () => {
     return null
   }
 
+  if (ctxRoom) {
+    log('Redirecting to lobby')
+    return <Redirect to={`/lobby/${ctxRoom.id}`} />
+  }
+
   if (room) {
-    return <Redirect to={`lobby/${room.id}`} />
+    log('Save lobby to context')
+    setTimeout(() => setRoom(room), 0)
+    return null
   }
 
   return (
