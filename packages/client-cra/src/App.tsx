@@ -1,13 +1,30 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { useWindowSize } from './hooks/useWindowSize'
-import { FullContainer } from './components'
+import { Browser, Game, Lobby, MainMenu, Splash } from './components'
 
 function App() {
-  const windowSize = useWindowSize()
   return (
     <div className="App">
-      <FullContainer>{JSON.stringify(windowSize)}</FullContainer>
+      <Router>
+        <Switch>
+          <Route exact path="/menu">
+            <MainMenu />
+          </Route>
+          <Route exact path="/browser">
+            <Browser />
+          </Route>
+          <Route exact path="/lobby/:id">
+            <Lobby />
+          </Route>
+          <Route exact path="/game/:id">
+            <Game />
+          </Route>
+          <Route path="/">
+            <Splash />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   )
 }

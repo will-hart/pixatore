@@ -2,6 +2,6 @@ import * as React from 'react'
 
 import { FullContainer } from './shared'
 
-export const Game = () => {
-  return <FullContainer>Game</FullContainer>
+export const Lobby = () => {
+  return <FullContainer>Lobby</FullContainer>
 }
