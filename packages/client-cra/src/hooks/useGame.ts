@@ -6,7 +6,7 @@ import { GameEngine } from '../engine/GameEngine'
 export interface IGameContext<TClient, TRoom> {
   client?: TClient
   room?: TRoom
-  gameEngine: any
+  gameEngine?: GameEngine
   setClient: (client: TClient) => void
   setRoom: (room: TRoom) => void
 }
