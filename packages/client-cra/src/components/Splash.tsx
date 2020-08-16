@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 
 import { useTimeout } from '../hooks/useTimeout'
-import { FullContainer, Header1 } from './shared'
+import { CenteredContainer, Header1 } from './shared'
 
 export const Splash = () => {
   const [redirectTo, setRedirectTo] = React.useState<boolean>(false)
@@ -15,8 +15,8 @@ export const Splash = () => {
   }
 
   return (
-    <FullContainer>
+    <CenteredContainer>
       <Header1>Pixatore</Header1>
-    </FullContainer>
+    </CenteredContainer>
   )
 }

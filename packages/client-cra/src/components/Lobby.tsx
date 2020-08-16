@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { FullContainer } from './shared'
+import { CenteredContainer } from './shared'
 
 export const Lobby = () => {
-  return <FullContainer>Lobby</FullContainer>
+  return <CenteredContainer>Lobby</CenteredContainer>
 }

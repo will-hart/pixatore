@@ -19,6 +19,10 @@ export const FullContainer = styled.div<{ background?: string }>`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+`
+
+export const CenteredContainer = styled(FullContainer)`
   justify-content: center;
   align-items: center;
 `

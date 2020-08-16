@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import debug from 'debug'
 import { Client, Room } from 'colyseus.js'
 import { Constants, State } from '@pixatore/game'
@@ -9,21 +9,19 @@ log.log = console.log.bind(console)
 
 export const useRoomOperations = (client?: Client) => {
   const [room, setRoom] = useState<Room<State.GameState>>()
-  const [canReconnect, setCanReconnect] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
-  const [lastRoomId, setLastRoomId, clearLastRoomId] = useLocalStorage<string>(
-    Constants.LOCALSTORAGE_LAST_ROOM_KEY,
-    '',
-  )
-  const [lastSessionId, setLastSessionId, clearLastSessionId] = useLocalStorage<
-    string
-  >(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
+  const {
+    value: lastRoomId,
+    setValue: setLastRoomId,
+    clearValue: clearLastRoomId,
+  } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
 
-  // update the connetion status based on the stored room ID
-  useEffect(() => {
-    setCanReconnect(!!lastRoomId)
-  }, [lastRoomId])
+  const {
+    value: lastSessionId,
+    setValue: setLastSessionId,
+    clearValue: clearLastSessionId,
+  } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
 
   const afterConnect = useCallback(
     async (room?: Room<State.GameState>, error?: Error) => {
@@ -43,7 +41,7 @@ export const useRoomOperations = (client?: Client) => {
 
       log(`joined ${room.id} on ${room.name}`)
       setLastRoomId(room.id)
-      setLastSessionId(Constants.LOCALSTORAGE_LAST_SESSION_KEY, room.sessionId)
+      setLastSessionId(room.sessionId)
       setError(null)
       setRoom(room)
     },
@@ -84,10 +82,10 @@ export const useRoomOperations = (client?: Client) => {
   const reconnect = useCallback(async () => {
     if (!client) return
 
-    if (!canReconnect) {
+    if (!lastRoomId || !lastSessionId) {
       await afterConnect(undefined, {
         name: 'Reconnection Error',
-        message: 'Unable to reconnect',
+        message: 'Unable to reconnect - no stored details',
       })
       return
     }
@@ -110,7 +108,6 @@ export const useRoomOperations = (client?: Client) => {
     }
   }, [
     afterConnect,
-    canReconnect,
     clearLastRoomId,
     clearLastSessionId,
     client,
@@ -119,10 +116,10 @@ export const useRoomOperations = (client?: Client) => {
   ])
 
   return {
-    canReconnect,
     createGame,
     error,
     joinGame,
+    lastRoomId,
     reconnect,
     room,
   }

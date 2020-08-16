@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Redirect } from 'react-router-dom'
 import { Client } from 'colyseus.js'
 import debug from 'debug'
 
@@ -17,7 +18,13 @@ log.log = console.log.bind(console)
 export const Browser = () => {
   const { client, setClient } = React.useContext(GameContext)
   const { loading, roomList } = useRoomList(client)
-  const { createGame } = useRoomOperations(client)
+  const {
+    createGame,
+    joinGame,
+    lastRoomId,
+    reconnect,
+    room,
+  } = useRoomOperations(client)
 
   // create the client if it doesn't exist
   if (!client) {
@@ -28,11 +35,25 @@ export const Browser = () => {
     return null
   }
 
+  if (room) {
+    return <Redirect to={`lobby/${room.id}`} />
+  }
+
   return (
     <FullContainer>
       <Header1>Server browser</Header1>
       <ServerBrowserControls onCreateGame={createGame} />
-      {loading ? <span>LOADING</span> : <RoomList roomList={roomList} />}
+      {loading ? (
+        <span>LOADING</span>
+      ) : (
+        <RoomList
+          canJoin={!room}
+          lastRoomId={lastRoomId}
+          roomList={roomList}
+          onJoinGame={joinGame}
+          onReconnect={reconnect}
+        />
+      )}
     </FullContainer>
   )
 }
