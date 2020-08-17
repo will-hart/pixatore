@@ -11,6 +11,7 @@ export class PlayerJoinSystem extends System {
     messages: {
       components: [Components.PlayerJoinMessage],
       listen: { added: true },
+      mandatory: true,
     },
     players: { components: [Components.PlayerData] },
   }

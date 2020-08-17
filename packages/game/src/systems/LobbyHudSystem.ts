@@ -10,39 +10,27 @@ export class LobbyHudSystem extends System {
   static queries = {
     updatedPlayers: {
       components: [Components.PlayerData],
-      listen: { added: true, removed: true },
+      mandatory: true,
     },
   }
 
-  private onAddCallback!: (player: Components.PlayerData) => void
-  private onRemoveCallback!: (player: Components.PlayerData) => void
+  private onPlayerChangeCallback: (player: Components.PlayerData) => void = (
+    _player,
+  ) => {}
 
-  init(attrs: {
-    onAdd: (player: Components.PlayerData) => void
-    onRemove: (player: Components.PlayerData) => void
-  }): void {
-    this.onAddCallback = attrs.onAdd
-    this.onRemoveCallback = attrs.onRemove
+  setCallback(callback: (player: Components.PlayerData) => void): void {
+    this.onPlayerChangeCallback = callback
   }
 
   execute(): void {
-    const addedEnts = this.queries.updatedPlayers.added || []
+    const ents = this.queries.updatedPlayers.results || []
+    console.log(this.queries.updatedPlayers)
 
-    for (const ent of addedEnts) {
+    for (const ent of ents) {
       const playerData = ent.getComponent?.(Components.PlayerData)
       if (!playerData) continue
 
-      log('Adding player %o', playerData)
-      this.onAddCallback(playerData as Components.PlayerData)
-    }
-
-    const removedEnts = this.queries.updatedPlayers.removed || []
-    for (const ent of removedEnts) {
-      const playerData = ent.getComponent?.(Components.PlayerData)
-      if (!playerData) continue
-
-      log('Removing player %o', playerData)
-      this.onRemoveCallback(playerData as Components.PlayerData)
+      this.onPlayerChangeCallback(playerData as Components.PlayerData)
     }
   }
 }

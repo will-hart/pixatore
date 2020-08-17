@@ -18,9 +18,11 @@ export class ConnectionStatusSystem extends System {
   static queries = {
     players: {
       components: [Components.PlayerData],
+      mandatory: true,
     },
     status: {
       components: [Components.Status],
+      mandatory: true,
     },
   }
 

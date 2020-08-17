@@ -5,6 +5,7 @@ import { Systems, Components } from '@pixatore/game'
 
 import { FullContainer, Header1 } from '../shared'
 import { GameContext } from '../../hooks/useGame'
+import { LobbyPlayerList } from './LobbyPlayerList'
 
 const log = debug('PX:APP:Views     :Lobby     ')
 log.log = console.log.bind(console)
@@ -12,9 +13,9 @@ log.log = console.log.bind(console)
 export const Lobby = () => {
   const { gameEngine, room } = React.useContext(GameContext)
 
-  const [playerList, setPlayerList] = React.useState<Components.PlayerData[]>(
-    [],
-  )
+  const [playerMap, setPlayerMap] = React.useState<{
+    [id: string]: Components.PlayerData
+  }>({})
 
   React.useEffect(() => {
     if (!gameEngine) {
@@ -22,40 +23,39 @@ export const Lobby = () => {
       return () => {}
     }
 
-    log('Adding lobby HUD system')
-
-    if (!gameEngine.world.getSystem(Systems.LobbyHudSystem)) {
-      gameEngine.world.registerSystem(Systems.LobbyHudSystem, {
-        onAdd: (playerData: Components.PlayerData) => {
-          log('Adding player %o', playerData)
-          setPlayerList((ps) =>
-            [...ps, playerData].sort((a, b) => a.slot - b.slot),
-          )
-        },
-        onRemove: (playerData: Components.PlayerData) => {
-          log('Removing player %o', playerData)
-          setPlayerList((ps) =>
-            ps.filter((p) => p.playerId !== playerData.playerId),
-          )
-        },
+    const system = gameEngine.world.getSystem(Systems.LobbyHudSystem)
+    if (!system) {
+      log('Unable to enable LobbyHudSystems - system not found')
+    } else {
+      log('Enabling LobbyHudSystem')
+      system.setCallback((playerData: Components.PlayerData) => {
+        log('Adding player %o', playerData)
+        setPlayerMap((ps) => ({ ...ps, [playerData.playerId]: playerData }))
       })
     }
 
     return () => {
-      gameEngine.world.unregisterSystem(Systems.LobbyHudSystem)
+      const system = gameEngine.world.getSystem(Systems.LobbyHudSystem)
+      if (!system) {
+        log('Unable to disable LobbyHudSystem - system not found')
+        return
+      }
+
+      log('Disabling LobbyHudSystem')
+      system.setCallback((_player: Components.PlayerData) => {})
     }
-  }, [gameEngine, setPlayerList])
+  }, [gameEngine, setPlayerMap])
 
   // create the client if it doesn't exist
   if (!room) {
     log('No room found, aborting lobby')
-    return <Redirect to="/browser" />
+    return <Redirect to="/browser" push />
   }
 
   return (
     <FullContainer>
       <Header1>Lobby</Header1>
-      <p>{JSON.stringify(playerList)}</p>
+      <LobbyPlayerList playerMap={playerMap} />
     </FullContainer>
   )
 }

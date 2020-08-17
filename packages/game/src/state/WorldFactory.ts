@@ -39,7 +39,9 @@ const registerSystems = (
     world.registerSystem(Systems.PlayerJoinSystem)
   } else {
     log('Registering client systems')
-    world.registerSystem(Systems.GameStatusSystem, { eventBus })
+    world
+      .registerSystem(Systems.GameStatusSystem, { eventBus })
+      .registerSystem(Systems.LobbyHudSystem)
   }
 }
 

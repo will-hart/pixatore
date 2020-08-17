@@ -18,6 +18,7 @@ export class GameStatusSystem extends System {
     status: {
       components: [Components.Status],
       listen: { changed: true },
+      mandatory: true,
     },
   }
 
