@@ -10,13 +10,13 @@
   "private": false,
   "scripts": {
     "test": "yarn jest",
-    "build": "tsc -p tsconfig.json --resolveJsonModule",
+    "build": "tsc -p tsconfig.json",
     "build:core": "yarn build",
     "build:core:watch": "yarn build --watch",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
     "lint:eslint": "yarn eslint",
-    "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule"
+    "build:watch": "tsc -w -p tsconfig.json"
   },
   "dependencies": {
     "@colyseus/schema": "^1.0.0-alpha.40",

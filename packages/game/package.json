@@ -8,14 +8,14 @@
   "typings": "build/index.d.ts",
   "scripts": {
     "test": "yarn jest --passWithNoTests",
-    "build": "tsc -p tsconfig.json --resolveJsonModule",
+    "build": "tsc -p tsconfig.json",
     "build:core": "yarn build",
-    "build:core:watch": "yarn build --watch",
+    "build:core:watch": "yarn build:watch",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
     "lint:eslint": "yarn eslint",
-    "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule",
-    "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
+    "build:watch": "tsc -w -p tsconfig.json",
+    "start": "yarn build:watch"
   },
   "dependencies": {
     "@colyseus/schema": "^1.0.0-alpha.40",
