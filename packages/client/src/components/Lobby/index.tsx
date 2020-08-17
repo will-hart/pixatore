@@ -10,7 +10,6 @@ const log = debug('PX:APP:Views     :Lobby     ')
 log.log = console.log.bind(console)
 
 export const Lobby = () => {
-  log('Rendering lobby')
   const { gameEngine, room } = React.useContext(GameContext)
 
   const [playerList, setPlayerList] = React.useState<Components.PlayerData[]>(

@@ -13,13 +13,17 @@
     "build": "yarn run-s build:core build:artifacts",
     "prebuild": "yarn lint",
     "build:core": "yarn workspaces run build:core",
-    "build:core:watch": "yarn workspaces run build:core:watch",
+    "build:core:watch": "yarn run-p _corewatch:ecs _corewatch:event-bus _corewatch:game _corewatch:state-machine",
     "dev:app": "echo 'TAURI APP STILL TO BE RE-IMPLEMENTED'",
     "dev": "cross-env DEBUG=PX:* yarn run-p -nr build:core:watch dev:client dev:server",
     "predev": "yarn build:core",
     "dev:client": "yarn workspace @pixatore/client start",
     "dev:server": "yarn workspace @pixatore/server start",
-    "postinstall": "yarn build:core"
+    "postinstall": "yarn build:core",
+    "_corewatch:ecs": "yarn workspace @pixatore/ecs build:core:watch",
+    "_corewatch:event-bus": "yarn workspace @pixatore/event-bus build:core:watch",
+    "_corewatch:game": "yarn workspace @pixatore/game build:core:watch",
+    "_corewatch:state-machine": "yarn workspace @pixatore/state-machine build:core:watch"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
