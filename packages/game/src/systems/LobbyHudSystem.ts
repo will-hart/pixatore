@@ -24,7 +24,6 @@ export class LobbyHudSystem extends System {
 
   execute(): void {
     const ents = this.queries.updatedPlayers.results || []
-    console.log(this.queries.updatedPlayers)
 
     for (const ent of ents) {
       const playerData = ent.getComponent?.(Components.PlayerData)

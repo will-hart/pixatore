@@ -12,7 +12,7 @@ const log = debug('PX:APP:Views     :Lobby     ')
 log.log = console.log.bind(console)
 
 export const Lobby = () => {
-  const { client, gameEngine, room } = React.useContext(GameContext)
+  const { gameEngine, room } = React.useContext(GameContext)
 
   const [playerMap, setPlayerMap] = React.useState<{
     [id: string]: Components.PlayerData
@@ -20,9 +20,11 @@ export const Lobby = () => {
 
   React.useEffect(() => {
     if (!gameEngine) {
-      log('Game engine not ready')
+      log('Game engine not ready...')
       return () => {}
     }
+
+    log('Game engine ready, mounting lobby')
 
     const system = gameEngine.world.getSystem(Systems.LobbyHudSystem)
     if (!system) {

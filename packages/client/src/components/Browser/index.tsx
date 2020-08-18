@@ -11,6 +11,7 @@ import { useRoomList } from '../../hooks/useRoomList'
 import { RoomList } from './RoomList'
 import { ServerBrowserControls } from './ServerBrowserControls'
 import { useRoomOperations } from '../../hooks/useRoomOperations'
+import { useRef } from 'react'
 
 const log = debug('PX:APP:Views     :SrvBrowser')
 log.log = console.log.bind(console)
@@ -28,6 +29,8 @@ export const Browser = () => {
     room,
   } = useRoomOperations(client)
 
+  const settingRoom = useRef<boolean>(false)
+
   // create the client if it doesn't exist
   if (!client) {
     log('Creating new client for url: %s', CLIENT_URL)
@@ -40,10 +43,9 @@ export const Browser = () => {
   if (ctxRoom) {
     log('Redirecting to lobby')
     return <Redirect to={`/lobby/${ctxRoom.id}`} push />
-  }
-
-  if (room) {
+  } else if (room && !settingRoom.current) {
     log('Save lobby to context')
+    settingRoom.current = true
     setTimeout(() => setRoom(room), 0)
     return null
   }
