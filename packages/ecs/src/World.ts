@@ -11,6 +11,7 @@ import {
   IQueryMap,
   IBaseConstructable,
 } from './types'
+import { QueryCache } from './QueryCache'
 
 export class World extends Schema {
   private _systems: System[] = []
@@ -22,6 +23,8 @@ export class World extends Schema {
 
   private _entityPool: ObjectPool<Entity> = new ObjectPool(Entity, 10)
 
+  private _queryCache = new QueryCache()
+
   public registerComponent<TInstance extends Component>(
     ComponentClass: IConstructableSchema<TInstance>,
   ) {
@@ -31,7 +34,7 @@ export class World extends Schema {
     )
   }
 
-  public acquireComponent<TInstance extends Component>(
+  private acquireComponent<TInstance extends Component>(
     ComponentClass: IConstructableSchema<TInstance>,
   ): TInstance {
     if (!this._componentPools.has(ComponentClass._typeId)) {
@@ -43,7 +46,7 @@ export class World extends Schema {
     return this._componentPools.get(ComponentClass._typeId)?.acquire()
   }
 
-  public releaseComponent<TInstance extends Component>(component: TInstance) {
+  private releaseComponent<TInstance extends Component>(component: TInstance) {
     const componentClass = component.constructor as IConstructableSchema<
       TInstance
     >
@@ -51,16 +54,64 @@ export class World extends Schema {
   }
 
   public acquireEntity(): Entity {
-    return this._entityPool.acquire()
+    const entity = this._entityPool.acquire()
+    this._queryCache.onAddEntity(entity)
+    this.entities.push(entity)
+
+    return entity
+  }
+
+  public addComponentToEntity<TComp extends Component>(
+    entity: Entity,
+    ComponentClass: IConstructableSchema<TComp>,
+  ): TComp {
+    if (entity.hasComponent(ComponentClass)) {
+      throw new Error(
+        `Entity ${entity.id} already has a component of type ${ComponentClass._typeId}`,
+      )
+    }
+
+    const component = this.acquireComponent(ComponentClass)
+    entity.components.set(ComponentClass._typeId, component)
+    return component as TComp
+  }
+
+  public releaseComponentFromEntity<TComp extends Component>(
+    entity: Entity,
+    ComponentClass: IConstructableSchema<TComp>,
+  ): void {
+    const component = entity.getComponent(ComponentClass)
+    if (!component) return
+
+    entity.components.delete(ComponentClass._typeId)
+    this.releaseComponent(component)
   }
 
   public releaseEntity(entity: Entity): void {
-    return this._entityPool.release(entity)
+    // do this before components are removed
+    this._queryCache.onRemoveEntity(entity)
+
+    // release all components
+    const components = Array.from(entity.components.values())
+    entity.components.clear()
+
+    for (const component of components) {
+      this._componentPools
+        .get((component.constructor as IConstructableSchema<Component>)._typeId)
+        ?.release(component)
+    }
+
+    // release the entity
+    this._entityPool.release(entity)
   }
 
   public registerSystem(system: System): void {
     this._systems.push(system)
     this._systems.sort((a, b) => a.priority - b.priority)
+
+    system.queries = this._queryCache.registerSystem(
+      (system.constructor as any).queryMap,
+    )
   }
 
   public removeSystem(SystemClass: IBaseConstructable<System>): void {
@@ -90,8 +141,8 @@ export class World extends Schema {
 
   public tick(deltaT: number): void {
     for (const system of this._systems) {
-      const queries: IQueryMap = (system.constructor as any).queries
-      system.execute(this.getCachedQueries(queries), deltaT)
+      const queryMap: IQueryMap = (system.constructor as any).queryMap
+      system.execute(this.getCachedQueries(queryMap), deltaT)
     }
   }
 

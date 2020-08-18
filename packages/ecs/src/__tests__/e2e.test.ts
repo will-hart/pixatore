@@ -19,7 +19,7 @@ describe('Pixatore ECS E2E', () => {
   }
 
   class SystemA extends ECS.System {
-    static queries: ECS.IQueryMap = {
+    static queryMap: ECS.IQueryMap = {
       systemAQuery: {
         components: [TestCompA, TestCompB],
       },
@@ -36,7 +36,7 @@ describe('Pixatore ECS E2E', () => {
   }
 
   class SystemB extends ECS.System {
-    static queries: ECS.IQueryMap = {
+    static queryMap: ECS.IQueryMap = {
       systemBQuery: {
         components: [TestCompA],
         notComponents: [TestCompB],
@@ -60,25 +60,27 @@ describe('Pixatore ECS E2E', () => {
     world.registerComponent(TestCompA)
     world.registerComponent(TestCompB)
 
-    world.registerSystem(new SystemA())
-    world.registerSystem(new SystemB())
+    const sysA = new SystemA()
+    world.registerSystem(sysA)
+    const sysB = new SystemB()
+    world.registerSystem(sysB)
 
     const ent1 = world.acquireEntity()
-    ent1.components.set(TestCompA._typeId, world.acquireComponent(TestCompA))
-    ent1.components.set(TestCompB._typeId, world.acquireComponent(TestCompB))
-    world.entities.push(ent1)
+    world.addComponentToEntity(ent1, TestCompA)
+    const moddedByA = world.addComponentToEntity(ent1, TestCompB)
 
     const ent2 = world.acquireEntity()
-    ent2.components.set(TestCompA._typeId, world.acquireComponent(TestCompA))
-    // ent1.components.set(TestCompB._typeId, world.acquireComponent(TestCompB))
-    world.entities.push(ent2)
+    const moddedByB = world.addComponentToEntity(ent2, TestCompA)
 
     const ent3 = world.acquireEntity()
-    // ent1.components.set(TestCompA._typeId, world.acquireComponent(TestCompA))
-    ent3.components.set(TestCompB._typeId, world.acquireComponent(TestCompB))
-    world.entities.push(ent3)
+    world.addComponentToEntity(ent3, TestCompB)
 
     world.tick(0)
+
+    expect(moddedByA.testB).toEqual('modified by A')
+    expect(moddedByB.testA).toEqual('modified by B')
+
     console.log(JSON.stringify(world, undefined, 2))
+    console.log(JSON.stringify(sysA.queries, undefined, 2))
   })
 })

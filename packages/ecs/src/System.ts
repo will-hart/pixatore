@@ -1,7 +1,10 @@
 import { IQueryMap, IQueryResultMap } from './types'
+import { Query } from './QueryCache'
 
 export abstract class System {
-  static queries: IQueryMap = {}
+  static queryMap: IQueryMap = {}
+
+  queries: { [key: string]: Query } = {}
 
   priority: number = 0
 
