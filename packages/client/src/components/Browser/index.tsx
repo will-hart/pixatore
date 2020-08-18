@@ -39,7 +39,7 @@ export const Browser = () => {
 
   if (ctxRoom) {
     log('Redirecting to lobby')
-    return <Redirect to={`/lobby/${ctxRoom.id}`} />
+    return <Redirect to={`/lobby/${ctxRoom.id}`} push />
   }
 
   if (room) {

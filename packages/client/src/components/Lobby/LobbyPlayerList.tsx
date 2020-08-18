@@ -12,7 +12,7 @@ export const LobbyPlayerList = ({ playerMap }: ILobbyPlayerListProps) => {
         .sort((a, b) => a.slot - b.slot)
         .map((player) => (
           <div key={`player-lobby-slot-list-${player.playerId}`}>
-            SLOT {player.slot} {player.playerId}
+            SLOT {player.slot} {player.playerId} {player.isReady && '✓'}
           </div>
         ))}
     </div>
