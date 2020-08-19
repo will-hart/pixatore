@@ -203,9 +203,7 @@ export class World extends Schema {
     }
   }
 
-  @type({ array: Entity }) public entities: ArraySchema<
-    Entity
-  > = new ArraySchema()
+  @type([Entity]) public entities: ArraySchema<Entity> = new ArraySchema()
 
   constructor() {
     super()

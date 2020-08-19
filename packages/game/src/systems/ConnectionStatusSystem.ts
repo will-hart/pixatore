@@ -72,91 +72,110 @@ export class ConnectionStatusSystem extends System {
     this.unsubscribes.forEach((unsub) => unsub())
   }
 
-  execute(_deltaT: number, world: World): void {
-    const records =
+  private shouldExecute(): boolean {
+    return (
       this.readyChanges.length +
-      this.disconnections.length +
-      this.gameStartRequests.length +
-      this.playerRemovals.length
+        this.disconnections.length +
+        this.gameStartRequests.length +
+        this.playerRemovals.length >
+      0
+    )
+  }
 
-    if (records === 0) return
+  private handlePlayerStateChange(
+    operation: string,
+    data: ServerEvents.IPlayerStatusEvent[],
+    handler: (event: ServerEvents.IPlayerStatusEvent) => void,
+  ) {
+    if (data.length === 0) return
+    data.forEach((event) => {
+      log(`Player ${event.sessionId} set ${operation} to ${event.status}`)
+      handler(event)
+    })
+  }
 
-    const playerMap = this.getPlayerMap()
+  private handleReadyChanges(playerMap: PlayerMap): void {
+    this.handlePlayerStateChange('ready', [...this.readyChanges], (event) => {
+      playerMap[event.sessionId].component.isReady = event.status
+    })
 
-    if (this.readyChanges.length > 0) {
-      const ready = [...this.readyChanges]
-      this.readyChanges = []
+    this.readyChanges = []
+  }
 
-      ready.forEach((event) => {
-        log(`Player ${event.sessionId} set ready to ${event.status}`)
-        playerMap[event.sessionId].component.isReady = event.status
-      })
-    }
-
-    if (this.disconnections.length > 0) {
-      const disconnect = [...this.disconnections]
-      this.disconnections = []
-
-      disconnect.forEach((event) => {
-        log(`Player ${event.sessionId} set disconnected to ${event.status}`)
+  private handleDisconnections(playerMap: PlayerMap): void {
+    this.handlePlayerStateChange(
+      'disconnected',
+      [...this.disconnections],
+      (event) => {
         playerMap[event.sessionId].component.isConnected = event.status
-      })
+      },
+    )
+
+    this.disconnections = []
+  }
+
+  private handlePlayerRemovals(world: World, playerMap: PlayerMap): void {
+    if (this.playerRemovals.length === 0) return
+    const playerRemovals = [...this.playerRemovals]
+    this.playerRemovals = []
+
+    playerRemovals.forEach((event) => {
+      log(`Player ${event.sessionId} removed`)
+      world.releaseEntity(playerMap[event.sessionId].entity)
+    })
+  }
+
+  private handleGameStartRequests(world: World, playerMap: PlayerMap): void {
+    if (this.gameStartRequests.length === 0) return
+    const gameStarts = [...this.gameStartRequests]
+    this.gameStartRequests = []
+
+    if (!gameStarts.some((g) => playerMap[g.sessionId].component.slot === 1)) {
+      log('Unable to start game - only the host may start the game')
+      return
     }
 
-    if (this.playerRemovals.length > 0) {
-      const playerRemovals = [...this.playerRemovals]
-      this.playerRemovals = []
-
-      playerRemovals.forEach((event) => {
-        log(`Player ${event.sessionId} removed`)
-        world.releaseEntity(playerMap[event.sessionId].entity)
-      })
+    if (Object.values(playerMap).some((p) => !p.component.isReady)) {
+      log('Unable to start game - not all players are ready')
+      return
     }
 
-    if (this.gameStartRequests.length > 0) {
-      const gameStarts = [...this.gameStartRequests]
-      this.gameStartRequests = []
-
-      if (
-        !gameStarts.some((g) => playerMap[g.sessionId].component.slot === 1)
-      ) {
-        log('Unable to start game - only the host may start the game')
-        return
-      }
-
-      if (Object.values(playerMap).some((p) => !p.component.isReady)) {
-        log('Unable to start game - not all players are ready')
-        return
-      }
-
-      const statusEnts = this.queries.status.entities
-      if (statusEnts.length !== 1) {
-        throw new Error(`Expected 1 status entity, found ${statusEnts.length}`)
-      }
-
-      const status = statusEnts[0].getComponent(Components.Status)
-      if (!status) {
-        log('Unable to start game - no status entity found')
-        return
-      }
-
-      status.value = GameStatus.playing
-
-      log('Starting game - unregistering ConnectionStatusSystem')
-      world.unregisterSystem(ConnectionStatusSystem as any)
+    const statusEnts = this.queries.status.entities
+    if (statusEnts.length !== 1) {
+      throw new Error(`Expected 1 status entity, found ${statusEnts.length}`)
     }
+
+    const status = statusEnts[0].getComponent(Components.Status)
+    if (!status) {
+      log('Unable to start game - no status entity found')
+      return
+    }
+
+    status.value = GameStatus.playing
+
+    log('Starting game - unregistering ConnectionStatusSystem')
+    world.unregisterSystem(ConnectionStatusSystem as any)
   }
 
   private getPlayerMap(): PlayerMap {
     return this.queries.players.entities.reduce(
-      // TODO: can't type item as Entity
-      (acc: PlayerMap, item: any) => {
-        const pd = (item as Entity).getComponent(Components.PlayerData)
+      (acc: PlayerMap, item: Entity) => {
+        const pd = item.getComponent(Components.PlayerData)
         if (!pd) return acc
 
         return { ...acc, [pd.playerId]: { component: pd, entity: item } }
       },
       {},
     )
+  }
+
+  execute(_deltaT: number, world: World): void {
+    if (!this.shouldExecute()) return
+
+    const playerMap = this.getPlayerMap()
+    this.handleReadyChanges(playerMap)
+    this.handleDisconnections(playerMap)
+    this.handlePlayerRemovals(world, playerMap)
+    this.handleGameStartRequests(world, playerMap)
   }
 }
