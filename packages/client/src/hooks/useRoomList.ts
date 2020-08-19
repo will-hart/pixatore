@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { Client, RoomAvailable } from 'colyseus.js'
 import debug from 'debug'
 
-import { Constants, State } from '@pixatore/game'
+import * as ECS from '@pixatore/ecs'
+import { Constants } from '@pixatore/game'
 
 const log = debug('PX:APP:Views     :useRoomLst')
 log.log = console.log.bind(console)
 
 export const useRoomList = (client?: Client) => {
-  const [roomList, setRoomList] = useState<RoomAvailable<State.GameState>[]>([])
+  const [roomList, setRoomList] = useState<RoomAvailable<ECS.World>[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {

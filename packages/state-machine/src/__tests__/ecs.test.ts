@@ -1,4 +1,4 @@
-import { World } from '@pixatore/ecs'
+import { World, IQueryMap } from '@pixatore/ecs'
 
 import { StateMachineComponent } from '../StateMachineComponent'
 import { StateMachineSystem } from '../StateMachineSystem'
@@ -11,19 +11,20 @@ enum TestStates {
 class TestComponent extends StateMachineComponent<TestStates> {}
 
 class TestSystem extends StateMachineSystem<TestStates> {
-  static queries = {
+  queryMap: IQueryMap = {
     stateMachine: {
       components: [TestComponent],
+      notComponents: [],
     },
   }
 
   execute(): void {
     // custom logic goes in here
-    expect(this.queries.stateMachine.results).toHaveLength(1)
+    expect(this.queries.stateMachine.entities).toHaveLength(1)
   }
 
-  init(attrs: any) {
-    super.init({
+  constructor() {
+    super({
       stateTransitions: {
         [TestStates.State1]: [TestStates.State2],
         [TestStates.State2]: [TestStates.State1],
@@ -36,9 +37,13 @@ class TestSystem extends StateMachineSystem<TestStates> {
 describe('ECS State Machine', () => {
   describe('ECQ -query on components', () => {
     it('ECQ.01 - component queries should work', () => {
-      const world = new World().registerSystem(TestSystem)
-      world.createEntity('test').addComponent(TestComponent)
-      world.execute()
+      const world = new World()
+      world.registerComponent(TestComponent)
+      world.registerSystem(new TestSystem())
+
+      const entity = world.createEntity('test')
+      world.addComponentToEntity(entity, TestComponent)
+      world.tick(0)
     })
   })
 })

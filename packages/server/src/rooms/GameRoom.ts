@@ -1,4 +1,4 @@
-import { World } from '@pixatore/ecs'
+import * as ECS from '@pixatore/ecs'
 import { Constants, State, Systems, Types } from '@pixatore/game'
 import { Room, Client } from 'colyseus'
 import { EventBus } from '@pixatore/event-bus'
@@ -15,25 +15,18 @@ import {
 import debug from 'debug'
 const log = debug('PX:SRV:Rooms     :GameRoom  ')
 
-export class GameRoom extends Room<State.GameState> {
+export class GameRoom extends Room<ECS.World> {
   static id = Constants.GAME_ROOM_NAME
   private _dispatcher: Dispatcher = new Dispatcher(this)
-  public readonly world: World
   public readonly eventBus: EventBus
 
   constructor() {
     super()
-    this.setState(new State.GameState())
-    this.eventBus = new EventBus()
-    this.world = State.buildWorld(
-      this.state,
-      State.WorldTypes.Server,
-      this.eventBus,
-    )
 
-    this.world.registerSystem(Systems.ConnectionStatusSystem, {
-      eventBus: this.eventBus,
-    })
+    this.eventBus = new EventBus()
+    this.setState(State.buildWorld(State.WorldTypes.Server, this.eventBus))
+
+    this.state.registerSystem(new Systems.ConnectionStatusSystem(this.eventBus))
   }
 
   onCreate(options: Types.RoomOptions) {
@@ -64,7 +57,7 @@ export class GameRoom extends Room<State.GameState> {
 
     log('Starting ECS Tick')
     this.setSimulationInterval((delta) => {
-      this.world.execute(delta)
+      this.state.tick(delta)
     })
   }
 
@@ -80,9 +73,5 @@ export class GameRoom extends Room<State.GameState> {
       client,
       consented,
     })
-  }
-
-  onDispose() {
-    this.world?.stop()
   }
 }
