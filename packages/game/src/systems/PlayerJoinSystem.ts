@@ -62,29 +62,33 @@ export class PlayerJoinSystem extends System {
 
     // create players for each slot
     for (const message of messages) {
-      const slotId = availableSlots.pop()
-      if (!slotId) {
-        throw new Error('No slots available for new player')
-      }
-
-      const playerData = this.createPlayerEntity(
-        world,
-        message.sessionId,
-        slotId,
-      )
-
-      if (!playerData) {
-        throw new Error(`Error creating player entity - ${message.sessionId}`)
-      }
-
-      log('Player joined slot %d, session %s', slotId, message.sessionId)
-      playerData.slot = slotId
-      playerData.playerId = message.sessionId
-      playerData.isReady = false
-      playerData.isConnected = true
+      this.configurePlayer(availableSlots, world, message)
     }
 
     // tidy up messages
     this.releaseMessages(world)
+  }
+
+  private configurePlayer(
+    availableSlots: number[],
+    world: World,
+    message: Components.PlayerJoinMessage,
+  ) {
+    const slotId = availableSlots.pop()
+    if (!slotId) {
+      throw new Error('No slots available for new player')
+    }
+
+    const playerData = this.createPlayerEntity(world, message.sessionId, slotId)
+
+    if (!playerData) {
+      throw new Error(`Error creating player entity - ${message.sessionId}`)
+    }
+
+    log('Player joined slot %d, session %s', slotId, message.sessionId)
+    playerData.slot = slotId
+    playerData.playerId = message.sessionId
+    playerData.isReady = false
+    playerData.isConnected = true
   }
 }
