@@ -1,11 +1,16 @@
 import { Schema, ArraySchema, type } from '@colyseus/schema'
 
+import debug from 'debug'
+
 import { System } from './System'
 import { ObjectPool } from './ObjectPool'
 import { Entity } from './Entity'
 import { Component } from './Component'
 import { IConstructableSchema, IQueryMap, IBaseConstructable } from './types'
 import { Query } from './Query'
+
+const log = debug('PX:ECS:World     :          ')
+if (console) log.log = console.log.bind(console)
 
 export class World extends Schema {
   private _systems: System[] = []
@@ -46,6 +51,9 @@ export class World extends Schema {
   public registerComponent<TInstance extends Component>(
     ComponentClass: IConstructableSchema<TInstance>,
   ): World {
+    log(
+      `Registering component ${ComponentClass.name}::${ComponentClass._typeId}`,
+    )
     this._componentPools.set(
       ComponentClass._typeId,
       new ObjectPool<TInstance>(ComponentClass, 1),
@@ -59,6 +67,10 @@ export class World extends Schema {
     ComponentClass: IConstructableSchema<TInstance>,
   ): TInstance {
     if (!this._componentPools.has(ComponentClass._typeId)) {
+      log(
+        `Unable to find Component Id ${ComponentClass._typeId} in registered components, which has keys %o`,
+        Array.from(this._componentPools.keys()),
+      )
       throw new Error(
         `Cannot acquire ${ComponentClass.name} - this component has not been registered`,
       )
@@ -194,4 +206,9 @@ export class World extends Schema {
   @type({ array: Entity }) public entities: ArraySchema<
     Entity
   > = new ArraySchema()
+
+  constructor() {
+    super()
+    log('Creating new world')
+  }
 }
