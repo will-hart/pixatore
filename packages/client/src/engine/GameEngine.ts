@@ -1,4 +1,4 @@
-import { World } from '@pixatore/ecs'
+import * as ECS from '@pixatore/ecs'
 import { State } from '@pixatore/game'
 import { EventBus } from '@pixatore/event-bus'
 import { Room } from 'colyseus.js'
@@ -8,27 +8,25 @@ const log = debug('PX:APP:Core      :GameEngine')
 log.log = console.log.bind(console)
 
 export class GameEngine {
-  public world: World
+  public get world(): ECS.World {
+    return this.room.state
+  }
   public eventBus: EventBus
 
-  constructor(public room: Room<State.GameState>) {
+  constructor(public room: Room<ECS.World>) {
     log('Creating game engine...')
     log(' -> initialising event bus')
     this.eventBus = new EventBus()
 
     log(' -> Initialising ECS')
-    this.world = State.buildWorld(
-      room.state,
-      State.WorldTypes.Client,
-      this.eventBus,
-    )
+    State.buildWorld(State.WorldTypes.Client, this.eventBus, this.room.state)
 
     log(' --> Game engine initialisation complete')
   }
 
   // TODO, link this into the PIXI app ticker
   public tick(delta: number): void {
-    this.world.execute(delta)
+    this.world.tick(delta)
   }
 
   disconnect(consented = false): void {

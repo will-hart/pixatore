@@ -1,4 +1,4 @@
-import { System } from '@pixatore/ecs'
+import { System, IQueryMap } from '@pixatore/ecs'
 
 import * as Components from '../components'
 
@@ -7,10 +7,10 @@ const log = debug('PX:GAM:ClientSytm:LobbyHud  ')
 if (console) log.log = console.log.bind(console)
 
 export class LobbyHudSystem extends System {
-  static queries = {
+  public queryMap: IQueryMap = {
     updatedPlayers: {
       components: [Components.PlayerData],
-      mandatory: true,
+      notComponents: [],
     },
   }
 
@@ -18,12 +18,12 @@ export class LobbyHudSystem extends System {
     _player,
   ) => {}
 
-  setCallback(callback: (player: Components.PlayerData) => void): void {
+  public setCallback(callback: (player: Components.PlayerData) => void): void {
     this.onPlayerChangeCallback = callback
   }
 
-  execute(): void {
-    const ents = this.queries.updatedPlayers.results || []
+  public execute(): void {
+    const ents = this.queries.updatedPlayers.entities
 
     for (const ent of ents) {
       const playerData = ent.getComponent?.(Components.PlayerData)

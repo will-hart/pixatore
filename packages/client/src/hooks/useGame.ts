@@ -1,8 +1,8 @@
 import { useState, createContext, useCallback, useEffect, useRef } from 'react'
+import * as ECS from '@pixatore/ecs'
 import { Client, Room } from 'colyseus.js'
 import debug from 'debug'
 
-import { State } from '@pixatore/game'
 import { GameEngine } from '../engine/GameEngine'
 import { useAnimationTimer } from './useAnimationTimer'
 
@@ -19,22 +19,19 @@ export interface IGameContext<TClient, TRoom> {
   stopLoop: () => void
 }
 
-const defaultGameContext: IGameContext<Client, Room<State.GameState>> = {
+const defaultGameContext: IGameContext<Client, Room<ECS.World>> = {
   client: undefined,
   lastFps: undefined,
   room: undefined,
   gameEngine: undefined,
   setClient: (client: Client) => {},
-  setRoom: (room: Room<State.GameState>) => {},
+  setRoom: (room: Room<ECS.World>) => {},
   stopLoop: () => {},
 }
 
-export const useNewGameContext = (): IGameContext<
-  Client,
-  Room<State.GameState>
-> => {
+export const useNewGameContext = (): IGameContext<Client, Room<ECS.World>> => {
   const [client, setClient] = useState<Client>()
-  const [room, _setRoom] = useState<Room<State.GameState>>()
+  const [room, _setRoom] = useState<Room<ECS.World>>()
   const [gameEngine, setGameEngine] = useState<GameEngine>()
   const [lastFps, setLastFps] = useState<number>(1)
 
@@ -53,7 +50,7 @@ export const useNewGameContext = (): IGameContext<
   }, [gameEngine, frameElapsed, setLastFps])
 
   const setRoom = useCallback(
-    (room: Room<State.GameState>) => {
+    (room: Room<ECS.World>) => {
       _setRoom(room)
 
       const gameEngine = new GameEngine(room)
@@ -73,6 +70,6 @@ export const useNewGameContext = (): IGameContext<
   }
 }
 
-export const GameContext = createContext<
-  IGameContext<Client, Room<State.GameState>>
->(defaultGameContext)
+export const GameContext = createContext<IGameContext<Client, Room<ECS.World>>>(
+  defaultGameContext,
+)

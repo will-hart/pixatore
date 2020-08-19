@@ -1158,14 +1158,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@colyseus/ecs@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@colyseus/ecs/-/ecs-0.4.0-alpha.4.tgz#af915229b31c61c44102a7fa9a4790c63c25d4eb"
-  integrity sha512-1d8BZO0kl4T2C0UEW384PSn4m0KkHyh7THx4dkhMKK34ZXwDDlBUheTn9rH3s0/cIO6vXJFO8HHHVmFWhibupw==
-  dependencies:
-    "@colyseus/schema" "^1.0.0-alpha.39"
-    ecsy "^0.4.0"
-
 "@colyseus/http@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@colyseus/http/-/http-2.0.0.tgz#620209a3dd06f9c455de12128d22ebdffda05592"
@@ -1179,10 +1171,15 @@
     express "^4.16.3"
     node-os-utils "^1.2.0"
 
-"@colyseus/schema@^1.0.0-alpha.12", "@colyseus/schema@^1.0.0-alpha.39", "@colyseus/schema@^1.0.0-alpha.40":
+"@colyseus/schema@^1.0.0-alpha.12", "@colyseus/schema@^1.0.0-alpha.40":
   version "1.0.0-alpha.44"
   resolved "https://registry.yarnpkg.com/@colyseus/schema/-/schema-1.0.0-alpha.44.tgz#b36d8f2cadfca672e7c08a3afa067ce24fc21dec"
   integrity sha512-6S2FSYteiysiLTR8YP8OYKwgY4zWuIcFd/m9rjnhFMSbJmnEirDOugN6FgSVaZPIfE4emRV1yu13vpEmBxeAxg==
+
+"@colyseus/schema@^1.0.0-alpha.46":
+  version "1.0.0-alpha.46"
+  resolved "https://registry.yarnpkg.com/@colyseus/schema/-/schema-1.0.0-alpha.46.tgz#2783ec02e8d3a642e5f1b7c947446cd5d71e5cee"
+  integrity sha512-UDoLYxpyg4OyuFe88ohnb3E3dzwTxbefFffn0FeqPuMMk6n+jlqjf21MYf0NacHdTyHZ1p8tDwRmvNBQquQI2w==
 
 "@colyseus/social@0.11.6":
   version "0.11.6"
@@ -4395,11 +4392,6 @@ ecdsa-sig-formatter@1.0.11:
   integrity sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==
   dependencies:
     safe-buffer "^5.0.1"
-
-ecsy@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ecsy/-/ecsy-0.4.0.tgz#ecf0723ad0d46a055bec97159038b5532cae7df6"
-  integrity sha512-AwcIw8xP/4J42SM3tSxQ5x/AxZ+DNPSM7DY1wAnZPUZ83hX94phtzVEoknZ05NZDIakD8sONlsQSRbWuQpV3Cg==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -7754,6 +7746,11 @@ nanoevents@^5.1.5:
   version "5.1.8"
   resolved "https://registry.yarnpkg.com/nanoevents/-/nanoevents-5.1.8.tgz#3a192513ca3dc88421a3b60cb22ca802074aacfb"
   integrity sha512-hxhbaIUYJxJIGFJLB6ls3byky/qWCYWyOY3eMYMyic736S14eW63V8B4fwdNfd97EKhg9346xbEKUYsb+44Hqg==
+
+nanoid@3.1.12:
+  version "3.1.12"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.12.tgz#6f7736c62e8d39421601e4a0c77623a97ea69654"
+  integrity sha512-1qstj9z5+x491jfiC4Nelk+f8XBad7LN20PmyWINJEMRSf3wcAjAWysw1qaA8z6NSKe2sjq1hRSDpBH5paCb6A==
 
 nanoid@^2.0.0, nanoid@^2.0.2:
   version "2.1.11"
