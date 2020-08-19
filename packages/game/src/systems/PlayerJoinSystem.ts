@@ -1,5 +1,4 @@
-import { System } from '@pixatore/ecs'
-import * as Archetypes from '../archetypes'
+import { System, World, IQueryMap } from '@pixatore/ecs'
 import * as Components from '../components'
 
 import debug from 'debug'
@@ -7,30 +6,28 @@ const log = debug('PX:GAM:Systems   :JoinSystem')
 log.log = console.log.bind(console)
 
 export class PlayerJoinSystem extends System {
-  static queries = {
+  public queryMap: IQueryMap = {
     messages: {
       components: [Components.PlayerJoinMessage],
-      listen: { added: true },
-      mandatory: true,
+      notComponents: [],
     },
-    players: { components: [Components.PlayerData] },
+    players: { components: [Components.PlayerData], notComponents: [] },
   }
 
-  execute(_delta: number) {
-    const messages = (this.queries.messages.added || [])
+  execute(_delta: number, world: World) {
+    const messages = (this.queries.messages.entities || [])
       // TODO type errors if I use Entity typing here, as private fields are missing
       .map((ent) => {
-        return ent.getComponent?.(Components.PlayerJoinMessage)
+        return ent.getComponent(Components.PlayerJoinMessage)!
       })
-      .filter((c): c is Components.PlayerJoinMessage => !!c)
       .sort((a, b) => a!.messageReceivedMs - b!.messageReceivedMs)
 
     if (!messages.length) return
 
     log('Messages %o', messages)
 
-    const playerData = this.queries.players.results
-      .map((ent) => ent.getMutableComponent?.(Components.PlayerData))
+    const playerData = this.queries.players.entities
+      .map((ent) => ent.getComponent(Components.PlayerData)!)
       .filter((c): c is Components.PlayerData => !!c)
 
     // TODO: populate from room metadata / game settings
@@ -47,11 +44,13 @@ export class PlayerJoinSystem extends System {
       }
 
       // issues between Ecsy and colyseus/ecs entities
-      const playerEnt = Archetypes.Player(
-        // @ts-ignore
-        this.world.createEntity(`Player_${message.sessionId}_${slotId}`),
+      const playerEnt = world.createEntity(
+        `Player_${message.sessionId}_${slotId}`,
       )
-      const playerData = playerEnt.getMutableComponent?.(Components.PlayerData)
+      world.addComponentToEntity(playerEnt, Components.PlayerData)
+      world.addComponentToEntity(playerEnt, Components.Transform)
+
+      const playerData = playerEnt.getComponent(Components.PlayerData)!
 
       if (!playerData) {
         throw new Error(`Error creating player entity - ${message.sessionId}`)
@@ -65,8 +64,9 @@ export class PlayerJoinSystem extends System {
     }
 
     // tidy up messages
-    this.queries.messages.results.forEach((ent) =>
-      ent.removeComponent(Components.PlayerJoinMessage),
+
+    this.queries.messages.entities.forEach((ent) =>
+      world.releaseComponentFromEntity(ent, Components.PlayerJoinMessage),
     )
   }
 }

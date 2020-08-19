@@ -19,7 +19,8 @@ export abstract class StateMachineSystem<
 > extends System {
   protected stateMachine!: StateMachine<TStateEnum>
 
-  init(attributes: StateMachineSystemAttributes<TStateEnum>) {
+  constructor(attributes: StateMachineSystemAttributes<TStateEnum>) {
+    super()
     this.stateMachine = new StateMachine(
       attributes.stateTransitions,
       attributes.initialState,

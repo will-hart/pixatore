@@ -1,4 +1,4 @@
-import { System, Entity } from '@pixatore/ecs'
+import { System, Entity, World, IQueryMap } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 
 import { ServerEvents } from '../events'
@@ -15,18 +15,21 @@ export type PlayerMap = {
 }
 
 export class ConnectionStatusSystem extends System {
-  static queries = {
+  public queryMap: IQueryMap = {
     players: {
       components: [Components.PlayerData],
-      mandatory: true,
+      notComponents: [],
     },
     status: {
       components: [Components.Status],
-      mandatory: true,
+      notComponents: [],
     },
   }
 
-  private eventBus!: EventBus
+  constructor(private eventBus: EventBus) {
+    super()
+    this.subscribe()
+  }
 
   private readyChanges: ServerEvents.IPlayerStatusEvent[] = []
   private disconnections: ServerEvents.IPlayerStatusEvent[] = []
@@ -36,9 +39,7 @@ export class ConnectionStatusSystem extends System {
   private unsubscribes: Function[] = []
 
   /** Initialise the system and subscribe to event updates */
-  init(attrs: { eventBus: EventBus }): void {
-    this.eventBus = attrs.eventBus
-
+  private subscribe(): void {
     this.unsubscribes.push(
       this.eventBus.subscribe(
         ServerEventTypes.CHANGE_CONNECTION_STATE,
@@ -71,7 +72,7 @@ export class ConnectionStatusSystem extends System {
     this.unsubscribes.forEach((unsub) => unsub())
   }
 
-  execute(): void {
+  execute(_deltaT: number, world: World): void {
     const records =
       this.readyChanges.length +
       this.disconnections.length +
@@ -108,7 +109,7 @@ export class ConnectionStatusSystem extends System {
 
       playerRemovals.forEach((event) => {
         log(`Player ${event.sessionId} removed`)
-        playerMap[event.sessionId].entity.remove()
+        world.releaseEntity(playerMap[event.sessionId].entity)
       })
     }
 
@@ -128,8 +129,12 @@ export class ConnectionStatusSystem extends System {
         return
       }
 
-      const statusEnt = this.queries.status.results?.[0]
-      const status = statusEnt?.getMutableComponent?.(Components.Status)
+      const statusEnts = this.queries.status.entities
+      if (statusEnts.length !== 1) {
+        throw new Error(`Expected 1 status entity, found ${statusEnts.length}`)
+      }
+
+      const status = statusEnts[0].getComponent(Components.Status)
       if (!status) {
         log('Unable to start game - no status entity found')
         return
@@ -138,15 +143,15 @@ export class ConnectionStatusSystem extends System {
       status.value = GameStatus.playing
 
       log('Starting game - unregistering ConnectionStatusSystem')
-      this.world.unregisterSystem(ConnectionStatusSystem)
+      world.unregisterSystem(ConnectionStatusSystem as any)
     }
   }
 
   private getPlayerMap(): PlayerMap {
-    return this.queries.players.results.reduce(
+    return this.queries.players.entities.reduce(
       // TODO: can't type item as Entity
       (acc: PlayerMap, item: any) => {
-        const pd = (item as Entity).getMutableComponent?.(Components.PlayerData)
+        const pd = (item as Entity).getComponent(Components.PlayerData)
         if (!pd) return acc
 
         return { ...acc, [pd.playerId]: { component: pd, entity: item } }

@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { RoomAvailable } from 'colyseus.js'
-import { State } from '@pixatore/game'
+
+import * as ECS from '@pixatore/ecs'
 
 export interface IRoomListProps {
   canJoin: boolean
   lastRoomId?: string
   onJoinGame: (id: string) => Promise<void>
   onReconnect: () => Promise<void>
-  roomList: RoomAvailable<State.GameState>[]
+  roomList: RoomAvailable<ECS.World>[]
 }
 
 export const RoomList = ({

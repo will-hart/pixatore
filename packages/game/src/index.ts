@@ -1,4 +1,3 @@
-import * as Archetypes from './archetypes'
 import * as Constants from './constants'
 import * as Components from './components'
 import * as State from './state'
@@ -8,4 +7,4 @@ export * from './events'
 
 export * as Systems from './systems'
 
-export { Archetypes, Constants, Components, State, Types }
+export { Constants, Components, State, Types }

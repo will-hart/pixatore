@@ -10,4 +10,8 @@ export class PlayerJoinMessage extends Component {
 
   // TODO: queries in the ECS are not correctly triggered if @type isn't applied
   @type('string') public sessionId: string = ''
+
+  public reset(): void {
+    this.sessionId = ''
+  }
 }

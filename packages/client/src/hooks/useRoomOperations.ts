@@ -1,14 +1,15 @@
 import { useState, useCallback } from 'react'
 import debug from 'debug'
 import { Client, Room } from 'colyseus.js'
-import { Constants, State } from '@pixatore/game'
+import * as ECS from '@pixatore/ecs'
+import { Constants } from '@pixatore/game'
 import { useLocalStorage } from './useLocalStorage'
 
 const log = debug('PX:APP:Hooks     :useRoomOps')
 log.log = console.log.bind(console)
 
 export const useRoomOperations = (client?: Client) => {
-  const [room, setRoom] = useState<Room<State.GameState>>()
+  const [room, setRoom] = useState<Room<ECS.World>>()
   const [error, setError] = useState<string | null>(null)
 
   const {
@@ -24,7 +25,7 @@ export const useRoomOperations = (client?: Client) => {
   } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
 
   const afterConnect = useCallback(
-    async (room?: Room<State.GameState>, error?: Error) => {
+    async (room?: Room<ECS.World>, error?: Error) => {
       if (error) {
         log('Error connecting %o', error)
         setError(error.message)
@@ -54,7 +55,7 @@ export const useRoomOperations = (client?: Client) => {
 
       try {
         log(`joining room ${roomId}`)
-        const room = await client.joinById(roomId, {}, State.GameState)
+        const room = await client.joinById(roomId, {}, ECS.World)
         await afterConnect(room)
       } catch (e) {
         await afterConnect(undefined, e)
@@ -68,11 +69,7 @@ export const useRoomOperations = (client?: Client) => {
 
     try {
       log('creating new game...')
-      const room = await client.create(
-        Constants.GAME_ROOM_NAME,
-        {},
-        State.GameState,
-      )
+      const room = await client.create(Constants.GAME_ROOM_NAME, {}, ECS.World)
       await afterConnect(room)
     } catch (e) {
       await afterConnect(undefined, e)
@@ -92,11 +89,7 @@ export const useRoomOperations = (client?: Client) => {
 
     try {
       log('reconnecting to room %s with session %s', lastRoomId, lastSessionId)
-      const room = await client.reconnect(
-        lastRoomId,
-        lastSessionId,
-        State.GameState,
-      )
+      const room = await client.reconnect(lastRoomId, lastSessionId, ECS.World)
       afterConnect(room)
     } catch (e) {
       // TODO: be smarter here
