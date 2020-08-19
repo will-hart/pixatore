@@ -1,0 +1,16 @@
+{
+  "name": "@pixatore/app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:core": "echo 'Skipping'",
+    "build:core:watch": "echo 'Skipping'",
+    "lint": "yarn tsc --noEmit",
+    "start": "yarn tauri dev",
+    "build": "yarn tauri build",
+    "test": "yarn jest"
+  },
+  "dependencies": {
+    "tauri": "^0.11.1"
+  }
+}
