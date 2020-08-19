@@ -7,11 +7,10 @@ import { Component } from './Component'
 import {
   IConstructableSchema,
   IQuerySchema,
-  IQueryResultMap,
   IQueryMap,
   IBaseConstructable,
 } from './types'
-import { QueryCache } from './QueryCache'
+import { Query } from './Query'
 
 export class World extends Schema {
   private _systems: System[] = []
@@ -23,7 +22,23 @@ export class World extends Schema {
 
   private _entityPool: ObjectPool<Entity> = new ObjectPool(Entity, 10)
 
-  private _queryCache = new QueryCache()
+  private _changedComponents: Set<IConstructableSchema<Component>> = new Set()
+
+  public isQueryOutdated(schema: IQuerySchema): boolean {
+    for (const comp of schema.components) {
+      if (this._changedComponents.has(comp)) {
+        return true
+      }
+    }
+
+    for (const comp of schema.notComponents || []) {
+      if (this._changedComponents.has(comp)) {
+        return true
+      }
+    }
+
+    return false
+  }
 
   public registerComponent<TInstance extends Component>(
     ComponentClass: IConstructableSchema<TInstance>,
@@ -43,6 +58,7 @@ export class World extends Schema {
       )
     }
 
+    this._changedComponents.add(ComponentClass)
     return this._componentPools.get(ComponentClass._typeId)?.acquire()
   }
 
@@ -50,12 +66,13 @@ export class World extends Schema {
     const componentClass = component.constructor as IConstructableSchema<
       TInstance
     >
+
+    this._changedComponents.add(componentClass)
     this._componentPools.get(componentClass._typeId)?.release(component)
   }
 
   public acquireEntity(): Entity {
     const entity = this._entityPool.acquire()
-    this._queryCache.onAddEntity(entity)
     this.entities.push(entity)
 
     return entity
@@ -88,9 +105,6 @@ export class World extends Schema {
   }
 
   public releaseEntity(entity: Entity): void {
-    // do this before components are removed
-    this._queryCache.onRemoveEntity(entity)
-
     // release all components
     const components = Array.from(entity.components.values())
     entity.components.clear()
@@ -109,41 +123,32 @@ export class World extends Schema {
     this._systems.push(system)
     this._systems.sort((a, b) => a.priority - b.priority)
 
-    system.queries = this._queryCache.registerSystem(
-      (system.constructor as any).queryMap,
-    )
+    system.queries = this.getCachedQueries((system.constructor as any).queryMap)
   }
 
-  public removeSystem(SystemClass: IBaseConstructable<System>): void {
+  public unregisterSystem(SystemClass: IBaseConstructable<System>): void {
     this._systems = this._systems.filter(
       (system) =>
         (system.constructor as IBaseConstructable<System>) !== SystemClass,
     )
   }
 
-  private matchEntities(matchSchema: IQuerySchema): Entity[] {
-    return this.entities.filter(
-      (ent) =>
-        ent.hasAllComponents(matchSchema.components) &&
-        (!matchSchema.notComponents?.length ||
-          ent.hasNoComponents(matchSchema.notComponents)),
+  private getCachedQueries(queries: IQueryMap): { [key: string]: Query } {
+    return Object.keys(queries).reduce(
+      (acc: { [key: string]: Query }, key: string) => {
+        const query = new Query(queries[key], this)
+        return { ...acc, [key]: query }
+      },
+      {},
     )
-  }
-
-  // TODO: cache queries - map components to associated queries
-  private getCachedQueries(queries: IQueryMap): IQueryResultMap {
-    return Object.keys(queries).reduce((acc: IQueryResultMap, key: string) => {
-      const querySchema = queries[key]
-
-      return { ...acc, [key]: this.matchEntities(querySchema) }
-    }, {} as IQueryResultMap)
   }
 
   public tick(deltaT: number): void {
     for (const system of this._systems) {
-      const queryMap: IQueryMap = (system.constructor as any).queryMap
-      system.execute(this.getCachedQueries(queryMap), deltaT)
+      system.execute(deltaT)
     }
+
+    this._changedComponents.clear()
   }
 
   @type({ array: Entity }) public entities: ArraySchema<

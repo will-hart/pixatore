@@ -1,5 +1,5 @@
-import { IQueryMap, IQueryResultMap } from './types'
-import { Query } from './QueryCache'
+import { IQueryMap } from './types'
+import { Query } from './Query'
 
 export abstract class System {
   static queryMap: IQueryMap = {}
@@ -8,5 +8,5 @@ export abstract class System {
 
   priority: number = 0
 
-  abstract execute(queries: IQueryResultMap, deltaT: number): void
+  abstract execute(deltaT: number): void
 }

@@ -21,7 +21,6 @@ export abstract class Component extends Schema implements IPoolable {
   abstract reset(): void
 
   init(): void {
-    console.log('setting component ID', this.constructor.name)
     this.id = nanoid()
   }
 }

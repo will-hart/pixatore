@@ -1,5 +1,4 @@
 import { Component } from './Component'
-import { Entity } from './Entity'
 import { Schema } from '@colyseus/schema'
 
 export interface IPoolable extends Schema {
@@ -24,8 +23,4 @@ export interface IQueryMap {
 export interface IQuerySchema {
   components: IConstructableSchema<Component>[]
   notComponents?: IConstructableSchema<Component>[]
-}
-
-export interface IQueryResultMap {
-  [key: string]: Entity[]
 }

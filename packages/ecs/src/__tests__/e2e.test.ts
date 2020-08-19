@@ -25,8 +25,8 @@ describe('Pixatore ECS E2E', () => {
       },
     }
 
-    execute(queries: ECS.IQueryResultMap, _deltaT: number): void {
-      queries.systemAQuery.forEach((ent) => {
+    execute(_deltaT: number): void {
+      this.queries.systemAQuery.entities.forEach((ent) => {
         const comp = ent.getComponent(TestCompB)
         if (!comp) return
 
@@ -43,9 +43,9 @@ describe('Pixatore ECS E2E', () => {
       },
     }
 
-    execute(queries: ECS.IQueryResultMap, _deltaT: number): void {
+    execute(_deltaT: number): void {
       // console.log('SYSTEM B', JSON.stringify(entities, undefined, 2))
-      queries.systemBQuery.forEach((ent) => {
+      this.queries.systemBQuery.entities.forEach((ent) => {
         const comp = ent.getComponent(TestCompA)
         if (!comp) return
 
@@ -77,10 +77,13 @@ describe('Pixatore ECS E2E', () => {
 
     world.tick(0)
 
+    console.log('--------------- WORLD', JSON.stringify(world, undefined, 2))
+    console.log(
+      '--------------- SYS A QUERIES',
+      JSON.stringify(sysA.queries, undefined, 2),
+    )
+
     expect(moddedByA.testB).toEqual('modified by A')
     expect(moddedByB.testA).toEqual('modified by B')
-
-    console.log(JSON.stringify(world, undefined, 2))
-    console.log(JSON.stringify(sysA.queries, undefined, 2))
   })
 })
