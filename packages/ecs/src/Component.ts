@@ -10,7 +10,7 @@ export abstract class Component extends Schema implements IPoolable {
     return (this as typeof Schema)._typeid
   }
 
-  static set _typeId(_typeId: any) {
+  static set _typeId(_typeId: number) {
     /* ignore */
   }
 

@@ -5,14 +5,31 @@ import { World } from './World'
 export class Query {
   private _entities: Set<Entity> = new Set()
 
-  constructor(private schema: IQuerySchema, private world: World) {}
+  private _lastQueryHash: Map<number, number> = new Map()
+
+  public schema: Readonly<IQuerySchema>
+
+  constructor(schema: IQuerySchema, private world: World) {
+    this.schema = Object.freeze(schema)
+
+    for (const componentClass of [
+      ...schema.components,
+      ...schema.notComponents,
+    ]) {
+      this._lastQueryHash.set(componentClass._typeId, -1)
+    }
+  }
+
+  public getComponentHash(type: number): number | undefined {
+    return this._lastQueryHash.get(type)
+  }
 
   public removeEntity(entity: Entity): void {
     this._entities.delete(entity)
   }
 
   public refresh(): void {
-    if (!this.world.isQueryOutdated(this.schema)) return
+    if (!this.world.isQueryOutdated(this)) return
 
     // probably not great performance but the easiest way to manage removed entities
     this._entities.clear()
@@ -30,8 +47,7 @@ export class Query {
   private matchEntity(entity: Entity): boolean {
     return (
       entity.hasAllComponents(this.schema.components) &&
-      (!this.schema.notComponents?.length ||
-        entity.hasNoComponents(this.schema.notComponents))
+      entity.doesNotHaveComponents(this.schema.notComponents)
     )
   }
 }

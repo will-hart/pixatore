@@ -4,35 +4,38 @@ import { System } from './System'
 import { ObjectPool } from './ObjectPool'
 import { Entity } from './Entity'
 import { Component } from './Component'
-import {
-  IConstructableSchema,
-  IQuerySchema,
-  IQueryMap,
-  IBaseConstructable,
-} from './types'
+import { IConstructableSchema, IQueryMap, IBaseConstructable } from './types'
 import { Query } from './Query'
 
 export class World extends Schema {
   private _systems: System[] = []
 
-  private _componentPools: Map<string, ObjectPool> = new Map<
-    string,
-    ObjectPool
-  >()
+  private _componentPools: Map<number, ObjectPool> = new Map()
 
   private _entityPool: ObjectPool<Entity> = new ObjectPool(Entity, 10)
 
-  private _changedComponents: Set<IConstructableSchema<Component>> = new Set()
+  /**
+   * Holds a "last state version number" for each component type.
+   * These are incremented when components are acquired or released.
+   *
+   * Queries retain their last updated version and can check to see
+   * if the world has changed and the query is dirty based on their stored
+   * hashes
+   */
+  private _componentUpdateHashes: Map<number, number> = new Map()
 
-  public isQueryOutdated(schema: IQuerySchema): boolean {
-    for (const comp of schema.components) {
-      if (this._changedComponents.has(comp)) {
-        return true
-      }
-    }
+  /**
+   * Returns true if any of the queries
+   * @param schema
+   */
+  public isQueryOutdated(query: Query): boolean {
+    const schema = query.schema
 
-    for (const comp of schema.notComponents || []) {
-      if (this._changedComponents.has(comp)) {
+    for (const comp of [...schema.components, ...schema.notComponents]) {
+      if (
+        this._componentUpdateHashes.get(comp._typeId)! >
+        query.getComponentHash(comp._typeId)!
+      ) {
         return true
       }
     }
@@ -42,11 +45,14 @@ export class World extends Schema {
 
   public registerComponent<TInstance extends Component>(
     ComponentClass: IConstructableSchema<TInstance>,
-  ) {
+  ): World {
     this._componentPools.set(
       ComponentClass._typeId,
       new ObjectPool<TInstance>(ComponentClass, 1),
     )
+    this._componentUpdateHashes.set(ComponentClass._typeId, 0)
+
+    return this
   }
 
   private acquireComponent<TInstance extends Component>(
@@ -58,8 +64,16 @@ export class World extends Schema {
       )
     }
 
-    this._changedComponents.add(ComponentClass)
-    return this._componentPools.get(ComponentClass._typeId)?.acquire()
+    const type = ComponentClass._typeId
+    this.incrementComponentHash(type)
+    return this._componentPools.get(type)?.acquire()
+  }
+
+  private incrementComponentHash(type: number) {
+    this._componentUpdateHashes.set(
+      type,
+      this._componentUpdateHashes.get(type)! + 1,
+    )
   }
 
   private releaseComponent<TInstance extends Component>(component: TInstance) {
@@ -67,12 +81,17 @@ export class World extends Schema {
       TInstance
     >
 
-    this._changedComponents.add(componentClass)
-    this._componentPools.get(componentClass._typeId)?.release(component)
+    const type = componentClass._typeId
+
+    this.incrementComponentHash(type)
+    this._componentPools.get(type)?.release(component)
   }
 
-  public acquireEntity(): Entity {
+  public createEntity(name?: string): Entity {
     const entity = this._entityPool.acquire()
+    entity.name = name || ''
+    entity.setWorld(this)
+
     this.entities.push(entity)
 
     return entity
@@ -89,7 +108,7 @@ export class World extends Schema {
     }
 
     const component = this.acquireComponent(ComponentClass)
-    entity.components.set(ComponentClass._typeId, component)
+    entity.components.set(ComponentClass._typeId.toString(), component)
     return component as TComp
   }
 
@@ -100,14 +119,20 @@ export class World extends Schema {
     const component = entity.getComponent(ComponentClass)
     if (!component) return
 
-    entity.components.delete(ComponentClass._typeId)
+    entity.components.delete(ComponentClass._typeId.toString())
     this.releaseComponent(component)
+
+    // release empty entities
+    if (entity.components.values.length === 0) {
+      this.releaseEntity(entity)
+    }
   }
 
   public releaseEntity(entity: Entity): void {
     // release all components
     const components = Array.from(entity.components.values())
     entity.components.clear()
+    entity.setWorld(undefined)
 
     for (const component of components) {
       this._componentPools
@@ -119,18 +144,35 @@ export class World extends Schema {
     this._entityPool.release(entity)
   }
 
-  public registerSystem(system: System): void {
+  public registerSystem(system: System): World {
+    system.queries = this.getCachedQueries(system.queryMap)
+
     this._systems.push(system)
     this._systems.sort((a, b) => a.priority - b.priority)
 
-    system.queries = this.getCachedQueries((system.constructor as any).queryMap)
+    return this
   }
 
-  public unregisterSystem(SystemClass: IBaseConstructable<System>): void {
+  public getSystem<T extends System>(
+    SystemConstructor: IBaseConstructable<T>,
+  ): T | null {
+    const filtered = this._systems.filter(
+      (sys) => sys.constructor === SystemConstructor,
+    )
+
+    if (filtered.length) {
+      return filtered[0] as T
+    }
+    return null
+  }
+
+  public unregisterSystem(SystemClass: IBaseConstructable<System>): World {
     this._systems = this._systems.filter(
       (system) =>
         (system.constructor as IBaseConstructable<System>) !== SystemClass,
     )
+
+    return this
   }
 
   private getCachedQueries(queries: IQueryMap): { [key: string]: Query } {
@@ -145,10 +187,8 @@ export class World extends Schema {
 
   public tick(deltaT: number): void {
     for (const system of this._systems) {
-      system.execute(deltaT)
+      system.execute(deltaT, this)
     }
-
-    this._changedComponents.clear()
   }
 
   @type({ array: Entity }) public entities: ArraySchema<

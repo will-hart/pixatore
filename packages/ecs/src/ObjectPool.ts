@@ -3,11 +3,15 @@ import { IPoolable, IConstructableSchema } from './types'
 export class ObjectPool<T extends IPoolable = any> {
   private _freeItems: T[]
 
+  public get availableItems() {
+    return this._freeItems.length
+  }
+
   public constructor(
     private Factory: IConstructableSchema<T>,
     initialSize: number,
   ) {
-    this._freeItems = Array(initialSize > 0 ? initialSize : 1)
+    this._freeItems = Array(initialSize >= 0 ? initialSize : 1)
       .fill(null)
       .map(() => new this.Factory())
   }

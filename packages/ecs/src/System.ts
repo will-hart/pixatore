@@ -1,12 +1,13 @@
 import { IQueryMap } from './types'
 import { Query } from './Query'
+import { World } from './World'
 
 export abstract class System {
-  static queryMap: IQueryMap = {}
+  abstract queryMap: IQueryMap
 
   queries: { [key: string]: Query } = {}
 
   priority: number = 0
 
-  abstract execute(deltaT: number): void
+  abstract execute(deltaT: number, world: World): void
 }

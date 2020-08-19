@@ -13,7 +13,7 @@ export interface IBaseConstructable<T> {
 
 export interface IConstructableSchema<C extends IPoolable>
   extends IBaseConstructable<C> {
-  _typeId: string
+  _typeId: number
 }
 
 export interface IQueryMap {
@@ -22,5 +22,5 @@ export interface IQueryMap {
 
 export interface IQuerySchema {
   components: IConstructableSchema<Component>[]
-  notComponents?: IConstructableSchema<Component>[]
+  notComponents: IConstructableSchema<Component>[]
 }

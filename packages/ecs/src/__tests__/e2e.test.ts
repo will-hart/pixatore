@@ -19,9 +19,10 @@ describe('Pixatore ECS E2E', () => {
   }
 
   class SystemA extends ECS.System {
-    static queryMap: ECS.IQueryMap = {
+    queryMap: ECS.IQueryMap = {
       systemAQuery: {
         components: [TestCompA, TestCompB],
+        notComponents: [],
       },
     }
 
@@ -36,7 +37,7 @@ describe('Pixatore ECS E2E', () => {
   }
 
   class SystemB extends ECS.System {
-    static queryMap: ECS.IQueryMap = {
+    queryMap: ECS.IQueryMap = {
       systemBQuery: {
         components: [TestCompA],
         notComponents: [TestCompB],
@@ -65,23 +66,23 @@ describe('Pixatore ECS E2E', () => {
     const sysB = new SystemB()
     world.registerSystem(sysB)
 
-    const ent1 = world.acquireEntity()
+    const ent1 = world.createEntity()
     world.addComponentToEntity(ent1, TestCompA)
     const moddedByA = world.addComponentToEntity(ent1, TestCompB)
 
-    const ent2 = world.acquireEntity()
+    const ent2 = world.createEntity()
     const moddedByB = world.addComponentToEntity(ent2, TestCompA)
 
-    const ent3 = world.acquireEntity()
+    const ent3 = world.createEntity()
     world.addComponentToEntity(ent3, TestCompB)
 
     world.tick(0)
 
-    console.log('--------------- WORLD', JSON.stringify(world, undefined, 2))
-    console.log(
-      '--------------- SYS A QUERIES',
-      JSON.stringify(sysA.queries, undefined, 2),
-    )
+    // console.log('--------------- WORLD', JSON.stringify(world, undefined, 2))
+    // console.log(
+    //   '--------------- SYS A QUERIES',
+    //   JSON.stringify(sysA.queries, undefined, 2),
+    // )
 
     expect(moddedByA.testB).toEqual('modified by A')
     expect(moddedByB.testA).toEqual('modified by B')
