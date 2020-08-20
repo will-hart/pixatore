@@ -3,7 +3,6 @@ import { EventBus } from '@pixatore/event-bus'
 
 import * as Components from '../components'
 import * as Systems from '../systems'
-import { GameState } from './GameState'
 
 import debug from 'debug'
 const log = debug('PX:GAM:WorldFacty:BuildWorld')
@@ -36,11 +35,12 @@ const registerSystems = (
 ): void => {
   if (worldType === WorldTypes.Server) {
     log('Registering server systems')
-    world.registerSystem(Systems.PlayerJoinSystem)
+    world.registerSystem(new Systems.PlayerJoinSystem())
   } else {
     log('Registering client systems')
-    world.registerSystem(Systems.GameStatusSystem, { eventBus })
-    world.registerSystem(Systems.LobbyHudSystem, { eventBus })
+    world
+      .registerSystem(new Systems.GameStatusSystem(eventBus))
+      .registerSystem(new Systems.LobbyHudSystem())
   }
 }
 
@@ -51,16 +51,16 @@ const registerSingletonEntity = (
 ): void => {
   if (worldType !== WorldTypes.Server) return // only create on server, will then sync to client
   log('Registering singleton entity')
-  world.createEntity(CORE_ENTITY_NAME).addComponent(Components.Status)
+  const ent = world.createEntity(CORE_ENTITY_NAME)
+  world.addComponentToEntity(ent, Components.Status)
 }
 
 export const buildWorld = (
-  state: GameState,
   worldType: WorldTypes,
   eventBus: EventBus,
+  existingWorld?: World,
 ): World => {
-  const world = new World()
-  world.useEntities(state.entities)
+  const world = existingWorld || new World()
 
   registerComponents(world, worldType, eventBus)
   registerSystems(world, worldType, eventBus)

@@ -11,4 +11,8 @@ export abstract class StateMachineComponent<
   TStateEnum extends string
 > extends Component {
   @type('string') currentState?: TStateEnum
+
+  reset(): void {
+    this.currentState = undefined
+  }
 }

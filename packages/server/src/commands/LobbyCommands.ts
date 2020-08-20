@@ -1,10 +1,5 @@
-import {
-  Components,
-  Constants,
-  ServerEvents,
-  State,
-  Types,
-} from '@pixatore/game'
+import * as ECS from '@pixatore/ecs'
+import { Components, Constants, ServerEvents, Types } from '@pixatore/game'
 import { Client, Room } from 'colyseus'
 
 import { Command } from './Command'
@@ -18,7 +13,7 @@ const getNewEntity = (room: Room<any, any>) => {
 
   // TODO: typing as Entity creates an error here, missing private methods/fields
   // create a new message entity
-  return gameRoom.world.createEntity()
+  return gameRoom.state.createEntity()
 }
 
 const getEventBus = (room: Room<any, any>) => {
@@ -27,7 +22,7 @@ const getEventBus = (room: Room<any, any>) => {
 }
 
 export class OnCreateCommand extends Command<
-  State.GameState,
+  ECS.World,
   { options: Types.RoomOptions }
 > {
   async execute({ options }: this['payload']): Promise<void> {
@@ -42,7 +37,7 @@ export class OnCreateCommand extends Command<
 }
 
 export class OnGameStartCommand extends Command<
-  State.GameState,
+  ECS.World,
   { sessionId: string }
 > {
   async execute({ sessionId }: this['payload']): Promise<void> {
@@ -56,17 +51,14 @@ export class OnGameStartCommand extends Command<
   }
 }
 
-export class OnJoinCommand extends Command<
-  State.GameState,
-  { sessionId: string }
-> {
+export class OnJoinCommand extends Command<ECS.World, { sessionId: string }> {
   async execute({ sessionId }: this['payload']): Promise<void> {
     log('[OnJoinCommand] Player attempting join')
     const newEnt = getNewEntity(this.room).addComponent(
       Components.PlayerJoinMessage,
     )
 
-    const message = newEnt.getMutableComponent(Components.PlayerJoinMessage)
+    const message = newEnt.getComponent(Components.PlayerJoinMessage)
 
     message.messageReceivedMs = new Date().getTime()
     message.sessionId = sessionId
@@ -74,7 +66,7 @@ export class OnJoinCommand extends Command<
 }
 
 export class OnLeaveCommand extends Command<
-  State.GameState,
+  ECS.World,
   {
     client: Client
     consented: boolean
@@ -115,7 +107,7 @@ export class OnLeaveCommand extends Command<
     // wait for reconnection
     try {
       log(`[OnLeaveCommand] Player ${client.sessionId} attempting reconnect`)
-      await this.room.allowReconnection(client, 30)
+      await this.room.allowReconnection(client, Constants.DISCONNECTION_TIMEOUT)
 
       bus.publish(
         ServerEvents.onChangeConnectionState({
@@ -141,7 +133,7 @@ export class OnLeaveCommand extends Command<
 }
 
 export class OnPlayerReadyCommand extends Command<
-  State.GameState,
+  ECS.World,
   { sessionId: string; isReady: boolean }
 > {
   async execute({ sessionId, isReady }: this['payload']): Promise<void> {

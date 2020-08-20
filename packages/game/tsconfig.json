@@ -3,17 +3,16 @@
     "rootDir": "src",
     "outDir": "build",
     "module": "commonjs",
-    "lib": ["dom", "es6"],
+    "lib": ["es6"],
     "target": "ES2019",
     "allowJs": false,
     "declaration": true,
     "sourceMap": false,
     "strict": true,
-    "composite": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "noUnusedLocals": true
   },
   "exclude": ["node_modules", "build"],
-  "include": ["src/**/*.json", "src/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

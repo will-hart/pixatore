@@ -8,25 +8,25 @@
   "typings": "build/index.d.ts",
   "scripts": {
     "test": "yarn jest --passWithNoTests",
-    "build": "tsc -p tsconfig.json --resolveJsonModule",
+    "build": "tsc -p tsconfig.json",
     "build:core": "yarn build",
-    "build:core:watch": "yarn build --watch",
+    "build:core:watch": "yarn build:watch",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
     "lint:eslint": "yarn eslint",
-    "build:watch": "tsc -w -p tsconfig.json --resolveJsonModule",
-    "start": "tsc -p tsconfig.json --resolveJsonModule --watch"
+    "build:watch": "tsc -w -p tsconfig.json",
+    "start": "yarn build:watch"
   },
   "dependencies": {
-    "@colyseus/schema": "^1.0.0-alpha.40",
+    "@colyseus/schema": "^1.0.0-alpha.46",
     "@pixatore/ecs": "0.1.0",
     "@pixatore/event-bus": "0.1.0",
     "debug": "^4.1.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/jest": "26.0.9",
-    "jest": "^26.4.0",
+    "@types/jest": "^26.0.0",
+    "jest": "24.9.0",
     "npm-run-all": "4.1.5",
     "ts-jest": "^26.2.0"
   }

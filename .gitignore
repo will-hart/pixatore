@@ -33,3 +33,4 @@ packages/app copy/
 packages/server/lib
 packages/state-machine/build/
 packages/event-bus/build/
+packages/client_VUE

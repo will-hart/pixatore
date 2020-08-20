@@ -1,58 +1,35 @@
-import { System } from '@pixatore/ecs'
-import { EventBus } from '@pixatore/event-bus'
+import { System, IQueryMap } from '@pixatore/ecs'
 
 import * as Components from '../components'
-
-import { clientEvents } from '../events'
 
 import debug from 'debug'
 const log = debug('PX:GAM:ClientSytm:LobbyHud  ')
 if (console) log.log = console.log.bind(console)
 
 export class LobbyHudSystem extends System {
-  public eventBus?: EventBus
-
-  static queries = {
+  public queryMap: IQueryMap = {
     updatedPlayers: {
       components: [Components.PlayerData],
-      listen: { changed: true, added: true, removed: true },
+      notComponents: [],
     },
   }
 
-  init(attrs: { eventBus: EventBus }): void {
-    this.eventBus = attrs?.eventBus
+  private onPlayerChangeCallback: (player: Components.PlayerData) => void = (
+    _player,
+  ) => {}
+
+  public setCallback(callback: (player: Components.PlayerData) => void): void {
+    this.onPlayerChangeCallback = callback
   }
 
-  execute(): void {
-    const changedEnts = Array.from(
-      new Set([
-        ...(this.queries.updatedPlayers.added || []),
-        ...(this.queries.updatedPlayers.changed || []),
-      ]),
-    )
-    for (const ent of changedEnts) {
+  public execute(): void {
+    const ents = this.queries.updatedPlayers.entities
+
+    for (const ent of ents) {
       const playerData = ent.getComponent?.(Components.PlayerData)
       if (!playerData) continue
 
-      log('Adding player %o', playerData)
-      this.eventBus?.publish(
-        clientEvents.onPlayerUpdateEvent({
-          component: playerData,
-        }),
-      )
-    }
-
-    const removedEnts = this.queries.updatedPlayers.removed
-    for (const ent of removedEnts || []) {
-      const playerData = ent.getComponent?.(Components.PlayerData)
-      if (!playerData) continue
-
-      log('Removing player %o', playerData)
-      this.eventBus?.publish(
-        clientEvents.onPlayerRemoveEvent({
-          component: playerData,
-        }),
-      )
+      this.onPlayerChangeCallback(playerData as Components.PlayerData)
     }
   }
 }
