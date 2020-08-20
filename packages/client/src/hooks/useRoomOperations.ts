@@ -8,47 +8,10 @@ import { useLocalStorage } from './useLocalStorage'
 const log = debug('PX:APP:Hooks     :useRoomOps')
 log.log = console.log.bind(console)
 
-export const useRoomOperations = (client?: Client) => {
-  const [room, setRoom] = useState<Room<ECS.World>>()
-  const [error, setError] = useState<string | null>(null)
-
-  const {
-    value: lastRoomId,
-    setValue: setLastRoomId,
-    clearValue: clearLastRoomId,
-  } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
-
-  const {
-    value: lastSessionId,
-    setValue: setLastSessionId,
-    clearValue: clearLastSessionId,
-  } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
-
-  const afterConnect = useCallback(
-    async (room?: Room<ECS.World>, error?: Error) => {
-      if (error) {
-        log('Error connecting %o', error)
-        setError(error.message)
-        setRoom(undefined)
-        return
-      }
-
-      if (!room) {
-        log('Error connecting - no room found. Error - %o', error)
-        setError('No room found')
-        setRoom(undefined)
-        return
-      }
-
-      log(`joined ${room.id} on ${room.name}`)
-      setLastRoomId(room.id)
-      setLastSessionId(room.sessionId)
-      setError(null)
-      setRoom(room)
-    },
-    [setLastRoomId, setLastSessionId, setError, setRoom],
-  )
-
+const useJoinOrCreate = (
+  afterConnect: (room?: Room<ECS.World>, error?: Error) => void,
+  client?: Client,
+) => {
   const joinGame = useCallback(
     async (roomId: string) => {
       if (!client) return
@@ -75,6 +38,68 @@ export const useRoomOperations = (client?: Client) => {
       await afterConnect(undefined, e)
     }
   }, [afterConnect, client])
+
+  return { createGame, joinGame }
+}
+
+const useAfterConnect = (
+  setLastRoomId: (value: string) => void,
+  setLastSessionId: (value: string) => void,
+  setError: React.Dispatch<React.SetStateAction<string | null>>,
+  setRoom: React.Dispatch<React.SetStateAction<Room<ECS.World> | undefined>>,
+) => {
+  const afterConnect = useCallback(
+    async (room?: Room<ECS.World>, error?: Error) => {
+      if (error) {
+        log('Error connecting %o', error)
+        setError(error.message)
+        setRoom(undefined)
+        return
+      }
+
+      if (!room) {
+        log('Error connecting - no room found. Error - %o', error)
+        setError('No room found')
+        setRoom(undefined)
+        return
+      }
+
+      log(`joined ${room.id} on ${room.name}`)
+      setLastRoomId(room.id)
+      setLastSessionId(room.sessionId)
+      setError(null)
+      setRoom(room)
+    },
+    [setLastRoomId, setLastSessionId, setError, setRoom],
+  )
+
+  return afterConnect
+}
+
+export const useRoomOperations = (client?: Client) => {
+  const [room, setRoom] = useState<Room<ECS.World>>()
+  const [error, setError] = useState<string | null>(null)
+
+  const {
+    value: lastRoomId,
+    setValue: setLastRoomId,
+    clearValue: clearLastRoomId,
+  } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
+
+  const {
+    value: lastSessionId,
+    setValue: setLastSessionId,
+    clearValue: clearLastSessionId,
+  } = useLocalStorage<string>(Constants.LOCALSTORAGE_LAST_ROOM_KEY, '')
+
+  const afterConnect = useAfterConnect(
+    setLastRoomId,
+    setLastSessionId,
+    setError,
+    setRoom,
+  )
+
+  const { createGame, joinGame } = useJoinOrCreate(afterConnect, client)
 
   const reconnect = useCallback(async () => {
     if (!client) return
