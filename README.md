@@ -4,8 +4,8 @@
 
 An opinionated multiplayer HTML5 game start pack which uses:
 
-- tauri-app to bundle
-- vue for gui
+- tauri-app to bundle applications
+- React for gui
 - pixi.js for graphis
 - colyseus for multiplayer capability
 
