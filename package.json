@@ -19,7 +19,6 @@
     "predev": "yarn build:core",
     "dev:client": "yarn workspace @pixatore/client start",
     "dev:server": "yarn workspace @pixatore/server start",
-    "postinstall": "yarn build:core",
     "_corewatch:ecs": "yarn workspace @pixatore/ecs build:core:watch",
     "_corewatch:event-bus": "yarn workspace @pixatore/event-bus build:core:watch",
     "_corewatch:game": "yarn workspace @pixatore/game build:core:watch",
