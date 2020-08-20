@@ -8,7 +8,7 @@
     "lint": "yarn tsc --noEmit",
     "start": "yarn tauri dev",
     "build": "yarn tauri build",
-    "test": "yarn jest"
+    "test": "yarn jest --passWithNoTests"
   },
   "dependencies": {
     "tauri": "^0.11.1"
