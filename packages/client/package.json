@@ -24,7 +24,7 @@
     "@pixatore/ecs": "0.1.0",
     "@pixatore/game": "0.1.0",
     "@pixatore/event-bus": "0.1.0",
-    "colyseus.js": "^0.14.0-alpha.8"
+    "colyseus.js": "^0.14.0-alpha.4"
   },
   "scripts": {
     "build:core": "echo 'Skipping'",
