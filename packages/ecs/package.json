@@ -19,7 +19,7 @@
     "build:watch": "tsc -w -p tsconfig.json"
   },
   "dependencies": {
-    "@colyseus/schema": "^1.0.0-alpha.46",
+    "@colyseus/schema": "^1.0.0-alpha.47",
     "debug": "^4.1.1",
     "nanoid": "3.1.12"
   },
