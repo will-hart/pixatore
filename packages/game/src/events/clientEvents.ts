@@ -12,6 +12,7 @@ export enum ClientEventTypes {
   PLAYER_DATA_UPDATED = 'PD~',
   PLAYER_DATA_REMOVED = 'PD-',
   GAME_STATUS_UPDATED = 'GS~',
+  APP_LOADING_PROGRESS = 'AP~',
 }
 
 export const onPlayerUpdateEvent = buildEvent<
@@ -25,3 +26,9 @@ export const onPlayerRemoveEvent = buildEvent<
 export const onGameStatusUpdateEvent = buildEvent<{ status: string }>(
   ClientEventTypes.GAME_STATUS_UPDATED,
 )
+
+export const onAppLoadingProgress = buildEvent<{
+  percentage: number
+  status?: string
+  complete: boolean
+}>(ClientEventTypes.APP_LOADING_PROGRESS)
