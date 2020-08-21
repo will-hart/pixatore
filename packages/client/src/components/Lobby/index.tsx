@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import debug from 'debug'
-import { Systems, Components, Types } from '@pixatore/game'
+import { Components, Types } from '@pixatore/game'
 
 import { FullContainer, Header1 } from '../shared'
 import { GameContext } from '../../hooks/useGame'
 import { LobbyPlayerList } from './LobbyPlayerList'
 import { LobbyControls } from './LobbyControls'
+import { ClientEventTypes } from '@pixatore/game/build/events/clientEvents'
 
 const log = debug('PX:APP:Views     :Lobby     ')
 log.log = console.log.bind(console)
@@ -25,26 +26,15 @@ export const Lobby = () => {
     }
 
     log('Game engine ready, mounting lobby')
-
-    const system = gameEngine.world.getSystem(Systems.LobbyHudSystem)
-    if (!system) {
-      log('Unable to enable LobbyHudSystems - system not found')
-    } else {
-      log('Enabling LobbyHudSystem')
-      system.setCallback((playerData: Components.PlayerData) => {
-        setPlayerMap((ps) => ({ ...ps, [playerData.playerId]: playerData }))
-      })
-    }
+    const unsubscribe = gameEngine.eventBus.subscribe(
+      ClientEventTypes.PLAYER_DATA_UPDATED,
+      ({ payload: { component } }) => {
+        setPlayerMap((ps) => ({ ...ps, [component.playerId]: component }))
+      },
+    )
 
     return () => {
-      const system = gameEngine.world.getSystem(Systems.LobbyHudSystem)
-      if (!system) {
-        log('Unable to disable LobbyHudSystem - system not found')
-        return
-      }
-
-      log('Disabling LobbyHudSystem')
-      system.setCallback((_player: Components.PlayerData) => {})
+      unsubscribe()
     }
   }, [gameEngine, setPlayerMap])
 

@@ -40,7 +40,7 @@ const registerSystems = (
     log('Registering client systems')
     world
       .registerSystem(new Systems.GameStatusSystem(eventBus))
-      .registerSystem(new Systems.LobbyHudSystem())
+      .registerSystem(new Systems.LobbyHudSystem(eventBus))
   }
 }
 

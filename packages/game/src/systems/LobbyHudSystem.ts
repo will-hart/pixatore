@@ -1,8 +1,10 @@
 import { System, IQueryMap } from '@pixatore/ecs'
+import { clientEvents } from '../events'
 
 import * as Components from '../components'
 
 import debug from 'debug'
+import { EventBus } from '@pixatore/event-bus'
 const log = debug('PX:GAM:ClientSytm:LobbyHud  ')
 if (console) log.log = console.log.bind(console)
 
@@ -14,12 +16,8 @@ export class LobbyHudSystem extends System {
     },
   }
 
-  private onPlayerChangeCallback: (player: Components.PlayerData) => void = (
-    _player,
-  ) => {}
-
-  public setCallback(callback: (player: Components.PlayerData) => void): void {
-    this.onPlayerChangeCallback = callback
+  constructor(public eventBus: EventBus) {
+    super()
   }
 
   public execute(): void {
@@ -29,7 +27,9 @@ export class LobbyHudSystem extends System {
       const playerData = ent.getComponent?.(Components.PlayerData)
       if (!playerData) continue
 
-      this.onPlayerChangeCallback(playerData as Components.PlayerData)
+      this.eventBus.publish(
+        clientEvents.onPlayerUpdateEvent({ component: playerData }),
+      )
     }
   }
 }
