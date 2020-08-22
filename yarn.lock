@@ -1169,6 +1169,11 @@
     express "^4.16.3"
     node-os-utils "^1.2.0"
 
+"@colyseus/schema@0.5.41":
+  version "0.5.41"
+  resolved "https://registry.yarnpkg.com/@colyseus/schema/-/schema-0.5.41.tgz#0bb3d3653e2b9170fef8732835cc3db2f0d8e8a0"
+  integrity sha512-yJXSK6S1bAyWTKuxfNQ2u3KAVHjornnDg8hvbX7T+ZfX8BiYGBTbiv5JIUG9bYXbMRqQnQYa5QlPHjU30R7rJQ==
+
 "@colyseus/schema@^1.0.0-alpha.40", "@colyseus/schema@^1.0.0-alpha.44", "@colyseus/schema@^1.0.0-alpha.47":
   version "1.0.0-alpha.47"
   resolved "https://registry.yarnpkg.com/@colyseus/schema/-/schema-1.0.0-alpha.47.tgz#fac0e6de479fc2b283d85e9a485dd14e5886442f"
@@ -2199,7 +2204,7 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
-"@types/pixi.js@5.0.0":
+"@types/pixi.js@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@types/pixi.js/-/pixi.js-5.0.0.tgz#3fbd6d9d26cb563a0f2870e0ea767bc62dddf1b8"
   integrity sha512-yZqQBR043lRBlBZci2cx6hgmX0fvBfYIqFm6VThlnueXEjitxd3coy+BGsqsZ7+ary7O//+ks4aJRhC5MJoHqA==
@@ -10458,7 +10463,7 @@ pirates@^4.0.1:
   dependencies:
     node-modules-regexp "^1.0.0"
 
-pixi.js@*, pixi.js@5.3.3:
+pixi.js@*, pixi.js@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/pixi.js/-/pixi.js-5.3.3.tgz#6e326a52542f4acd97ea3f8593cb0aeae502df9a"
   integrity sha512-uFQOXXyPMAVVayDebSFBS1AFfPT6QYNuz9Vu11yI2/k1DAef/rbYoJpSMM6SeB6dezDJPtIAaXXNxdaYzbe+kg==

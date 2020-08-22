@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js'
 
 import { spriteMap, SpriteKey } from './spriteMap'
 import { EventBus } from '@pixatore/event-bus'
-import { clientEvents } from '@pixatore/game'
+import { rendererEvents } from '@pixatore/renderer-core'
 
 export class SpriteStorage {
   lastLoaded = ''
@@ -18,10 +18,10 @@ export class SpriteStorage {
     console.log('[LOADER] Loading complete')
     this.loadingComplete = true
     this.eventBus?.publish(
-      clientEvents.onAppLoadingProgress({
-        percentage: 1,
+      rendererEvents.onLoadingProgress({
+        progress: 1,
         status: 'Loading complete',
-        complete: true,
+        isComplete: true,
       }),
     )
   }
@@ -33,10 +33,10 @@ export class SpriteStorage {
     this.lastLoaded = resource.name
     console.log(`[LOADER ${this.progress}%] Loaded ${this.lastLoaded}`)
     this.eventBus?.publish(
-      clientEvents.onAppLoadingProgress({
-        percentage: this.progress,
+      rendererEvents.onLoadingProgress({
+        progress: this.progress,
         status: this.lastLoaded,
-        complete: false,
+        isComplete: false,
       }),
     )
   }

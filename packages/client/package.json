@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@types/pixi.js": "5.0.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "5.1.1",
     "@testing-library/jest-dom": "^5.11.3",
@@ -18,9 +17,9 @@
     "@pixatore/ecs": "0.1.0",
     "@pixatore/game": "0.1.0",
     "@pixatore/event-bus": "0.1.0",
+    "@pixatore/renderer-pixi": "0.1.0",
     "colyseus.js": "^0.14.0-alpha.8",
     "debug": "^4.1.1",
-    "pixi.js": "5.3.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "5.2.0",

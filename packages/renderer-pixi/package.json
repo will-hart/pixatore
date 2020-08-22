@@ -1,0 +1,36 @@
+{
+  "name": "@pixatore/renderer-pixi",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "William Hart",
+  "description": "A PIXI.js based renderer for pixatore, using the pixatore ECS",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "test": "yarn jest --passWithNoTests",
+    "build": "tsc -p tsconfig.json",
+    "build:core": "yarn build",
+    "build:core:watch": "yarn build:watch",
+    "lint": "yarn run-s lint:tsc lint:eslint",
+    "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
+    "lint:eslint": "yarn eslint",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "start": "yarn build:watch"
+  },
+  "dependencies": {
+    "@pixatore/ecs": "0.1.0",
+    "@pixatore/game": "0.1.0",
+    "@pixatore/event-bus": "0.1.0",
+    "@pixatore/renderer-core": "0.1.0",
+    "debug": "^4.1.1",
+    "pixi.js": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/jest": "^26.0.0",
+    "@types/pixi.js": "^5.0.0",
+    "jest": "24.9.0",
+    "npm-run-all": "4.1.5",
+    "ts-jest": "^26.2.0"
+  }
+}

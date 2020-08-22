@@ -23,14 +23,13 @@ pnpm-debug.log*
 
 #Tauri build output
 /dist_tauri
-packages/shared/tsconfig.tsbuildinfo
 packages/client/dist/
 packages/client/dist_tauri/
 packages/docs/.docusaurus
 packages/ecs/build/
 tsconfig.tsbuildinfo
-packages/app copy/
 packages/server/lib
 packages/state-machine/build/
 packages/event-bus/build/
-packages/client_VUE
+packages/renderer-core/build/
+packages/renderer-pixi/build/

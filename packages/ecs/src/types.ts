@@ -8,7 +8,7 @@ export interface IPoolable extends Schema {
 }
 
 export interface IBaseConstructable<T> {
-  new (): T
+  new (...args: any[]): T
 }
 
 export interface IConstructableSchema<C extends IPoolable>
