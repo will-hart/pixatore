@@ -5,7 +5,7 @@ import { EventBus } from '@pixatore/event-bus'
 import { LoadRendererComponent } from '../components/LoadRendererComponent'
 import { Components, UniversalEvents } from '@pixatore/game'
 
-const log = debug('PX:RCR:ServerRend:          ')
+const log = debug('PX:REC:ServrRenderLoadSystem')
 
 /**
  * A class to manage loading on the server
@@ -28,6 +28,7 @@ export class ServerRendererLoadingSystem extends System {
     super()
 
     this.eventBus.subscribe(UniversalEvents.onReadyToLoad, () => {
+      log('Received ready event, setting up renderer in next tick')
       this.readyToLoad = true
     })
   }

@@ -1,6 +1,7 @@
 import * as ECS from '@pixatore/ecs'
 import { State } from '@pixatore/game'
 import { EventBus } from '@pixatore/event-bus'
+import { PixiRendererPlugin } from '@pixatore/renderer-pixi'
 import { Room } from 'colyseus.js'
 
 import debug from 'debug'
@@ -22,7 +23,7 @@ export class GameEngine {
     log(' -> Initialising ECS')
     State.buildWorld(
       State.WorldTypes.Client,
-      [],
+      [new PixiRendererPlugin()],
       this.eventBus,
       this.room.state,
     )

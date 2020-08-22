@@ -67,10 +67,10 @@ export const buildWorld = (
   for (const plugin of plugins) {
     if (worldType === WorldTypes.Server) {
       log('Mounting server plugin %s', plugin.constructor.name)
-      // plugin.mountServer()
+      plugin.mountServer(world, eventBus)
     } else {
       log('Mounting client plugin %s', plugin.constructor.name)
-      // plugin.mountClient
+      plugin.mountClient({ send: console.log }, world, eventBus)
     }
 
     // world.addLoadedPlugin(plugin)

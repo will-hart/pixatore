@@ -154,8 +154,10 @@ export class ConnectionStatusSystem extends System {
 
     status.value = GameStatus.playing
 
-    log('Starting game - unregistering ConnectionStatusSystem')
+    log('Raising ready to load event')
     this.eventBus.publish(UniversalEvents.onReadyToLoad({}))
+
+    log('Starting game - unregistering ConnectionStatusSystem')
     world.unregisterSystem(ConnectionStatusSystem as any)
   }
 

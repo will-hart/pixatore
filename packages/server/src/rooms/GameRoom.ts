@@ -1,5 +1,6 @@
 import * as ECS from '@pixatore/ecs'
 import { Constants, State, Types } from '@pixatore/game'
+import { RendererPlugin } from '@pixatore/renderer-core'
 import { Room, Client } from 'colyseus'
 import { EventBus } from '@pixatore/event-bus'
 
@@ -24,7 +25,13 @@ export class GameRoom extends Room<ECS.World> {
     super()
 
     this.eventBus = new EventBus()
-    this.setState(State.buildWorld(State.WorldTypes.Server, [], this.eventBus))
+    this.setState(
+      State.buildWorld(
+        State.WorldTypes.Server,
+        [new RendererPlugin()],
+        this.eventBus,
+      ),
+    )
   }
 
   onCreate(options: Types.RoomOptions) {

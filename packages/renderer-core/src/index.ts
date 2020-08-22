@@ -5,11 +5,15 @@ import {
   ServerRendererLoadingSystem,
   ClientRendererLoadingSystem,
 } from './systems'
+import { LoadRendererComponent } from './components'
 
 const log = debug('PX:REN:PLUGIN    :          ')
 if (console) log.log = console.log.bind(console)
 
-export abstract class RendererPlugin implements IPixatorePlugin {
+/** This renderer plugin can be used on the server, but should be
+ * overridden to run on the client with a specific renderer, e.g. pixi.js
+ */
+export class RendererPlugin implements IPixatorePlugin {
   private _isServer?: boolean
 
   handleMessage(
@@ -29,6 +33,8 @@ export abstract class RendererPlugin implements IPixatorePlugin {
     log('Registering RendererPlugin.client')
 
     world.registerSystem(new ClientRendererLoadingSystem(client, eventBus))
+
+    this.registerComponents(world)
   }
 
   mountServer(world: World, eventBus: EventBus): void {
@@ -36,6 +42,13 @@ export abstract class RendererPlugin implements IPixatorePlugin {
     log('Registering RendererPlugin.server')
 
     world.registerSystem(new ServerRendererLoadingSystem(eventBus))
+
+    // TODO - call this from the factory
+    this.registerComponents(world)
+  }
+
+  registerComponents(world: World): void {
+    world.registerComponent(LoadRendererComponent)
   }
 
   unmount(world: World, eventBus: EventBus): void {
