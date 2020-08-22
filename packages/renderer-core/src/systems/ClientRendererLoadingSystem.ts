@@ -1,6 +1,7 @@
 import { System, IQueryMap, INetworkMessageSender, World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
-import { rendererEvents, MessageTypes } from '..'
+import { UniversalEvents } from '@pixatore/game'
+import { MessageTypes } from '..'
 
 /**
  * A class to manage loading on the client - listens for progress
@@ -15,7 +16,7 @@ export class ClientRendererLoadingSystem extends System {
   ) {
     super()
 
-    eventBus.subscribe(rendererEvents.onLoadingProgress, (event) =>
+    eventBus.subscribe(UniversalEvents.onLoadingProgress, (event) =>
       this.onLoadingProgress(event),
     )
   }

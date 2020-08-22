@@ -1,7 +1,11 @@
+import debug from 'debug'
+
 import { System, IQueryMap, World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 import { LoadRendererComponent } from '../components/LoadRendererComponent'
-import { Components } from '@pixatore/game'
+import { Components, UniversalEvents } from '@pixatore/game'
+
+const log = debug('PX:RCR:ServerRend:          ')
 
 /**
  * A class to manage loading on the server
@@ -18,14 +22,27 @@ export class ServerRendererLoadingSystem extends System {
     },
   }
 
+  private readyToLoad = false
+
   constructor(protected eventBus: EventBus) {
     super()
+
+    this.eventBus.subscribe(UniversalEvents.onReadyToLoad, () => {
+      this.readyToLoad = true
+    })
   }
 
-  execute(deltaT: number, world: World) {
+  execute(_deltaT: number, world: World) {
     const loading = this.queries.loading.entities
-    if (loading.length < 1) {
-      return
+
+    if (loading.length === 0) {
+      if (!this.readyToLoad) return
+
+      log('Setting up load renderer component')
+      const ent = world.createEntity('loading_status')
+      ent.addComponent(LoadRendererComponent)
+
+      return // initialise next server frame
     }
 
     const component = loading[0].getComponent(LoadRendererComponent)
@@ -33,6 +50,7 @@ export class ServerRendererLoadingSystem extends System {
 
     // initialise by adding players to the player ready map
     if (!component.initialised) {
+      log('Initialising load renderer component')
       const players = this.queries.players.entities
       if (!players?.length) return
 

@@ -54,5 +54,3 @@ export abstract class RendererPlugin implements IPixatorePlugin {
 export * from './types'
 export * from './components'
 export * from './systems'
-
-export * as rendererEvents from './events'

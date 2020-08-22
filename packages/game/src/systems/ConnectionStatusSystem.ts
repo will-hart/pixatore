@@ -1,7 +1,7 @@
 import { System, Entity, World, IQueryMap } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 
-import { ServerEvents } from '../events'
+import { ServerEvents, UniversalEvents } from '../events'
 import * as Components from '../components'
 const { ServerEventTypes } = ServerEvents
 
@@ -127,6 +127,7 @@ export class ConnectionStatusSystem extends System {
 
   private handleGameStartRequests(world: World, playerMap: PlayerMap): void {
     if (this.gameStartRequests.length === 0) return
+
     const gameStarts = [...this.gameStartRequests]
     this.gameStartRequests = []
 
@@ -154,6 +155,7 @@ export class ConnectionStatusSystem extends System {
     status.value = GameStatus.playing
 
     log('Starting game - unregistering ConnectionStatusSystem')
+    this.eventBus.publish(UniversalEvents.onReadyToLoad({}))
     world.unregisterSystem(ConnectionStatusSystem as any)
   }
 
