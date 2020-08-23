@@ -15,6 +15,8 @@ export enum WorldTypes {
 
 export const CORE_ENTITY_NAME = '__core'
 
+declare var window: any
+
 const registerComponents = (
   world: World,
   _worldType: WorldTypes,
@@ -81,5 +83,20 @@ export const buildWorld = (
   registerSingletonEntity(world, worldType, eventBus)
 
   log('Finished building world')
+
+  if (
+    world &&
+    worldType === WorldTypes.Client &&
+    typeof window !== 'undefined'
+  ) {
+    log('Emitting devtools hook')
+
+    //@ts-ignore
+    var event = new CustomEvent('pixatore-world-created', {
+      detail: { world, eventBus },
+    })
+    window.dispatchEvent(event)
+  }
+
   return world
 }
