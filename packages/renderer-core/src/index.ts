@@ -5,7 +5,7 @@ import {
   ServerRendererLoadingSystem,
   ClientRendererLoadingSystem,
 } from './systems'
-import { LoadRendererComponent } from './components'
+import { LoadRenderer } from './components'
 
 const log = debug('PX:REN:PLUGIN    :          ')
 if (console) log.log = console.log.bind(console)
@@ -48,7 +48,7 @@ export class RendererPlugin implements IPixatorePlugin {
   }
 
   registerComponents(world: World): void {
-    world.registerComponent(LoadRendererComponent)
+    world.registerComponent(LoadRenderer)
   }
 
   unmount(world: World, eventBus: EventBus): void {

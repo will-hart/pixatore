@@ -2,7 +2,7 @@ import debug from 'debug'
 
 import { System, IQueryMap, World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
-import { LoadRendererComponent } from '../components/LoadRendererComponent'
+import { LoadRenderer } from '../components/LoadRenderer'
 import { Components, UniversalEvents } from '@pixatore/game'
 
 const log = debug('PX:REC:ServrRenderLoadSystem')
@@ -13,7 +13,7 @@ const log = debug('PX:REC:ServrRenderLoadSystem')
 export class ServerRendererLoadingSystem extends System {
   queryMap: IQueryMap = {
     loading: {
-      components: [LoadRendererComponent],
+      components: [LoadRenderer],
       notComponents: [],
     },
     players: {
@@ -41,12 +41,12 @@ export class ServerRendererLoadingSystem extends System {
 
       log('Setting up load renderer component')
       const ent = world.createEntity('loading_status')
-      ent.addComponent(LoadRendererComponent)
+      ent.addComponent(LoadRenderer)
 
       return // initialise next server frame
     }
 
-    const component = loading[0].getComponent(LoadRendererComponent)
+    const component = loading[0].getComponent(LoadRenderer)
     if (!component) return
 
     // initialise by adding players to the player ready map

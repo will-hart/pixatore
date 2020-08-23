@@ -41,7 +41,7 @@ export class SpriteStorage {
     )
   }
 
-  getSprite(key: SpriteKey): PIXI.Sprite | null {
+  getSprite(key: SpriteKey | string): PIXI.Sprite | null {
     const img = spriteMap.get(key)
     return img ? PIXI.Sprite.from(img) : null
   }

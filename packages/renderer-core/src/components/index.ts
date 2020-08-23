@@ -1,1 +1,2 @@
-export * from './LoadRendererComponent'
+export * from './LoadRenderer'
+export * from './Sprite'

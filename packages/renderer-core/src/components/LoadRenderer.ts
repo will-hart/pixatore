@@ -1,7 +1,7 @@
 import { MapSchema, type } from '@colyseus/schema'
 import { Component } from '@pixatore/ecs'
 
-export class LoadRendererComponent extends Component {
+export class LoadRenderer extends Component {
   /** Map of players who have completed loading */
   @type({ map: 'float32' }) public playerLoaded: MapSchema<
     number
