@@ -1,15 +1,18 @@
 import * as ECS from '@pixatore/ecs'
 import { State } from '@pixatore/game'
 import { EventBus } from '@pixatore/event-bus'
-import { PixiRendererPlugin } from '@pixatore/renderer-pixi'
+import { isRenderSystem } from '@pixatore/renderer-core'
+import { PixiRendererPlugin, IRenderSystem } from '@pixatore/renderer-pixi'
 import { Room } from 'colyseus.js'
 
 import debug from 'debug'
 const log = debug('PX:APP:Core      :GameEngine')
 log.log = console.log.bind(console)
 
-export class GameEngine {
+export class GameEngine<TRenderer extends IRenderSystem> {
   public eventBus: EventBus
+
+  private _renderer: TRenderer | null = null
 
   public get world(): ECS.World {
     return this.room.state
@@ -39,5 +42,15 @@ export class GameEngine {
   public disconnect(consented = false): void {
     log('Disconnecting from game engine, consented = %o', consented)
     this.room.leave(consented)
+  }
+
+  public mountToDom(parent: HTMLDivElement) {
+    this._renderer = this.world.systems.find(isRenderSystem) as TRenderer
+
+    if (!this._renderer) {
+      throw new Error('No rendering system found')
+    }
+
+    this._renderer.mountToDom(parent)
   }
 }

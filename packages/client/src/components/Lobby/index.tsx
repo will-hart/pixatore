@@ -29,7 +29,11 @@ export const Lobby = () => {
     log('Game engine ready, mounting lobby')
     const unsubscribePlayerUpdates = gameEngine.eventBus.subscribe(
       ClientEventTypes.PLAYER_DATA_UPDATED,
-      ({ payload: { component } }) => {
+      ({
+        payload: { component },
+      }: {
+        payload: { component: Components.PlayerData }
+      }) => {
         setPlayerMap((ps) => ({ ...ps, [component.playerId]: component }))
       },
     )
@@ -37,7 +41,7 @@ export const Lobby = () => {
     log('Listening for game status changes')
     const unsubscribeStatusUpdates = gameEngine.eventBus.subscribe(
       ClientEventTypes.GAME_STATUS_UPDATED,
-      ({ payload: { status } }) => {
+      ({ payload: { status } }: { payload: { status: string } }) => {
         if (status === 'playing') {
           log('Redirecting to game')
           setRedirect(true)

@@ -5,7 +5,8 @@ import {
   ServerRendererLoadingSystem,
   ClientRendererLoadingSystem,
 } from './systems'
-import { LoadRenderer } from './components'
+import { LoadRenderer, Sprite } from './components'
+import { IRenderSystem } from './types'
 
 const log = debug('PX:REN:PLUGIN    :          ')
 if (console) log.log = console.log.bind(console)
@@ -32,23 +33,26 @@ export class RendererPlugin implements IPixatorePlugin {
     this._isServer = false
     log('Registering RendererPlugin.client')
 
-    world.registerSystem(new ClientRendererLoadingSystem(client, eventBus))
-
     this.registerComponents(world)
+
+    log('RendererPlugin Systems')
+    world.registerSystem(new ClientRendererLoadingSystem(client, eventBus))
   }
 
   mountServer(world: World, eventBus: EventBus): void {
     this._isServer = true
     log('Registering RendererPlugin.server')
 
-    world.registerSystem(new ServerRendererLoadingSystem(eventBus))
-
-    // TODO - call this from the factory
     this.registerComponents(world)
+
+    log('RendererPlugin Systems')
+    world.registerSystem(new ServerRendererLoadingSystem(eventBus))
   }
 
   registerComponents(world: World): void {
+    log('RendererPlugin Components')
     world.registerComponent(LoadRenderer)
+    world.registerComponent(Sprite)
   }
 
   unmount(world: World, eventBus: EventBus): void {
@@ -62,6 +66,10 @@ export class RendererPlugin implements IPixatorePlugin {
       world.unregisterSystem(ClientRendererLoadingSystem)
     }
   }
+}
+
+export const isRenderSystem = (system: any): system is IRenderSystem => {
+  return (system as any).rendererType !== undefined
 }
 
 export * from './types'

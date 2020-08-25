@@ -1,8 +1,11 @@
+import debug from 'debug'
 import { INetworkMessageSender, World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 import { RendererPlugin } from '@pixatore/renderer-core'
-import { PixiSpriteRendererSystem } from './systems'
-import { PixiSprite } from './components'
+import { PixiRenderSystem } from './systems/PixiRenderSystem'
+
+const log = debug('PX:REN:PixiRenderPlugin     ')
+if (console) console.log.bind(console)
 
 export class PixiRendererPlugin extends RendererPlugin {
   mountClient(
@@ -12,12 +15,11 @@ export class PixiRendererPlugin extends RendererPlugin {
   ): void {
     super.mountClient(client, world, eventBus)
 
-    world.registerComponent(PixiSprite)
-    world.registerSystem(new PixiSpriteRendererSystem(eventBus))
+    log('Mounting client systems for PixiRendererPlugin')
+    world.registerSystem(new PixiRenderSystem(eventBus))
   }
 }
 
-export * from './components'
 export * from './systems'
 export * from './utilities'
 export * from '@pixatore/renderer-core'

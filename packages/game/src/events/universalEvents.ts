@@ -2,14 +2,9 @@ import { buildEvent } from '@pixatore/event-bus'
 
 export enum UniversalEventTypes {
   READY_TO_LOAD = 're::RD!',
-  MOUNT_APP_TO_DOM = 're:MA!',
   LOADING_COMPLETE = 're::LC!',
   LOADING_PROGRESS = 're::AP~',
 }
-
-export const onMountAppToDom = buildEvent<{ parent: HTMLElement }>(
-  UniversalEventTypes.MOUNT_APP_TO_DOM,
-)
 
 /**
  * Published by the server when the game moves to "playing"

@@ -22,6 +22,10 @@ export class World extends Schema {
 
   private _entityPool: ObjectPool<Entity> = new ObjectPool(Entity, 10)
 
+  public get systems(): System[] {
+    return [...this._systems]
+  }
+
   /**
    * Holds a "last state version number" for each component type.
    * These are incremented when components are acquired or released.

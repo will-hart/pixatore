@@ -1,8 +1,8 @@
 import * as ECS from '@pixatore/ecs'
 import { Constants, State, Types } from '@pixatore/game'
-import { RendererPlugin } from '@pixatore/renderer-core'
 import { Room, Client } from 'colyseus'
 import { EventBus } from '@pixatore/event-bus'
+import { RendererPlugin } from '@pixatore/renderer-core'
 
 import { Dispatcher } from '../commands/Command' // @colyseus/command
 import {
@@ -28,7 +28,7 @@ export class GameRoom extends Room<ECS.World> {
     this.setState(
       State.buildWorld(
         State.WorldTypes.Server,
-        [new RendererPlugin()],
+        [new RendererPlugin()], // NOTE: the concrete plugin (e.g. PixiRendererPlugin) should be used client side
         this.eventBus,
       ),
     )

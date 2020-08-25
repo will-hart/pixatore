@@ -1,1 +1,1 @@
-export * from './PixiSpriteRendererSystem'
+export * from './PixiRenderSystem'
