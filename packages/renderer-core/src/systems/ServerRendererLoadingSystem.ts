@@ -40,8 +40,7 @@ export class ServerRendererLoadingSystem extends System {
       if (!this.readyToLoad) return
 
       log('Setting up load renderer component')
-      const ent = world.createEntity('loading_status')
-      ent.addComponent(LoadRenderer)
+      world.createEntity('loading_status').addComponent(LoadRenderer)
 
       return // initialise next server frame
     }

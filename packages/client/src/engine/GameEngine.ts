@@ -44,7 +44,7 @@ export class GameEngine<TRenderer extends IRenderSystem> {
     this.room.leave(consented)
   }
 
-  public mountToDom(parent: HTMLDivElement) {
+  public mountToDom(parent: HTMLDivElement): void {
     this._renderer = this.world.systems.find(isRenderSystem) as TRenderer
 
     if (!this._renderer) {

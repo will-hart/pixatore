@@ -1,10 +1,13 @@
 import * as PIXI from 'pixi.js'
 import debug from 'debug'
+import debounce from 'lodash.debounce'
+
 import { System, IQueryMap, World } from '@pixatore/ecs'
 import { IRenderSystem, Sprite } from '@pixatore/renderer-core'
+
 import { SpriteStorage } from '../utilities'
 import { EventBus } from '@pixatore/event-bus'
-import { Components } from '@pixatore/game'
+import { Components, clientEvents } from '@pixatore/game'
 
 const log = debug('PX:REN:PixiSpriteRenderSystm')
 if (console) log.log = console.log.bind(console)
@@ -19,6 +22,8 @@ export class PixiRenderSystem extends System implements IRenderSystem {
     },
   }
 
+  private debouncedResize: (width: number, height: number) => void
+
   private app: PIXI.Application | null = null
 
   private spriteStorage: SpriteStorage | null = null
@@ -27,6 +32,13 @@ export class PixiRenderSystem extends System implements IRenderSystem {
 
   constructor(private eventBus: EventBus) {
     super()
+
+    this.debouncedResize = debounce(this.doResize, 100, { maxWait: 300 })
+
+    this.eventBus.subscribe(
+      clientEvents.ClientEventTypes.RESIZE_GAME_WINDOW,
+      this.onResize,
+    )
   }
 
   execute(_deltaT: number, _world: World): void {
@@ -115,5 +127,25 @@ export class PixiRenderSystem extends System implements IRenderSystem {
 
     this.spriteStorage = new SpriteStorage(this.app, this.eventBus)
     parent.appendChild(this.app.view)
+  }
+
+  onResize = (event: {
+    type: string
+    payload: { width: number; height: number }
+  }) => {
+    const { width, height } = event.payload
+    this.debouncedResize(width, height)
+  }
+
+  private doResize = (width: number, height: number) => {
+    if (!this.app) return
+
+    log(width, height)
+
+    this.app.view.width = width
+    this.app.view.height = height
+
+    this.app.view.style.width = `${width}px`
+    this.app.view.style.height = `${height}px`
   }
 }
