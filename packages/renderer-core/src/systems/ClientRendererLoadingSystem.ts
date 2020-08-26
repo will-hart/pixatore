@@ -1,7 +1,12 @@
+import debug from 'debug'
+
 import { System, IQueryMap, INetworkMessageSender, World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 import { UniversalEvents } from '@pixatore/game'
 import { MessageTypes } from '..'
+
+const log = debug('PX:REN:ClientRenderLoadinSys')
+if (console) log.log = console.log.bind(console)
 
 /**
  * A class to manage loading on the client - listens for progress
@@ -11,17 +16,25 @@ export class ClientRendererLoadingSystem extends System {
   queryMap: IQueryMap = {}
 
   constructor(
-    private client: INetworkMessageSender,
+    private room: INetworkMessageSender,
     protected eventBus: EventBus,
   ) {
     super()
 
-    eventBus.subscribe(UniversalEvents.onLoadingProgress, (event) =>
-      this.onLoadingProgress(event),
+    log('Creating system')
+
+    eventBus.subscribe(
+      UniversalEvents.onLoadingProgress,
+      this.onLoadingProgress,
+    )
+
+    eventBus.subscribe(
+      UniversalEvents.onLoadingComplete,
+      this.onLoadingComplete,
     )
   }
 
-  private onLoadingProgress({
+  private onLoadingProgress = ({
     payload,
   }: {
     type: string
@@ -30,11 +43,21 @@ export class ClientRendererLoadingSystem extends System {
       progress: number
       isComplete: boolean
     }
-  }): void {
-    this.client.send(MessageTypes.LOADING_PROGRESS, { ...payload })
+  }): void => {
+    log('Sending loading progress %o', payload)
+    this.room.send(MessageTypes.LOADING_PROGRESS, { ...payload })
   }
 
-  execute(deltaT: number, world: World) {
+  private onLoadingComplete = (): void => {
+    log('Sending loading complete')
+    this.room.send(MessageTypes.LOADING_PROGRESS, {
+      status: 'Complete',
+      isComplete: true,
+      progress: 1,
+    })
+  }
+
+  execute(_deltaT: number, _world: World) {
     // nothing required
   }
 }

@@ -14,7 +14,7 @@ export interface INetworkMessageSender {
 
 export interface IPixatorePlugin {
   mountClient(
-    client: INetworkMessageSender,
+    room: INetworkMessageSender,
     world: World,
     eventBus: EventBus,
   ): void

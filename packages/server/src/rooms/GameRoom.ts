@@ -28,8 +28,11 @@ export class GameRoom extends Room<ECS.World> {
     this.setState(
       State.buildWorld(
         State.WorldTypes.Server,
-        [new RendererPlugin()], // NOTE: the concrete plugin (e.g. PixiRendererPlugin) should be used client side
+        // NOTE: the concrete plugin (e.g. PixiRendererPlugin) should be used client side
+        //       plugins should be added in the same order server and client side
+        [new RendererPlugin()],
         this.eventBus,
+        { send: log }, // dummy sender for the server
       ),
     )
   }

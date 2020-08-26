@@ -5,6 +5,8 @@ import { isRenderSystem } from '@pixatore/renderer-core'
 import { PixiRendererPlugin, IRenderSystem } from '@pixatore/renderer-pixi'
 import { Room } from 'colyseus.js'
 
+import { spriteMap } from './spriteMap'
+
 import debug from 'debug'
 const log = debug('PX:APP:Core      :GameEngine')
 log.log = console.log.bind(console)
@@ -28,6 +30,7 @@ export class GameEngine<TRenderer extends IRenderSystem> {
       State.WorldTypes.Client,
       [new PixiRendererPlugin()],
       this.eventBus,
+      this.room,
       this.room.state,
     )
 
@@ -51,6 +54,6 @@ export class GameEngine<TRenderer extends IRenderSystem> {
       throw new Error('No rendering system found')
     }
 
-    this._renderer.mountToDom(parent)
+    this._renderer.mountToDom(parent, spriteMap)
   }
 }

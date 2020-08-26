@@ -1,4 +1,4 @@
-import { IPixatorePlugin, World } from '@pixatore/ecs'
+import { IPixatorePlugin, World, INetworkMessageSender } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 
 import * as Components from '../components'
@@ -62,6 +62,7 @@ export const buildWorld = (
   worldType: WorldTypes,
   plugins: IPixatorePlugin[],
   eventBus: EventBus,
+  room: INetworkMessageSender,
   existingWorld?: World,
 ): World => {
   const world = existingWorld || new World()
@@ -72,10 +73,10 @@ export const buildWorld = (
       plugin.mountServer(world, eventBus)
     } else {
       log('Mounting client plugin %s', plugin.constructor.name)
-      plugin.mountClient({ send: console.log }, world, eventBus)
+      plugin.mountClient(room, world, eventBus)
     }
 
-    // world.addLoadedPlugin(plugin)
+    world.addLoadedPlugin(plugin)
   }
 
   registerComponents(world, worldType, eventBus)

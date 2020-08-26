@@ -9,11 +9,11 @@ if (console) console.log.bind(console)
 
 export class PixiRendererPlugin extends RendererPlugin {
   mountClient(
-    client: INetworkMessageSender,
+    room: INetworkMessageSender,
     world: World,
     eventBus: EventBus,
   ): void {
-    super.mountClient(client, world, eventBus)
+    super.mountClient(room, world, eventBus)
 
     log('Mounting client systems for PixiRendererPlugin')
     world.registerSystem(new PixiRenderSystem(eventBus))

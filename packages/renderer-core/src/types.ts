@@ -6,5 +6,5 @@ export const MessageTypes = {
 
 export interface IRenderSystem extends System {
   rendererType: string
-  mountToDom(parent: HTMLDivElement): void
+  mountToDom(parent: HTMLDivElement, spriteMap: Map<string, string>): void
 }

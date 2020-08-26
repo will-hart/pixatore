@@ -26,7 +26,7 @@ export class RendererPlugin implements IPixatorePlugin {
   }
 
   mountClient(
-    client: INetworkMessageSender,
+    room: INetworkMessageSender,
     world: World,
     eventBus: EventBus,
   ): void {
@@ -36,7 +36,7 @@ export class RendererPlugin implements IPixatorePlugin {
     this.registerComponents(world)
 
     log('RendererPlugin Systems')
-    world.registerSystem(new ClientRendererLoadingSystem(client, eventBus))
+    world.registerSystem(new ClientRendererLoadingSystem(room, eventBus))
   }
 
   mountServer(world: World, eventBus: EventBus): void {
@@ -55,7 +55,7 @@ export class RendererPlugin implements IPixatorePlugin {
     world.registerComponent(Sprite)
   }
 
-  unmount(world: World, eventBus: EventBus): void {
+  unmount(world: World, _eventBus: EventBus): void {
     log('Unregistering RenderPlugin')
 
     if (this._isServer) {

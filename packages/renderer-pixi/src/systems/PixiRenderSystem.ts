@@ -111,7 +111,10 @@ export class PixiRenderSystem extends System implements IRenderSystem {
     this.app?.stage.children.push(image)
   }
 
-  mountToDom = (parent: HTMLDivElement): void => {
+  mountToDom = (
+    parent: HTMLDivElement,
+    spriteMap: Map<string, string>,
+  ): void => {
     if (this.app) {
       // prevent remounts caused by useEffect triggering
       return
@@ -125,7 +128,7 @@ export class PixiRenderSystem extends System implements IRenderSystem {
       autoDensity: true,
     })
 
-    this.spriteStorage = new SpriteStorage(this.app, this.eventBus)
+    this.spriteStorage = new SpriteStorage(this.app, spriteMap, this.eventBus)
     parent.appendChild(this.app.view)
   }
 
