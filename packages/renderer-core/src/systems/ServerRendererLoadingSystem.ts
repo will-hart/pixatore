@@ -11,6 +11,10 @@ import {
 
 const log = debug('PX:REC:ServrRenderLoadSystem')
 
+export type LoadingMessagePayload = ILoadingProgressEvent & {
+  sessionId: string
+}
+
 /**
  * A class to manage loading on the server
  */
@@ -26,9 +30,7 @@ export class ServerRendererLoadingSystem extends System {
     },
   }
 
-  private _loadingUpdateMessages: (ILoadingProgressEvent & {
-    sessionId: string
-  })[] = []
+  private _loadingUpdateMessages: LoadingMessagePayload[] = []
 
   private readyToLoad = false
 
@@ -41,15 +43,47 @@ export class ServerRendererLoadingSystem extends System {
     })
   }
 
+  private setReadyToLoad(world: World): void {
+    if (!this.readyToLoad) return
+
+    log('Setting up load renderer component')
+    world.createEntity('loading_status').addComponent(LoadRenderer)
+  }
+
+  private initialiseLoadingComponent(component: LoadRenderer): void {
+    log('Initialising load renderer component')
+    const players = this.queries.players.entities
+    if (!players?.length) return
+
+    players
+      .map((p) => p.getComponent(Components.PlayerData)!)
+      .forEach((pd) => {
+        component.playerLoaded.set(pd.playerId, 0)
+      })
+
+    component.initialised = true
+  }
+
+  private handleLoadingMessages(
+    component: LoadRenderer,
+    messages: LoadingMessagePayload[],
+  ) {
+    // check if there are any messages to process
+    if (messages.length === 0) return
+
+    for (const message of messages) {
+      component.playerLoaded.set(
+        message.sessionId,
+        message.isComplete ? 100 : message.progress,
+      )
+    }
+  }
+
   execute(_deltaT: number, world: World) {
     const loading = this.queries.loading.entities
 
     if (loading.length === 0) {
-      if (!this.readyToLoad) return
-
-      log('Setting up load renderer component')
-      world.createEntity('loading_status').addComponent(LoadRenderer)
-
+      this.setReadyToLoad(world)
       return // initialise next server frame
     }
 
@@ -58,33 +92,14 @@ export class ServerRendererLoadingSystem extends System {
 
     // initialise by adding players to the player ready map
     if (!component.initialised) {
-      log('Initialising load renderer component')
-      const players = this.queries.players.entities
-      if (!players?.length) return
-
-      players
-        .map((p) => p.getComponent(Components.PlayerData)!)
-        .forEach((pd) => {
-          component.playerLoaded.set(pd.playerId, 0)
-        })
-
-      component.initialised = true
+      this.initialiseLoadingComponent(component)
     }
 
-    // check if there are any messages to process
-    if (this._loadingUpdateMessages.length === 0) return
-
-    for (const message of this._loadingUpdateMessages) {
-      component.playerLoaded.set(
-        message.sessionId,
-        message.isComplete ? 100 : message.progress,
-      )
-    }
-
+    this.handleLoadingMessages(component, this._loadingUpdateMessages)
     this._loadingUpdateMessages.length = 0
   }
 
-  queueLoadingUpdate(
+  public queueLoadingUpdate(
     message: ILoadingProgressEvent & {
       sessionId: string
     },

@@ -53,6 +53,12 @@ export class PixiRenderSystem extends System implements IRenderSystem {
       t: ent.getComponent(Components.Transform)!,
     }))
 
+    this.updateSprites(sprites)
+  }
+
+  private updateSprites(
+    sprites: { id: string; s: Sprite; t: Components.Transform }[],
+  ) {
     for (const sprite of sprites) {
       // load and mount the sprite (once)
       if (!sprite.s.loaded) this.loadSprite(sprite.s)
