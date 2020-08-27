@@ -18,7 +18,7 @@
     "@pixatore/game": "0.1.0",
     "@pixatore/event-bus": "0.1.0",
     "@pixatore/renderer-pixi": "0.1.0",
-    "colyseus.js": "^0.14.0-alpha.8",
+    "colyseus.js": "^0.14.0-alpha.9",
     "debug": "^4.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

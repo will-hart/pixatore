@@ -35,7 +35,7 @@
     "@pixatore/game": "0.1.0",
     "@pixatore/event-bus": "0.1.0",
     "@pixatore/renderer-core": "0.1.0",
-    "colyseus": "^0.14.0-alpha.11",
+    "colyseus": "^0.14.0-alpha.14",
     "cors": "2.8.5",
     "debug": "^4.1.1",
     "express": "4.17.1",
