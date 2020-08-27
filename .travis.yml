@@ -1,0 +1,16 @@
+language: node_js
+
+os:
+  - linux
+  # - windows  # windows builds don't currently exit
+
+node_js:
+  - 12
+  - 14
+
+install:
+  - 'yarn install'
+  - 'yarn build:core'
+
+script:
+  - yarn test

@@ -1,26 +1,27 @@
 {
-  "name": "@pixatore/state-machine",
+  "name": "@pixatore/renderer-core",
   "version": "0.1.0",
-  "description": "A simple TS state machine for pixatore",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
-  "repository": "https://github.com/will-hart/pixatore",
-  "author": "William Hart",
   "license": "MIT",
-  "private": false,
+  "author": "William Hart",
+  "description": "Core types and ECS classes for pixatore renderer plugins",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
   "scripts": {
-    "test": "yarn jest",
+    "test": "yarn jest --passWithNoTests",
     "build": "tsc -p tsconfig.json",
     "build:core": "yarn build",
-    "build:core:watch": "yarn build --watch",
+    "build:core:watch": "yarn build:watch",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc -p tsconfig.lint.json --noEmit",
     "lint:eslint": "yarn eslint",
-    "build:watch": "tsc -w -p tsconfig.json"
+    "build:watch": "tsc -w -p tsconfig.json",
+    "start": "yarn build:watch"
   },
   "dependencies": {
     "@colyseus/schema": "^1.0.0-alpha.50",
     "@pixatore/ecs": "0.1.0",
+    "@pixatore/game": "0.1.0",
+    "@pixatore/event-bus": "0.1.0",
     "debug": "^4.1.1"
   },
   "devDependencies": {

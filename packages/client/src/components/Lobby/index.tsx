@@ -14,6 +14,7 @@ log.log = console.log.bind(console)
 
 export const Lobby = () => {
   const { gameEngine, room } = React.useContext(GameContext)
+  const [redirect, setRedirect] = React.useState(false)
 
   const [playerMap, setPlayerMap] = React.useState<{
     [id: string]: Components.PlayerData
@@ -26,15 +27,32 @@ export const Lobby = () => {
     }
 
     log('Game engine ready, mounting lobby')
-    const unsubscribe = gameEngine.eventBus.subscribe(
+    const unsubscribePlayerUpdates = gameEngine.eventBus.subscribe(
       ClientEventTypes.PLAYER_DATA_UPDATED,
-      ({ payload: { component } }) => {
+      ({
+        payload: { component },
+      }: {
+        payload: { component: Components.PlayerData }
+      }) => {
         setPlayerMap((ps) => ({ ...ps, [component.playerId]: component }))
       },
     )
 
+    log('Listening for game status changes')
+    const unsubscribeStatusUpdates = gameEngine.eventBus.subscribe(
+      ClientEventTypes.GAME_STATUS_UPDATED,
+      ({ payload: { status } }: { payload: { status: string } }) => {
+        if (status === 'playing') {
+          log('Redirecting to game')
+          setRedirect(true)
+        }
+      },
+    )
+
     return () => {
-      unsubscribe()
+      log('Unsubscribing from events')
+      unsubscribePlayerUpdates()
+      unsubscribeStatusUpdates()
     }
   }, [gameEngine, setPlayerMap])
 
@@ -42,6 +60,10 @@ export const Lobby = () => {
   if (!room) {
     log('No room found, aborting lobby')
     return <Redirect to="/browser" push />
+  }
+
+  if (redirect) {
+    return <Redirect to={`/game/${room.id}`} />
   }
 
   const setReady = (isReady: boolean) => {

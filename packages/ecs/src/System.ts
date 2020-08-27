@@ -10,4 +10,6 @@ export abstract class System {
   priority: number = 0
 
   abstract execute(deltaT: number, world: World): void
+
+  destroy(): void {}
 }

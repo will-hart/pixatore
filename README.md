@@ -11,6 +11,8 @@ An opinionated multiplayer HTML5 game start pack which uses:
 
 Uses yarn workspaces to manage packages.
 
+Some [(WIP) devtools](https://github.com/will-hart/pixatore-devtools) are also available for inpecting event bus / ECS state.
+
 ## Project setup
 
 ```bash

@@ -1,7 +1,8 @@
 import * as ECS from '@pixatore/ecs'
-import { Constants, State, Systems, Types } from '@pixatore/game'
+import { Constants, State, Types } from '@pixatore/game'
 import { Room, Client } from 'colyseus'
 import { EventBus } from '@pixatore/event-bus'
+import { RendererPlugin } from '@pixatore/renderer-core'
 
 import { Dispatcher } from '../commands/Command' // @colyseus/command
 import {
@@ -24,12 +25,20 @@ export class GameRoom extends Room<ECS.World> {
     super()
 
     this.eventBus = new EventBus()
-    this.setState(State.buildWorld(State.WorldTypes.Server, this.eventBus))
-
-    this.state.registerSystem(new Systems.ConnectionStatusSystem(this.eventBus))
+    this.setState(
+      State.buildWorld(
+        State.WorldTypes.Server,
+        // NOTE: the concrete plugin (e.g. PixiRendererPlugin) should be used client side
+        //       plugins should be added in the same order server and client side
+        [new RendererPlugin()],
+        this.eventBus,
+        { send: log }, // dummy sender for the server
+      ),
+    )
   }
 
   onCreate(options: Types.RoomOptions) {
+    // TODO - move to @pixatore/lobby
     // handle "start game" messages from the client
     this.onMessage(Types.MessageTypes.START_GAME, (client) => {
       this._dispatcher.dispatch(new OnGameStartCommand(), {
@@ -37,6 +46,7 @@ export class GameRoom extends Room<ECS.World> {
       })
     })
 
+    // TODO - move to @pixatore/lobby
     // handle "toggle ready" commands from the user
     this.onMessage(Types.MessageTypes.PLAYER_READY, (client, message) => {
       this._dispatcher.dispatch(new OnPlayerReadyCommand(), {
@@ -46,8 +56,8 @@ export class GameRoom extends Room<ECS.World> {
     })
 
     // log all other messages
-    this.onMessage('*', (_client, type, message) =>
-      log(`[MESSAGE::${type}] ${message}`),
+    this.onMessage('*', (client, type, message) =>
+      this.state.handleMessage(client, type, message),
     )
 
     // finish creating the room

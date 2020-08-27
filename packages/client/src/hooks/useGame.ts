@@ -5,6 +5,7 @@ import debug from 'debug'
 
 import { GameEngine } from '../engine/GameEngine'
 import { useAnimationTimer } from './useAnimationTimer'
+import { PixiRenderSystem } from '@pixatore/renderer-pixi'
 
 const log = debug('PX:APP:Hooks     :useGame   ')
 log.log = console.log.bind(console)
@@ -13,7 +14,7 @@ export interface IGameContext<TClient, TRoom> {
   client?: TClient
   lastFps?: number
   room?: TRoom
-  gameEngine?: GameEngine
+  gameEngine?: GameEngine<PixiRenderSystem>
   setClient: (client: TClient) => void
   setRoom: (room: TRoom) => void
   stopLoop: () => void
@@ -32,7 +33,7 @@ const defaultGameContext: IGameContext<Client, Room<ECS.World>> = {
 export const useNewGameContext = (): IGameContext<Client, Room<ECS.World>> => {
   const [client, setClient] = useState<Client>()
   const [room, _setRoom] = useState<Room<ECS.World>>()
-  const [gameEngine, setGameEngine] = useState<GameEngine>()
+  const [gameEngine, setGameEngine] = useState<GameEngine<PixiRenderSystem>>()
   const [lastFps, setLastFps] = useState<number>(1)
 
   const frameElapsed = useAnimationTimer(!gameEngine)
@@ -53,7 +54,7 @@ export const useNewGameContext = (): IGameContext<Client, Room<ECS.World>> => {
     (room: Room<ECS.World>) => {
       _setRoom(room)
 
-      const gameEngine = new GameEngine(room)
+      const gameEngine = new GameEngine<PixiRenderSystem>(room)
       setGameEngine(gameEngine)
     },
     [_setRoom, setGameEngine],

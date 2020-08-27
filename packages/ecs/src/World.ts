@@ -8,16 +8,23 @@ import { Entity } from './Entity'
 import { Component } from './Component'
 import { IConstructableSchema, IQueryMap, IBaseConstructable } from './types'
 import { Query } from './Query'
+import { IPixatorePlugin } from '.'
 
 const log = debug('PX:ECS:World     :          ')
 if (console) log.log = console.log.bind(console)
 
 export class World extends Schema {
+  private _plugins: IPixatorePlugin[] = []
+
   private _systems: System[] = []
 
   private _componentPools: Map<number, ObjectPool> = new Map()
 
   private _entityPool: ObjectPool<Entity> = new ObjectPool(Entity, 10)
+
+  public get systems(): System[] {
+    return [...this._systems]
+  }
 
   /**
    * Holds a "last state version number" for each component type.
@@ -187,6 +194,14 @@ export class World extends Schema {
     return this
   }
 
+  /**
+   * Inefficiently queries all the entities until one with the give nname is found
+   * @param name the name to retrieve
+   */
+  public getEntityByName(name: string): Entity | undefined {
+    return this.entities.find((ent) => ent.name === name)
+  }
+
   private getCachedQueries(queries: IQueryMap): { [key: string]: Query } {
     return Object.keys(queries).reduce(
       (acc: { [key: string]: Query }, key: string) => {
@@ -195,6 +210,26 @@ export class World extends Schema {
       },
       {},
     )
+  }
+
+  public handleMessage(
+    client: { sessionId: string },
+    type: string | number,
+    message: any,
+  ): void {
+    for (const plugin of this._plugins) {
+      if (plugin.handleMessage(client, type, message)) return
+    }
+
+    log('Unknown message type received %s, payload %o', type, message)
+  }
+
+  /**
+   * Register a plugin as mounted on this world. Mounting actions are called via
+   * the world factory
+   */
+  public addLoadedPlugin(plugin: IPixatorePlugin): void {
+    this._plugins.push(plugin)
   }
 
   public tick(deltaT: number): void {

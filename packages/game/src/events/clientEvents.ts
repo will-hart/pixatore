@@ -12,7 +12,13 @@ export enum ClientEventTypes {
   PLAYER_DATA_UPDATED = 'PD~',
   PLAYER_DATA_REMOVED = 'PD-',
   GAME_STATUS_UPDATED = 'GS~',
+  RESIZE_GAME_WINDOW = 'RG!',
 }
+
+export const onGameResize = buildEvent<{
+  width: number
+  height: number
+}>(ClientEventTypes.RESIZE_GAME_WINDOW)
 
 export const onPlayerUpdateEvent = buildEvent<
   IComponentEvent<Components.PlayerData>
