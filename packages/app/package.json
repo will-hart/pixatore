@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:core": "echo 'Skipping'",
-    "build:core:watch": "echo 'Skipping'",
-    "lint": "echo 'Skipping'",
     "start": "yarn tauri dev",
-    "build": "yarn tauri build",
-    "test": "echo 'Skipping'"
+    "build": "yarn tauri build"
   },
   "dependencies": {
     "tauri": "^0.11.1"

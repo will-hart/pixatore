@@ -6,13 +6,10 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "build:core": "echo 'skipping'",
-    "build:core:watch": "echo 'skipping'",
     "start": "ts-node src/index.ts --build --watch",
     "lint": "yarn run-s lint:tsc lint:eslint",
     "lint:tsc": "yarn tsc --noEmit",
-    "lint:eslint": "yarn eslint",
-    "test": "echo \"no tests defined for @pixatore/server\""
+    "lint:eslint": "yarn eslint"
   },
   "author": "William Hart",
   "bugs": {
