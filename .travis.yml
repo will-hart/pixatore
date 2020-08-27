@@ -2,7 +2,7 @@ language: node_js
 
 os:
   - linux
-  - windows
+  # - windows  # windows builds don't currently exit
 
 node_js:
   - 12
