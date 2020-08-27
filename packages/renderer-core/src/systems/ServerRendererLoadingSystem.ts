@@ -3,7 +3,11 @@ import debug from 'debug'
 import { System, IQueryMap, World } from '@pixatore/ecs'
 import { EventBus } from '@pixatore/event-bus'
 import { LoadRenderer } from '../components/LoadRenderer'
-import { Components, UniversalEvents } from '@pixatore/game'
+import {
+  Components,
+  ILoadingProgressEvent,
+  UniversalEvents,
+} from '@pixatore/game'
 
 const log = debug('PX:REC:ServrRenderLoadSystem')
 
@@ -21,6 +25,10 @@ export class ServerRendererLoadingSystem extends System {
       notComponents: [],
     },
   }
+
+  private _loadingUpdateMessages: (ILoadingProgressEvent & {
+    sessionId: string
+  })[] = []
 
   private readyToLoad = false
 
@@ -62,5 +70,25 @@ export class ServerRendererLoadingSystem extends System {
 
       component.initialised = true
     }
+
+    // check if there are any messages to process
+    if (this._loadingUpdateMessages.length === 0) return
+
+    for (const message of this._loadingUpdateMessages) {
+      component.playerLoaded.set(
+        message.sessionId,
+        message.isComplete ? 100 : message.progress,
+      )
+    }
+
+    this._loadingUpdateMessages.length = 0
+  }
+
+  queueLoadingUpdate(
+    message: ILoadingProgressEvent & {
+      sessionId: string
+    },
+  ): void {
+    this._loadingUpdateMessages.push(message)
   }
 }

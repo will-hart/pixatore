@@ -6,7 +6,8 @@ import {
   ClientRendererLoadingSystem,
 } from './systems'
 import { LoadRenderer, Sprite } from './components'
-import { IRenderSystem } from './types'
+import { IRenderSystem, MessageTypes } from './types'
+import { ILoadingProgressEvent } from '@pixatore/game'
 
 const log = debug('PX:REN:PLUGIN    :          ')
 if (console) log.log = console.log.bind(console)
@@ -16,13 +17,23 @@ if (console) log.log = console.log.bind(console)
  */
 export class RendererPlugin implements IPixatorePlugin {
   private _isServer?: boolean
+  private _world?: World
 
   handleMessage(
     client: { sessionId: string },
     type: string | number,
-    message: any,
+    message: { [key: string]: any },
   ): boolean {
-    throw new Error('Method not implemented.')
+    if (!this._world || !this._isServer) return false
+
+    if (type !== MessageTypes.LOADING_PROGRESS) return false
+
+    this._world.getSystem(ServerRendererLoadingSystem)?.queueLoadingUpdate({
+      ...(message as ILoadingProgressEvent),
+      sessionId: client.sessionId,
+    })
+
+    return true
   }
 
   mountClient(
@@ -32,21 +43,23 @@ export class RendererPlugin implements IPixatorePlugin {
   ): void {
     this._isServer = false
     log('Registering RendererPlugin.client')
+    this._world = world
 
-    this.registerComponents(world)
+    this.registerComponents(this._world)
 
     log('RendererPlugin Systems')
-    world.registerSystem(new ClientRendererLoadingSystem(room, eventBus))
+    this._world.registerSystem(new ClientRendererLoadingSystem(room, eventBus))
   }
 
   mountServer(world: World, eventBus: EventBus): void {
     this._isServer = true
+    this._world = world
     log('Registering RendererPlugin.server')
 
-    this.registerComponents(world)
+    this.registerComponents(this._world)
 
     log('RendererPlugin Systems')
-    world.registerSystem(new ServerRendererLoadingSystem(eventBus))
+    this._world.registerSystem(new ServerRendererLoadingSystem(eventBus))
   }
 
   registerComponents(world: World): void {

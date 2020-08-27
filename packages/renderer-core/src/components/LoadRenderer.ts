@@ -2,7 +2,7 @@ import { MapSchema, type } from '@colyseus/schema'
 import { Component } from '@pixatore/ecs'
 
 export class LoadRenderer extends Component {
-  /** Map of players who have completed loading */
+  /** Percentge of the game loaded for the individual players */
   @type({ map: 'float32' }) public playerLoaded: MapSchema<
     number
   > = new MapSchema<number>()
