@@ -10,6 +10,7 @@ node_js:
 
 install:
   - 'yarn install'
+  - 'yarn build:core'
 
 script:
   - yarn test
