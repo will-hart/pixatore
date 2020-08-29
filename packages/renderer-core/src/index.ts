@@ -9,7 +9,7 @@ import { LoadRenderer, Sprite } from './components'
 import { IRenderSystem, MessageTypes } from './types'
 import { ILoadingProgressEvent } from '@pixatore/game'
 
-const log = debug('PX:REN:PLUGIN    :          ')
+const log = debug('PX:REN:RendererPlugin       ')
 if (console) log.log = console.log.bind(console)
 
 /** This renderer plugin can be used on the server, but should be

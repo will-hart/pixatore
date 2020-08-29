@@ -21,15 +21,11 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-#Tauri build output
+# build output
 /dist_tauri
 packages/client/dist/
-packages/client/dist_tauri/
-packages/docs/.docusaurus
-packages/ecs/build/
-tsconfig.tsbuildinfo
+packages/app/dist_tauri/
 packages/server/lib
-packages/state-machine/build/
-packages/event-bus/build/
-packages/renderer-core/build/
-packages/renderer-pixi/build/
+packages/docs/.docusaurus
+tsconfig.tsbuildinfo
+packages/**/build/
